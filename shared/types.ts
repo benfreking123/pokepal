@@ -65,3 +65,16 @@ export interface OwnedMon {
 }
 export interface SaveMeta { trainerName: string; playtimeSeconds: number; badgeCount: number; mapId: number; mapName: string | null; sha256: string; mtimeMs: number; sizeBytes: number }
 export interface SaveSummary { meta: SaveMeta; party: OwnedMon[]; boxes: { name: string; mons: OwnedMon[] }[]; unknownIds: string[]; fieldNotesFound: string[] | null }
+
+export interface LiveFoeState { slot: number; name: string; species: string; form: number; formName: string | null; level: number; types: string[]; hpPercent: number; fainted: boolean }
+export interface LivePartyMon { species: string; form: number; nickname: string; level: number; hpPercent: number; fainted: boolean; active: boolean }
+export interface LiveBattleBase {
+  schema: 1; bridgeVersion: string; updatedAt: string; battleId: string; state: "active" | "ended"; isDouble: boolean;
+  field: { id: string; name: string }; trainer: { type: string; name: string } | null; foes: LiveFoeState[]; party: LivePartyMon[];
+}
+/** What the browser gets: the mod's state with the foes' level left out when "Opponent levels" is off, plus the trainer match. */
+export interface LiveBattle extends Omit<LiveBattleBase, "foes"> {
+  foes: (Omit<LiveFoeState, "level"> & { level?: number })[];
+  match: { key: string; exact: boolean } | null;
+}
+export type LiveBattleMessage = LiveBattle | { error: string };
