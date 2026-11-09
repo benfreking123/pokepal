@@ -2,7 +2,7 @@ import { mkdir, mkdtemp, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { expect, it } from "vitest";
-import { loadConfig, saveCandidates } from "../server/config";
+import { insideWorkingTree, loadConfig, saveCandidates } from "../server/config";
 
 it("lists save candidates in priority order", () => {
   const env = { USERPROFILE: "C:/Users/Ben", APPDATA: "C:/Users/Ben/AppData/Roaming" };
@@ -35,4 +35,13 @@ it("keeps backups next to the save, never inside the working tree", async () => 
   expect((await loadConfig(path.join(home, "e.json"), { USERPROFILE: home })).backupDir).toBe(path.join(dir, "backups"));
   await writeFile(path.join(home, "f.json"), JSON.stringify({ saveFile, backupDir: path.join(home, "elsewhere") }));
   expect((await loadConfig(path.join(home, "f.json"), { USERPROFILE: home })).backupDir).toBe(path.join(home, "elsewhere"));
+});
+
+it("treats Windows paths as the same folder regardless of case", () => {
+  const repo = "C:\\Users\\Ben\\Documents\\pokepal";
+  expect(insideWorkingTree("C:\\Users\\Ben\\Documents\\PokePal\\backups", repo, "win32")).toBe(true);
+  expect(insideWorkingTree("c:/users/ben/documents/POKEPAL", repo, "win32")).toBe(true);
+  expect(insideWorkingTree("C:\\Users\\Ben\\Saved Games\\Pokemon Reborn\\PokePal\\backups", repo, "win32")).toBe(false);
+  expect(insideWorkingTree("C:\\Users\\Ben\\Documents\\pokepal-other", repo, "win32")).toBe(false);
+  expect(insideWorkingTree("/home/ben/PokePal/backups", "/home/ben/pokepal", "linux")).toBe(false);
 });

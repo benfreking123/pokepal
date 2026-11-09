@@ -31,9 +31,12 @@ export function saveCandidates(env: NodeJS.ProcessEnv, gameDir: string | null): 
   return out;
 }
 
-function insideWorkingTree(dir: string): boolean {
-  const rel = path.relative(process.cwd(), path.resolve(dir));
-  return rel === "" || (!rel.startsWith("..") && !path.isAbsolute(rel));
+export function insideWorkingTree(dir: string, cwd = process.cwd(), platform: NodeJS.Platform = process.platform): boolean {
+  const win = platform === "win32";
+  const p = win ? path.win32 : path;
+  const norm = (x: string) => (win ? p.resolve(x).toLowerCase() : p.resolve(x));
+  const rel = p.relative(norm(cwd), norm(dir));
+  return rel === "" || (!rel.startsWith("..") && !p.isAbsolute(rel));
 }
 
 // Backups hold saves, so they must never land inside the repo clone (relative paths resolve against it).
