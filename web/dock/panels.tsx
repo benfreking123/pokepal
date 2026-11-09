@@ -6,6 +6,7 @@ import { SaveSwapTab } from "../tabs/SaveSwapTab";
 import { SettingsTab } from "../tabs/SettingsTab";
 import { TeamTab } from "../tabs/TeamTab";
 import { TypeChartTab } from "../tabs/TypeChartTab";
+import { WhatsNextTab } from "../tabs/WhatsNextTab";
 import { useDashboard } from "./context";
 import { PANELS, type PanelId } from "./layout";
 
@@ -18,6 +19,7 @@ function Body({ id }: { id: PanelId }): ReactNode {
     case "battle": return <BattleTab bundle={bundle} stream={stream} />;
     case "team": return <TeamTab bundle={bundle} />;
     case "prep": return <PrepTab bundle={bundle} stream={stream} />;
+    case "whats-next": return <WhatsNextTab bundle={bundle} />;
     case "type-chart": return <TypeChartTab bundle={bundle} />;
     case "settings": return <SettingsTab bundle={bundle} onChange={reload} />;
     default: return null;

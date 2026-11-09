@@ -12,6 +12,7 @@ import { registerDataRoutes } from "./routes/data";
 import { latestFieldNotes, registerSaveRoutes } from "./routes/save";
 import { openSpoilers, registerSpoilerRoutes } from "./routes/spoilers";
 import { registerTrainerRoutes } from "./routes/trainers";
+import { registerWhatsNextRoutes } from "./routes/whatsNext";
 
 const config = await loadConfig();
 const data = await loadGameData(config.dataDir, config.dataVersion).catch((e: Error) => e);
@@ -42,6 +43,7 @@ if (config.battleStateFile && !(data instanceof Error)) {
   app.addHook("onClose", () => overlay.close());
 }
 registerSaveRoutes(app, config, data);
+registerWhatsNextRoutes(app, config, data, spoilers);
 registerCrossplayRoutes(app, config, data);
 registerConfigRoutes(app, config);
 

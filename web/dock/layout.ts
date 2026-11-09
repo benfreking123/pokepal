@@ -6,6 +6,7 @@ export const PANELS = [
   { id: "type-chart", title: "Type Chart" },
   { id: "prep", title: "Battle Prep" },
   { id: "team", title: "Team / PC" },
+  { id: "whats-next", title: "What's next" },
   { id: "save-swap", title: "Save Swap" },
   { id: "guides", title: "Guides" },
   { id: "settings", title: "Settings" },

@@ -17,6 +17,7 @@ export function buildDefaultLayout(api: DockviewApi): void {
   api.addPanel({ id: "team", component: "team", title: title("team"), position: { referencePanel: "type-chart", direction: "right" } });
   api.addPanel({ id: "prep", component: "prep", title: title("prep"), position: { referencePanel: "type-chart", direction: "below" } });
   api.addPanel({ id: "save-swap", component: "save-swap", title: title("save-swap"), position: { referencePanel: "team", direction: "below" } });
+  api.addPanel({ id: "whats-next", component: "whats-next", title: title("whats-next"), position: { referencePanel: "save-swap", direction: "within" } });
   api.addPanel({ id: "guides", component: "guides", title: title("guides"), position: { referencePanel: "save-swap", direction: "within" } });
   api.addPanel({ id: "settings", component: "settings", title: title("settings"), position: { referencePanel: "save-swap", direction: "within" } });
   api.getPanel("save-swap")?.api.setActive();
