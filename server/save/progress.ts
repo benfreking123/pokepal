@@ -1,8 +1,27 @@
 import type { SaveProgress } from "../../shared/whatsNext";
-import { ivar } from "./readSave";
+import { ivar, sym } from "./readSave";
 import { SAVE_PATHS } from "./schema";
 
-export interface TrackedIds { variables: number[]; switches: number[] }
+export interface TrackedIds { variables: number[]; switches: number[]; items?: string[] }
+
+/** Bag layout is not documented; accept any [itemSymbol, quantity] pair (or a bare symbol) anywhere under PokemonBag. */
+export function bagItems(bag: unknown, wanted: string[]): Record<string, boolean> {
+  const found: Record<string, number> = {};
+  const walk = (node: unknown, depth: number) => {
+    if (depth > 6 || node === null || typeof node !== "object") return;
+    if (Array.isArray(node)) {
+      const id = sym(node[0]);
+      if (node.length === 2 && id && typeof node[1] === "number") { found[id] = (found[id] ?? 0) + node[1]; return; }
+      for (const el of node) {
+        if (typeof el === "symbol") { const s = sym(el); if (s) found[s] = (found[s] ?? 0) + 1; } else walk(el, depth + 1);
+      }
+      return;
+    }
+    for (const v of Object.values(node as Record<string, unknown>)) walk(v, depth + 1);
+  };
+  walk(bag, 0);
+  return Object.fromEntries(wanted.map((id) => [id, (found[id] ?? 0) > 0]));
+}
 
 const rootOf = (roots: unknown[]) => (roots[0] ?? {}) as Record<string, unknown>;
 
@@ -23,6 +42,7 @@ export function readProgress(roots: unknown[], tracked: TrackedIds, extra: { map
     mapName: extra.mapName,
     playtimeSeconds: SAVE_PATHS.playtimeSeconds(roots),
     variables, switches,
+    items: bagItems(rootOf(roots).PokemonBag, tracked.items ?? []),
     fieldNotes: switches[599] === true,
     fieldNoteCount: extra.fieldNoteCount,
   };

@@ -51,7 +51,7 @@ export function mapSave(read: SaveRead, data: SaveData, tracked: TrackedIds = { 
     sha256: read.sha256, mtimeMs: read.mtimeMs, sizeBytes: read.sizeBytes,
   };
   const notes = fieldNotesFound(SAVE_PATHS.switches(read.roots), data.fields);
-  const progress = readProgress(read.roots, { variables: tracked.variables, switches: [...new Set([...tracked.switches, 599])] }, { mapName: meta.mapName, fieldNoteCount: notes?.length ?? null });
+  const progress = readProgress(read.roots, { variables: tracked.variables, switches: [...new Set([...tracked.switches, 599])], items: tracked.items }, { mapName: meta.mapName, fieldNoteCount: notes?.length ?? null });
   return { meta, party, boxes, unknownIds: [...unknown].sort(), fieldNotesFound: notes, progress };
 }
 

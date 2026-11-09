@@ -25,7 +25,7 @@ export async function loadSummary(config: Config, data: LoadedData | Error): Pro
     const st = await stat(config.saveFile);
     const key = `${config.saveFile}|${st.size}|${st.mtimeMs}`;
     if (cached?.key !== key) {
-      const tracked = await loadWhatsNext().then(trackedIds, () => ({ variables: [], switches: [] }));
+      const tracked = await loadWhatsNext().then(trackedIds, () => ({ variables: [], switches: [], items: [] }));
       cached = { key, summary: mapSave(await readSaveFile(config.saveFile), data.game, tracked) };
     }
     return cached.summary;

@@ -9,7 +9,7 @@ import { registerSaveRoutes } from "../server/routes/save";
 import { openSpoilers, registerSpoilerRoutes } from "../server/routes/spoilers";
 import { registerWhatsNextRoutes } from "../server/routes/whatsNext";
 import { mapSave } from "../server/save/mapSave";
-import { readProgress } from "../server/save/progress";
+import { bagItems, readProgress } from "../server/save/progress";
 import { readSaveFile } from "../server/save/readSave";
 import { loadWhatsNext, validateWhatsNext, WHATS_NEXT_FILE } from "../server/whatsnext/load";
 import type { Boss, LoadedData } from "../shared/types";
@@ -21,10 +21,15 @@ const realMaps = Object.values(JSON.parse(readFileSync("data/versions/19.5.0/map
 const bossById = (id: string) => { const b = realBosses.find((x) => x.id === id); return b ? { name: b.name, location: b.location ?? null } : null; };
 
 const progress = (o: Partial<SaveProgress> = {}): SaveProgress => ({
-  badges: 0, postgame: 0, mapId: 0, mapName: null, playtimeSeconds: 0, variables: {}, switches: {}, fieldNotes: false, fieldNoteCount: null, ...o,
+  badges: 0, postgame: 0, mapId: 0, mapName: null, playtimeSeconds: 0, variables: {}, switches: {}, items: {}, fieldNotes: false, fieldNoteCount: null, ...o,
 });
 const view = (p: SaveProgress, showNames = false, reveal: string[] = []) => computeWhatsNext(curated, p, { showNames, reveal: new Set(reveal), bossById });
-const BEN = progress({ badges: 6, mapId: 244, mapName: "Tanzan Mountain", playtimeSeconds: 24 * 3600 + 25 * 60 });
+// Ben's live save (internal/story-flags.md): 6 badges at Tanzan Cove, var 107 = 28, switches 414 and 599 on, bag has HM01 and HM04.
+const BEN = progress({
+  badges: 6, mapId: 232, mapName: "Tanzan Cove", playtimeSeconds: 24 * 3600 + 35 * 60,
+  variables: { 107: 28, 552: 0 }, switches: { 414: true, 599: true },
+  items: { HM01: true, HM04: true, HM07: false, HM08: false, BICYCLE: false, SUPERROD: false }, fieldNotes: true,
+});
 
 describe("curated data", () => {
   it("validates and has one main step per badge count", () => {
@@ -57,6 +62,7 @@ describe("curated data", () => {
     const t = trackedIds(curated);
     expect(t.variables).toEqual(expect.arrayContaining([150, 173, 339, 438, 549]));
     expect(t.switches).toEqual(expect.arrayContaining([414, 599, 1028]));
+    expect(t.items).toEqual(expect.arrayContaining(["HM01", "HM04", "HM07", "HM08", "BICYCLE", "SUPERROD"]));
   });
 });
 
@@ -90,13 +96,14 @@ describe("reading progress from the synthetic save", () => {
 });
 
 describe("main story", () => {
-  it("places Ben (6 badges, Tanzan Mountain) on the Tanzan Mountain leg of the 7th-badge route", () => {
+  it("places Ben (6 badges, Tanzan Cove) on the last leg of the 7th-badge route", () => {
     const v = view(BEN);
     expect(v.current?.id).toBe("badges-6");
     expect(v.current?.title).toMatch(/Tanzan/);
     expect(v.current?.legs.map((l) => `${l.state}:${l.where}`)).toEqual([
-      "done:Belrose Manse (Tanzan Cove area)", "here:Tanzan Mountain", "todo:Tanzan Meteor Base", "todo:Tanzan Cove",
+      "done:Belrose Manse (Tanzan Cove area)", "done:Tanzan Mountain", "done:Tanzan Meteor Base", "here:Tanzan Cove",
     ]);
+    expect(view({ ...BEN, mapId: 244, mapName: "Tanzan Mountain" }).current?.legs.map((l) => l.state)).toEqual(["done", "here", "todo", "todo"]);
     expect(v.completedSteps).toHaveLength(6);
   });
 
@@ -166,7 +173,7 @@ describe("spoilers", () => {
 describe("optional objectives", () => {
   it("lists what is open for Ben now, in wiki order, and not later or expired ones", () => {
     const ids = view(BEN).optionalNow.map((i) => i.id);
-    expect(ids).toEqual(expect.arrayContaining(["magikarp", "day-care", "police", "gang-raid", "missing-furniture", "eevee-petting", "museum-fossil", "solrock-lunatone", "tara-identity", "tanzan-depths-boss", "memory-dragon", "memory-bug"]));
+    expect(ids).toEqual(expect.arrayContaining(["magikarp", "day-care", "police", "gang-raid", "missing-furniture", "eevee-petting", "museum-fossil", "tara-identity", "bicycle", "unlock-rock-smash", "unlock-flash", "tanzan-depths-boss", "memory-dragon", "memory-bug"]));
     expect(ids).not.toContain("rainbow-scent");
     expect(ids).not.toContain("chess-puzzle");
     expect(ids).not.toContain("starter-egg");
@@ -179,14 +186,26 @@ describe("optional objectives", () => {
   });
 
   it("marks items done from the game's own flags", () => {
-    expect(view(BEN).optionalNow.find((i) => i.id === "solrock-lunatone")?.done).toBe(false);
-    const withSnax = view({ ...BEN, switches: { 414: true } });
-    expect(withSnax.optionalDone.map((i) => i.id)).toEqual(["solrock-lunatone"]);
-    expect(withSnax.optionalNow.map((i) => i.id)).not.toContain("solrock-lunatone");
+    const noSnax = view({ ...BEN, switches: {} });
+    expect(noSnax.optionalNow.find((i) => i.id === "solrock-lunatone")?.done).toBe(false);
+    expect(view(BEN).optionalDone.map((i) => i.id)).toContain("solrock-lunatone");
 
     const late = view(progress({ badges: 14, variables: { 150: 40, 173: 8, 438: 21, 339: 10 } }));
     expect(late.optionalDone.map((i) => i.id).sort()).toEqual(["chess-puzzle", "route-2", "starter-egg"]);
     expect(late.optionalNow.map((i) => i.id)).toContain("devon-corp");
+  });
+
+  it("ticks field-move unlocks from the bag and leaves missing ones open", () => {
+    const v = view(BEN);
+    expect(v.optionalDone.map((i) => i.id)).toEqual(expect.arrayContaining(["unlock-cut", "unlock-strength"]));
+    const open = Object.fromEntries(v.optionalNow.map((i) => [i.id, i]));
+    for (const id of ["unlock-rock-smash", "unlock-flash", "bicycle", "tara-identity"]) expect(open[id], id).toMatchObject({ tracked: true, done: false });
+  });
+
+  it("reads bag items from any [symbol, quantity] layout", () => {
+    const bag = { "@pockets": [[], [["HM01", 1], ["HM07", 0]], { "@items": [["BICYCLE", 2]] }] };
+    expect(bagItems(bag, ["HM01", "HM07", "BICYCLE", "SUPERROD"])).toEqual({ HM01: true, HM07: false, BICYCLE: true, SUPERROD: false });
+    expect(bagItems(undefined, ["HM01"])).toEqual({ HM01: false });
   });
 
   it("does not claim completion for items the save cannot show", () => {

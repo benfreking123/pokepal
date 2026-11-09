@@ -1,4 +1,4 @@
-export type Cond = { var: number; gte: number } | { sw: number } | { badges: number };
+export type Cond = { var: number; gte: number } | { sw: number } | { badges: number } | { item: string };
 
 export interface WNSource { label: string; url: string | null }
 export interface WNLegData { where: string; what: string; maps: string[] }
@@ -19,6 +19,7 @@ export interface WhatsNextData {
   progress: {
     variables: Record<string, { name: string; from: string; note: string }>;
     switches: Record<string, { name: string; from: string; note: string }>;
+    items?: Record<string, string>;
   };
   mainSteps: WNStepData[];
   optional: WNOptionalData[];
@@ -33,6 +34,8 @@ export interface SaveProgress {
   playtimeSeconds: number;
   variables: Record<number, number>;
   switches: Record<number, boolean>;
+  /** Quantity > 0 for each tracked bag item id. */
+  items: Record<string, boolean>;
   fieldNotes: boolean;
   fieldNoteCount: number | null;
 }
@@ -78,6 +81,7 @@ export const revealStep = (id: string) => `step:${id}`;
 export function evalCond(c: Cond, p: SaveProgress): boolean {
   if ("var" in c) return (p.variables[c.var] ?? 0) >= c.gte;
   if ("sw" in c) return p.switches[c.sw] === true;
+  if ("item" in c) return p.items[c.item] === true;
   return p.badges >= c.badges;
 }
 
@@ -148,14 +152,16 @@ export function computeWhatsNext(data: WhatsNextData, p: SaveProgress, opt: What
   };
 }
 
-export function trackedIds(data: WhatsNextData): { variables: number[]; switches: number[] } {
+export function trackedIds(data: WhatsNextData): { variables: number[]; switches: number[]; items: string[] } {
   const variables = new Set(Object.keys(data.progress.variables).map(Number));
   const switches = new Set(Object.keys(data.progress.switches).map(Number));
+  const items = new Set<string>();
   const walk = (c: Cond | undefined) => {
     if (!c) return;
     if ("var" in c) variables.add(c.var);
     else if ("sw" in c) switches.add(c.sw);
+    else if ("item" in c) items.add(c.item);
   };
   data.optional.forEach((o) => walk(o.done));
-  return { variables: [...variables].sort((a, b) => a - b), switches: [...switches].sort((a, b) => a - b) };
+  return { variables: [...variables].sort((a, b) => a - b), switches: [...switches].sort((a, b) => a - b), items: [...items].sort() };
 }

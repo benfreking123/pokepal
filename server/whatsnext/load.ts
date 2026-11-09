@@ -7,6 +7,7 @@ const Cond = z.union([
   z.strictObject({ var: z.number().int().nonnegative(), gte: z.number().int() }),
   z.strictObject({ sw: z.number().int().positive() }),
   z.strictObject({ badges: z.number().int().min(0).max(18) }),
+  z.strictObject({ item: z.string().regex(/^[A-Z0-9]+$/) }),
 ]);
 const Named = z.strictObject({ name: z.string().min(1), from: z.string().min(1), note: z.string().min(1) });
 
@@ -14,7 +15,7 @@ export const WhatsNextSchema = z.strictObject({
   gameVersion: z.string(),
   note: z.string().optional(),
   sources: z.record(z.string(), z.strictObject({ label: z.string().min(1), url: z.string().url().nullable() })),
-  progress: z.strictObject({ variables: z.record(z.string().regex(/^\d+$/), Named), switches: z.record(z.string().regex(/^\d+$/), Named) }),
+  progress: z.strictObject({ items: z.record(z.string(), z.string()).optional(), variables: z.record(z.string().regex(/^\d+$/), Named), switches: z.record(z.string().regex(/^\d+$/), Named) }),
   mainSteps: z.array(z.strictObject({
     id: z.string().min(1), badges: z.number().int().min(0).max(18), title: z.string().min(1),
     route: z.array(z.strictObject({ where: z.string().min(1), what: z.string().min(1), maps: z.array(z.string().min(1)) })).min(1),
