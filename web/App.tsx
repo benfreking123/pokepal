@@ -3,6 +3,7 @@ import type { ClientBundle } from "../shared/types";
 import { getJson } from "./api";
 import { BattleTab } from "./tabs/BattleTab";
 import { GuidesTab } from "./tabs/GuidesTab";
+import { PrepTab } from "./tabs/PrepTab";
 import { SaveSwapTab } from "./tabs/SaveSwapTab";
 import { SettingsTab } from "./tabs/SettingsTab";
 import { TeamTab } from "./tabs/TeamTab";
@@ -19,7 +20,7 @@ const TABS = [
 ] as const;
 type TabId = (typeof TABS)[number]["id"];
 
-const COMING: Partial<Record<TabId, number>> = { prep: 3 };
+const COMING: Partial<Record<TabId, number>> = {};
 
 function tabFromHash(hash: string): TabId {
   const h = hash.replace(/^#/, "");
@@ -54,6 +55,7 @@ export function App() {
     switch (tab) {
       case "battle": return <BattleTab bundle={bundle} />;
       case "team": return <TeamTab bundle={bundle} />;
+      case "prep": return <PrepTab bundle={bundle} />;
       case "save-swap": return <SaveSwapTab />;
       case "type-chart": return <TypeChartTab bundle={bundle} />;
       case "guides": return <GuidesTab />;

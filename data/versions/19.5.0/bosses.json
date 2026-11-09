@@ -1,1 +1,506 @@
-[]
+[
+  {
+    "doubles": false,
+    "fieldId": "ELECTERRAIN",
+    "group": "gym",
+    "id": "julia",
+    "location": "Peridot Gym",
+    "name": "Julia",
+    "notes": [],
+    "order": 1,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "JULIA:Julia:0"
+      }
+    ]
+  },
+  {
+    "doubles": false,
+    "fieldId": "DESERT",
+    "group": "gym",
+    "id": "florinia",
+    "location": "Onyx Trainers' School",
+    "name": "Florinia",
+    "notes": [],
+    "order": 2,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "FLORINIA:Florinia:0"
+      }
+    ]
+  },
+  {
+    "doubles": false,
+    "fieldId": "CORROSIVE",
+    "group": "other",
+    "id": "corey",
+    "location": "Beryl Gym",
+    "name": "Corey",
+    "notes": [
+      "The Battle Guide lists the field as Corrosive Field or Corrosive Mist Field."
+    ],
+    "order": 3,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "Corey:Corey:0"
+      }
+    ]
+  },
+  {
+    "doubles": true,
+    "fieldId": "FOREST",
+    "group": "gym",
+    "id": "shelly",
+    "location": "Lapis Gym",
+    "name": "Shelly",
+    "notes": [],
+    "order": 4,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "Team 0",
+        "trainerKey": "SHELLY:Shelly:0"
+      },
+      {
+        "label": "Team 1",
+        "trainerKey": "SHELLY:Shelly:1"
+      }
+    ]
+  },
+  {
+    "doubles": false,
+    "fieldId": "SHORTCIRCUIT",
+    "group": "gym",
+    "id": "shade",
+    "location": "Yureyu Power Plant",
+    "name": "Shade",
+    "notes": [],
+    "order": 5,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "SHADE:Shade:0"
+      }
+    ]
+  },
+  {
+    "doubles": false,
+    "fieldId": "ASHENBEACH",
+    "group": "other",
+    "id": "kiki",
+    "location": "Apophyll Academy",
+    "name": "Kiki",
+    "notes": [],
+    "order": 6,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "Sensei:Kiki:0"
+      }
+    ]
+  },
+  {
+    "doubles": true,
+    "fieldId": "WASTELAND",
+    "group": "gym",
+    "id": "aya",
+    "location": "Wasteland Hideout",
+    "name": "Aya",
+    "notes": [],
+    "order": 7,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "AYA:Aya:0"
+      }
+    ]
+  },
+  {
+    "doubles": true,
+    "fieldId": "SHORTCIRCUIT",
+    "group": "other",
+    "id": "sirius-yureyu-hq",
+    "location": "Yureyu HQ",
+    "name": "Sirius (Yureyu HQ)",
+    "notes": [
+      "rebornversecalc lists this fight as doubles; the wiki Battle Guide says single."
+    ],
+    "order": 8,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "Sirius:Sirius:0"
+      }
+    ]
+  },
+  {
+    "doubles": false,
+    "fieldId": "MIRROR",
+    "group": "other",
+    "id": "bennett-voclain",
+    "location": "Voclain Estate",
+    "name": "Bennett (Voclain Estate)",
+    "notes": [],
+    "order": 9,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "BENNETT:Bennett:0"
+      }
+    ]
+  },
+  {
+    "doubles": false,
+    "fieldId": "MIRROR",
+    "group": "gym",
+    "id": "serra",
+    "location": "Voclain Estate",
+    "name": "Serra",
+    "notes": [],
+    "order": 10,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "SERRA:Serra:0"
+      }
+    ]
+  },
+  {
+    "doubles": false,
+    "fieldId": "NONE",
+    "group": "other",
+    "id": "sirius-belrose-manse",
+    "location": "Belrose Manse",
+    "name": "Sirius (Belrose Manse)",
+    "notes": [],
+    "order": 11,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "Sirius:Sirius:1"
+      }
+    ]
+  },
+  {
+    "doubles": false,
+    "fieldId": "GRASSY",
+    "group": "gym",
+    "id": "noel",
+    "location": "Tanzan Cove",
+    "name": "Noel",
+    "notes": [],
+    "order": 12,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "NOEL:Noel:0"
+      }
+    ]
+  },
+  {
+    "doubles": true,
+    "fieldId": "CHESS",
+    "group": "gym",
+    "id": "radomus",
+    "location": "Vanhanen Castle",
+    "name": "Radomus",
+    "notes": [],
+    "order": 13,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "RADOMUS:Radomus:0"
+      }
+    ]
+  },
+  {
+    "doubles": false,
+    "fieldId": "DARKCRYSTALCAVERN",
+    "group": "gym",
+    "id": "luna",
+    "location": "Iolia Valley",
+    "name": "Luna",
+    "notes": [],
+    "order": 14,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "LUNA:Luna:0"
+      }
+    ]
+  },
+  {
+    "doubles": false,
+    "fieldId": "BIGTOP",
+    "group": "gym",
+    "id": "samson",
+    "location": "Big Top",
+    "name": "Samson",
+    "notes": [],
+    "order": 15,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "SAMSON:Samson:0"
+      }
+    ]
+  },
+  {
+    "doubles": true,
+    "fieldId": "SUPERHEATED",
+    "group": "gym",
+    "id": "charlotte",
+    "location": "Calcenon Gym",
+    "name": "Charlotte",
+    "notes": [],
+    "order": 16,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "CHARLOTTE:Charlotte:0"
+      }
+    ]
+  },
+  {
+    "doubles": false,
+    "fieldId": "GLITCH",
+    "group": "gym",
+    "id": "terra",
+    "location": "Glitch World",
+    "name": "Terra",
+    "notes": [],
+    "order": 17,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "TERRA:T3RR4:0"
+      }
+    ]
+  },
+  {
+    "doubles": false,
+    "fieldId": "BIGTOP",
+    "group": "gym",
+    "id": "ciel",
+    "location": "Big Top",
+    "name": "Ciel",
+    "notes": [],
+    "order": 18,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "CIEL:Ciel:0"
+      }
+    ]
+  },
+  {
+    "doubles": true,
+    "fieldId": "MISTY",
+    "group": "gym",
+    "id": "adrienn",
+    "location": "Coral Gym",
+    "name": "Adrienn",
+    "notes": [],
+    "order": 19,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "ADRIENN:Adrienn:0"
+      }
+    ]
+  },
+  {
+    "doubles": false,
+    "fieldId": "FAIRYTALE",
+    "group": "gym",
+    "id": "titania",
+    "location": "Never After",
+    "name": "Titania",
+    "notes": [],
+    "order": 20,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "TITANIA1:Titania:0"
+      }
+    ]
+  },
+  {
+    "doubles": false,
+    "fieldId": "WATERSURFACE",
+    "group": "gym",
+    "id": "amaria",
+    "location": "Fiore Arena",
+    "name": "Amaria",
+    "notes": [
+      "The Gym Leaders page lists both single and double battles for this gym; singles is shown here."
+    ],
+    "order": 21,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "Team 0",
+        "trainerKey": "AMARIA1:Amaria:0"
+      },
+      {
+        "label": "Team 1",
+        "trainerKey": "AMARIA1:Amaria:1"
+      }
+    ]
+  },
+  {
+    "doubles": true,
+    "fieldId": "ROCKY",
+    "group": "gym",
+    "id": "hardy",
+    "location": "Agate Arena",
+    "name": "Hardy",
+    "notes": [],
+    "order": 22,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "Team 0",
+        "trainerKey": "HARDY:Hardy:0"
+      },
+      {
+        "label": "Team 1",
+        "trainerKey": "HARDY:Hardy:1"
+      }
+    ]
+  },
+  {
+    "doubles": false,
+    "fieldId": "DRAGONSDEN",
+    "group": "gym",
+    "id": "saphira",
+    "location": "Labradorra Gym",
+    "name": "Saphira",
+    "notes": [],
+    "order": 23,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "SAPHIRA:Saphira:0"
+      }
+    ]
+  },
+  {
+    "doubles": true,
+    "fieldId": "DRAGONSDEN",
+    "group": "other",
+    "id": "sirius-e18",
+    "location": "Victory Road",
+    "name": "Sirius (Victory Road)",
+    "notes": [
+      "Ruby Area of Victory Road."
+    ],
+    "order": 24,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "Sirius:Sirius:2"
+      }
+    ]
+  },
+  {
+    "doubles": false,
+    "fieldId": "MOUNTAIN",
+    "group": "other",
+    "id": "heather",
+    "location": "Charous Hall",
+    "name": "Heather",
+    "notes": [
+      "Elite Four."
+    ],
+    "order": 25,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "HEATHER:Heather:0"
+      }
+    ]
+  },
+  {
+    "doubles": true,
+    "fieldId": "FLOWERGARDEN1",
+    "group": "other",
+    "id": "bennett-laura",
+    "location": "Charous Hall",
+    "name": "Bennett & Laura",
+    "notes": [
+      "Elite Four. Flower Garden grows through stages during the battle; this starts at stage 1."
+    ],
+    "order": 26,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "BENNETTLAURA:Bennett & Laura:0"
+      }
+    ]
+  },
+  {
+    "doubles": false,
+    "fieldId": "HOLY",
+    "group": "other",
+    "id": "elias",
+    "location": "Charous Hall",
+    "name": "Elias",
+    "notes": [
+      "Elite Four."
+    ],
+    "order": 27,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "ELIAS:Elias:0"
+      }
+    ]
+  },
+  {
+    "doubles": false,
+    "fieldId": "STARLIGHT",
+    "group": "other",
+    "id": "anna",
+    "location": "Charous Hall",
+    "name": "Anna",
+    "notes": [
+      "Champion."
+    ],
+    "order": 28,
+    "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
+    "variants": [
+      {
+        "label": "",
+        "trainerKey": "ANNA:Anna:0"
+      }
+    ]
+  }
+]
