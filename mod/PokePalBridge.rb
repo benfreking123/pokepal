@@ -101,12 +101,21 @@ module PokePalBridge
       m && m[1]
     end
 
+    # Battle.rb:1745 and :1903 pbSwitchInName: the announcement uses getMonName(species, form) for a foe (not its
+    # nickname), and for an Illusion Pokemon the name of the party's last healthy Pokemon, which is the one this finds.
+    def self.shown_name(pk)
+      return pk.name.to_s unless Object.private_method_defined?(:getMonName) || Object.method_defined?(:getMonName)
+      getMonName(pk.species, pk.form).to_s
+    rescue StandardError
+      pk.name.to_s
+    end
+
     # The announced Pokemon from the opposing party: healthy, not already on the field, and named as announced.
     def self.incoming(battle, name)
       return nil unless battle.respond_to?(:party2)
       active = battlers(battle).map(&:pokemon)
       party = battle.party2.to_a
-      i = party.index { |pk| pk && pk.hp.to_i > 0 && pk.name.to_s == name && active.none? { |a| a.equal?(pk) } }
+      i = party.index { |pk| pk && pk.hp.to_i > 0 && (shown_name(pk) == name || pk.name.to_s == name) && active.none? { |a| a.equal?(pk) } }
       return nil if i.nil?
       pk = party[i]
       types = pk.respond_to?(:type1) ? [pk.type1, pk.respond_to?(:type2) ? pk.type2 : nil].compact.uniq.map(&:to_s) : []

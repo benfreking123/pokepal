@@ -236,6 +236,15 @@ File.delete(path) if File.exist?(path)
 PokeBattle_Scene.new(online_inc).pbDisplayPausedMessage('Noel is about to send in Porygon-Z.')
 check('online records nothing', [nil, false], [online_inc.instance_variable_get(:@pokepal_incoming), File.exist?(path)])
 
+# A foe announced by its species name (Battle.rb:1912 getMonName), whatever its nickname or form name.
+def getMonName(species, form) = form == 1 ? "Alolan #{species.to_s.capitalize}" : species.to_s.capitalize
+nick = Mon.new(:RAICHU, 1, 'Sparky', 40, 100, 100, :ELECTRIC, :PSYCHIC)
+nick_battle = fake_battle(battlers: [battler(0, :RIOLU), cinccino])
+nick_battle.define_singleton_method(:party2) { [cinccino.pokemon, nick] }
+PokeBattle_Scene.new(nick_battle).pbDisplayPausedMessage('Noel is about to send in Alolan Raichu.')
+check('announced by species and form name, not nickname', ['RAICHU', 1], nick_battle.instance_variable_get(:@pokepal_incoming).values_at('species', 'form'))
+Object.send(:remove_method, :getMonName)
+
 # The only constants and globals the file adds.
 check('no stray globals', [], global_variables.grep(/pokepal/i))
 puts 'ok'
