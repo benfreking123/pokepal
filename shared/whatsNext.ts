@@ -51,7 +51,7 @@ export interface WNStep {
 export interface WNLockedStep { locked: true; id: string }
 export interface WNItem {
   id: string; kind: WNKind; title: string; where: string; needs: string; hint: string;
-  tracked: boolean; done: boolean; doneLabel: string | null; lastChance: boolean;
+  tracked: boolean; done: boolean; /** "Done: …" once finished, "Done when …" while open; null for items the save cannot show. */ statusLabel: string | null; lastChance: boolean;
   namedBattles: string[] | null; sources: WNSource[];
 }
 
@@ -119,7 +119,8 @@ export function computeWhatsNext(data: WhatsNextData, p: SaveProgress, opt: What
 
   const toItem = (o: WNOptionalData): WNItem => ({
     id: o.id, kind: o.kind, title: o.title, where: o.where, needs: o.needs, hint: o.hint,
-    tracked: o.done !== undefined, done: o.done ? evalCond(o.done, p) : false, doneLabel: o.doneLabel ?? null,
+    tracked: o.done !== undefined, done: o.done ? evalCond(o.done, p) : false,
+    statusLabel: o.done && o.doneLabel ? `${evalCond(o.done, p) ? "Done:" : "Done when"} ${o.doneLabel}` : null,
     lastChance: o.lastBadges !== undefined && o.lastBadges === p.badges,
     namedBattles: opt.showNames ? o.namedBattles ?? null : null,
     sources: source(o.sources),

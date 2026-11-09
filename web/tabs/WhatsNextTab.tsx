@@ -56,6 +56,7 @@ function ItemRow({ item }: { item: WNItem }) {
       <div><span className="muted">Start: </span>{item.where}</div>
       <div><span className="muted">Needs: </span>{item.needs}</div>
       <div className="muted">{item.hint}</div>
+      {item.statusLabel ? <div className={item.done ? "wn-status wn-status-done" : "wn-status muted"}>{item.statusLabel}</div> : null}
       {item.namedBattles?.length ? <div className="wn-context">Battles: {item.namedBattles.join("; ")}</div> : null}
       <Sources sources={item.sources} />
     </li>

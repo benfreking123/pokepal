@@ -176,11 +176,11 @@
       "HM04": "TMX4 Strength",
       "HM05": "TMX5 Waterfall",
       "HM06": "TMX6 Dive",
-      "HM07": "TMX7 Rock Smash",
-      "HM08": "TMX8 Flash",
       "HM09": "TMX9 Rock Climb",
       "BICYCLE": "Bicycle",
-      "SUPERROD": "Super Rod"
+      "SUPERROD": "Super Rod",
+      "TM94": "TMX7 Rock Smash (the game's item id is TM94)",
+      "TM70": "TMX8 Flash (the game's item id is TM70)"
     }
   },
   "mainSteps": [
@@ -1009,7 +1009,7 @@
       "done": {
         "item": "HM01"
       },
-      "doneLabel": "In your bag",
+      "doneLabel": "it's in your bag",
       "sources": [
         "tm-locations"
       ]
@@ -1049,9 +1049,9 @@
       "needs": "A normal battle team.",
       "hint": "The field move for cracked rocks.",
       "done": {
-        "item": "HM07"
+        "item": "TM94"
       },
-      "doneLabel": "In your bag",
+      "doneLabel": "it's in your bag",
       "sources": [
         "tm-locations"
       ]
@@ -1082,7 +1082,7 @@
       "done": {
         "item": "BICYCLE"
       },
-      "doneLabel": "In your bag"
+      "doneLabel": "it's in your bag"
     },
     {
       "id": "police",
@@ -1118,9 +1118,9 @@
       "needs": "Rock Smash helps; a team for the Railnet trainers.",
       "hint": "Lights up dark caves.",
       "done": {
-        "item": "HM08"
+        "item": "TM70"
       },
-      "doneLabel": "In your bag",
+      "doneLabel": "it's in your bag",
       "sources": [
         "tm-locations"
       ]
@@ -1172,7 +1172,7 @@
       "done": {
         "item": "HM04"
       },
-      "doneLabel": "In your bag",
+      "doneLabel": "it's in your bag",
       "sources": [
         "tm-locations"
       ]
@@ -1251,7 +1251,7 @@
       "done": {
         "sw": 414
       },
-      "doneLabel": "PokeSnax obtained",
+      "doneLabel": "you have PokeSnax",
       "sources": [
         "tanzan-mountain"
       ]
@@ -1271,7 +1271,7 @@
       "done": {
         "item": "SUPERROD"
       },
-      "doneLabel": "Super Rod obtained"
+      "doneLabel": "you have the Super Rod"
     },
     {
       "id": "tanzan-depths-boss",
@@ -1360,7 +1360,7 @@
       "done": {
         "item": "HM03"
       },
-      "doneLabel": "In your bag"
+      "doneLabel": "it's in your bag"
     },
     {
       "id": "unlock-dive",
@@ -1376,7 +1376,7 @@
       "done": {
         "item": "HM06"
       },
-      "doneLabel": "In your bag"
+      "doneLabel": "it's in your bag"
     },
     {
       "id": "unlock-waterfall",
@@ -1392,7 +1392,7 @@
       "done": {
         "item": "HM05"
       },
-      "doneLabel": "In your bag"
+      "doneLabel": "it's in your bag"
     },
     {
       "id": "unlock-fly",
@@ -1408,7 +1408,7 @@
       "done": {
         "item": "HM02"
       },
-      "doneLabel": "In your bag"
+      "doneLabel": "it's in your bag"
     },
     {
       "id": "devon-corp",
@@ -1458,7 +1458,7 @@
       "done": {
         "item": "HM09"
       },
-      "doneLabel": "In your bag"
+      "doneLabel": "it's in your bag"
     },
     {
       "id": "spirit-tracker",
