@@ -28,7 +28,7 @@ const view = (p: SaveProgress, showNames = false, reveal: string[] = []) => comp
 const BEN = progress({
   badges: 6, mapId: 232, mapName: "Tanzan Cove", playtimeSeconds: 24 * 3600 + 35 * 60,
   variables: { 107: 28, 552: 0 }, switches: { 414: true, 599: true },
-  items: { HM01: true, HM04: true, HM07: false, HM08: false, BICYCLE: false, SUPERROD: false }, fieldNotes: true,
+  items: { HM01: true, HM04: true, TM94: false, TM70: false, BICYCLE: false, SUPERROD: false }, fieldNotes: true,
 });
 
 describe("curated data", () => {
@@ -62,7 +62,7 @@ describe("curated data", () => {
     const t = trackedIds(curated);
     expect(t.variables).toEqual(expect.arrayContaining([150, 173, 339, 438, 549]));
     expect(t.switches).toEqual(expect.arrayContaining([414, 599, 1028]));
-    expect(t.items).toEqual(expect.arrayContaining(["HM01", "HM04", "HM07", "HM08", "BICYCLE", "SUPERROD"]));
+    expect(t.items).toEqual(expect.arrayContaining(["HM01", "HM04", "TM94", "TM70", "BICYCLE", "SUPERROD"]));
   });
 });
 
@@ -202,9 +202,21 @@ describe("optional objectives", () => {
     for (const id of ["unlock-rock-smash", "unlock-flash", "bicycle", "tara-identity"]) expect(open[id], id).toMatchObject({ tracked: true, done: false });
   });
 
+  it("words status labels as the condition while open and as a result only when done", () => {
+    const v = view(BEN);
+    const by = Object.fromEntries([...v.optionalNow, ...v.optionalDone].map((i) => [i.id, i]));
+    expect(by["unlock-rock-smash"]).toMatchObject({ done: false, statusLabel: "Done when it's in your bag" });
+    expect(by["unlock-flash"].statusLabel).toBe("Done when it's in your bag");
+    expect(by.bicycle.statusLabel).toBe("Done when it's in your bag");
+    expect(by["tara-identity"].statusLabel).toBe("Done when you have the Super Rod");
+    expect(by["unlock-cut"]).toMatchObject({ done: true, statusLabel: "Done: it's in your bag" });
+    expect(by.magikarp.statusLabel).toBeNull();
+    expect(JSON.stringify(v.optionalNow)).not.toMatch(/"statusLabel":"(In your bag|Super Rod obtained)/);
+  });
+
   it("reads bag items from any [symbol, quantity] layout", () => {
-    const bag = { "@pockets": [[], [["HM01", 1], ["HM07", 0]], { "@items": [["BICYCLE", 2]] }] };
-    expect(bagItems(bag, ["HM01", "HM07", "BICYCLE", "SUPERROD"])).toEqual({ HM01: true, HM07: false, BICYCLE: true, SUPERROD: false });
+    const bag = { "@pockets": [[], [["HM01", 1], ["TM94", 0]], { "@items": [["BICYCLE", 2]] }] };
+    expect(bagItems(bag, ["HM01", "TM94", "BICYCLE", "SUPERROD"])).toEqual({ HM01: true, TM94: false, BICYCLE: true, SUPERROD: false });
     expect(bagItems(undefined, ["HM01"])).toEqual({ HM01: false });
   });
 
