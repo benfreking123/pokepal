@@ -1,8 +1,9 @@
 {
-  "extractedAt": "2026-11-09T01:38:18.181Z",
+  "extractedAt": "2026-11-09T01:46:14.037Z",
   "extractorVersion": "1.0.0",
   "gameVersion": "19.5.0",
   "sources": {
+    "Data/MapInfos.rxdata": "fe86af00158d019a2d50eca846e9bb414229a51f7fef300aeae9062c6855e3e4",
     "Scripts/Reborn/abiltext.rb": "56e314782e37ff4a35888235bbd8b002ac963877d9fb10bca7ca60fec7efde21",
     "Scripts/Reborn/fieldtext.rb": "2e3373c0532df965a61afa51eaf1d24fb4f1cd38abaf3505e82ac881d5669721",
     "Scripts/Reborn/itemtext.rb": "490734ae5f28f6ae17aa15ae0dfe915309d5ca415287764c06037e2ef38a9051",
