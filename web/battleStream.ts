@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { subscribe } from "./events";
 import type { LiveBattle, LiveBattleMessage } from "../shared/types";
 
 export interface BattleStream {
@@ -20,11 +21,8 @@ export function useBattleStream(): BattleStream {
   const [manualFor, setManual] = useState<string | null>(null);
 
   useEffect(() => {
-    const es = new EventSource("/api/battle/stream");
-    es.addEventListener("open", () => setReconnecting(false));
-    es.addEventListener("error", () => setReconnecting(es.readyState !== EventSource.OPEN));
-    es.addEventListener("battle-state", (e) => {
-      const msg = JSON.parse((e as MessageEvent<string>).data) as LiveBattleMessage;
+    return subscribe("battle-state", (data) => {
+      const msg = JSON.parse(data) as LiveBattleMessage;
       if ("error" in msg) {
         setError(msg.error);
         return;
@@ -32,8 +30,7 @@ export function useBattleStream(): BattleStream {
       setError(null);
       setLive(msg);
       if (msg.state === "active") setActiveId(msg.battleId);
-    });
-    return () => es.close();
+    }, { onOpen: () => setReconnecting(false), onError: (open) => setReconnecting(!open) });
   }, []);
 
   return { live, error, reconnecting, activeId, manualFor, setManual };

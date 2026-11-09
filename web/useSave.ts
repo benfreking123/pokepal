@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import type { SaveSummary } from "../shared/types";
 import { getJson } from "./api";
+import { onSaveChanged } from "./events";
 
 export function useSave(): { save: SaveSummary | null; error: string | null } {
   const [save, setSave] = useState<SaveSummary | null>(null);
@@ -10,9 +11,7 @@ export function useSave(): { save: SaveSummary | null; error: string | null } {
   }, []);
   useEffect(() => {
     load();
-    const es = new EventSource("/api/save/stream");
-    es.addEventListener("save-changed", load);
-    return () => es.close();
+    return onSaveChanged(load);
   }, [load]);
   return { save, error };
 }

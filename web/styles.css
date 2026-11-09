@@ -81,7 +81,9 @@ button:hover { background: var(--accent-hover); }
 .dialog { background: var(--card); border-radius: 12px; padding: 16px; max-width: 560px; width: 100%; max-height: 90vh; overflow: auto; }
 .prep-results { list-style: none; margin: 8px 0 0; padding: 0; max-height: 260px; overflow-y: auto; }
 .prep-results button { width: 100%; text-align: left; margin: 2px 0; }
-.prep-results button.active { background: #0b1220; box-shadow: inset 3px 0 0 var(--accent); outline: 1px solid var(--accent); }
+.prep-results button { background: var(--surface); border: 1px solid var(--border); }
+.prep-results button:hover { background: #26334a; }
+.prep-results button.active { background: #0b1220; border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); outline: 1px solid var(--accent); }
 .live-chip { background: #1f5c34; }
 .live.ended .foe-panel, .live.ended .live-party { opacity: 0.55; filter: grayscale(0.8); }
 .live-foes .fainted { opacity: 0.5; }
@@ -190,3 +192,16 @@ code, .mono, .type-chart { font-family: var(--font-mono); }
 .history-result.live { background: var(--accent); color: #fff; }
 .selected-trainer { font-size: 14px; margin: 10px 0 4px; }
 .history-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.foe-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 6px; margin: 6px 0; }
+.foe-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 6px 8px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.foe-card.fainted { opacity: .5; }
+.foe-card-top { display: flex; gap: 8px; align-items: center; }
+.foe-card-id { min-width: 0; line-height: 1.3; }
+.sprite { width: 56px; height: 56px; object-fit: contain; image-rendering: pixelated; flex-shrink: 0; }
+.sprite-missing { display: inline-flex; align-items: center; justify-content: center; border-radius: 8px; background: var(--bg); color: var(--muted); font-size: 22px; }
+.foe-weak { display: flex; flex-wrap: wrap; gap: 3px; }
+.foe-best { list-style: none; margin: 0; padding: 4px 0 0; border-top: 1px solid var(--border); display: grid; gap: 2px; font-size: 12px; }
+.foe-counter { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.foe-card-hidden { opacity: .7; border-style: dashed; }
+@media (max-width: 480px) { .foe-cards { grid-template-columns: 1fr; } }

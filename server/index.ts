@@ -10,8 +10,9 @@ import { createOverlayWriter, overlayFile } from "./overlay/write";
 import { registerConfigRoutes } from "./routes/config";
 import { registerCrossplayRoutes } from "./routes/crossplay";
 import { registerDataRoutes } from "./routes/data";
-import { latestFieldNotes, registerSaveRoutes } from "./routes/save";
+import { createSaveNotifier, latestFieldNotes, registerSaveRoutes } from "./routes/save";
 import { openSpoilers, registerSpoilerRoutes } from "./routes/spoilers";
+import { registerSpriteRoutes } from "./sprites";
 import { registerTrainerRoutes } from "./routes/trainers";
 import { registerWhatsNextRoutes } from "./routes/whatsNext";
 
@@ -32,7 +33,8 @@ const battleFeed = createBattleFeed({
   history: battleHistory,
   log: (m) => app.log.debug(m),
 });
-registerBattleRoutes(app, battleFeed, battleHistory, spoilers);
+const saveNotifier = createSaveNotifier(config.saveFile);
+registerBattleRoutes(app, battleFeed, battleHistory, spoilers, saveNotifier);
 app.addHook("onClose", async () => { await battleFeed.close(); await battleHistory.flush(); });
 if (config.battleStateFile && !(data instanceof Error)) {
   const overlay = createOverlayWriter({
@@ -45,7 +47,8 @@ if (config.battleStateFile && !(data instanceof Error)) {
   battleFeed.subscribe(() => void overlay.refresh());
   app.addHook("onClose", () => overlay.close());
 }
-registerSaveRoutes(app, config, data);
+registerSpriteRoutes(app, config.gameDir, data);
+registerSaveRoutes(app, config, data, saveNotifier);
 registerWhatsNextRoutes(app, config, data, spoilers);
 registerCrossplayRoutes(app, config, data);
 registerConfigRoutes(app, config);

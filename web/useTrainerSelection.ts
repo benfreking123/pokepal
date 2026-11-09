@@ -15,7 +15,9 @@ export function useTrainerSelection(bundle: ClientBundle, live: LiveBattle | nul
   useEffect(() => {
     setView(null);
     if (!trainerKey) return;
-    getJson<TrainerView>(`/api/trainers/${encodeURIComponent(trainerKey)}`).then(setView, (e: Error) => setError(e.message));
+    let stale = false;
+    getJson<TrainerView>(`/api/trainers/${encodeURIComponent(trainerKey)}`).then((v) => { if (!stale) setView(v); }, (e: Error) => { if (!stale) setError(e.message); });
+    return () => { stale = true; };
   }, [trainerKey, bundle.spoilers]);
 
   const liveBattleId = live?.battleId ?? null;
