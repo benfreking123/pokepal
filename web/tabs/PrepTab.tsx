@@ -1,87 +1,31 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { buildMatrix, pickTeam } from "../../shared/prep/pick";
 import { describeReason, ignoredLine } from "../../shared/prep/explain";
 import { toCandidate, toFoes } from "../../shared/prep/score";
-import { searchTrainers } from "../../shared/prep/trainers";
 import { teamToShowdown } from "../../shared/showdown";
-import { liveFieldId } from "../../shared/live";
 import { NO_FIELD } from "../../shared/typechart";
-import type { ClientBundle, SaveSummary, TrainerView } from "../../shared/types";
-import { getJson, sendJson } from "../api";
 import type { BattleStream } from "../battleStream";
 import { BattleBanners } from "../components/BattleBanners";
 import { CopyButton } from "../components/CopyButton";
 import { FieldPicker } from "../components/FieldPicker";
 import { SpoilerChip } from "../components/SpoilerChip";
+import { TrainerPicker } from "../components/TrainerPicker";
 import { TypeBadge } from "../components/TypeBadge";
+import { useSave } from "../useSave";
+import { useTrainerSelection } from "../useTrainerSelection";
+import type { ClientBundle } from "../../shared/types";
 
 export function PrepTab({ bundle, stream }: { bundle: ClientBundle; stream: BattleStream }) {
-  const [query, setQuery] = useState("");
-  const [trainerKey, setTrainerKey] = useState<string | null>(null);
-  const [fieldId, setFieldId] = useState("NONE");
-  const [view, setView] = useState<TrainerView | null>(null);
-  const [save, setSave] = useState<SaveSummary | null>(null);
-  const [error, setError] = useState<string | null>(null);
   const [locked, setLocked] = useState<string[]>([]);
   const [excluded, setExcluded] = useState<string[]>([]);
   const [exportText, setExportText] = useState<string | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-  const [fromBattle, setFromBattle] = useState<{ battleId: string; exact: boolean } | null>(null);
-  const manualBattle = useRef<string | null>(null);
   const live = stream.live && stream.live.state === "active" ? stream.live : null;
-
-  const hits = useMemo(() => searchTrainers(bundle.trainerIndex, bundle.bosses, query, 50), [bundle.trainerIndex, bundle.bosses, query]);
-  const partyCounts = useMemo(() => {
-    const counts = new Map<string, number>();
-    for (const t of bundle.trainerIndex) counts.set(`${t.trainerType}:${t.name}`, (counts.get(`${t.trainerType}:${t.name}`) ?? 0) + 1);
-    return counts;
-  }, [bundle.trainerIndex]);
-  const boss = useMemo(() => bundle.bosses.find((b) => b.variants.some((v) => v.trainerKey === trainerKey)) ?? null, [bundle.bosses, trainerKey]);
-
-  const loadSave = useCallback(() => {
-    getJson<SaveSummary>("/api/save/summary").then((s) => { setSave(s); setError(null); }, (e: Error) => setError(e.message));
-  }, []);
-  useEffect(() => {
-    loadSave();
-    const es = new EventSource("/api/save/stream");
-    es.addEventListener("save-changed", loadSave);
-    return () => es.close();
-  }, [loadSave]);
-
-  useEffect(() => {
-    setView(null);
-    if (!trainerKey) return;
-    getJson<TrainerView>(`/api/trainers/${encodeURIComponent(trainerKey)}`).then(setView, (e: Error) => setError(e.message));
-  }, [trainerKey, bundle.spoilers]);
-
-  const liveBattleId = live?.battleId ?? null;
-  const liveMatchKey = live?.match?.key ?? null;
-  const liveExact = live?.match?.exact ?? true;
-  const liveField = live?.field.id ?? null;
-  useEffect(() => {
-    if (!liveBattleId || !liveMatchKey || manualBattle.current === liveBattleId) return;
-    setTrainerKey(liveMatchKey);
-    setFieldId(liveField ? liveFieldId(liveField) : "NONE");
-    setFromBattle({ battleId: liveBattleId, exact: liveExact });
-  }, [liveBattleId, liveMatchKey, liveExact, liveField]);
-
-  const pick = (key: string) => {
-    manualBattle.current = liveBattleId;
-    setFromBattle(null);
-    setTrainerKey(key);
-    const b = bundle.bosses.find((x) => x.variants.some((v) => v.trainerKey === key));
-    setFieldId(b?.fieldId ?? "NONE");
-  };
-  const otherParties = fromBattle && !fromBattle.exact && trainerKey
-    ? bundle.trainerIndex.filter((t) => {
-        const cur = bundle.trainerIndex.find((x) => x.key === trainerKey);
-        return cur && t.trainerType === cur.trainerType && t.name === cur.name;
-      })
-    : [];
-  const revealNext = () => {
-    if (!trainerKey) return;
-    sendJson<TrainerView>("POST", `/api/trainers/${encodeURIComponent(trainerKey)}/reveal-next`).then(setView, (e: Error) => setError(e.message));
-  };
+  const sel = useTrainerSelection(bundle, live);
+  const { trainerKey, fieldId, setFieldId, view, fromBattle, boss, otherParties } = sel;
+  const { save, error: saveError } = useSave();
+  const error = sel.error ?? saveError;
+  const { pick, revealNext } = sel;
 
   const overlay = bundle.overlays[fieldId] ?? NO_FIELD;
   const fieldHidden = bundle.hiddenFields.includes(fieldId);
@@ -108,25 +52,7 @@ export function PrepTab({ bundle, stream }: { bundle: ClientBundle; stream: Batt
       <BattleBanners stream={stream} />
       {error ? <p className="notice warn" role="alert">{error}</p> : null}
       {live && live.trainer && !live.match ? <p className="notice">This battle's trainer isn't in the data.</p> : null}
-      <section className="card">
-        <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search trainers (name, type or boss)" aria-label="Search trainers" style={{ width: "100%" }} />
-        <ul className="prep-results">
-          {hits.map(({ entry, boss: b }) => {
-            const parties = partyCounts.get(`${entry.trainerType}:${entry.name}`) ?? 1;
-            return (
-              <li key={entry.key}>
-                <button className={entry.key === trainerKey ? "active" : ""} onClick={() => pick(entry.key)}>
-                  {b ? <strong>{b.name}</strong> : entry.label}
-                  {parties > 1 ? ` · team ${entry.partyId}` : ""}
-                  {entry.maxLevel !== undefined ? ` · up to Lv. ${entry.maxLevel}` : ""}
-                  {b?.context?.location ? ` · ${b.context.location}` : ""}
-                </button>
-              </li>
-            );
-          })}
-          {hits.length === 0 ? <li className="muted">No trainers match.</li> : null}
-        </ul>
-      </section>
+      <TrainerPicker bundle={bundle} trainerKey={trainerKey} onPick={pick} />
 
       {trainerKey ? (
         <>
@@ -134,7 +60,7 @@ export function PrepTab({ bundle, stream }: { bundle: ClientBundle; stream: Batt
             <div className="toolbar">
               <span className="chip live-chip">{fromBattle.exact ? "From the current battle" : "From the current battle (best guess)"}</span>
               {otherParties.length > 1 ? otherParties.map((t) => (
-                <button key={t.key} aria-pressed={t.key === trainerKey} onClick={() => { manualBattle.current = fromBattle.battleId; setTrainerKey(t.key); }}>Team {t.partyId}</button>
+                <button key={t.key} aria-pressed={t.key === trainerKey} onClick={() => { sel.switchParty(t.key); }}>Team {t.partyId}</button>
               )) : null}
             </div>
           ) : null}
@@ -142,7 +68,7 @@ export function PrepTab({ bundle, stream }: { bundle: ClientBundle; stream: Batt
             {boss && boss.variants.length > 1 ? (
               <label>
                 Variant{" "}
-                <select value={trainerKey} onChange={(e) => { manualBattle.current = liveBattleId; setFromBattle(null); setTrainerKey(e.target.value); }}>
+                <select value={trainerKey} onChange={(e) => { sel.chooseVariant(e.target.value); }}>
                   {boss.variants.map((v) => <option key={v.trainerKey} value={v.trainerKey}>{v.label || v.trainerKey}</option>)}
                 </select>
               </label>
