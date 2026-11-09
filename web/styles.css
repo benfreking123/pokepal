@@ -172,3 +172,5 @@ code, .mono, .type-chart { font-family: var(--font-mono); }
 .rec-pill.bad { background: rgba(239, 68, 68, 0.1); color: #f0a3a3; border-color: rgba(239, 68, 68, 0.28); }
 .rec-tag { border-radius: 4px; padding: 0 5px; font-size: 0.66rem; line-height: 1.6; color: var(--muted); background: #243042; }
 .rec-note { margin: 4px 0 0; font-size: 0.72rem; color: var(--muted); }
+.wn-status { font-size: 12px; }
+.wn-status-done { color: #86efac; }
