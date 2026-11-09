@@ -18,7 +18,7 @@ const config = await loadConfig();
 const data = await loadGameData(config.dataDir, config.dataVersion).catch((e: Error) => e);
 const spoilers = await openSpoilers(path.join(config.stateDir ?? "state", "spoilers.json"));
 
-const app = Fastify({ logger: { level: "info" } });
+const app = Fastify({ logger: { level: process.env.POKEPAL_DEBUG ? "debug" : "info" } });
 await app.register(fastifyStatic, { root: path.resolve("dist/web") });
 registerSpoilerRoutes(app, spoilers);
 registerDataRoutes(app, data, spoilers, latestFieldNotes);

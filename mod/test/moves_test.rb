@@ -67,6 +67,37 @@ zsc, zmenu = fight_scene([Foe.new(1, :WATER)], moves, [Mv.new(:GIGAVOLT, :ELECTR
 zmenu.zButton = 2
 check('Z moves are marked while the Z button is pressed', ['x2'], marks(zsc)[0])
 
+
+# ---- frame cost: the steady state does no file access, parsing or redrawing ----
+module Counting
+  COUNTS = Hash.new(0)
+  def mtime(*a) = (COUNTS[:mtime] += 1; super)
+  def binread(*a) = (COUNTS[:read] += 1; super)
+  def exist?(*a) = (COUNTS[:exist] += 1; super)
+end
+File.singleton_class.prepend(Counting)
+class Bitmap; class << self; alias_method :orig_new, :new; def new(*a) = (Counting::COUNTS[:bitmap] += 1; orig_new(*a)); end; end
+
+bsc, bmenu = fight_scene([Foe.new(1, :WATER, :FLYING)], moves)
+PokePalOverlay.dispose
+write_overlay(overlay)
+tick(bsc)
+Counting::COUNTS.clear
+GC.start
+alloc0 = GC.stat(:total_allocated_objects)
+t0 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+frames = 4000
+frames.times { bsc.pbFrameUpdate(nil); bsc.pbGraphicsUpdate }
+ms = (Process.clock_gettime(Process::CLOCK_MONOTONIC) - t0) * 1000
+allocs = GC.stat(:total_allocated_objects) - alloc0
+check('mtime is checked about every 6th update, not every one', true, Counting::COUNTS[:mtime] <= (frames * 2) / PokePalOverlay::POLL_FRAMES + 1)
+check('no file is read while it is unchanged', 0, Counting::COUNTS[:read])
+check('no bitmap is built while nothing changes', 0, Counting::COUNTS[:bitmap])
+check('only the cheap disabled-file check touches the disk', true, Counting::COUNTS[:exist] <= Counting::COUNTS[:mtime] + 1)
+per_frame_us = ms * 1000 / (frames * 2)
+check("steady state is cheap (#{per_frame_us.round(2)} us and #{(allocs / (frames * 2.0)).round(2)} objects per update)", true, per_frame_us < 100 && allocs / (frames * 2.0) < 12)
+puts format('frame cost: %.2f us per update, %.2f objects per update (menu open, nothing changing)', per_frame_us, allocs / (frames * 2.0))
+
 sc.sprites['fightwindow'].visible = false
 tick(sc)
 check('markers hidden outside the fight menu', false, moves_sprite.visible)

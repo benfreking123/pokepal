@@ -36,10 +36,14 @@ export function createOverlayWriter(opts: {
   let closed = false;
   const run = async () => {
     if (closed) return;
+    const t0 = performance.now();
     const live = opts.latest();
     const { settings, found } = opts.settings();
     const overlay = live && !("error" in live) ? buildOverlay(live, opts.data, settings, found) : null;
-    if (overlay) await writeAtomic(opts.file, JSON.stringify(overlay));
+    if (overlay) {
+      await writeAtomic(opts.file, JSON.stringify(overlay));
+      opts.log?.(`overlay.json written in ${(performance.now() - t0).toFixed(1)} ms`);
+    }
     else await rm(opts.file, { force: true });
   };
   const refresh = () => (chain = chain.then(run).catch((e: Error) => opts.log?.(`overlay not written: ${e.message}`)));

@@ -99,3 +99,10 @@ In the fight menu each damaging move of your active Pokémon gets a small pill a
 - **Install**: replace both `zz_PokePalBridge.rb` and `zz_PokePalOverlay.rb` in `patch/Mods`, and run PokePal from this branch.
 
 `npm run test:mod` runs the mod tests against stand-in RGSS classes.
+
+## Responsiveness
+
+- PokePal reads `battle_state.json` within a few ms of the bridge's write (file-system events, plus a 200 ms fallback check) and writes `overlay.json` and the web push at once. Expect well under 100 ms from write to overlay file; the in-game panel then notices the new file within 6 frames (about 150 ms).
+- The bridge now also writes on every hit and faint (`PokeBattle_Scene#pbHPChanged`, `#pbFainted`) and at the start of each command phase, so HP and faints show as they happen. A write costs about 0.2 ms, and nothing is written when nothing changed.
+- The overlay mod runs from `pbGraphicsUpdate` as well as `pbFrameUpdate`: message waits and animations only call the former, which is why the panel used to freeze during a turn. Each frame only counts and checks F6; every 6 frames it looks at the file's modification time, and it reads, parses and redraws only when something changed.
+- Debug timing: set `DEBUG = true` at the top of either mod file to append timing lines to `bridge_timing.log` / `overlay_timing.log` in the PokePal folder; start PokePal with `POKEPAL_DEBUG=1` for server timing in its log.

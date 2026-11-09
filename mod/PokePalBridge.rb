@@ -5,6 +5,8 @@ module PokePalBridge
   ENABLED = true unless const_defined?(:ENABLED, false)
   VERSION = '1.0.0' unless const_defined?(:VERSION, false)
   SCHEMA = 1 unless const_defined?(:SCHEMA, false)
+  # Set to true to append timing lines to <save dir>\PokePal\bridge_timing.log (how long each write took).
+  DEBUG = false unless const_defined?(:DEBUG, false)
   # Survives F12 soft resets, which re-run every script in the same Ruby VM.
   HOOKED = {} unless const_defined?(:HOOKED, false)
 
@@ -183,6 +185,7 @@ module PokePalBridge
 
   def self.write(battle, state)
     return if switched_off?(battle)
+    t0 = DEBUG ? Time.now : nil
     data = build_state(battle, state)
     comparable = encode(data.reject { |k, _| k == 'updatedAt' })
     return if comparable == @last
@@ -191,6 +194,13 @@ module PokePalBridge
     path = File.join(dir, 'battle_state.json')
     File.open(path + '.tmp', 'wb') { |f| f.write(encode(data)) }
     replace_file(path + '.tmp', path)
+    timing("write #{state} #{((Time.now - t0) * 1000).round(2)}ms") if t0
+  end
+
+  def self.timing(text)
+    File.open(File.join(dir, 'bridge_timing.log'), 'a') { |f| f.puts("#{Time.now.strftime('%H:%M:%S.%L')} #{text}") }
+  rescue StandardError
+    nil
   end
 
   # Wraps klass#name without adding alias names to the class, so it chains with alias-based
@@ -234,6 +244,13 @@ module PokePalBridge
     write(battle, 'active')
   end
 
+  # Battle_Scene.rb:3507 pbHPChanged and :3540 pbFainted run after the battler's HP is already set, so the file
+  # follows every hit and faint instead of waiting for the end of the turn.
+  def self.write_for_scene(scene)
+    battle = scene.instance_variable_get(:@battle)
+    write(battle, 'active') if battle
+  end
+
   def self.clear_incoming(battle)
     battle.instance_variable_set(:@pokepal_incoming, nil)
   end
@@ -249,7 +266,11 @@ module PokePalBridge
            write(b, 'active')
          })
     wrap(::PokeBattle_Battle, :pbEndOfRoundPhase, after: ->(b, _a) { write(b, 'active') })
-    wrap(::PokeBattle_Scene, :pbDisplayPausedMessage, before: ->(s, a) { announce(s, a) }) if defined?(::PokeBattle_Scene)
+    wrap(::PokeBattle_Battle, :pbCommandPhase, before: ->(b, _a) { write(b, 'active') })
+    return unless defined?(::PokeBattle_Scene)
+    wrap(::PokeBattle_Scene, :pbDisplayPausedMessage, before: ->(s, a) { announce(s, a) })
+    wrap(::PokeBattle_Scene, :pbHPChanged, before: ->(s, _a) { write_for_scene(s) })
+    wrap(::PokeBattle_Scene, :pbFainted, before: ->(s, _a) { write_for_scene(s) })
   end
 end
 

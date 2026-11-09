@@ -7,7 +7,11 @@ module PokePalOverlay
   ENABLED = true unless const_defined?(:ENABLED, false)
   VERSION = '1.0.0' unless const_defined?(:VERSION, false)
   SCHEMA = 1 unless const_defined?(:SCHEMA, false)
-  POLL_SECONDS = 0.5 unless const_defined?(:POLL_SECONDS, false)
+  # The file's modification time is checked every POLL_FRAMES frames (about 6 times a second at 40 fps); the file
+  # is only read and parsed when that time changed.
+  POLL_FRAMES = 6 unless const_defined?(:POLL_FRAMES, false)
+  # Set to true to append timing lines to <save dir>\PokePal\overlay_timing.log (how old the file was when drawn).
+  DEBUG = false unless const_defined?(:DEBUG, false)
   STALE_SECONDS = 5 unless const_defined?(:STALE_SECONDS, false)
   # Panel position and size at the top right of the screen. Change these if it covers something on your setup.
   PANEL_WIDTH = 168 unless const_defined?(:PANEL_WIDTH, false)
@@ -215,7 +219,16 @@ module PokePalOverlay
   @data = nil
   @drawn = nil
   @mtime = nil
-  @next_poll = 0.0
+  @frames = POLL_FRAMES
+  @last_frame = nil
+  @checked_scene = nil
+  @data_version = 0
+  @drawn_version = nil
+  @path = nil
+  @m_version = nil
+  @m_bid = nil
+  @m_z = nil
+  @m_idx = nil
   @blocked = 0
   @online_scene = nil
   @ended_scene = nil
@@ -226,10 +239,17 @@ module PokePalOverlay
   @moves_off = false
   @marks = nil
   @marks_key = nil
-  @marks_at = 0.0
 
   def self.dir
-    File.join(Game.save_dir, 'PokePal')
+    @dir ||= File.join(Game.save_dir, 'PokePal')
+  end
+
+  def self.timing(text)
+    return unless DEBUG
+    Dir.mkdir(dir) unless File.directory?(dir)
+    File.open(File.join(dir, 'overlay_timing.log'), 'a') { |f| f.puts("#{Time.now.strftime('%H:%M:%S.%L')} #{text}") }
+  rescue StandardError
+    nil
   end
 
   def self.log_error(e)
@@ -261,9 +281,11 @@ module PokePalOverlay
     @viewport.dispose if @viewport && !@viewport.disposed?
     @moves_sprite.bitmap.dispose if @moves_sprite && !@moves_sprite.disposed? && @moves_sprite.bitmap && !@moves_sprite.bitmap.disposed?
     @moves_sprite.dispose if @moves_sprite && !@moves_sprite.disposed?
-    @sprite = @viewport = @scene = @data = @drawn = @mtime = nil
+    @sprite = @viewport = @scene = @data = @drawn = @mtime = @drawn_version = nil
     @moves_sprite = @moves_drawn = @marks = @marks_key = nil
-    @next_poll = 0.0
+    @frames = POLL_FRAMES
+    @checked_scene = nil
+    @m_bid = @m_version = nil
     @has_data = false
   end
 
@@ -272,11 +294,13 @@ module PokePalOverlay
   end
 
   def self.read
-    path = File.join(dir, 'overlay.json')
+    path = (@path ||= File.join(dir, 'overlay.json'))
     mtime = File.mtime(path)
     return nil if Time.now - mtime > STALE_SECONDS
     return @data if mtime == @mtime
     @mtime = mtime
+    @data_version += 1
+    timing("read file age=#{((Time.now - mtime) * 1000).round}ms")
     parsed = Json.parse(File.binread(path))
     @data = parsed.is_a?(Hash) && parsed['schema'] == SCHEMA ? parsed : nil
   rescue SystemCallError, Json::Error
@@ -355,47 +379,57 @@ module PokePalOverlay
     @moves_sprite.visible = false
   end
 
-  # Runs from the scene's per-frame update, so it must stay cheap: one clock read per frame, and the
-  # file only when the poll interval has passed.
+  # Runs every frame from the scene's frame and graphics updates (message waits only call the latter), so the
+  # steady state does no file access, parsing, allocation or redrawing: it counts frames, checks F6, and every
+  # POLL_FRAMES frames looks at the file's modification time.
   def self.frame(scene)
-    battle = Game.battle_of(scene)
-    return if battle.nil?
-    if @scene && !@scene.equal?(scene)
-      dispose
-    end
-    return if @ended_scene.equal?(scene)
-    if @online_scene && !@online_scene.equal?(scene)
+    fc = Graphics.respond_to?(:frame_count) ? Graphics.frame_count : nil
+    return if fc && fc == @last_frame
+    @last_frame = fc
+    return if @ended_scene.equal?(scene) || @online_scene.equal?(scene)
+    unless @checked_scene.equal?(scene)
+      @checked_scene = scene
+      battle = Game.battle_of(scene)
+      return if battle.nil?
+      dispose if @scene && !@scene.equal?(scene)
+      @checked_scene = scene
+      if Game.online?(battle)
+        @online_scene = scene
+        return
+      end
       @online_scene = nil
-    end
-    return if @online_scene.equal?(scene)
-    if !@scene && Game.online?(battle)
-      @online_scene = scene
-      return
     end
     if Game.toggle_pressed?
       @shown = !@shown
-      @next_poll = 0.0
+      @frames = POLL_FRAMES
     end
-    now = Time.now.to_f
-    if now >= @next_poll
-      @next_poll = now + POLL_SECONDS
+    @frames += 1
+    polled = @frames >= POLL_FRAMES
+    if polled
+      @frames = 0
       if switched_off?
         dispose if @sprite
         return
       end
       d = read
       if d && @shown
+        mt = @mtime
         ensure_sprite(scene)
+        @mtime = mt
         @data = d
-        draw(d)
+        if @drawn_version != @data_version
+          draw(d)
+          @drawn_version = @data_version
+        end
         @has_data = true
       else
         @has_data = false
       end
     end
     return unless @sprite && !@sprite.disposed?
-    @sprite.visible = @has_data && @shown && @blocked == 0 && !Game.fight_menu_open?(scene)
-    update_moves(scene, now)
+    vis = @has_data && @shown && @blocked == 0 && !Game.fight_menu_open?(scene)
+    @sprite.visible = vis if @sprite.visible != vis
+    update_moves(scene, polled)
   end
 
   PILL_W = 27 unless const_defined?(:PILL_W, false)
@@ -498,7 +532,11 @@ module PokePalOverlay
     old.dispose if old && !old.disposed?
   end
 
-  def self.update_moves(scene, now)
+  def self.hide_moves
+    @moves_sprite.visible = false if @moves_sprite.visible
+  end
+
+  def self.update_moves(scene, polled)
     return unless @moves_sprite && !@moves_sprite.disposed?
     menu = nil
     unless moves_off?
@@ -506,23 +544,31 @@ module PokePalOverlay
       rules = @data && @data['rules']
       menu = nil unless rules.is_a?(Hash)
     end
-    return @moves_sprite.visible = false unless menu
+    return hide_moves unless menu
     begin
-      battle = Game.battle_of(scene)
-      moves = Game.menu_moves(menu)
-      foes = Game.foes(battle)
-      key = [menu.battler.object_id, menu.zButton, foes.map { |f| [f.index, Game.foe_types(f)] }, @mtime]
-      if key != @marks_key || now >= @marks_at
-        @marks_key = key
-        @marks_at = now + POLL_SECONDS
-        @marks = marks_for(moves, menu.battler, foes, rules)
+      battler = menu.battler
+      bid = battler.object_id
+      z = menu.zButton
+      idx = menu.index
+      if bid != @m_bid || z != @m_z || idx != @m_idx || @data_version != @m_version
+        t0 = DEBUG ? Time.now : nil
+        battle = Game.battle_of(scene)
+        moves = Game.menu_moves(menu)
+        if bid != @m_bid || z != @m_z || @data_version != @m_version || polled
+          @marks = marks_for(moves, battler, Game.foes(battle), rules)
+        end
+        @m_bid = bid
+        @m_z = z
+        @m_idx = idx
+        @m_version = @data_version
+        draw_moves(idx, moves, @marks, battler)
+        timing("moves redraw #{((Time.now - t0) * 1000).round(1)}ms") if t0
       end
-      draw_moves(menu.index, moves, @marks, menu.battler)
-      @moves_sprite.visible = true
+      @moves_sprite.visible = true unless @moves_sprite.visible
     rescue StandardError => e
       @moves_off = true
       log_error(e)
-      @moves_sprite.visible = false
+      hide_moves
     end
   end
 
@@ -550,7 +596,7 @@ module PokePalOverlay
     klass.send(:define_method, name) do |*args, **kwargs, &block|
       PokePalOverlay.safely { before.call(self) } if before
       begin
-        current.bind(self).call(*args, **kwargs, &block)
+        current.bind_call(self, *args, **kwargs, &block)
       ensure
         PokePalOverlay.safely { after.call(self) } if after
       end
@@ -566,6 +612,7 @@ module PokePalOverlay
   def self.install_hooks
     return unless defined?(::PokeBattle_Scene)
     wrap(::PokeBattle_Scene, :pbFrameUpdate, after: ->(s) { frame(s) })
+    wrap(::PokeBattle_Scene, :pbGraphicsUpdate, after: ->(s) { frame(s) })
     wrap(::PokeBattle_Scene, :pbEndBattle, before: ->(s) { @ended_scene = s; dispose })
     wrap(::PokeBattle_Scene, :pbShowBattleStats, before: ->(_s) { block }, after: ->(_s) { unblock })
   end

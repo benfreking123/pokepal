@@ -42,6 +42,7 @@ class PokeBattle_Scene
   attr_reader :sprites, :calls
   def initialize(battle) = (@battle = battle; @sprites = { 'fightwindow' => Win.new.tap { |w| w.visible = false } }; @calls = [])
   def pbFrameUpdate(cw, update_cw = true) = (@calls << :frame; nil)
+  def pbGraphicsUpdate(shift = false, oppside = true, playerside = true) = (@calls << :graphics; nil)
   def pbEndBattle(result) = (@calls << :end; result)
   def pbShowBattleStats(b) = (@calls << :stats; nil)
 end
@@ -76,7 +77,7 @@ def write_overlay(data, age: 0)
 end
 
 def tick(scene)
-  PokePalOverlay.instance_variable_set(:@next_poll, 0.0)
+  PokePalOverlay.instance_variable_set(:@frames, PokePalOverlay::POLL_FRAMES)
   scene.pbFrameUpdate(nil)
 end
 

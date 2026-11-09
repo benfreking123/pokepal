@@ -205,6 +205,8 @@ class PokeBattle_Scene
   attr_reader :shown
   def initialize(battle) = (@battle = battle; @shown = [])
   def pbDisplayPausedMessage(msg, *rest) = (@shown << msg; :shown)
+  def pbHPChanged(mons, anim = false) = :hp
+  def pbFainted(pkmn) = :fainted
 end
 load MOD
 PokePalBridge::Game.define_singleton_method(:save_dir) { dir }
@@ -235,6 +237,32 @@ online_inc.define_singleton_method(:party2) { [next_mon] }
 File.delete(path) if File.exist?(path)
 PokeBattle_Scene.new(online_inc).pbDisplayPausedMessage('Noel is about to send in Porygon-Z.')
 check('online records nothing', [nil, false], [online_inc.instance_variable_get(:@pokepal_incoming), File.exist?(path)])
+
+# Every hit and faint is written as it happens (HP is already set when the scene hears about it).
+hit = battler(1, :GENGAR, hp: 80)
+hit_battle = fake_battle(battlers: [battler(0, :RIOLU), hit])
+hit_scene = PokeBattle_Scene.new(hit_battle)
+PokePalBridge.instance_variable_set(:@last, nil)
+hit_scene.pbHPChanged([[hit, 100]])
+check('hp change is written', true, File.binread(path).include?('"hpPercent":80'))
+hit.hp = 0
+hit.pokemon.hp = 0
+check('scene method result passes through', :fainted, hit_scene.pbFainted(hit))
+check('faint is written', true, File.binread(path).include?('"fainted":true'))
+
+# Writes are cheap enough to do per hit: build, compare and (when changed) write a small file.
+bench = fake_battle(battlers: [battler(0, :RIOLU), battler(1, :GENGAR)])
+PokePalBridge.instance_variable_set(:@last, nil)
+t0 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+200.times { |i| bench.battlers[1].hp = 100 - (i % 100); bench.battlers[1].pokemon.hp = bench.battlers[1].hp; PokePalBridge.write(bench, 'active') }
+per_write_ms = (Process.clock_gettime(Process::CLOCK_MONOTONIC) - t0) * 1000 / 200
+puts format('bridge write: %.2f ms per changed write', per_write_ms)
+check('a changed write takes well under 5 ms', true, per_write_ms < 5)
+t0 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+2000.times { PokePalBridge.write(bench, 'active') }
+per_skip_us = (Process.clock_gettime(Process::CLOCK_MONOTONIC) - t0) * 1_000_000 / 2000
+puts format('bridge write: %.1f us when nothing changed (no file access beyond the disabled check)', per_skip_us)
+check('an unchanged write is skipped cheaply', true, per_skip_us < 500)
 
 # A foe announced by its species name (Battle.rb:1912 getMonName), whatever its nickname or form name.
 def getMonName(species, form) = form == 1 ? "Alolan #{species.to_s.capitalize}" : species.to_s.capitalize
