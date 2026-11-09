@@ -6,6 +6,7 @@ const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 export function describeOverlay(o: FieldOverlay, data: GameData): string[] {
   const name = (id: string) => data.types.find((t) => t.id === id)?.name ?? id;
   const lines: string[] = [];
+  if (o.invert) lines.push("Type matchups are inverted: immunities and resistances become weaknesses, and weaknesses become resistances.");
   for (const r of o.moveTypeRemap ?? []) lines.push(`${name(r.from)} moves become ${name(r.to)}.`);
   for (const r of o.secondaryTypes ?? []) {
     const who = capitalize([r.match.category, r.match.moveType ? name(r.match.moveType) : null].filter(Boolean).join(" ")) || "Matching";
