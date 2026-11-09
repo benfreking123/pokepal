@@ -86,3 +86,43 @@ it("a level gap moves the ranking when the foe level is known, not when hidden",
   const hidden = recommend({ ...base, foes: [foe("Rattata", ["NORMAL"], null)], party, pc: [] });
   expect(hidden.party[0].score).toBeCloseTo(hidden.party[1].score, 5);
 });
+
+const texts = (r: { pills: { text: string }[] }) => r.pills.map((p) => p.text);
+
+it("shows strengths as short pills, at most four, greens before a single red", () => {
+  const r = recommend({ ...base, foes: [foe("Gengar", ["GHOST", "POISON"]), foe("Magnezone", ["ELECTRIC", "STEEL"])], party: [mon("Garchomp", ["DRAGON", "GROUND"])], pc: [] });
+  expect(texts(r.party[0])).toEqual(["Immune Electric", "4× Magnezone", "2× Gengar", "Resists Poison"]);
+  expect(r.party[0].pills.every((p) => p.kind === "good")).toBe(true);
+});
+
+it("adds one muted-red pill only for a serious weakness, last, within four pills", () => {
+  const heavy = recommend({ ...base, foes: [foe("Golem", ["ROCK", "GROUND"])], party: [mon("Charizard", ["FIRE", "FLYING"])], pc: [] });
+  expect(texts(heavy.party[0])).toContain("4× weak Rock");
+  expect(heavy.party[0].pills.at(-1)?.kind).toBe("bad");
+  expect(heavy.party[0].pills.length).toBeLessThanOrEqual(4);
+  const mild = recommend({ ...base, foes: [foe("Rattata", ["NORMAL"])], party: [mon("Lucario", ["FIGHTING"]), mon("Mild", ["ROCK"])], pc: [] });
+  expect(mild.party.flatMap((x) => x.pills).filter((p) => p.kind === "bad")).toEqual([]);
+});
+
+it("summarises a big team as a count and keeps the sentence for the tooltip", () => {
+  const foes = ["Gengar", "Gastly", "Haunter"].map((n) => foe(n, ["GHOST", "POISON"]));
+  const r = recommend({ ...base, foes, party: [mon("Tyranitar", ["ROCK", "DARK"])], pc: [] });
+  expect(texts(r.party[0])).toContain("Hits 3/3");
+  expect(r.party[0].reason).toContain("super-effectively");
+});
+
+it("regression: neutral STAB and field boosts never count as super-effective (Julia, Electric Terrain)", async () => {
+  const { loadGameData } = await import("../server/data/loadData");
+  const { toFoes } = await import("../shared/prep/score");
+  const { game, trainers } = await loadGameData("data/versions", null);
+  const julia = trainers["JULIA:Julia:0"];
+  const foes = toFoes({ key: julia.key, label: "Julia", partyId: 0, partial: false, mons: julia.mons.map((m, i) => ({ slot: i, species: m.species, form: m.form, level: m.level })) }, game);
+  expect(foes.map((f) => f.name)).toEqual(["Minun", "Geodude", "Voltorb", "Plusle", "Oricorio", "Electrode"]);
+  const args = { chart: game.chart, overlay: game.overlays.ELECTERRAIN, fieldName: "Electric Terrain", typeName, foes, pc: [] };
+  const zigzag = recommend({ ...args, party: [mon("ZigZag", ["ELECTRIC"])] }).party[0];
+  const trip = recommend({ ...args, party: [mon("Trip", ["GRASS", "POISON"])] }).party[0];
+  expect(zigzag.reason).not.toContain("super-effectively");
+  expect(zigzag.pills.map((p) => p.text).filter((t) => /×|Hits/.test(t))).toEqual([]);
+  expect(trip.reason).toContain("hits 1 of 6 foes super-effectively");
+  expect(trip.pills.map((p) => p.text)).toContain("Hits 1/6");
+});

@@ -4,7 +4,9 @@ import { scoreMatchup, type PrepCandidate, type PrepFoe } from "./score";
 
 /** A Pokémon that could be sent in. Only types, level and base stats are ever used; moves are never read. */
 export interface RecMon { uid: string; name: string; level: number; types: TypeId[]; baseStatTotal: number; box: string | null }
-export interface Recommendation { mon: RecMon; score: number; reason: string }
+export interface RecPill { kind: "good" | "bad"; text: string }
+/** `pills` are the glanceable strengths (and at most one serious weakness); `reason` is the full sentence for a tooltip. */
+export interface Recommendation { mon: RecMon; score: number; reason: string; pills: RecPill[] }
 export interface RecResult {
   /** Party members able to fight, best first. */
   party: Recommendation[];
@@ -18,6 +20,7 @@ export interface RecResult {
 
 export const PC_MARGIN = 0.5;
 export const PC_LIMIT = 3;
+export const MAX_PILLS = 4;
 const BST_REFERENCE = 500;
 
 export function baseStatTotal(data: GameData, species: string, form: number): number {
@@ -41,9 +44,22 @@ export const baseStatEdge = (total: number) => (total > 0 ? Math.max(-0.5, Math.
 
 const asCandidate = (m: RecMon, order: number): PrepCandidate => ({ uid: m.uid, name: m.name, level: m.level, types: m.types, moves: [], order });
 
+/** Best raw type effectiveness of the mon's own types against each foe: no STAB and no field damage boost, so only values above 1 are super-effective. */
+function reachAgainst(chart: BaseChart, overlay: FieldOverlay, mon: RecMon, foes: PrepFoe[]): number[] {
+  return foes.map((f) => {
+    let best = 0;
+    for (const t of mon.types) {
+      const e = moveEffectiveness(chart, { type: t }, f.types, overlay);
+      if (!e.fails) best = Math.max(best, e.min);
+    }
+    return best;
+  });
+}
+
 const joinNames = (xs: string[]) => (xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
 
-function describe(chart: BaseChart, overlay: FieldOverlay, fieldName: string, mon: RecMon, foes: PrepFoe[], typeName: (t: TypeId) => string, offense: number[]): string {
+function describe(chart: BaseChart, overlay: FieldOverlay, fieldName: string, mon: RecMon, foes: PrepFoe[], typeName: (t: TypeId) => string): string {
+  const offense = reachAgainst(chart, overlay, mon, foes);
   const carriers = new Map<TypeId, number>();
   for (const f of foes) for (const t of new Set(f.types)) carriers.set(t, (carriers.get(t) ?? 0) + 1);
   const ranked = [...carriers.entries()].sort((a, b) => b[1] - a[1]);
@@ -73,6 +89,32 @@ function describe(chart: BaseChart, overlay: FieldOverlay, fieldName: string, mo
   return parts.length ? parts.join("; ") : "even matchup; edge comes from level and base stats";
 }
 
+const fmtX = (x: number) => `${Math.round(x * 100) / 100}×`;
+
+function pillsFor(chart: BaseChart, overlay: FieldOverlay, mon: RecMon, foes: PrepFoe[], typeName: (t: TypeId) => string): RecPill[] {
+  const carriers = new Map<TypeId, number>();
+  for (const f of foes) for (const t of new Set(f.types)) carriers.set(t, (carriers.get(t) ?? 0) + 1);
+  const ranked = [...carriers.entries()].sort((a, b) => b[1] - a[1]);
+  const immune: RecPill[] = [];
+  const resists: RecPill[] = [];
+  let weak: { type: TypeId; x: number; count: number } | null = null;
+  for (const [t, count] of ranked) {
+    const e = moveEffectiveness(chart, { type: t }, mon.types, overlay);
+    if (e.fails) continue;
+    if (e.max === 0) immune.push({ kind: "good", text: `Immune ${typeName(t)}` });
+    else if (e.max < 1) resists.push({ kind: "good", text: `Resists ${typeName(t)}` });
+    else if (e.max > 1 && (e.max >= 4 || count * 2 >= foes.length) && (!weak || e.max > weak.x)) weak = { type: t, x: e.max, count };
+  }
+  const reach = reachAgainst(chart, overlay, mon, foes);
+  const strong = foes.map((f, i) => ({ f, x: reach[i] })).filter((o) => o.x > 1).sort((a, b) => b.x - a.x);
+  const offense: RecPill[] = foes.length > 2
+    ? strong.length ? [{ kind: "good", text: `Hits ${strong.length}/${foes.length}` }] : []
+    : strong.map((o) => ({ kind: "good" as const, text: `${fmtX(o.x)} ${o.f.name}` }));
+  const bad: RecPill[] = weak ? [{ kind: "bad", text: `${fmtX(weak.x)} weak ${typeName(weak.type)}` }] : [];
+  const good = [...immune.slice(0, 2), ...offense.slice(0, 2), ...resists, ...immune.slice(2), ...offense.slice(2)];
+  return [...good.slice(0, MAX_PILLS - bad.length), ...bad];
+}
+
 export interface RecommendInput {
   chart: BaseChart;
   overlay: FieldOverlay;
@@ -95,7 +137,7 @@ export function recommend(input: RecommendInput): RecResult {
   const rate = (m: RecMon, order: number): Recommendation => {
     const details = foes.map((f) => scoreMatchup(chart, overlay, asCandidate(m, order), f));
     const mean = details.reduce((s, d) => s + d.value, 0) / details.length;
-    return { mon: m, score: mean + baseStatEdge(m.baseStatTotal), reason: describe(chart, overlay, fieldName, m, foes, typeName, details.map((d) => d.offense)) };
+    return { mon: m, score: mean + baseStatEdge(m.baseStatTotal), reason: describe(chart, overlay, fieldName, m, foes, typeName), pills: pillsFor(chart, overlay, m, foes, typeName) };
   };
   const byScore = (a: Recommendation, b: Recommendation) => b.score - a.score || b.mon.level - a.mon.level;
 
