@@ -7,6 +7,7 @@ const Foe = z.object({
 }).strict();
 const PartyMon = z.object({
   species: z.string(), form: z.number().int(), nickname: z.string(), level: z.number().int(), hpPercent: z.number(), fainted: z.boolean(), active: z.boolean(),
+  moves: z.array(z.string()).max(4).optional(), speed: z.number().int().optional(),
 }).strict();
 
 const Incoming = z.object({ slot: z.number().int(), species: z.string(), form: z.number().int(), level: z.number().int(), types: z.array(z.string()) }).strict();

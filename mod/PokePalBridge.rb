@@ -124,6 +124,17 @@ module PokePalBridge
       { 'slot' => i, 'species' => pk.species.to_s, 'form' => pk.form.to_i, 'level' => pk.level.to_i, 'types' => types }
     end
 
+    # Pokemon#moves holds PBMove objects whose #move is the id (Battle.rb:2754, Battle_Move.rb:128); empty slots are
+    # nil or 0. Your own Pokemon's moves are not a secret.
+    def self.move_ids(pk)
+      return [] unless pk.respond_to?(:moves) && pk.moves
+      pk.moves.to_a.map { |m| m.respond_to?(:move) ? m.move : nil }.reject { |id| id.nil? || id == 0 }.map(&:to_s).first(4)
+    end
+
+    def self.speed(pk)
+      pk.respond_to?(:speed) ? pk.speed.to_i : 0
+    end
+
     # RTP.rb:80-82
     def self.save_dir
       File.dirname(RTP.getSaveFileName('Game.rxdata'))
@@ -139,7 +150,8 @@ module PokePalBridge
     active = Game.active_pokemon(battle)
     party = Game.party(battle).map do |pk|
       { 'species' => pk.species.to_s, 'form' => pk.form.to_i, 'nickname' => pk.name.to_s, 'level' => pk.level.to_i,
-        'hpPercent' => Game.hp_percent(pk.hp, pk.totalhp), 'fainted' => pk.hp.to_i <= 0, 'active' => active.any? { |a| a.equal?(pk) } }
+        'hpPercent' => Game.hp_percent(pk.hp, pk.totalhp), 'fainted' => pk.hp.to_i <= 0, 'active' => active.any? { |a| a.equal?(pk) },
+        'moves' => Game.move_ids(pk), 'speed' => Game.speed(pk) }
     end
     { 'schema' => SCHEMA, 'bridgeVersion' => VERSION, 'updatedAt' => Time.now.utc.strftime('%Y-%m-%dT%H:%M:%SZ'),
       'battleId' => battle.instance_variable_get(:@pokepal_id) || '', 'state' => state, 'isDouble' => Game.double?(battle),

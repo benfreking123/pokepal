@@ -9,6 +9,7 @@ import type { FieldOverlay, GameData, LiveBattle } from "../shared/types";
 import { TYPES, canonicalChart } from "../data/test/canonical-chart";
 
 const form = (name: string, types: string[]) => ({ forms: [{ form: 0, formName: null, name, types, baseStats: [70, 70, 70, 70, 70, 70], abilities: [], hiddenAbility: null }] });
+const mv = (id: string, name: string, type: string, category: string, power: number) => ({ id, name, type, category, power, accuracy: 100, pp: 10, target: null, description: "" });
 const field = (o: Partial<FieldOverlay> & { fieldId: string }): FieldOverlay => ({ notes: [], source: "test", ...o });
 const data = {
   types: TYPES.map((id) => ({ id, name: id[0] + id.slice(1).toLowerCase() })),
@@ -21,6 +22,11 @@ const data = {
     PORYGONZ: { id: "PORYGONZ", dexNum: 474, ...form("Porygon-Z", ["NORMAL"]) },
     GOLEM: { id: "GOLEM", dexNum: 76, ...form("Golem", ["ROCK", "GROUND"]) },
     SCIZOR: { id: "SCIZOR", dexNum: 212, ...form("Scizor", ["BUG", "STEEL"]) },
+  },
+  moves: {
+    CLOSECOMBAT: mv("CLOSECOMBAT", "Close Combat", "FIGHTING", "physical", 120), BULLETPUNCH: mv("BULLETPUNCH", "Bullet Punch", "STEEL", "physical", 40),
+    FOULPLAY: mv("FOULPLAY", "Foul Play", "DARK", "physical", 95), WORK: mv("WORK", "Calm Mind", "PSYCHIC", "status", 0),
+    BODYSLAM: mv("BODYSLAM", "Body Slam", "NORMAL", "physical", 85), EARTHQUAKE: mv("EARTHQUAKE", "Earthquake", "GROUND", "physical", 100),
   },
   fields: { GLITCH: { id: "GLITCH", name: "Glitch Field", description: "", fieldAppSwitch: null }, UNDERWATER: { id: "UNDERWATER", name: "Underwater", description: "", fieldAppSwitch: null } },
   overlays: { UNDERWATER: field({ fieldId: "UNDERWATER", failingMoveTypes: ["FIRE"] }), GLITCH: field({ fieldId: "GLITCH", invert: true }) },
@@ -35,26 +41,26 @@ const live = (over: Partial<LiveBattle> = {}): LiveBattle => ({
 });
 const none = new Set<string>();
 
-it("lists the foe's types and weaknesses as compact 4x and 2x groups", () => {
+it("lists the foe's types and weaknesses as type ids for the pills", () => {
   const o = buildOverlay(live(), data, DEFAULT_SPOILERS, none)!;
   expect(o.field).toEqual({ id: "NONE", name: "No field" });
-  expect(o.foes).toEqual([{ name: "Gengar", types: ["Ghost", "Poison"], weak4: [], weak2: ["Ground", "Psychic", "Ghost", "Dark"].sort((a, b) => TYPES.indexOf(a.toUpperCase() as never) - TYPES.indexOf(b.toUpperCase() as never)) }]);
+  expect(o.foes).toEqual([{ name: "Gengar", types: ["GHOST", "POISON"], weak4: [], weak2: ["GROUND", "PSYCHIC", "GHOST", "DARK"].sort((a, b) => TYPES.indexOf(a as never) - TYPES.indexOf(b as never)) }]);
 });
 
 it("applies the field's rules to weaknesses and picks", () => {
   const o = buildOverlay(live({ field: { id: "GLITCH", name: "GLITCH" } }), data, DEFAULT_SPOILERS, none)!;
   expect(o.field).toEqual({ id: "GLITCH", name: "Glitch Field" });
-  expect(o.foes[0].weak2).not.toContain("Ground");
-  expect(o.foes[0].weak4).toContain("Fighting");
-  expect(o.foes[0].weak2).toContain("Normal");
+  expect(o.foes[0].weak2).not.toContain("GROUND");
+  expect(o.foes[0].weak4).toContain("FIGHTING");
+  expect(o.foes[0].weak2).toContain("NORMAL");
 });
 
-it("picks up to three healthy bench Pokémon, never the active or fainted one, with a short tag", () => {
+it("picks up to three healthy bench Pokémon, never the active or fainted one, as short structured rows", () => {
   const o = buildOverlay(live(), data, DEFAULT_SPOILERS, none)!;
   expect(o.picks!.map((p) => p.name).sort()).toEqual(["Snorlax", "Umbreon"]);
-  expect(o.picks!.find((p) => p.name === "Snorlax")!.tag).toBe("immune Ghost");
+  expect(o.picks!.find((p) => p.name === "Snorlax")!.def).toEqual({ k: "immune", t: "GHOST" });
   expect(o.picks!.length).toBeLessThanOrEqual(3);
-  expect(Object.keys(o.picks![0]).sort()).toEqual(["name", "tag"]);
+  expect(Object.keys(o.picks![0]).sort()).toEqual(["def", "hp", "name", "off"]);
 });
 
 it("leaves picks out when nobody can switch in, and shows no overlay for ended battles", () => {
@@ -64,14 +70,14 @@ it("leaves picks out when nobody can switch in, and shows no overlay for ended b
 
 it("falls back to the shown species' types for a disguised foe and omits nothing it cannot know", () => {
   const o = buildOverlay(live({ foes: [{ ...live().foes[0], types: [] }] }), data, DEFAULT_SPOILERS, none)!;
-  expect(o.foes[0].types).toEqual(["Ghost", "Poison"]);
+  expect(o.foes[0].types).toEqual(["GHOST", "POISON"]);
 });
 
 it("uses the base chart for a hidden field, until its Field Notes are found", () => {
   const hidden = { ...DEFAULT_SPOILERS, fieldDetails: false };
   const l = live({ field: { id: "GLITCH", name: "GLITCH" } });
-  expect(buildOverlay(l, data, hidden, none)!.foes[0].weak2).toContain("Ground");
-  expect(buildOverlay(l, data, hidden, new Set(["GLITCH"]))!.foes[0].weak2).not.toContain("Ground");
+  expect(buildOverlay(l, data, hidden, none)!.foes[0].weak2).toContain("GROUND");
+  expect(buildOverlay(l, data, hidden, new Set(["GLITCH"]))!.foes[0].weak2).not.toContain("GROUND");
 });
 
 it("sends the field-adjusted chart, remaps, failing types and secondary types for move markers", () => {
@@ -97,8 +103,8 @@ const incoming = { slot: 3, species: "PORYGONZ", form: 0, level: 62, types: ["NO
 it("switches the panel to the announced foe and ranks who to bring in", () => {
   const o = buildOverlay(live({ incoming }), data, DEFAULT_SPOILERS, none)!;
   expect(o.incoming).toBe(true);
-  expect(o.foes).toEqual([{ name: "Porygon-Z", types: ["Normal"], weak4: [], weak2: ["Fighting"] }]);
-  expect(o.picks![0]).toEqual({ name: "Rio", tag: "resists Normal", stay: true });
+  expect(o.foes).toEqual([{ name: "Porygon-Z", types: ["NORMAL"], weak4: [], weak2: ["FIGHTING"] }]);
+  expect(o.picks![0]).toMatchObject({ name: "Rio", def: { k: "resist", t: "NORMAL" }, stay: true });
   expect(o.picks!.map((p) => p.name)).toEqual(["Rio", "Umbreon", "Snorlax"]);
   expect(o.picks!.length).toBeLessThanOrEqual(3);
 });
@@ -112,7 +118,7 @@ it("leaves fainted Pokémon out of the bring-in list and doesn't suggest the act
 
 it("tells the field's rules apart in the bring-in list and stays offline-safe without foe types", () => {
   const o = buildOverlay(live({ incoming: { ...incoming, types: [] } }), data, DEFAULT_SPOILERS, none)!;
-  expect(o.foes[0].types).toEqual(["Normal"]);
+  expect(o.foes[0].types).toEqual(["NORMAL"]);
 });
 
 it("never writes levels, moves, abilities or items", () => {
@@ -147,4 +153,29 @@ it("keeps the file fresh while a battle is active and removes it when it ends", 
   await w.refresh();
   await expect(readFile(file, "utf8")).rejects.toThrow();
   await w.close();
+});
+
+it("shows each pick's best actual move against the foe and ranks a real counter above plain resisters", () => {
+  const party = [
+    pm("SNORLAX", "Tank", { active: true, moves: ["BODYSLAM"], speed: 60 }),
+    pm("UMBREON", "Wall", { moves: ["FOULPLAY"] }),
+    pm("LUCARIO", "Rio", { moves: ["WORK", "CLOSECOMBAT", "BULLETPUNCH"], speed: 120 }),
+  ];
+  const o = buildOverlay(live({ incoming, party }), data, DEFAULT_SPOILERS, none)!;
+  expect(o.picks![0]).toMatchObject({ name: "Rio", def: { k: "resist", t: "NORMAL" }, off: { m: "Close Combat", x: 2, t: "FIGHTING" } });
+  expect(o.picks!.find((p) => p.name === "Wall")!.off).toEqual({ m: "Foul Play", x: 1, t: "DARK" });
+  expect(o.picks!.map((p) => p.hp)).toEqual(o.picks!.map(() => 100));
+});
+
+it("leaves the offence out when every move is a status move, and falls back to types without moves", () => {
+  const status = buildOverlay(live({ incoming, party: [pm("UMBREON", "Wall", { moves: ["WORK"] })] }), data, DEFAULT_SPOILERS, none)!;
+  expect(status.picks![0].off).toBeUndefined();
+  const none2 = buildOverlay(live({ incoming, party: [pm("LUCARIO", "Rio")] }), data, DEFAULT_SPOILERS, none)!;
+  expect(none2.picks![0].off).toEqual({ x: 2, t: "FIGHTING" });
+});
+
+it("explains identical reasons with Speed", () => {
+  const party = [pm("UMBREON", "Slow", { moves: ["FOULPLAY"], speed: 50 }), pm("UMBREON", "Quick", { moves: ["FOULPLAY"], speed: 400 })];
+  const o = buildOverlay(live({ incoming: { ...incoming, level: 50 }, party }), data, DEFAULT_SPOILERS, none)!;
+  expect(o.picks!.map((p) => [p.name, p.note])).toEqual([["Quick", "faster"], ["Slow", "slower"]]);
 });

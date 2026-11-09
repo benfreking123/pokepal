@@ -21,10 +21,11 @@ class Color; def initialize(*a); end; end
 class Font; attr_accessor :size, :color; end
 class Bitmap
   LIVE = []
-  attr_reader :font
-  def initialize(w, h) = (@font = Font.new; @disposed = false; LIVE << self)
+  attr_reader :font, :width, :height
+  def initialize(w, h) = (@font = Font.new; @width = w; @height = h; @disposed = false; LIVE << self)
   def fill_rect(*a); end
   def draw_text(*a); end
+  def text_size(s) = Struct.new(:width, :height).new(s.to_s.length * 7, 14)
   def dispose = (@disposed = true; LIVE.delete(self))
   def disposed? = @disposed
 end
@@ -64,8 +65,8 @@ RULES = { 'chart' => { 'ELECTRIC' => { 'WATER' => 2, 'FLYING' => 2, 'GROUND' => 
 
 def overlay(extra = {})
   { 'schema' => 1, 'rules' => RULES, 'updatedAt' => 'x', 'field' => { 'id' => 'NONE', 'name' => 'No field' },
-    'foes' => [{ 'name' => 'Gengar', 'types' => %w[Ghost Poison], 'weak4' => [], 'weak2' => %w[Ground Psychic] }],
-    'picks' => [{ 'name' => 'Umbreon', 'tag' => 'immune Psychic' }] }.merge(extra)
+    'foes' => [{ 'name' => 'Gengar', 'types' => %w[GHOST POISON], 'weak4' => [], 'weak2' => %w[GROUND PSYCHIC] }],
+    'picks' => [{ 'name' => 'Umbreon', 'hp' => 100, 'def' => { 'k' => 'immune', 't' => 'PSYCHIC' }, 'off' => { 'm' => 'Foul Play', 'x' => 2, 't' => 'DARK' } }] }.merge(extra)
 end
 
 def write_overlay(data, age: 0)

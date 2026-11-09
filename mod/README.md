@@ -106,3 +106,10 @@ In the fight menu each damaging move of your active Pokémon gets a small pill a
 - The bridge now also writes on every hit and faint (`PokeBattle_Scene#pbHPChanged`, `#pbFainted`) and at the start of each command phase, so HP and faints show as they happen. A write costs about 0.2 ms, and nothing is written when nothing changed.
 - The overlay mod runs from `pbGraphicsUpdate` as well as `pbFrameUpdate`: message waits and animations only call the former, which is why the panel used to freeze during a turn. Each frame only counts and checks F6; every 6 frames it looks at the file's modification time, and it reads, parses and redraws only when something changed.
 - Debug timing: set `DEBUG = true` at the top of either mod file to append timing lines to `bridge_timing.log` / `overlay_timing.log` in the PokePal folder; start PokePal with `POKEPAL_DEBUG=1` for server timing in its log.
+
+## The panel (v2)
+
+- Opaque, framed like the game's windows, drawn in the game's small battle font (`pbSetSmallFont`), 240 px wide at 512x384. Header `vs <foe>` with type pills, weaknesses as `x4`/`x2` rows of type pills, then one line per pick: name with an HP bar under it, a defence pill (`res`/`imm`/`weak` plus the type), and its best actual move against the foe (`Air Slash 2x`).
+- Picks use your own Pokémon's real moves and Speed (the bridge now sends move ids and the Speed stat). Ranking: how well it takes the foe's STAB hits, how hard its best move hits (STAB, power, field boosts), remaining HP, a little for outspeeding. If picks would show identical reasons, `faster`/`slower` replaces the defence pill.
+- Placement is read from the scene at run time: it sits top right, drops rows rather than touch a visible `battlebox0..3` sprite or the message box, and moves to the top left if the right is blocked.
+- `mod/mockup/` renders the panel on a screenshot with the mod's own layout code: `npx tsx mod/mockup/scenarios.ts /tmp/s && python3 mod/mockup/render.py /tmp/s screenshot.png out.png`.

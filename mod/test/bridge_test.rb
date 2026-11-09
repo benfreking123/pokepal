@@ -1,4 +1,5 @@
 # Runs with any Ruby >= 3.0: ruby mod/test/bridge_test.rb
+require "json"
 require 'tmpdir'
 
 MOD = File.expand_path('../PokePalBridge.rb', __dir__)
@@ -249,6 +250,17 @@ hit.hp = 0
 hit.pokemon.hp = 0
 check('scene method result passes through', :fainted, hit_scene.pbFainted(hit))
 check('faint is written', true, File.binread(path).include?('"fainted":true'))
+
+# The party's real moves (PBMove#move ids) and Speed go out so PokePal can show each pick's best attack.
+PBMoveStub = Struct.new(:move)
+lead = battler(0, :LUCARIO)
+lead.pokemon.define_singleton_method(:moves) { [PBMoveStub.new(:CLOSECOMBAT), PBMoveStub.new(0), nil, PBMoveStub.new(:BULLETPUNCH)] }
+lead.pokemon.define_singleton_method(:speed) { 187 }
+PokePalBridge.instance_variable_set(:@last, nil)
+PokePalBridge.write(fake_battle(battlers: [lead, battler(1, :GENGAR)]), 'active')
+sent = JSON.parse(File.binread(path))['party'].find { |m| m['species'] == 'LUCARIO' && m['moves'] != [] }
+check('party moves and speed are written', [%w[CLOSECOMBAT BULLETPUNCH], 187], [sent['moves'], sent['speed']])
+check('a mon without that data sends none', [[], 0], JSON.parse(File.binread(path))['party'].last.values_at('moves', 'speed'))
 
 # Writes are cheap enough to do per hit: build, compare and (when changed) write a small file.
 bench = fake_battle(battlers: [battler(0, :RIOLU), battler(1, :GENGAR)])

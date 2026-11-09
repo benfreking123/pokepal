@@ -68,7 +68,11 @@ export interface SaveMeta { trainerName: string; playtimeSeconds: number; badgeC
 export interface SaveSummary { meta: SaveMeta; party: OwnedMon[]; boxes: { name: string; mons: OwnedMon[] }[]; unknownIds: string[]; fieldNotesFound: string[] | null; progress: SaveProgress }
 
 export interface LiveFoeState { slot: number; name: string; species: string; form: number; formName: string | null; level: number; types: string[]; hpPercent: number; fainted: boolean }
-export interface LivePartyMon { species: string; form: number; nickname: string; level: number; hpPercent: number; fainted: boolean; active: boolean }
+export interface LivePartyMon {
+  species: string; form: number; nickname: string; level: number; hpPercent: number; fainted: boolean; active: boolean;
+  /** Move ids (like AIRSLASH) and the Speed stat, when the bridge sends them (older bridge files don't). */
+  moves?: string[]; speed?: number;
+}
 /** The foe a trainer has just announced it will send in next ("X is about to send in Y"), before it is on the field. */
 export interface LiveIncoming { slot: number; species: string; form: number; level: number; types: string[] }
 export interface LiveBattleBase {

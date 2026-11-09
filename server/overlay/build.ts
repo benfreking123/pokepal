@@ -1,15 +1,24 @@
 import { liveFieldId, liveFoeTypes } from "../../shared/live";
-import { baseStatTotal, formTypes, recommend, type RecMon } from "../../shared/prep/recommend";
-import { scoreMatchup } from "../../shared/prep/score";
-import { rankSwitchIns } from "../../shared/prep/switchin";
+import { baseStatTotal, formTypes, type RecMon } from "../../shared/prep/recommend";
+import type { PrepMove } from "../../shared/prep/score";
+import { rankSwitchIns, type SwitchCandidate, type SwitchPick } from "../../shared/prep/switchin";
 import { moveEffectiveness, NO_FIELD, typeVsType } from "../../shared/typechart";
 import type { FieldOverlay, GameData, LiveBattle, SpoilerSettings } from "../../shared/types";
 
 export const OVERLAY_SCHEMA = 1;
-export const MAX_PICKS = 3;
 
 export interface OverlayFoe { name: string; types: string[]; weak4: string[]; weak2: string[] }
-export interface OverlayPick { name: string; tag: string; stay?: true }
+/**
+ * One row of the bring-in list. `def` is what the foe's types do to it (resist, immune, weak or even, with the type that
+ * matters), `off` its best actual move against the foe (`m` is missing when its moves are not known), `note` Speed when
+ * the picks tie on defence, and `stay` marks the Pokémon already out.
+ */
+export interface OverlayPick {
+  name: string; hp: number;
+  def: { k: "immune" | "resist" | "weak" | "even"; t?: string };
+  off?: { m?: string; x: number; t: string };
+  note?: "faster" | "slower"; stay?: true;
+}
 /** Compact type rules for the fight menu's move markers: the mod multiplies these cells for the foe's types. */
 export interface OverlayRules {
   /** Attack type to defend type to multiplier, only cells that are not 1, with the field's overrides and inversion applied. */
@@ -33,6 +42,7 @@ export interface Overlay {
 }
 
 const SHORT_NAME = 12;
+const speedStat = (base: number, level: number) => Math.floor(((2 * base + 31) * level) / 100) + 5;
 const clip = (s: string) => (s.length > SHORT_NAME ? `${s.slice(0, SHORT_NAME - 1)}…` : s);
 
 /** The field's type rules, unless "Field effect details" is hidden and its Field Notes are not found yet. */
@@ -47,6 +57,10 @@ export function buildOverlay(live: LiveBattle, data: GameData, settings: Spoiler
   const fieldId = liveFieldId(live.field.id);
   const overlay = overlayFor(data, fieldId, settings, found);
   const typeName = (t: string) => data.types.find((x) => x.id === t)?.name ?? t;
+  const moveOf = (id: string): PrepMove | null => {
+    const m = data.moves[id];
+    return m ? { id: m.id, label: m.name, type: m.type, category: m.category === "status" ? undefined : m.category, power: m.category === "status" ? 0 : m.power } : null;
+  };
   const fieldName = fieldId === "NONE" ? "" : data.fields[fieldId]?.name ?? live.field.name;
 
   const weakness = (name: string, types: string[]): OverlayFoe => {
@@ -56,24 +70,39 @@ export function buildOverlay(live: LiveBattle, data: GameData, settings: Spoiler
       for (const t of data.types) {
         const e = moveEffectiveness(data.chart, { type: t.id }, types, overlay);
         if (e.fails) continue;
-        if (e.max >= 4) weak4.push(t.name);
-        else if (e.max >= 2) weak2.push(t.name);
+        if (e.max >= 4) weak4.push(t.id);
+        else if (e.max >= 2) weak2.push(t.id);
       }
     }
-    return { name: clip(name), types: types.map(typeName), weak4, weak2 };
+    return { name: clip(name), types, weak4, weak2 };
   };
   const toRec = (p: LiveBattle["party"][number], i: number): RecMon => ({
     uid: `live-${i}`, name: p.nickname || data.species[p.species]?.forms[0]?.name || p.species, level: p.level,
     types: formTypes(data, p.species, p.form), baseStatTotal: baseStatTotal(data, p.species, p.form), box: null,
+  });
+  const candidates = (bench: boolean): SwitchCandidate[] => live.party
+    .map((p, i) => ({ p, mon: toRec(p, i) }))
+    .filter((x) => !x.p.fainted && !(bench && x.p.active))
+    .map((x) => ({
+      mon: x.mon, hpPercent: x.p.hpPercent, active: x.p.active, speed: x.p.speed || null,
+      ...(x.p.moves ? { moves: x.p.moves.map(moveOf).filter((m): m is PrepMove => m !== null) } : {}),
+    }));
+  const foeSpeed = (species: string, form: number, level: number | undefined) => {
+    const base = data.species[species]?.forms.find((f) => f.form === form)?.baseStats[5] ?? data.species[species]?.forms[0]?.baseStats[5];
+    return base && level ? speedStat(base, level) : null;
+  };
+  const toPick = (r: SwitchPick): OverlayPick => ({
+    name: clip(r.mon.name), hp: Math.round(r.hpPercent),
+    def: { k: r.defence.kind, ...(r.defence.type ? { t: r.defence.type } : {}) },
+    ...(r.offence ? { off: { ...(r.offence.move ? { m: r.offence.move } : {}), x: r.offence.mult, t: r.offence.type } } : {}),
+    ...(r.note ? { note: r.note } : {}), ...(r.active ? { stay: true as const } : {}),
   });
 
   if (live.incoming) {
     const inc = live.incoming;
     const types = inc.types.length ? inc.types : formTypes(data, inc.species, inc.form);
     const label = data.species[inc.species]?.forms.find((f) => f.form === inc.form)?.name ?? data.species[inc.species]?.forms[0]?.name ?? inc.species;
-    const cands = live.party.map((p, i) => ({ p, mon: toRec(p, i) })).filter((x) => !x.p.fainted).map((x) => ({ mon: x.mon, hpPercent: x.p.hpPercent, active: x.p.active }));
-    const ranked = rankSwitchIns(data.chart, overlay, types, cands, typeName);
-    const picks: OverlayPick[] = ranked.map((r) => ({ name: clip(r.mon.name), tag: r.tag, ...(r.active ? { stay: true as const } : {}) }));
+    const picks = rankSwitchIns(data.chart, overlay, types, candidates(false), typeName, { foeSpeed: foeSpeed(inc.species, inc.form, inc.level) }).map(toPick);
     return {
       schema: OVERLAY_SCHEMA, updatedAt: now.toISOString(), field: { id: fieldId, name: fieldName || "No field" }, incoming: true,
       rules: overlayRules(data, overlay), foes: [weakness(label, types)], ...(picks.length ? { picks } : {}),
@@ -82,12 +111,11 @@ export function buildOverlay(live: LiveBattle, data: GameData, settings: Spoiler
 
   const present = live.foes.filter((f) => !f.fainted).map((f) => ({ f, types: liveFoeTypes(f, data) }));
   const foes: OverlayFoe[] = present.map(({ f, types }) => weakness(f.name, types));
-
-  const foeInputs = present.filter((p) => p.types.length).map(({ f, types }) => ({ name: f.name, species: f.species, form: f.form, level: f.level ?? null, types }));
-  const bench = live.party.map((p, i) => ({ p, mon: toRec(p, i) })).filter((x) => !x.p.fainted && !x.p.active);
-  const picks: OverlayPick[] = foeInputs.length === 0 ? [] : recommend({
-    chart: data.chart, overlay, fieldName, typeName, foes: foeInputs, party: bench.map((x) => x.mon), pc: [],
-  }).party.slice(0, MAX_PICKS).map((r) => ({ name: clip(r.mon.name), tag: pickTag(data, overlay, r.mon, foeInputs.map((x) => x.types), typeName) }));
+  const known = present.filter((p) => p.types.length);
+  const picks = rankSwitchIns(data.chart, overlay, [...new Set(known.flatMap((p) => p.types))], known.length ? candidates(true) : [], typeName, {
+    offenceVs: known.map((p) => p.types),
+    ...(known.length === 1 ? { foeSpeed: foeSpeed(known[0].f.species, known[0].f.form, known[0].f.level) } : {}),
+  }).map(toPick);
 
   return {
     schema: OVERLAY_SCHEMA, updatedAt: now.toISOString(), field: { id: fieldId, name: fieldName || "No field" }, rules: overlayRules(data, overlay), foes,
@@ -115,19 +143,4 @@ export function overlayRules(data: GameData, overlay: FieldOverlay): OverlayRule
       ...(r.oneOf ? { oneOf: r.oneOf } : {}),
     })),
   };
-}
-
-/** One short pill: what the pick shrugs off, else that it hits the foe hard, else "even". */
-function pickTag(data: GameData, overlay: FieldOverlay, mon: RecMon, foeTypes: string[][], typeName: (t: string) => string): string {
-  const carried = [...new Set(foeTypes.flat())];
-  let resist: string | null = null;
-  for (const t of carried) {
-    const e = moveEffectiveness(data.chart, { type: t }, mon.types, overlay);
-    if (e.fails || e.max === 0) return `immune ${typeName(t)}`;
-    if (e.max < 1 && !resist) resist = t;
-  }
-  if (resist) return `resists ${typeName(resist)}`;
-  const cand = { uid: mon.uid, name: mon.name, level: mon.level, types: mon.types, moves: [], order: 0 };
-  const hits = foeTypes.some((types) => scoreMatchup(data.chart, overlay, cand, { name: "", species: "", form: 0, level: null, types }).offense > 1);
-  return hits ? "hits super effectively" : "even";
 }

@@ -13,8 +13,9 @@ module PokePalOverlay
   # Set to true to append timing lines to <save dir>\PokePal\overlay_timing.log (how old the file was when drawn).
   DEBUG = false unless const_defined?(:DEBUG, false)
   STALE_SECONDS = 5 unless const_defined?(:STALE_SECONDS, false)
-  # Panel position and size at the top right of the screen. Change these if it covers something on your setup.
-  PANEL_WIDTH = 168 unless const_defined?(:PANEL_WIDTH, false)
+  # The panel sits at the top right, or the top left when that is blocked, and shrinks (fewer rows) rather than cover
+  # a Pokémon's data box or the message box. Change these if it covers something else on your setup.
+  PANEL_WIDTH = 240 unless const_defined?(:PANEL_WIDTH, false)
   PANEL_MARGIN = 4 unless const_defined?(:PANEL_MARGIN, false)
   PANEL_TOP = 4 unless const_defined?(:PANEL_TOP, false)
   # Fight menu move markers (x2, x4, 1/2, 1/4, x0). Set to false to keep only the battle panel.
@@ -224,6 +225,9 @@ module PokePalOverlay
   @checked_scene = nil
   @data_version = 0
   @drawn_version = nil
+  @drawn_sig = nil
+  @measure = nil
+  @tw = nil
   @path = nil
   @m_version = nil
   @m_bid = nil
@@ -276,12 +280,13 @@ module PokePalOverlay
   end
 
   def self.dispose
+    @measure.dispose if @measure && !@measure.disposed?
     @sprite.bitmap.dispose if @sprite && !@sprite.disposed? && @sprite.bitmap && !@sprite.bitmap.disposed?
     @sprite.dispose if @sprite && !@sprite.disposed?
     @viewport.dispose if @viewport && !@viewport.disposed?
     @moves_sprite.bitmap.dispose if @moves_sprite && !@moves_sprite.disposed? && @moves_sprite.bitmap && !@moves_sprite.bitmap.disposed?
     @moves_sprite.dispose if @moves_sprite && !@moves_sprite.disposed?
-    @sprite = @viewport = @scene = @data = @drawn = @mtime = @drawn_version = nil
+    @sprite = @viewport = @scene = @data = @drawn = @mtime = @drawn_version = @drawn_sig = @measure = @tw = nil
     @moves_sprite = @moves_drawn = @marks = @marks_key = nil
     @frames = POLL_FRAMES
     @checked_scene = nil
@@ -307,59 +312,285 @@ module PokePalOverlay
     nil
   end
 
-  def self.abbr(names)
-    Array(names).map { |n| n.to_s[0, 3].upcase }
+  # ---- Panel: layout as a list of drawing operations (pure, so tests and mockups can run it without the game) ----
+  PAD = 6 unless const_defined?(:PAD, false)
+  ROW_H = 18 unless const_defined?(:ROW_H, false)
+  CHIP_H = 14 unless const_defined?(:CHIP_H, false)
+  NAME_W = 66 unless const_defined?(:NAME_W, false)
+  DEF_W = 62 unless const_defined?(:DEF_W, false)
+  OFF_W = 92 unless const_defined?(:OFF_W, false)
+  MESSAGE_BOX_H = 96 unless const_defined?(:MESSAGE_BOX_H, false)
+
+  COLORS = {
+    white: [248, 248, 248], gold: [255, 214, 102], grey: [168, 172, 190], shadow: [24, 26, 40],
+    frame_out: [8, 8, 16], frame_mid: [226, 228, 240], frame_in: [92, 96, 120], body: [34, 38, 58],
+    stripe_a: [48, 53, 78], stripe_b: [41, 45, 68], divider: [78, 84, 112],
+    good: [44, 150, 72], great: [24, 128, 56], bad: [196, 60, 52], even: [92, 96, 118], poor: [196, 110, 44], none: [112, 44, 44], blue: [60, 112, 200],
+    hp_good: [72, 200, 72], hp_mid: [232, 200, 48], hp_low: [224, 72, 56], hp_back: [20, 22, 34]
+  }.freeze unless const_defined?(:COLORS, false)
+
+  # The game's type colours (Pokémon Essentials gen 5 palette); unknown types are grey.
+  TYPE_COLORS = {
+    'NORMAL' => [168, 168, 120], 'FIGHTING' => [192, 48, 40], 'FLYING' => [168, 144, 240], 'POISON' => [160, 64, 160],
+    'GROUND' => [224, 192, 104], 'ROCK' => [184, 160, 56], 'BUG' => [168, 184, 32], 'GHOST' => [112, 88, 152],
+    'STEEL' => [184, 184, 208], 'FIRE' => [240, 128, 48], 'WATER' => [104, 144, 240], 'GRASS' => [120, 200, 80],
+    'ELECTRIC' => [248, 208, 48], 'PSYCHIC' => [248, 88, 136], 'ICE' => [152, 216, 216], 'DRAGON' => [112, 56, 248],
+    'DARK' => [112, 88, 72], 'FAIRY' => [238, 153, 172]
+  }.freeze unless const_defined?(:TYPE_COLORS, false)
+
+  def self.type_abbr(t)
+    t.to_s[0, 3].upcase
   end
 
-  def self.rows(d)
-    out = [[:title, d['field'].is_a?(Hash) ? d['field']['name'].to_s : '']]
-    Array(d['foes']).each do |f|
-      out << [:foe, "#{d['incoming'] ? 'Next: ' : ''}#{f['name']}  #{Array(f['types']).join('/')}"]
-      w4 = abbr(f['weak4'])
-      w2 = abbr(f['weak2'])
-      out << [:weak, "4x #{w4.join(' ')}"] unless w4.empty?
-      out << [:weak, "2x #{w2.join(' ')}"] unless w2.empty?
+  def self.type_color(t)
+    TYPE_COLORS[t.to_s.upcase] || COLORS[:even]
+  end
+
+  # Shortens text with ".." until it fits; `tw` measures a string in pixels.
+  def self.fit(tw, text, max)
+    text = text.to_s
+    return text if tw.call(text) <= max
+    text = text[0, text.length - 1] while text.length > 1 && tw.call(text + '..') > max
+    text + '..'
+  end
+
+  def self.mult_label(x)
+    x = x.to_f
+    return '0x' if x == 0
+    return "#{x.to_i}x" if x >= 1 && x == x.to_i
+    format('%g', x) + 'x'
+  end
+
+  def self.mult_color(x)
+    x = x.to_f
+    return COLORS[:none] if x == 0
+    return COLORS[:great] if x >= 4
+    return COLORS[:good] if x > 1
+    return COLORS[:even] if x == 1
+    COLORS[:poor]
+  end
+
+  def self.chip(ops, tw, x, y, label, rgb, width = nil, border = nil)
+    w = width || [tw.call(label) + 6, 26].max
+    ops << [:rect, x, y, w, CHIP_H, border || COLORS[:frame_out]]
+    ops << [:rect, x + 1, y + 1, w - 2, CHIP_H - 2, rgb]
+    ops << [:text, x, y, w, CHIP_H, label, 1, :white]
+    w
+  end
+
+  def self.foe_rows(ops, tw, f, y, iw, incoming)
+    ops << [:text, PAD, y, iw, ROW_H, "vs #{f['name']}", 0, :white]
+    x = PAD + tw.call("vs #{f['name']}") + 6
+    Array(f['types']).each do |t|
+      x += chip(ops, tw, x, y + (ROW_H - CHIP_H) / 2, type_abbr(t), type_color(t)) + 2
     end
-    Array(d['picks']).each_with_index do |p, i|
-      out << [:head, d['incoming'] ? 'Bring in' : 'Switch'] if i == 0
-      out << [:pick, "#{p['name']}", p['stay'] ? "stay in: #{p['tag']}" : p['tag'].to_s]
+    y += ROW_H
+    groups = [['x4', Array(f['weak4']), COLORS[:gold]], ['x2', Array(f['weak2']), nil]].reject { |g| g[1].empty? }
+    if groups.empty?
+      ops << [:text, PAD, y, iw, CHIP_H, 'no weaknesses', 0, :grey]
+      return y + CHIP_H + 3
+    end
+    groups.each do |label, types, border|
+      ops << [:text, PAD, y, 18, CHIP_H, label, 0, border ? :gold : :white]
+      x = PAD + 20
+      types.each do |t|
+        cw = [tw.call(type_abbr(t)) + 6, 26].max
+        if x + cw > PAD + iw
+          y += CHIP_H + 3
+          x = PAD + 20
+        end
+        x += chip(ops, tw, x, y, type_abbr(t), type_color(t), nil, border) + 2
+      end
+      y += CHIP_H + 3
+    end
+    y
+  end
+
+  def self.def_chip(ops, tw, x, y, pick)
+    if pick['note']
+      return chip(ops, tw, x, y, pick['note'], pick['note'] == 'faster' ? COLORS[:good] : COLORS[:poor], DEF_W)
+    end
+    df = pick['def']
+    return chip(ops, tw, x, y, pick['tag'].to_s, COLORS[:even], DEF_W) unless df.is_a?(Hash)
+    word, rgb =
+      case df['k']
+      when 'weak' then ['weak', COLORS[:bad]]
+      when 'immune' then ['imm', COLORS[:blue]]
+      when 'resist' then ['res', COLORS[:good]]
+      else ['even', COLORS[:even]]
+      end
+    return chip(ops, tw, x, y, word, rgb, DEF_W) unless df['t']
+    ww = chip(ops, tw, x, y, word, rgb)
+    chip(ops, tw, x + ww + 1, y, type_abbr(df['t']), type_color(df['t']), DEF_W - ww - 1)
+    DEF_W
+  end
+
+  def self.off_chip(ops, tw, x, y, pick)
+    o = pick['off']
+    return unless o.is_a?(Hash)
+    mult = mult_label(o['x'])
+    name = o['m'] ? o['m'].to_s : type_abbr(o['t'])
+    label = "#{fit(tw, name, OFF_W - 6 - tw.call(" #{mult}"))} #{mult}"
+    chip(ops, tw, x, y, label, mult_color(o['x']), OFF_W)
+  end
+
+  def self.pick_row(ops, tw, p, y, i, iw)
+    ops << [:rect, PAD, y, iw, ROW_H - 1, COLORS[i.even? ? :stripe_a : :stripe_b]]
+    if p['stay']
+      ops << [:rect, PAD, y, iw, 1, COLORS[:gold]] << [:rect, PAD, y + ROW_H - 2, iw, 1, COLORS[:gold]]
+      ops << [:rect, PAD, y, 1, ROW_H - 1, COLORS[:gold]] << [:rect, PAD + iw - 1, y, 1, ROW_H - 1, COLORS[:gold]]
+    end
+    x = PAD + 3
+    ops << [:text, x, y, NAME_W, ROW_H - 3, fit(tw, p['name'], NAME_W), 0, p['stay'] ? :gold : :white]
+    hp = p['hp'].to_f.clamp(0, 100)
+    ops << [:rect, x, y + ROW_H - 4, NAME_W, 2, COLORS[:hp_back]]
+    fill = hp > 0 ? [(hp * NAME_W / 100.0).round, 1].max : 0
+    ops << [:rect, x, y + ROW_H - 4, fill, 2, COLORS[hp > 50 ? :hp_good : hp > 20 ? :hp_mid : :hp_low]] if fill > 0
+    x += NAME_W + 4
+    cy = y + (ROW_H - 1 - CHIP_H) / 2
+    def_chip(ops, tw, x, cy, p)
+    off_chip(ops, tw, x + DEF_W + 3, cy, p)
+  end
+
+  # `level` drops optional rows, from none (0) to the minimum (4), so the panel can fit in the space it is given.
+  def self.compose(d, tw, level)
+    iw = PANEL_WIDTH - PAD * 2
+    body = []
+    y = PAD
+    field = d['field'].is_a?(Hash) ? d['field']['name'].to_s : ''
+    if level < 1 && !field.empty? && field != 'No field'
+      body << [:text, PAD, y, iw, ROW_H - 2, field, 0, :gold]
+      y += ROW_H - 2
+    end
+    Array(d['foes']).first(level >= 3 ? 1 : 2).each { |f| y = foe_rows(body, tw, f, y, iw, d['incoming']) }
+    picks = Array(d['picks']).first(level >= 3 ? 1 : (level >= 2 ? 2 : 3))
+    unless picks.empty?
+      body << [:rect, PAD, y, iw, 1, COLORS[:divider]]
+      y += 3
+      label = d['incoming'] ? (picks[0]['stay'] ? 'Stay in' : 'Bring in') : 'Switch to'
+      body << [:text, PAD, y, iw, ROW_H - 3, label, 0, :grey]
+      y += ROW_H - 3
+      picks.each_with_index do |p, i|
+        pick_row(body, tw, p, y, i, iw)
+        y += ROW_H
+      end
+    end
+    h = y + PAD
+    w = PANEL_WIDTH
+    frame = [
+      [:rect, 0, 0, w, h, COLORS[:frame_out]], [:rect, 1, 1, w - 2, h - 2, COLORS[:frame_mid]],
+      [:rect, 2, 2, w - 4, h - 4, COLORS[:frame_in]], [:rect, 3, 3, w - 6, h - 6, COLORS[:body]]
+    ]
+    [frame + body, h]
+  end
+
+  # Picks the richest content that fits `max_h` pixels.
+  def self.fit_panel(d, tw, max_h)
+    ops, h = nil
+    (0..4).each do |level|
+      ops, h = compose(d, tw, level)
+      return [ops, h, true] if h <= max_h
+    end
+    [ops, h, false]
+  end
+
+  # ---- Placement: stay clear of the Pokémon data boxes (Battle_Scene.rb: sprites "battlebox0".."battlebox3", set up
+  # from PBScene::PLAYERBOX_*/FOEBOX_* constants) and of the message box along the bottom. ----
+  BOX_KEYS = %w[battlebox0 battlebox1 battlebox2 battlebox3].freeze unless const_defined?(:BOX_KEYS, false)
+
+  def self.obstacles(scene)
+    sp = scene.respond_to?(:sprites) ? scene.sprites : nil
+    out = []
+    return out unless sp
+    BOX_KEYS.each do |k|
+      b = sp[k]
+      next unless b && !b.disposed? && b.visible && b.bitmap && !b.bitmap.disposed?
+      out << [b.x.to_i, b.y.to_i, b.bitmap.width, b.bitmap.height]
     end
     out
   end
 
-  def self.draw(d)
-    list = rows(d)
-    key = list.inspect
-    return if key == @drawn
-    @drawn = key
-    line = 15
-    height = list.length * line + 8
-    old = @sprite.bitmap
-    bmp = Bitmap.new(PANEL_WIDTH, height)
-    bmp.font.size = 13
-    bmp.fill_rect(0, 0, PANEL_WIDTH, height, Color.new(10, 10, 20, 150))
-    list.each_with_index do |(kind, a, b), i|
-      y = 4 + i * line
-      case kind
-      when :title
-        bmp.font.color = Color.new(255, 220, 120)
-        bmp.draw_text(5, y, PANEL_WIDTH - 10, line, a)
-      when :weak
-        bmp.font.color = a.start_with?('4') ? Color.new(255, 130, 110) : Color.new(255, 255, 255)
-        bmp.draw_text(5, y, PANEL_WIDTH - 10, line, a)
-      when :pick
-        bmp.fill_rect(4, y + 1, PANEL_WIDTH - 8, line - 2, Color.new(60, 90, 160, 200))
-        bmp.font.color = Color.new(255, 255, 255)
-        bmp.draw_text(7, y, 70, line, a)
-        bmp.font.color = Color.new(190, 230, 255)
-        bmp.draw_text(78, y, PANEL_WIDTH - 84, line, b)
-      else
-        bmp.font.color = Color.new(200, 200, 200)
-        bmp.draw_text(5, y, PANEL_WIDTH - 10, line, a)
-      end
+  # A cheap number that changes when a data box appears, moves or goes away, so nothing is re-laid-out otherwise.
+  def self.obstacle_sig(scene)
+    sp = scene.respond_to?(:sprites) ? scene.sprites : nil
+    return 0 unless sp
+    sig = 1
+    BOX_KEYS.each do |k|
+      b = sp[k]
+      next unless b && !b.disposed? && b.visible
+      sig = (sig * 31 + b.x.to_i * 7 + b.y.to_i) & 0xFFFFFF
     end
+    sig
+  end
+
+  # [x, y, max_height] for each place the panel may go, best first.
+  def self.slots(obs)
+    floor = Graphics.height - MESSAGE_BOX_H - PANEL_MARGIN
+    [Graphics.width - PANEL_WIDTH - PANEL_MARGIN, PANEL_MARGIN].map do |x|
+      limit = floor
+      obs.each do |ox, oy, ow, oh|
+        next unless ox < x + PANEL_WIDTH && ox + ow > x && oy + oh > PANEL_TOP
+        limit = [limit, oy - PANEL_MARGIN].min
+      end
+      [x, PANEL_TOP, limit - PANEL_TOP]
+    end
+  end
+
+  def self.layout(d, tw, obs)
+    options = slots(obs).map { |x, y, max_h| [x, y, fit_panel(d, tw, max_h), max_h] }
+    best = options.find { |o| o[2][2] } || options.max_by { |o| o[3] }
+    x, y, (ops, h) = best
+    { x: x, y: y, w: PANEL_WIDTH, h: h, ops: ops }
+  end
+
+  # ---- Drawing ----
+  def self.set_font(bmp)
+    if respond_to?(:pbSetSmallFont, true)
+      pbSetSmallFont(bmp)
+    else
+      bmp.font.size = 13
+    end
+  end
+
+  def self.measurer
+    @measure = nil if @measure && @measure.disposed?
+    unless @measure
+      @measure = Bitmap.new(8, 8)
+      set_font(@measure)
+    end
+    @tw ||= ->(text) { @measure.text_size(text.to_s).width }
+  end
+
+  def self.rgb(c, a = 255)
+    Color.new(c[0], c[1], c[2], a)
+  end
+
+  def self.draw_op(bmp, op)
+    case op[0]
+    when :rect
+      bmp.fill_rect(op[1], op[2], op[3], op[4], rgb(op[5])) if op[3] > 0 && op[4] > 0
+    when :text
+      _, x, y, w, h, text, align, color = op
+      bmp.font.color = rgb(COLORS[:shadow])
+      bmp.draw_text(x + 1, y + 1, w, h, text, align)
+      bmp.font.color = rgb(COLORS[color])
+      bmp.draw_text(x, y, w, h, text, align)
+    end
+  end
+
+  def self.draw(d, scene)
+    measurer
+    obs = obstacles(scene)
+    lay = layout(d, @tw, obs)
+    old = @sprite.bitmap
+    bmp = Bitmap.new(lay[:w], lay[:h])
+    set_font(bmp)
+    lay[:ops].each { |op| draw_op(bmp, op) }
     @sprite.bitmap = bmp
+    @sprite.x = lay[:x]
+    @sprite.y = lay[:y]
     old.dispose if old && !old.disposed?
+    lay
   end
 
   def self.ensure_sprite(scene)
@@ -417,9 +648,11 @@ module PokePalOverlay
         ensure_sprite(scene)
         @mtime = mt
         @data = d
-        if @drawn_version != @data_version
-          draw(d)
+        sig = obstacle_sig(scene)
+        if @drawn_version != @data_version || @drawn_sig != sig
+          draw(d, scene)
           @drawn_version = @data_version
+          @drawn_sig = sig
         end
         @has_data = true
       else
