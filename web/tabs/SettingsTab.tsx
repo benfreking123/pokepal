@@ -127,7 +127,10 @@ function SpoilerSettingsSection({ bundle, onChange }: { bundle: ClientBundle; on
 
 export function SettingsTab({ bundle, onChange }: { bundle: ClientBundle; onChange: () => void }) {
   useEffect(() => {
-    if (location.hash === "#settings-spoilers") document.getElementById("settings-spoilers")?.scrollIntoView();
+    const go = () => { if (location.hash === "#settings-spoilers") setTimeout(() => document.getElementById("settings-spoilers")?.scrollIntoView(), 50); };
+    go();
+    window.addEventListener("hashchange", go);
+    return () => window.removeEventListener("hashchange", go);
   }, []);
   return (
     <div>
