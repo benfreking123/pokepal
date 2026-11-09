@@ -1,0 +1,5793 @@
+{
+  "ASHENBEACH": {
+    "description": "Ash and sand line the field.",
+    "fieldAppSwitch": 619,
+    "id": "ASHENBEACH",
+    "name": "Ashen Beach",
+    "raw": {
+      "accuracyMods": {
+        "90": [
+          "FOCUSBLAST"
+        ]
+      },
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {},
+      "damageMods": {
+        "2": [
+          "MUDSLAP",
+          "MUDSHOT",
+          "MUDBOMB",
+          "SANDTOMB"
+        ],
+        "1.2": [
+          "PSYCHIC"
+        ],
+        "1.3": [
+          "STOREDPOWER",
+          "ZENHEADBUTT",
+          "FOCUSBLAST",
+          "AURASPHERE"
+        ],
+        "1.5": [
+          "HIDDENPOWER",
+          "STRENGTH",
+          "LANDSWRATH",
+          "THOUSANDWAVES",
+          "SURF",
+          "MUDDYWATER",
+          "CLANGOROUSSOULBLAZE"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 619,
+      "fieldChange": {},
+      "fieldMessage": [
+        "Ash and sand line the field."
+      ],
+      "graphic": [
+        "AshenBeach"
+      ],
+      "mimicry": "GROUND",
+      "moveEffects": {
+        "@battle.fieldAccuracyDrop": [
+          "LEAFTORNADO",
+          "FIRESPIN",
+          "TWISTER",
+          "RAZORWIND",
+          "WHIRLPOOL"
+        ]
+      },
+      "moveMessages": {
+        "...And with focus...!": [
+          "PSYCHIC"
+        ],
+        "...And with full focus...!": [
+          "STOREDPOWER",
+          "ZENHEADBUTT",
+          "FOCUSBLAST",
+          "AURASPHERE"
+        ],
+        "...And with pure focus!": [
+          "HIDDENPOWER",
+          "STRENGTH",
+          "CLANGOROUSSOULBLAZE"
+        ],
+        "Ash mixed into the attack!": [
+          "MUDSLAP",
+          "MUDSHOT",
+          "MUDBOMB",
+          "SANDTOMB"
+        ],
+        "Surf's up!": [
+          "SURF",
+          "MUDDYWATER"
+        ],
+        "The sand strengthened the atttack!": [
+          "LANDSWRATH",
+          "THOUSANDWAVES"
+        ]
+      },
+      "name": "Ashen Beach",
+      "naturePower": "MEDITATE",
+      "secretPower": "MUDSHOT",
+      "seed": {
+        "animation": "FOCUSENERGY",
+        "duration": 3,
+        "effect": "FocusEnergy",
+        "message": "{1}'s Telluric Seed is getting it pumped!",
+        "seedtype": "TELLURICSEED",
+        "stats": {}
+      },
+      "statusMods": [
+        "CALMMIND",
+        "KINESIS",
+        "MEDITATE",
+        "SANDATTACK",
+        "SANDSTORM",
+        "FOCUSENERGY",
+        "SHOREUP"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {},
+      "typeCondition": {
+        "FLYING": "self.pbIsSpecial?(type)"
+      },
+      "typeEffects": {
+        "FLYING": "@battle.fieldAccuracyDrop"
+      },
+      "typeMessages": {},
+      "typeMods": {
+        "PSYCHIC": [
+          "STRENGTH"
+        ]
+      }
+    },
+    "rules": {
+      "secondaryTypes": []
+    }
+  },
+  "BIGTOP": {
+    "description": "Now presenting...!",
+    "fieldAppSwitch": 605,
+    "id": "BIGTOP",
+    "name": "Big Top Arena",
+    "raw": {
+      "accuracyMods": {
+        "100": [
+          "SING"
+        ]
+      },
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {},
+      "damageMods": {
+        "2": [
+          "PAYDAY"
+        ],
+        "1.5": [
+          "VINEWHIP",
+          "POWERWHIP",
+          "FIRELASH",
+          "FIERYDANCE",
+          "PETALDANCE",
+          "REVELATIONDANCE",
+          "FLY",
+          "ACROBATICS",
+          "FIRSTIMPRESSION"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 605,
+      "fieldChange": {},
+      "fieldMessage": [
+        "Now presenting...!"
+      ],
+      "graphic": [
+        "BigTop"
+      ],
+      "mimicry": "NORMAL",
+      "moveEffects": {},
+      "moveMessages": {
+        "An extravagant aerial finish!": [
+          "FLY",
+          "ACROBATICS"
+        ],
+        "And a little extra for you, darling!": [
+          "PAYDAY"
+        ],
+        "And what an entrance it is!": [
+          "FIRSTIMPRESSION"
+        ],
+        "Back, foul beast!": [
+          "VINEWHIP",
+          "POWERWHIP",
+          "FIRELASH"
+        ],
+        "What grace!": [
+          "FIERYDANCE",
+          "PETALDANCE",
+          "REVELATIONDANCE"
+        ]
+      },
+      "name": "Big Top Arena",
+      "naturePower": "ACROBATICS",
+      "secretPower": "DYNAMICPUNCH",
+      "seed": {
+        "animation": "HELPINGHAND",
+        "duration": true,
+        "effect": "HelpingHand",
+        "message": "{1} accepts the crowd's help!",
+        "seedtype": "SYNTHETICSEED",
+        "stats": {
+          "PBStats::ATTACK": 1
+        }
+      },
+      "statusMods": [
+        "ENCORE",
+        "DRAGONDANCE",
+        "QUIVERDANCE",
+        "SWORDSDANCE",
+        "FEATHERDANCE",
+        "SING",
+        "RAINDANCE",
+        "BELLYDRUM",
+        "SPOTLIGHT"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {},
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {},
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": []
+    }
+  },
+  "BURNING": {
+    "description": "The field is ablaze!",
+    "fieldAppSwitch": 606,
+    "id": "BURNING",
+    "name": "Burning Field",
+    "raw": {
+      "accuracyMods": {
+        "100": [
+          "WILLOWISP"
+        ]
+      },
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {
+        "The grime snuffed out the flame!": [
+          "SLUDGEWAVE"
+        ],
+        "The sand snuffed out the flame!": [
+          "SANDTOMB",
+          "CONTINENTALCRUSH"
+        ],
+        "The water snuffed out the flame!": [
+          "WATERSPORT",
+          "SURF",
+          "MUDDYWATER",
+          "WATERSPOUT",
+          "WATERPLEDGE",
+          "SPARKLINGARIA",
+          "HYDROVORTEX",
+          "OCEANICOPERETTA"
+        ],
+        "The wind snuffed out the flame!": [
+          "WHIRLWIND",
+          "GUST",
+          "RAZORWIND",
+          "DEFOG",
+          "HURRICANE",
+          "TWISTER",
+          "TAILWIND",
+          "SUPERSONICSKYSTRIKE"
+        ]
+      },
+      "damageMods": {
+        "2": [
+          "SMACKDOWN",
+          "THOUSANDARROWS"
+        ],
+        "1.5": [
+          "SMOG",
+          "CLEARSMOG"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 606,
+      "fieldChange": {
+        "INDOOR": [
+          "WHIRLWIND",
+          "GUST",
+          "RAZORWIND",
+          "DEFOG",
+          "HURRICANE",
+          "TWISTER",
+          "TAILWIND",
+          "SUPERSONICSKYSTRIKE",
+          "WATERSPORT",
+          "SURF",
+          "MUDDYWATER",
+          "WATERSPOUT",
+          "WATERPLEDGE",
+          "SPARKLINGARIA",
+          "SLUDGEWAVE",
+          "SANDTOMB",
+          "CONTINENTALCRUSH",
+          "HYDROVORTEX",
+          "OCEANICOPERETTA"
+        ]
+      },
+      "fieldMessage": [
+        "The field is ablaze!"
+      ],
+      "graphic": [
+        "Burning"
+      ],
+      "mimicry": "FIRE",
+      "moveEffects": {},
+      "moveMessages": {
+        "The flames spread from the attack!": [
+          "SMOG",
+          "CLEARSMOG"
+        ],
+        "{1} was knocked into the flames!": [
+          "SMACKDOWN",
+          "THOUSANDARROWS"
+        ]
+      },
+      "name": "Burning Field",
+      "naturePower": "FLAMETHROWER",
+      "secretPower": "FLAMETHROWER",
+      "seed": {
+        "animation": "FIRESPIN",
+        "duration": "FIRESPIN",
+        "effect": "MultiTurnAttack",
+        "message": "{1} was trapped in the vortex!",
+        "seedtype": "ELEMENTALSEED",
+        "stats": {
+          "PBStats::ATTACK": 1,
+          "PBStats::SPATK": 1,
+          "PBStats::SPEED": 1
+        }
+      },
+      "statusMods": [
+        "WILLOWISP",
+        "SMOKESCREEN"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "0.5": [
+          "GRASS",
+          "ICE"
+        ],
+        "1.5": [
+          "FIRE"
+        ]
+      },
+      "typeCondition": {
+        "FIRE": "!attacker.isAirborne?",
+        "GRASS": "!opponent.isAirborne?"
+      },
+      "typeEffects": {},
+      "typeMessages": {
+        "The blaze amplified the attack!": [
+          "FIRE"
+        ],
+        "The blaze softened the attack...": [
+          "GRASS",
+          "ICE"
+        ]
+      },
+      "typeMods": {
+        "FIRE": [
+          "SMACKDOWN",
+          "SMOG",
+          "CLEARSMOG",
+          "THOUSANDARROWS"
+        ]
+      }
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "FIRE"
+        },
+        {
+          "factor": 0.5,
+          "type": "GRASS"
+        },
+        {
+          "factor": 0.5,
+          "type": "ICE"
+        }
+      ]
+    }
+  },
+  "CAVE": {
+    "description": "The cave echoes dully...",
+    "fieldAppSwitch": 622,
+    "id": "CAVE",
+    "name": "Cave",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {
+        "The cave was littered with crystals!": [
+          "POWERGEM",
+          "DIAMONDSTORM"
+        ]
+      },
+      "damageMods": {
+        "0": [
+          "SKYDROP"
+        ],
+        "1.5": [
+          "ROCKTOMB"
+        ]
+      },
+      "dontChangeBackup": [
+        "POWERGEM",
+        "DIAMONDSTORM"
+      ],
+      "fieldAppSwitch": 622,
+      "fieldChange": {
+        "CRYSTALCAVERN": [
+          "POWERGEM",
+          "DIAMONDSTORM"
+        ]
+      },
+      "fieldMessage": [
+        "The cave echoes dully..."
+      ],
+      "graphic": [
+        "Cave"
+      ],
+      "mimicry": "ROCK",
+      "moveEffects": {
+        "@battle.caveCollapse(basemove, user)": [
+          "EARTHQUAKE",
+          "BULLDOZE",
+          "MAGNITUDE",
+          "FISSURE",
+          "TECTONICRAGE",
+          "CONTINENTALCRUSH"
+        ]
+      },
+      "moveMessages": {
+        "...Piled on!": [
+          "ROCKTOMB"
+        ]
+      },
+      "name": "Cave",
+      "naturePower": "ROCKTOMB",
+      "secretPower": "ROCKWRECKER",
+      "seed": {
+        "animation": null,
+        "duration": 0,
+        "effect": null,
+        "message": null,
+        "seedtype": "TELLURICSEED",
+        "stats": {
+          "PBStats::DEFENSE": 2
+        }
+      },
+      "statusMods": [
+        "STEALTHROCK"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "0.5": [
+          "FLYING"
+        ],
+        "1.5": [
+          "ROCK"
+        ]
+      },
+      "typeCondition": {
+        "FLYING": "!self.contactMove?"
+      },
+      "typeEffects": {},
+      "typeMessages": {
+        "The cave choked out the air!": [
+          "FLYING"
+        ],
+        "The cavern strengthened the attack!": [
+          "ROCK"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "ROCK"
+        },
+        {
+          "factor": 0.5,
+          "type": "FLYING"
+        }
+      ]
+    }
+  },
+  "CHESS": {
+    "description": "Opening variation set.",
+    "fieldAppSwitch": 604,
+    "id": "CHESS",
+    "name": "Chess Board",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {
+        "The board was destroyed!": [
+          "STOMPINGTANTRUM",
+          "TECTONICRAGE"
+        ]
+      },
+      "damageMods": {
+        "1.5": [
+          "FEINT",
+          "FEINTATTACK",
+          "FAKEOUT",
+          "SUCKERPUNCH",
+          "FIRSTIMPRESSION",
+          "SHADOWSNEAK",
+          "SMARTSTRIKE",
+          "STRENGTH",
+          "ANCIENTPOWER",
+          "PSYCHIC",
+          "CONTINENTALCRUSH",
+          "SECRETPOWER",
+          "SHATTEREDPSYCHE"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 604,
+      "fieldChange": {
+        "INDOOR": [
+          "STOMPINGTANTRUM",
+          "TECTONICRAGE"
+        ]
+      },
+      "fieldMessage": [
+        "Opening variation set."
+      ],
+      "graphic": [
+        "Chess"
+      ],
+      "mimicry": "PSYCHIC",
+      "moveEffects": {},
+      "moveMessages": {
+        "En passant!": [
+          "FEINT",
+          "FEINTATTACK",
+          "FAKEOUT",
+          "SUCKERPUNCH",
+          "FIRSTIMPRESSION",
+          "SHADOWSNEAK",
+          "SMARTSTRIKE"
+        ]
+      },
+      "name": "Chess Board",
+      "naturePower": "ANCIENTPOWER",
+      "secretPower": "FEINT",
+      "seed": {
+        "animation": "MAGICCOAT",
+        "duration": true,
+        "effect": "MagicCoat",
+        "message": "{1} shrouded itself with Magic Coat!",
+        "seedtype": "SYNTHETICSEED",
+        "stats": {
+          "PBStats::SPATK": 1
+        }
+      },
+      "statusMods": [
+        "CALMMIND",
+        "NASTYPLOT",
+        "TRICKROOM"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {},
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {},
+      "typeMods": {
+        "ROCK": [
+          "STRENGTH",
+          "ANCIENTPOWER",
+          "PSYCHIC",
+          "CONTINENTALCRUSH",
+          "SECRETPOWER",
+          "SHATTEREDPSYCHE"
+        ]
+      }
+    },
+    "rules": {
+      "secondaryTypes": []
+    }
+  },
+  "CORROSIVE": {
+    "description": "The field is corrupted!",
+    "fieldAppSwitch": 609,
+    "id": "CORROSIVE",
+    "name": "Corrosive Field",
+    "raw": {
+      "accuracyMods": {
+        "100": [
+          "POISONPOWDER",
+          "SLEEPPOWDER",
+          "STUNSPORE",
+          "TOXIC"
+        ]
+      },
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {
+        "The polluted field was purified!": [
+          "SEEDFLARE"
+        ]
+      },
+      "damageMods": {
+        "2": [
+          "ACID",
+          "ACIDSPRAY",
+          "GRASSKNOT"
+        ],
+        "1.5": [
+          "SMACKDOWN",
+          "MUDSLAP",
+          "MUDSHOT",
+          "MUDBOMB",
+          "MUDDYWATER",
+          "WHIRLPOOL",
+          "THOUSANDARROWS"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 609,
+      "fieldChange": {
+        "GRASSY": [
+          "SEEDFLARE"
+        ]
+      },
+      "fieldMessage": [
+        "The field is corrupted!"
+      ],
+      "graphic": [
+        "Corrosive"
+      ],
+      "mimicry": "POISON",
+      "moveEffects": {},
+      "moveMessages": {
+        "The corrosion strengthened the attack!": [
+          "SMACKDOWN",
+          "MUDSLAP",
+          "MUDSHOT",
+          "MUDBOMB",
+          "MUDDYWATER",
+          "WHIRLPOOL",
+          "THOUSANDARROWS",
+          "ACID",
+          "ACIDSPRAY",
+          "GRASSKNOT"
+        ]
+      },
+      "name": "Corrosive Field",
+      "naturePower": "ACIDSPRAY",
+      "secretPower": "ACID",
+      "seed": {
+        "animation": "BANEFULBUNKER",
+        "duration": "BanefulBunker",
+        "effect": "Protect",
+        "message": "The Telluric Seed shielded {1} against damage!",
+        "seedtype": "TELLURICSEED",
+        "stats": {}
+      },
+      "statusMods": [
+        "ACIDARMOR",
+        "POISONPOWDER",
+        "SLEEPPOWDER",
+        "STUNSPORE",
+        "TOXIC"
+      ],
+      "typeAddOns": {
+        "POISON": [
+          "GRASS"
+        ]
+      },
+      "typeBoosts": {},
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {},
+      "typeMods": {
+        "POISON": [
+          "SMACKDOWN",
+          "MUDSLAP",
+          "MUDSHOT",
+          "MUDDYWATER",
+          "WHIRLPOOL",
+          "MUDBOMB",
+          "THOUSANDARROWS"
+        ]
+      }
+    },
+    "rules": {
+      "secondaryTypes": [
+        {
+          "addType": "POISON",
+          "match": {
+            "moveType": "GRASS"
+          }
+        }
+      ]
+    }
+  },
+  "CORROSIVEMIST": {
+    "description": "Corrosive mist settles on the field!",
+    "fieldAppSwitch": 610,
+    "id": "CORROSIVEMIST",
+    "name": "Corrosive Mist Field",
+    "raw": {
+      "accuracyMods": {
+        "100": [
+          "TOXIC"
+        ]
+      },
+      "changeCondition": {},
+      "changeEffects": {
+        "@battle.mistExplosion(basemove, user)": [
+          "HEATWAVE",
+          "ERUPTION",
+          "SEARINGSHOT",
+          "FLAMEBURST",
+          "LAVAPLUME",
+          "FIREPLEDGE",
+          "MINDBLOWN",
+          "INCINERATE",
+          "INFERNOOVERDRIVE",
+          "SELFDESTRUCT",
+          "EXPLOSION"
+        ]
+      },
+      "changeMessage": {
+        "The mist was blown away!": [
+          "WHIRLWIND",
+          "GUST",
+          "RAZORWIND",
+          "DEFOG",
+          "HURRICANE",
+          "TWISTER",
+          "TAILWIND",
+          "SUPERSONICSKYSTRIKE"
+        ],
+        "The polluted mist was purified!": [
+          "SEEDFLARE"
+        ],
+        "The toxic mist collected on the ground!": [
+          "GRAVITY"
+        ]
+      },
+      "damageMods": {
+        "1.5": [
+          "BUBBLEBEAM",
+          "ACIDSPRAY",
+          "BUBBLE",
+          "SMOG",
+          "CLEARSMOG",
+          "SPARKLINGARIA"
+        ]
+      },
+      "dontChangeBackup": [
+        "GRAVITY"
+      ],
+      "fieldAppSwitch": 610,
+      "fieldChange": {
+        "CORROSIVE": [
+          "GRAVITY"
+        ],
+        "INDOOR": [
+          "WHIRLWIND",
+          "GUST",
+          "RAZORWIND",
+          "DEFOG",
+          "HURRICANE",
+          "TWISTER",
+          "TAILWIND",
+          "SUPERSONICSKYSTRIKE",
+          "HEATWAVE",
+          "ERUPTION",
+          "SEARINGSHOT",
+          "FLAMEBURST",
+          "LAVAPLUME",
+          "FIREPLEDGE",
+          "MINDBLOWN",
+          "INCINERATE",
+          "INFERNOOVERDRIVE",
+          "SELFDESTRUCT",
+          "EXPLOSION"
+        ],
+        "MISTY": [
+          "SEEDFLARE"
+        ]
+      },
+      "fieldMessage": [
+        "Corrosive mist settles on the field!"
+      ],
+      "graphic": [
+        "CorrosiveMist"
+      ],
+      "mimicry": "POISON",
+      "moveEffects": {},
+      "moveMessages": {
+        "The poison strengthened the attack!": [
+          "BUBBLEBEAM",
+          "ACIDSPRAY",
+          "BUBBLE",
+          "SMOG",
+          "CLEARSMOG",
+          "SPARKLINGARIA"
+        ]
+      },
+      "name": "Corrosive Mist Field",
+      "naturePower": "VENOSHOCK",
+      "secretPower": "ACIDSPRAY",
+      "seed": {
+        "animation": null,
+        "duration": 0,
+        "effect": null,
+        "message": null,
+        "seedtype": "ELEMENTALSEED",
+        "stats": {
+          "PBStats::ATTACK": 1,
+          "PBStats::SPATK": 1
+        }
+      },
+      "statusMods": [
+        "ACIDARMOR"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "1.5": [
+          "FIRE"
+        ]
+      },
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {
+        "The toxic mist caught flame!": [
+          "FIRE"
+        ]
+      },
+      "typeMods": {
+        "POISON": [
+          "BUBBLE",
+          "BUBBLEBEAM",
+          "ENERGYBALL",
+          "SPARKLINGARIA"
+        ]
+      }
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "FIRE"
+        }
+      ]
+    }
+  },
+  "CRYSTALCAVERN": {
+    "description": "The cave is littered with crystals.",
+    "fieldAppSwitch": 624,
+    "id": "CRYSTALCAVERN",
+    "name": "Crystal Cavern",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {
+        "The crystals were broken up!": [
+          "EARTHQUAKE",
+          "BULLDOZE",
+          "MAGNITUDE",
+          "FISSURE",
+          "TECTONICRAGE"
+        ],
+        "The crystals' light was consumed!": [
+          "LIGHTTHATBURNSTHESKY"
+        ],
+        "The crystals' light was warped by the darkness!": [
+          "DARKPULSE",
+          "DARKVOID",
+          "NIGHTDAZE"
+        ]
+      },
+      "damageMods": {
+        "1.3": [
+          "AURORABEAM",
+          "SIGNALBEAM",
+          "FLASHCANNON",
+          "LUSTERPURGE",
+          "DAZZLINGGLEAM",
+          "MIRRORSHOT",
+          "TECHNOBLAST",
+          "DOOMDUMMY",
+          "MOONGEISTBEAM",
+          "PHOTONGEYSER",
+          "MENACINGMOONRAZEMAELSTROM"
+        ],
+        "1.5": [
+          "POWERGEM",
+          "DIAMONDSTORM",
+          "ANCIENTPOWER",
+          "JUDGMENT",
+          "ROCKSMASH",
+          "ROCKTOMB",
+          "STRENGTH",
+          "ROCKCLIMB",
+          "MULTIATTACK"
+        ]
+      },
+      "dontChangeBackup": [
+        "EARTHQUAKE",
+        "BULLDOZE",
+        "MAGNITUDE",
+        "FISSURE",
+        "TECTONICRAGE",
+        "DARKPULSE",
+        "DARKVOID",
+        "NIGHTDAZE"
+      ],
+      "fieldAppSwitch": 624,
+      "fieldChange": {
+        "CAVE": [
+          "EARTHQUAKE",
+          "BULLDOZE",
+          "MAGNITUDE",
+          "FISSURE",
+          "TECTONICRAGE"
+        ],
+        "DARKCRYSTALCAVERN": [
+          "DARKPULSE",
+          "DARKVOID",
+          "NIGHTDAZE",
+          "LIGHTTHATBURNSTHESKY"
+        ]
+      },
+      "fieldMessage": [
+        "The cave is littered with crystals."
+      ],
+      "graphic": [
+        "CrystalCavern"
+      ],
+      "mimicry": "QMARKS",
+      "moveEffects": {},
+      "moveMessages": {
+        "The crystals strengthened the attack!": [
+          "POWERGEM",
+          "DIAMONDSTORM",
+          "ANCIENTPOWER",
+          "JUDGMENT",
+          "ROCKSMASH",
+          "ROCKTOMB",
+          "STRENGTH",
+          "ROCKCLIMB",
+          "MULTIATTACK"
+        ],
+        "The crystals' light strengthened the attack!": [
+          "AURORABEAM",
+          "SIGNALBEAM",
+          "FLASHCANNON",
+          "LUSTERPURGE",
+          "DAZZLINGGLEAM",
+          "MIRRORSHOT",
+          "TECHNOBLAST",
+          "DOOMDUMMY",
+          "MOONGEISTBEAM",
+          "PHOTONGEYSER",
+          "MENACINGMOONRAZEMAELSTROM"
+        ]
+      },
+      "name": "Crystal Cavern",
+      "naturePower": "POWERGEM",
+      "secretPower": "POWERGEM",
+      "seed": {
+        "animation": "MAGICCOAT",
+        "duration": true,
+        "effect": "MagicCoat",
+        "message": "{1} shrouded itself with Magic Coat!",
+        "seedtype": "MAGICALSEED",
+        "stats": {
+          "PBStats::SPATK": 1
+        }
+      },
+      "statusMods": [
+        "ROCKPOLISH",
+        "STEALTHROCK"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "1.5": [
+          "ROCK",
+          "DRAGON"
+        ]
+      },
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {
+        "The crystal energy strengthened the attack!": [
+          "DRAGON"
+        ],
+        "The crystals charged the attack!": [
+          "ROCK"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "ROCK"
+        },
+        {
+          "factor": 1.5,
+          "type": "DRAGON"
+        }
+      ]
+    }
+  },
+  "DARKCRYSTALCAVERN": {
+    "description": "Darkness is gathering...",
+    "fieldAppSwitch": 603,
+    "id": "DARKCRYSTALCAVERN",
+    "name": "Dark Crystal Cavern",
+    "raw": {
+      "accuracyMods": {
+        "100": [
+          "DARKVOID"
+        ]
+      },
+      "changeCondition": {
+        "CRYSTALCAVERN": "suncheck"
+      },
+      "changeEffects": {},
+      "changeMessage": {
+        "The dark crystals were shattered!": [
+          "EARTHQUAKE",
+          "BULLDOZE",
+          "MAGNITUDE",
+          "FISSURE",
+          "TECTONICRAGE"
+        ],
+        "The sun lit up the crystal cavern!": [
+          "SUNNYDAY"
+        ]
+      },
+      "damageMods": {
+        "2": [
+          "PRISMATICLASER",
+          "BLACKHOLEECLIPSE"
+        ],
+        "0.5": [
+          "LIGHTTHATBURNSTHESKY"
+        ],
+        "1.5": [
+          "DARKPULSE",
+          "NIGHTDAZE",
+          "NIGHTSLASH",
+          "SHADOWBALL",
+          "SHADOWPUNCH",
+          "SHADOWCLAW",
+          "SHADOWSNEAK",
+          "SHADOWFORCE",
+          "SHADOWBONE",
+          "AURORABEAM",
+          "SIGNALBEAM",
+          "FLASHCANNON",
+          "LUSTERPURGE",
+          "DAZZLINGGLEAM",
+          "MIRRORSHOT",
+          "TECHNOBLAST",
+          "DOOMDUMMY",
+          "POWERGEM",
+          "MOONGEISTBEAM",
+          "PHOTONGEYSER",
+          "DIAMONDSTORM",
+          "MENACINGMOONRAZEMAELSTROM"
+        ]
+      },
+      "dontChangeBackup": [
+        "SUNNYDAY"
+      ],
+      "fieldAppSwitch": 603,
+      "fieldChange": {
+        "CAVE": [
+          "EARTHQUAKE",
+          "BULLDOZE",
+          "MAGNITUDE",
+          "FISSURE",
+          "TECTONICRAGE"
+        ],
+        "CRYSTALCAVERN": [
+          "SUNNYDAY"
+        ]
+      },
+      "fieldMessage": [
+        "Darkness is gathering..."
+      ],
+      "graphic": [
+        "DarkCrystalCavern"
+      ],
+      "mimicry": "DARK",
+      "moveEffects": {},
+      "moveMessages": {
+        "The consuming darkness fed the attack!": [
+          "BLACKHOLEECLIPSE"
+        ],
+        "The crystal split the attack!": [
+          "PRISMATICLASER"
+        ],
+        "The crystals' light strengthened the attack!": [
+          "AURORABEAM",
+          "SIGNALBEAM",
+          "FLASHCANNON",
+          "LUSTERPURGE",
+          "DAZZLINGGLEAM",
+          "MIRRORSHOT",
+          "TECHNOBLAST",
+          "DOOMDUMMY",
+          "POWERGEM",
+          "MOONGEISTBEAM",
+          "PHOTONGEYSER",
+          "DIAMONDSTORM"
+        ],
+        "The darkness began to gather...!": [
+          "DARKPULSE",
+          "NIGHTDAZE",
+          "NIGHTSLASH"
+        ],
+        "The darkness strengthened the attack!": [
+          "SHADOWBALL",
+          "SHADOWPUNCH",
+          "SHADOWCLAW",
+          "SHADOWSNEAK",
+          "SHADOWFORCE",
+          "SHADOWBONE",
+          "MENACINGMOONRAZEMAELSTROM"
+        ],
+        "{1} couldn't consume much light...": [
+          "LIGHTTHATBURNSTHESKY"
+        ]
+      },
+      "name": "Dark Crystal Cavern",
+      "naturePower": "DARKPULSE",
+      "secretPower": "DARKPULSE",
+      "seed": {
+        "animation": "MAGICCOAT",
+        "duration": true,
+        "effect": "MagicCoat",
+        "message": "{1} shrouded itself with Magic Coat!",
+        "seedtype": "MAGICALSEED",
+        "stats": {
+          "PBStats::SPDEF": 1
+        }
+      },
+      "statusMods": [
+        "FLASH",
+        "DARKVOID",
+        "MOONLIGHT"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {},
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {},
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": []
+    }
+  },
+  "DESERT": {
+    "description": "The field is rife with sand.",
+    "fieldAppSwitch": 611,
+    "id": "DESERT",
+    "name": "Desert Field",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {},
+      "damageMods": {
+        "1.5": [
+          "NEEDLEARM",
+          "PINMISSILE",
+          "DIG",
+          "SANDTOMB",
+          "HEATWAVE",
+          "THOUSANDWAVES",
+          "BURNUP",
+          "SEARINGSUNRAZESMASH",
+          "SOLARBLADE",
+          "SOLARBEAM"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 611,
+      "fieldChange": {},
+      "fieldMessage": [
+        "The field is rife with sand."
+      ],
+      "graphic": [
+        "Desert"
+      ],
+      "mimicry": "GROUND",
+      "moveEffects": {},
+      "moveMessages": {
+        "The desert strengthened the attack!": [
+          "NEEDLEARM",
+          "PINMISSILE",
+          "DIG",
+          "SANDTOMB",
+          "HEATWAVE",
+          "THOUSANDWAVES",
+          "BURNUP",
+          "SEARINGSUNRAZESMASH",
+          "SOLARBLADE",
+          "SOLARBEAM"
+        ]
+      },
+      "name": "Desert Field",
+      "naturePower": "SANDTOMB",
+      "secretPower": "SANDTOMB",
+      "seed": {
+        "animation": "SANDTOMB",
+        "duration": "SANDTOMB",
+        "effect": "MultiTurnAttack",
+        "message": "{1} was trapped by Sand Tomb!",
+        "seedtype": "TELLURICSEED",
+        "stats": {
+          "PBStats::DEFENSE": 1,
+          "PBStats::SPDEF": 1,
+          "PBStats::SPEED": 1
+        }
+      },
+      "statusMods": [
+        "SANDSTORM",
+        "SUNNYDAY",
+        "SANDATTACK",
+        "SHOREUP"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "0.5": [
+          "WATER",
+          "ELECTRIC"
+        ]
+      },
+      "typeCondition": {
+        "ELECTRIC": "!opponent.isAirborne?",
+        "WATER": "!attacker.isAirborne?"
+      },
+      "typeEffects": {},
+      "typeMessages": {
+        "The desert softened the attack...": [
+          "WATER",
+          "ELECTRIC"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 0.5,
+          "type": "WATER"
+        },
+        {
+          "factor": 0.5,
+          "type": "ELECTRIC"
+        }
+      ]
+    }
+  },
+  "DRAGONSDEN": {
+    "description": "If you wish to slay a dragon...",
+    "fieldAppSwitch": 631,
+    "id": "DRAGONSDEN",
+    "name": "Dragon's Den",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {
+        "CAVE": "@battle.field.counter > 1"
+      },
+      "changeEffects": {},
+      "changeMessage": {
+        "The lava solidified!": [
+          "MUDDYWATER",
+          "SURF",
+          "SPARKLINGARIA",
+          "OCEANICOPERETTA",
+          "HYDROVORTEX"
+        ],
+        "The lava was frozen solid!": [
+          "GLACIATE",
+          "SUBZEROSLAMMER"
+        ]
+      },
+      "damageMods": {
+        "2": [
+          "SMACKDOWN",
+          "THOUSANDARROWS",
+          "DRAGONASCENT",
+          "PAYDAY",
+          "TECTONICRAGE",
+          "CONTINENTALCRUSH"
+        ],
+        "1.5": [
+          "MEGAKICK",
+          "MAGMASTORM",
+          "LAVAPLUME"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 631,
+      "fieldChange": {
+        "CAVE": [
+          "MUDDYWATER",
+          "SURF",
+          "SPARKLINGARIA",
+          "GLACIATE",
+          "SUBZEROSLAMMER",
+          "OCEANICOPERETTA",
+          "HYDROVORTEX"
+        ]
+      },
+      "fieldCounterIncreases": {
+        "[1, 1]": [
+          "MUDDYWATER",
+          "SURF",
+          "SPARKLINGARIA"
+        ],
+        "[1, 2]": [
+          "GLACIATE",
+          "SUBZEROSLAMMER",
+          "OCEANICOPERETTA",
+          "HYDROVORTEX"
+        ]
+      },
+      "fieldMessage": [
+        "If you wish to slay a dragon..."
+      ],
+      "graphic": [
+        "DragonsDen"
+      ],
+      "mimicry": "DRAGON",
+      "moveEffects": {},
+      "moveMessages": {
+        "The draconic energy boosted the attack!": [
+          "DRAGONASCENT"
+        ],
+        "The lava strengthened the attack!": [
+          "MAGMASTORM",
+          "LAVAPLUME"
+        ],
+        "Trial of the Dragon!!!": [
+          "MEGAKICK"
+        ],
+        "money money money money money mothafucka": [
+          "PAYDAY"
+        ],
+        "{1} was knocked into the lava!": [
+          "SMACKDOWN",
+          "THOUSANDARROWS"
+        ]
+      },
+      "name": "Dragon's Den",
+      "naturePower": "DRAGONPULSE",
+      "secretPower": "DRAGONPULSE",
+      "seed": {
+        "animation": null,
+        "duration": true,
+        "effect": "FlashFire",
+        "message": "{1} raised its Fire power!",
+        "seedtype": "ELEMENTALSEED",
+        "stats": {
+          "PBStats::SPATK": 1
+        }
+      },
+      "statusMods": [
+        "DRAGONDANCE",
+        "NOBLEROAR"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "0.5": [
+          "ICE",
+          "WATER"
+        ],
+        "1.5": [
+          "DRAGON",
+          "FIRE"
+        ]
+      },
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {
+        "The draconic energy boosted the attack!": [
+          "DRAGON"
+        ],
+        "The lava's heat boosted the flame!": [
+          "FIRE"
+        ],
+        "The lava's heat softened the attack...": [
+          "ICE",
+          "WATER"
+        ]
+      },
+      "typeMods": {
+        "FIRE": [
+          "SMACKDOWN",
+          "THOUSANDARROWS",
+          "TECTONICRAGE",
+          "CONTINENTALCRUSH"
+        ]
+      }
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "DRAGON"
+        },
+        {
+          "factor": 1.5,
+          "type": "FIRE"
+        },
+        {
+          "factor": 0.5,
+          "type": "ICE"
+        },
+        {
+          "factor": 0.5,
+          "type": "WATER"
+        }
+      ]
+    }
+  },
+  "ELECTERRAIN": {
+    "description": "The field is hyper-charged!",
+    "fieldAppSwitch": 600,
+    "id": "ELECTERRAIN",
+    "name": "Electric Terrain",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {
+        "The hyper-charged terrain shorted out!": [
+          "MUDSPORT",
+          "TECTONICRAGE"
+        ]
+      },
+      "damageMods": {
+        "2": [
+          "MAGNETBOMB"
+        ],
+        "1.5": [
+          "EXPLOSION",
+          "SELFDESTRUCT",
+          "HURRICANE",
+          "SURF",
+          "SMACKDOWN",
+          "MUDDYWATER",
+          "THOUSANDARROWS"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 600,
+      "fieldChange": {
+        "INDOOR": [
+          "MUDSPORT",
+          "TECTONICRAGE"
+        ]
+      },
+      "fieldMessage": [
+        "The field is hyper-charged!"
+      ],
+      "graphic": [
+        "Electric"
+      ],
+      "mimicry": "ELECTRIC",
+      "moveEffects": {},
+      "moveMessages": {
+        "The attack became hyper-charged!": [
+          "HURRICANE",
+          "SURF",
+          "SMACKDOWN",
+          "MUDDYWATER",
+          "THOUSANDARROWS"
+        ],
+        "The attack powered up!": [
+          "MAGNETBOMB"
+        ],
+        "The explosion became hyper-charged!": [
+          "EXPLOSION",
+          "SELFDESTRUCT"
+        ]
+      },
+      "name": "Electric Terrain",
+      "naturePower": "THUNDERBOLT",
+      "secretPower": "SHOCKWAVE",
+      "seed": {
+        "animation": "CHARGE",
+        "duration": 2,
+        "effect": "Charge",
+        "message": "{1} began charging power!",
+        "seedtype": "ELEMENTALSEED",
+        "stats": {
+          "PBStats::SPEED": 1
+        }
+      },
+      "statusMods": [
+        "CHARGE",
+        "EERIEIMPULSE",
+        "MAGNETRISE"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "1.5": [
+          "ELECTRIC"
+        ]
+      },
+      "typeCondition": {
+        "ELECTRIC": "!attacker.isAirborne?"
+      },
+      "typeEffects": {},
+      "typeMessages": {
+        "The Electric Terrain strengthened the attack!": [
+          "ELECTRIC"
+        ]
+      },
+      "typeMods": {
+        "ELECTRIC": [
+          "EXPLOSION",
+          "SELFDESTRUCT",
+          "SMACKDOWN",
+          "SURF",
+          "MUDDYWATER",
+          "HURRICANE",
+          "THOUSANDARROWS",
+          "HYDROVORTEX"
+        ]
+      }
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "ELECTRIC"
+        }
+      ]
+    }
+  },
+  "FACTORY": {
+    "description": "Machines whir in the background.",
+    "fieldAppSwitch": 616,
+    "id": "FACTORY",
+    "name": "Factory Field",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {
+        "All the light was consumed!": [
+          "LIGHTTHATBURNSTHESKY"
+        ],
+        "The field shorted out!": [
+          "DISCHARGE"
+        ],
+        "The field was broken!": [
+          "EARTHQUAKE",
+          "BULLDOZE",
+          "MAGNITUDE",
+          "FISSURE",
+          "TECTONICRAGE",
+          "SELFDESTRUCT",
+          "EXPLOSION"
+        ]
+      },
+      "damageMods": {
+        "2": [
+          "FLASHCANNON",
+          "GYROBALL",
+          "MAGNETBOMB",
+          "GEARGRIND"
+        ],
+        "1.5": [
+          "STEAMROLLER",
+          "TECHNOBLAST"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 616,
+      "fieldChange": {
+        "SHORTCIRCUIT": [
+          "EARTHQUAKE",
+          "BULLDOZE",
+          "MAGNITUDE",
+          "FISSURE",
+          "TECTONICRAGE",
+          "SELFDESTRUCT",
+          "EXPLOSION",
+          "LIGHTTHATBURNSTHESKY",
+          "DISCHARGE"
+        ]
+      },
+      "fieldMessage": [
+        "Machines whir in the background."
+      ],
+      "graphic": [
+        "Factory"
+      ],
+      "mimicry": "STEEL",
+      "moveEffects": {},
+      "moveMessages": {
+        "ATTACK SEQUENCE INITIATE.": [
+          "FLASHCANNON",
+          "GYROBALL",
+          "MAGNETBOMB",
+          "GEARGRIND"
+        ],
+        "ATTACK SEQUENCE UPDATE.": [
+          "STEAMROLLER",
+          "TECHNOBLAST"
+        ]
+      },
+      "name": "Factory Field",
+      "naturePower": "GEARGRIND",
+      "secretPower": "MAGNETBOMB",
+      "seed": {
+        "animation": "LASERFOCUS",
+        "duration": 2,
+        "effect": "LaserFocus",
+        "message": "{1} is focused!",
+        "seedtype": "SYNTHETICSEED",
+        "stats": {
+          "PBStats::SPATK": 1
+        }
+      },
+      "statusMods": [
+        "AUTOTOMIZE",
+        "IRONDEFENSE",
+        "METALSOUND",
+        "SHIFTGEAR",
+        "MAGNETRISE",
+        "GEARUP"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "1.5": [
+          "ELECTRIC"
+        ]
+      },
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {
+        "The attack took energy from the field!": [
+          "ELECTRIC"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "ELECTRIC"
+        }
+      ]
+    }
+  },
+  "FAIRYTALE": {
+    "description": "Once upon a time...",
+    "fieldAppSwitch": 630,
+    "id": "FAIRYTALE",
+    "name": "Fairy Tale Field",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {},
+      "damageMods": {
+        "2": [
+          "DRAININGKISS"
+        ],
+        "1.5": [
+          "NIGHTSLASH",
+          "LEAFBLADE",
+          "PSYCHOCUT",
+          "SMARTSTRIKE",
+          "AIRSLASH",
+          "SOLARBLADE",
+          "MAGICALLEAF",
+          "MYSTICALFIRE",
+          "ANCIENTPOWER",
+          "RELICSONG",
+          "SPARKLINGARIA",
+          "MOONGEISTBEAM",
+          "FLEURCANNON",
+          "OCEANICOPERETTA",
+          "MENACINGMOONRAZEMAELSTROM"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 630,
+      "fieldChange": {},
+      "fieldMessage": [
+        "Once upon a time..."
+      ],
+      "graphic": [
+        "FairyTale"
+      ],
+      "mimicry": "FAIRY",
+      "moveEffects": {},
+      "moveMessages": {
+        "The blade cuts true!": [
+          "NIGHTSLASH",
+          "LEAFBLADE",
+          "PSYCHOCUT",
+          "SMARTSTRIKE",
+          "AIRSLASH",
+          "SOLARBLADE"
+        ],
+        "The magical energy strengthened the attack!": [
+          "MAGICALLEAF",
+          "MYSTICALFIRE",
+          "ANCIENTPOWER",
+          "RELICSONG",
+          "SPARKLINGARIA",
+          "MOONGEISTBEAM",
+          "FLEURCANNON",
+          "OCEANICOPERETTA",
+          "MENACINGMOONRAZEMAELSTROM"
+        ],
+        "True love never hurt so badly!": [
+          "DRAININGKISS"
+        ]
+      },
+      "name": "Fairy Tale Field",
+      "naturePower": "SECRETSWORD",
+      "secretPower": "SLASH",
+      "seed": {
+        "animation": "KINGSSHIELD",
+        "duration": "KingsShield",
+        "effect": "Protect",
+        "message": "The Magical Seed shielded {1} against damage!",
+        "seedtype": "MAGICALSEED",
+        "stats": {}
+      },
+      "statusMods": [
+        "KINGSSHIELD",
+        "SPIKYSHIELD",
+        "CRAFTYSHIELD",
+        "FLOWERSHIELD",
+        "ACIDARMOR",
+        "NOBLEROAR",
+        "SWORDSDANCE",
+        "WISH",
+        "HEALINGWISH",
+        "MIRACLEEYE",
+        "FORESTSCURSE",
+        "FLORALHEALING"
+      ],
+      "typeAddOns": {
+        "DRAGON": [
+          "FIRE"
+        ]
+      },
+      "typeBoosts": {
+        "2": [
+          "DRAGON"
+        ],
+        "1.5": [
+          "STEEL",
+          "FAIRY"
+        ]
+      },
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {
+        "For ever after!": [
+          "FAIRY"
+        ],
+        "For justice!": [
+          "STEEL"
+        ],
+        "The foul beast's attack gained strength!": [
+          "DRAGON"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": [
+        {
+          "addType": "DRAGON",
+          "match": {
+            "moveType": "FIRE"
+          }
+        }
+      ],
+      "typeBoosts": [
+        {
+          "factor": 2,
+          "type": "DRAGON"
+        },
+        {
+          "factor": 1.5,
+          "type": "STEEL"
+        },
+        {
+          "factor": 1.5,
+          "type": "FAIRY"
+        }
+      ]
+    }
+  },
+  "FLOWERGARDEN1": {
+    "description": "Seeds line the field.",
+    "fieldAppSwitch": 632,
+    "id": "FLOWERGARDEN1",
+    "name": "Flower Garden Field",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {
+        "The garden grew a little!": [
+          "GROWTH",
+          "FLOWERSHIELD",
+          "RAINDANCE",
+          "SUNNYDAY",
+          "ROTOTILLER",
+          "INGRAIN",
+          "WATERSPORT"
+        ]
+      },
+      "damageMods": {},
+      "dontChangeBackup": [
+        "GROWTH",
+        "FLOWERSHIELD",
+        "RAINDANCE",
+        "SUNNYDAY",
+        "ROTOTILLER",
+        "INGRAIN",
+        "WATERSPORT",
+        "BLOOMDOOM"
+      ],
+      "fieldAppSwitch": 632,
+      "fieldChange": {
+        "FLOWERGARDEN2": [
+          "GROWTH",
+          "FLOWERSHIELD",
+          "RAINDANCE",
+          "SUNNYDAY",
+          "ROTOTILLER",
+          "INGRAIN",
+          "WATERSPORT",
+          "BLOOMDOOM"
+        ]
+      },
+      "fieldMessage": [
+        "Seeds line the field."
+      ],
+      "graphic": [
+        "FlowerGarden0"
+      ],
+      "mimicry": "GRASS",
+      "moveEffects": {},
+      "moveMessages": {},
+      "name": "Flower Garden Field",
+      "naturePower": "GROWTH",
+      "secretPower": "SWEETSCENT",
+      "seed": {
+        "animation": "INGRAIN",
+        "duration": true,
+        "effect": "Ingrain",
+        "message": "{1} planted its roots!",
+        "seedtype": "SYNTHETICSEED",
+        "stats": {
+          "PBStats::SPDEF": 1
+        }
+      },
+      "statusMods": [
+        "GROWTH",
+        "ROTOTILLER",
+        "RAINDANCE",
+        "WATERSPORT",
+        "SUNNYDAY",
+        "FLOWERSHIELD",
+        "SWEETSCENT",
+        "INGRAIN",
+        "FLORALHEALING"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {},
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {},
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": []
+    }
+  },
+  "FLOWERGARDEN2": {
+    "description": "Seeds line the field.",
+    "fieldAppSwitch": 632,
+    "id": "FLOWERGARDEN2",
+    "name": "Flower Garden Field",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {
+        "The acid melted the bloom!": [
+          "ACIDDOWNPOUR"
+        ],
+        "The garden grew a little!": [
+          "GROWTH",
+          "FLOWERSHIELD",
+          "RAINDANCE",
+          "SUNNYDAY",
+          "ROTOTILLER",
+          "INGRAIN",
+          "WATERSPORT"
+        ],
+        "The garden was cut down a bit!": [
+          "CUT",
+          "XSCISSOR"
+        ]
+      },
+      "damageMods": {
+        "1.5": [
+          "CUT"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 632,
+      "fieldChange": {
+        "FLOWERGARDEN1": [
+          "CUT",
+          "XSCISSOR",
+          "ACIDDOWNPOUR"
+        ],
+        "FLOWERGARDEN3": [
+          "GROWTH",
+          "FLOWERSHIELD",
+          "RAINDANCE",
+          "SUNNYDAY",
+          "ROTOTILLER",
+          "INGRAIN",
+          "WATERSPORT",
+          "BLOOMDOOM"
+        ]
+      },
+      "fieldMessage": [
+        "Seeds line the field."
+      ],
+      "graphic": [
+        "FlowerGarden1"
+      ],
+      "mimicry": "GRASS",
+      "moveEffects": {},
+      "moveMessages": {
+        "{1} was cut down to size!": [
+          "CUT"
+        ]
+      },
+      "name": "Flower Garden Field",
+      "naturePower": "GROWTH",
+      "secretPower": "PETALBLIZZARD",
+      "seed": {
+        "animation": "INGRAIN",
+        "duration": true,
+        "effect": "Ingrain",
+        "message": "{1} planted its roots!",
+        "seedtype": "SYNTHETICSEED",
+        "stats": {
+          "PBStats::SPDEF": 1
+        }
+      },
+      "statusMods": [
+        "GROWTH",
+        "ROTOTILLER",
+        "RAINDANCE",
+        "WATERSPORT",
+        "SUNNYDAY",
+        "FLOWERSHIELD",
+        "SWEETSCENT",
+        "INGRAIN",
+        "FLORALHEALING"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "1.1": [
+          "GRASS"
+        ]
+      },
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {
+        "The garden's power boosted the attack!": [
+          "GRASS"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 1.1,
+          "type": "GRASS"
+        }
+      ]
+    }
+  },
+  "FLOWERGARDEN3": {
+    "description": "Seeds line the field.",
+    "fieldAppSwitch": 632,
+    "id": "FLOWERGARDEN3",
+    "name": "Flower Garden Field",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {
+        "BURNING": "ignitecheck"
+      },
+      "changeEffects": {},
+      "changeMessage": {
+        "The acid melted the bloom!": [
+          "ACIDDOWNPOUR"
+        ],
+        "The garden caught fire!": [
+          "HEATWAVE",
+          "ERUPTION",
+          "SEARINGSHOT",
+          "FLAMEBURST",
+          "LAVAPLUME",
+          "FIREPLEDGE",
+          "MINDBLOWN",
+          "INCINERATE",
+          "INFERNOOVERDRIVE"
+        ],
+        "The garden grew a little!": [
+          "GROWTH",
+          "FLOWERSHIELD",
+          "RAINDANCE",
+          "SUNNYDAY",
+          "ROTOTILLER",
+          "INGRAIN",
+          "WATERSPORT"
+        ],
+        "The garden was cut down a bit!": [
+          "CUT",
+          "XSCISSOR"
+        ]
+      },
+      "damageMods": {
+        "1.2": [
+          "PETALBLIZZARD",
+          "PETALDANCE",
+          "FLEURCANNON"
+        ],
+        "1.5": [
+          "CUT"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 632,
+      "fieldChange": {
+        "BURNING": [
+          "HEATWAVE",
+          "ERUPTION",
+          "SEARINGSHOT",
+          "FLAMEBURST",
+          "LAVAPLUME",
+          "FIREPLEDGE",
+          "MINDBLOWN",
+          "INCINERATE",
+          "INFERNOOVERDRIVE"
+        ],
+        "FLOWERGARDEN1": [
+          "ACIDDOWNPOUR"
+        ],
+        "FLOWERGARDEN2": [
+          "CUT",
+          "XSCISSOR"
+        ],
+        "FLOWERGARDEN4": [
+          "GROWTH",
+          "FLOWERSHIELD",
+          "RAINDANCE",
+          "SUNNYDAY",
+          "ROTOTILLER",
+          "INGRAIN",
+          "WATERSPORT",
+          "BLOOMDOOM"
+        ]
+      },
+      "fieldMessage": [
+        "Seeds line the field."
+      ],
+      "graphic": [
+        "FlowerGarden2"
+      ],
+      "mimicry": "GRASS",
+      "moveEffects": {},
+      "moveMessages": {
+        "The fresh scent of flowers boosted the attack!": [
+          "PETALBLIZZARD",
+          "PETALDANCE",
+          "FLEURCANNON"
+        ],
+        "{1} was cut down to size!": [
+          "CUT"
+        ]
+      },
+      "name": "Flower Garden Field",
+      "naturePower": "GROWTH",
+      "secretPower": "PETALBLIZZARD",
+      "seed": {
+        "animation": "INGRAIN",
+        "duration": true,
+        "effect": "Ingrain",
+        "message": "{1} planted its roots!",
+        "seedtype": "SYNTHETICSEED",
+        "stats": {
+          "PBStats::SPDEF": 1
+        }
+      },
+      "statusMods": [
+        "GROWTH",
+        "ROTOTILLER",
+        "RAINDANCE",
+        "WATERSPORT",
+        "SUNNYDAY",
+        "FLOWERSHIELD",
+        "SWEETSCENT",
+        "INGRAIN",
+        "FLORALHEALING"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "1.3": [
+          "GRASS"
+        ],
+        "1.5": [
+          "FIRE",
+          "BUG"
+        ]
+      },
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {
+        "The attack infested the garden!": [
+          "BUG"
+        ],
+        "The budding flowers boosted the attack!": [
+          "GRASS"
+        ],
+        "The nearby flowers caught flame!": [
+          "FIRE"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "FIRE"
+        },
+        {
+          "factor": 1.5,
+          "type": "BUG"
+        },
+        {
+          "factor": 1.3,
+          "type": "GRASS"
+        }
+      ]
+    }
+  },
+  "FLOWERGARDEN4": {
+    "description": "Seeds line the field.",
+    "fieldAppSwitch": 632,
+    "id": "FLOWERGARDEN4",
+    "name": "Flower Garden Field",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {
+        "BURNING": "ignitecheck"
+      },
+      "changeEffects": {},
+      "changeMessage": {
+        "The acid melted the bloom!": [
+          "ACIDDOWNPOUR"
+        ],
+        "The garden caught fire!": [
+          "HEATWAVE",
+          "ERUPTION",
+          "SEARINGSHOT",
+          "FLAMEBURST",
+          "LAVAPLUME",
+          "FIREPLEDGE",
+          "MINDBLOWN",
+          "INCINERATE",
+          "INFERNOOVERDRIVE"
+        ],
+        "The garden grew a little!": [
+          "GROWTH",
+          "FLOWERSHIELD",
+          "RAINDANCE",
+          "SUNNYDAY",
+          "ROTOTILLER",
+          "INGRAIN",
+          "WATERSPORT"
+        ],
+        "The garden was cut down a bit!": [
+          "CUT",
+          "XSCISSOR"
+        ]
+      },
+      "damageMods": {
+        "1.5": [
+          "CUT",
+          "PETALBLIZZARD",
+          "PETALDANCE",
+          "FLEURCANNON"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 632,
+      "fieldChange": {
+        "BURNING": [
+          "HEATWAVE",
+          "ERUPTION",
+          "SEARINGSHOT",
+          "FLAMEBURST",
+          "LAVAPLUME",
+          "FIREPLEDGE",
+          "MINDBLOWN",
+          "INCINERATE",
+          "INFERNOOVERDRIVE"
+        ],
+        "FLOWERGARDEN1": [
+          "ACIDDOWNPOUR"
+        ],
+        "FLOWERGARDEN3": [
+          "CUT",
+          "XSCISSOR"
+        ],
+        "FLOWERGARDEN5": [
+          "GROWTH",
+          "FLOWERSHIELD",
+          "RAINDANCE",
+          "SUNNYDAY",
+          "ROTOTILLER",
+          "INGRAIN",
+          "WATERSPORT",
+          "BLOOMDOOM"
+        ]
+      },
+      "fieldMessage": [
+        "Seeds line the field."
+      ],
+      "graphic": [
+        "FlowerGarden3"
+      ],
+      "mimicry": "GRASS",
+      "moveEffects": {},
+      "moveMessages": {
+        "The vibrant aroma scent of flowers boosted the attack!": [
+          "PETALBLIZZARD",
+          "PETALDANCE",
+          "FLEURCANNON"
+        ],
+        "{1} was cut down to size!": [
+          "CUT"
+        ]
+      },
+      "name": "Flower Garden Field",
+      "naturePower": "GROWTH",
+      "secretPower": "PETALBLIZZARD",
+      "seed": {
+        "animation": "INGRAIN",
+        "duration": true,
+        "effect": "Ingrain",
+        "message": "{1} planted its roots!",
+        "seedtype": "SYNTHETICSEED",
+        "stats": {
+          "PBStats::SPDEF": 1
+        }
+      },
+      "statusMods": [
+        "GROWTH",
+        "ROTOTILLER",
+        "RAINDANCE",
+        "WATERSPORT",
+        "SUNNYDAY",
+        "FLOWERSHIELD",
+        "SWEETSCENT",
+        "INGRAIN",
+        "FLORALHEALING"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "2": [
+          "BUG"
+        ],
+        "1.5": [
+          "FIRE",
+          "GRASS"
+        ]
+      },
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {
+        "The attack infested the flowers!": [
+          "BUG"
+        ],
+        "The blooming flowers boosted the attack!": [
+          "GRASS"
+        ],
+        "The nearby flowers caught flame!": [
+          "FIRE"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 2,
+          "type": "BUG"
+        },
+        {
+          "factor": 1.5,
+          "type": "FIRE"
+        },
+        {
+          "factor": 1.5,
+          "type": "GRASS"
+        }
+      ]
+    }
+  },
+  "FLOWERGARDEN5": {
+    "description": "Seeds line the field.",
+    "fieldAppSwitch": 632,
+    "id": "FLOWERGARDEN5",
+    "name": "Flower Garden Field",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {
+        "BURNING": "ignitecheck"
+      },
+      "changeEffects": {},
+      "changeMessage": {
+        "The acid melted the bloom!": [
+          "ACIDDOWNPOUR"
+        ],
+        "The garden caught fire!": [
+          "HEATWAVE",
+          "ERUPTION",
+          "SEARINGSHOT",
+          "FLAMEBURST",
+          "LAVAPLUME",
+          "FIREPLEDGE",
+          "MINDBLOWN",
+          "INCINERATE",
+          "INFERNOOVERDRIVE"
+        ],
+        "The garden was cut down a bit!": [
+          "CUT",
+          "XSCISSOR"
+        ]
+      },
+      "damageMods": {
+        "1.5": [
+          "CUT",
+          "PETALBLIZZARD",
+          "PETALDANCE",
+          "FLEURCANNON"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 632,
+      "fieldChange": {
+        "BURNING": [
+          "HEATWAVE",
+          "ERUPTION",
+          "SEARINGSHOT",
+          "FLAMEBURST",
+          "LAVAPLUME",
+          "FIREPLEDGE",
+          "MINDBLOWN",
+          "INCINERATE",
+          "INFERNOOVERDRIVE"
+        ],
+        "FLOWERGARDEN1": [
+          "ACIDDOWNPOUR"
+        ],
+        "FLOWERGARDEN4": [
+          "CUT",
+          "XSCISSOR"
+        ]
+      },
+      "fieldMessage": [
+        "Seeds line the field."
+      ],
+      "graphic": [
+        "FlowerGarden4"
+      ],
+      "mimicry": "GRASS",
+      "moveEffects": {},
+      "moveMessages": {
+        "The vibrant aroma scent of flowers boosted the attack!": [
+          "PETALBLIZZARD",
+          "PETALDANCE",
+          "FLEURCANNON"
+        ],
+        "{1} was cut down to size!": [
+          "CUT"
+        ]
+      },
+      "name": "Flower Garden Field",
+      "naturePower": "PETALBLIZZARD",
+      "secretPower": "PETALDANCE",
+      "seed": {
+        "animation": "INGRAIN",
+        "duration": true,
+        "effect": "Ingrain",
+        "message": "{1} planted its roots!",
+        "seedtype": "SYNTHETICSEED",
+        "stats": {
+          "PBStats::SPDEF": 1
+        }
+      },
+      "statusMods": [
+        "GROWTH",
+        "ROTOTILLER",
+        "RAINDANCE",
+        "WATERSPORT",
+        "SUNNYDAY",
+        "FLOWERSHIELD",
+        "SWEETSCENT",
+        "INGRAIN",
+        "FLORALHEALING"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "2": [
+          "GRASS",
+          "BUG"
+        ],
+        "1.5": [
+          "FIRE"
+        ]
+      },
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {
+        "The attack infested the flowers!": [
+          "BUG"
+        ],
+        "The nearby flowers caught flame!": [
+          "FIRE"
+        ],
+        "The thriving flowers boosted the attack!": [
+          "GRASS"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 2,
+          "type": "GRASS"
+        },
+        {
+          "factor": 2,
+          "type": "BUG"
+        },
+        {
+          "factor": 1.5,
+          "type": "FIRE"
+        }
+      ]
+    }
+  },
+  "FOREST": {
+    "description": "The field is abound with trees.",
+    "fieldAppSwitch": 614,
+    "id": "FOREST",
+    "name": "Forest Field",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {
+        "BURNING": "ignitecheck"
+      },
+      "changeEffects": {},
+      "changeMessage": {
+        "The forest caught fire!": [
+          "HEATWAVE",
+          "ERUPTION",
+          "SEARINGSHOT",
+          "FLAMEBURST",
+          "LAVAPLUME",
+          "FIREPLEDGE",
+          "MINDBLOWN",
+          "INCINERATE",
+          "INFERNOOVERDRIVE"
+        ]
+      },
+      "damageMods": {
+        "0.5": [
+          "SURF",
+          "MUDDYWATER"
+        ],
+        "1.5": [
+          "ATTACKORDER",
+          "ELECTROWEB",
+          "CUT"
+        ]
+      },
+      "dontChangeBackup": [
+        "HEATWAVE",
+        "ERUPTION",
+        "SEARINGSHOT",
+        "FLAMEBURST",
+        "LAVAPLUME",
+        "FIREPLEDGE",
+        "MINDBLOWN",
+        "INCINERATE",
+        "INFERNOOVERDRIVE"
+      ],
+      "fieldAppSwitch": 614,
+      "fieldChange": {
+        "BURNING": [
+          "HEATWAVE",
+          "ERUPTION",
+          "SEARINGSHOT",
+          "FLAMEBURST",
+          "LAVAPLUME",
+          "FIREPLEDGE",
+          "MINDBLOWN",
+          "INCINERATE",
+          "INFERNOOVERDRIVE"
+        ]
+      },
+      "fieldMessage": [
+        "The field is abound with trees."
+      ],
+      "graphic": [
+        "Forest"
+      ],
+      "mimicry": "GRASS",
+      "moveEffects": {},
+      "moveMessages": {
+        "Gossamer and arbor strengthened the attack!": [
+          "ELECTROWEB"
+        ],
+        "The forest softened the attack...": [
+          "SURF",
+          "MUDDYWATER"
+        ],
+        "The target was cut down to size!": [
+          "CUT"
+        ],
+        "They're coming out of the woodwork!": [
+          "ATTACKORDER"
+        ]
+      },
+      "name": "Forest Field",
+      "naturePower": "WOODHAMMER",
+      "secretPower": "WOODHAMMER",
+      "seed": {
+        "animation": "SPIKYSHIELD",
+        "duration": "SpikyShield",
+        "effect": "Protect",
+        "message": "The Telluric Seed shielded {1} against damage!",
+        "seedtype": "TELLURICSEED",
+        "stats": {}
+      },
+      "statusMods": [
+        "STICKYWEB",
+        "DEFENDORDER",
+        "GROWTH",
+        "STRENGTHSAP",
+        "HEALORDER",
+        "NATURESMADNESS",
+        "FORESTSCURSE"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "1.5": [
+          "BUG",
+          "GRASS"
+        ]
+      },
+      "typeCondition": {
+        "BUG": "self.pbIsSpecial?(type)"
+      },
+      "typeEffects": {},
+      "typeMessages": {
+        "The field strengthened the attack!": [
+          "BUG"
+        ],
+        "The forestry strengthened the attack!": [
+          "GRASS"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "BUG"
+        },
+        {
+          "factor": 1.5,
+          "type": "GRASS"
+        }
+      ]
+    }
+  },
+  "GLITCH": {
+    "description": "1n!taliz3 .b//////attl3",
+    "fieldAppSwitch": 623,
+    "id": "GLITCH",
+    "name": "Glitch Field",
+    "raw": {
+      "accuracyMods": {
+        "90": [
+          "BLIZZARD"
+        ]
+      },
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {},
+      "damageMods": {},
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 623,
+      "fieldChange": {},
+      "fieldMessage": [
+        "1n!taliz3 .b//////attl3"
+      ],
+      "graphic": [
+        "Glitch",
+        "Glitch2"
+      ],
+      "mimicry": "QMARKS",
+      "moveEffects": {},
+      "moveMessages": {},
+      "name": "Glitch Field",
+      "naturePower": "METRONOME",
+      "secretPower": "TECHNOBLAST",
+      "seed": {
+        "animation": "AMNESIA",
+        "duration": 0,
+        "effect": null,
+        "message": "{1}.TYPE = :QMARKS",
+        "seedtype": "SYNTHETICSEED",
+        "stats": {
+          "PBStats::DEFENSE": 1
+        }
+      },
+      "statusMods": [
+        "METRONOME"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "1.2": [
+          "PSYCHIC"
+        ]
+      },
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {
+        ".0P pl$ nerf!-//": [
+          "PSYCHIC"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 1.2,
+          "type": "PSYCHIC"
+        }
+      ]
+    }
+  },
+  "GRASSY": {
+    "description": "The field is in full bloom.",
+    "fieldAppSwitch": 601,
+    "id": "GRASSY",
+    "name": "Grassy Terrain",
+    "raw": {
+      "accuracyMods": {
+        "80": [
+          "GRASSWHISTLE"
+        ]
+      },
+      "changeCondition": {
+        "BURNING": "ignitecheck"
+      },
+      "changeEffects": {},
+      "changeMessage": {
+        "The grassy terrain caught fire!": [
+          "HEATWAVE",
+          "ERUPTION",
+          "SEARINGSHOT",
+          "FLAMEBURST",
+          "LAVAPLUME",
+          "FIREPLEDGE",
+          "MINDBLOWN",
+          "INCINERATE",
+          "INFERNOOVERDRIVE"
+        ],
+        "The grassy terrain was corroded!": [
+          "SLUDGEWAVE",
+          "ACIDDOWNPOUR"
+        ]
+      },
+      "damageMods": {
+        "0.5": [
+          "MUDDYWATER",
+          "SURF",
+          "EARTHQUAKE",
+          "MAGNITUDE",
+          "BULLDOZE"
+        ],
+        "1.5": [
+          "FAIRYWIND",
+          "SILVERWIND"
+        ]
+      },
+      "dontChangeBackup": [
+        "HEATWAVE",
+        "ERUPTION",
+        "SEARINGSHOT",
+        "FLAMEBURST",
+        "LAVAPLUME",
+        "FIREPLEDGE",
+        "MINDBLOWN",
+        "INCINERATE",
+        "INFERNOOVERDRIVE",
+        "SLUDGEWAVE",
+        "ACIDDOWNPOUR"
+      ],
+      "fieldAppSwitch": 601,
+      "fieldChange": {
+        "BURNING": [
+          "HEATWAVE",
+          "ERUPTION",
+          "SEARINGSHOT",
+          "FLAMEBURST",
+          "LAVAPLUME",
+          "FIREPLEDGE",
+          "MINDBLOWN",
+          "INCINERATE",
+          "INFERNOOVERDRIVE"
+        ],
+        "CORROSIVE": [
+          "SLUDGEWAVE",
+          "ACIDDOWNPOUR"
+        ]
+      },
+      "fieldMessage": [
+        "The field is in full bloom."
+      ],
+      "graphic": [
+        "Grassy"
+      ],
+      "mimicry": "GRASS",
+      "moveEffects": {},
+      "moveMessages": {
+        "The grass softened the attack...": [
+          "MUDDYWATER",
+          "SURF",
+          "EARTHQUAKE",
+          "MAGNITUDE",
+          "BULLDOZE"
+        ],
+        "The wind picked up strength from the field!": [
+          "FAIRYWIND",
+          "SILVERWIND"
+        ]
+      },
+      "name": "Grassy Terrain",
+      "naturePower": "ENERGYBALL",
+      "secretPower": "SEEDBOMB",
+      "seed": {
+        "animation": "INGRAIN",
+        "duration": true,
+        "effect": "Ingrain",
+        "message": "{1} planted its roots!",
+        "seedtype": "ELEMENTALSEED",
+        "stats": {
+          "PBStats::DEFENSE": 1
+        }
+      },
+      "statusMods": [
+        "COIL",
+        "GROWTH",
+        "FLORALHEALING",
+        "GRASSWHISTLE"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "1.5": [
+          "GRASS",
+          "FIRE"
+        ]
+      },
+      "typeCondition": {
+        "FIRE": "!opponent.isAirborne?",
+        "GRASS": "!attacker.isAirborne?"
+      },
+      "typeEffects": {},
+      "typeMessages": {
+        "The Grassy Terrain strengthened the attack!": [
+          "GRASS"
+        ],
+        "The grass below caught flame!": [
+          "FIRE"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "GRASS"
+        },
+        {
+          "factor": 1.5,
+          "type": "FIRE"
+        }
+      ]
+    }
+  },
+  "HOLY": {
+    "description": "Benedictus Sanctus Spiritus...",
+    "fieldAppSwitch": 628,
+    "id": "HOLY",
+    "name": "Holy Field",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {
+        "The holy light was consumed!": [
+          "LIGHTTHATBURNSTHESKY"
+        ]
+      },
+      "damageMods": {
+        "1.3": [
+          "PSYSTRIKE",
+          "AEROBLAST",
+          "ORIGINPULSE",
+          "DOOMDUMMY",
+          "MISTBALL",
+          "CRUSHGRIP",
+          "LUSTERPURGE",
+          "SECRETSWORD",
+          "PSYCHOBOOST",
+          "RELICSONG",
+          "SPACIALREND",
+          "HYPERSPACEHOLE",
+          "ROAROFTIME",
+          "LANDSWRATH",
+          "PRECIPICEBLADES",
+          "DRAGONASCENT",
+          "MOONGEISTBEAM",
+          "SUNSTEELSTRIKE",
+          "PRISMATICLASER",
+          "FLEURCANNON",
+          "DIAMONDSTORM",
+          "GENESISSUPERNOVA",
+          "SEARINGSUNRAZESMASH",
+          "MENACINGMOONRAZEMAELSTROM"
+        ],
+        "1.5": [
+          "MYSTICALFIRE",
+          "MAGICALLEAF",
+          "ANCIENTPOWER",
+          "JUDGMENT",
+          "SACREDFIRE",
+          "EXTREMESPEED",
+          "SACREDSWORD",
+          "RETURN"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 628,
+      "fieldChange": {
+        "INDOOR": [
+          "LIGHTTHATBURNSTHESKY"
+        ]
+      },
+      "fieldMessage": [
+        "Benedictus Sanctus Spiritus..."
+      ],
+      "graphic": [
+        "Holy"
+      ],
+      "mimicry": "NORMAL",
+      "moveEffects": {},
+      "moveMessages": {
+        "Godspeed!": [
+          "EXTREMESPEED"
+        ],
+        "Legendary power accelerated the attack!": [
+          "PSYSTRIKE",
+          "AEROBLAST",
+          "SACREDFIRE",
+          "ORIGINPULSE",
+          "DOOMDUMMY",
+          "JUDGMENT",
+          "MISTBALL",
+          "CRUSHGRIP",
+          "LUSTERPURGE",
+          "SECRETSWORD",
+          "PSYCHOBOOST",
+          "RELICSONG",
+          "SPACIALREND",
+          "HYPERSPACEHOLE",
+          "ROAROFTIME",
+          "LANDSWRATH",
+          "PRECIPICEBLADES",
+          "DRAGONASCENT",
+          "MOONGEISTBEAM",
+          "SUNSTEELSTRIKE",
+          "PRISMATICLASER",
+          "FLEURCANNON",
+          "DIAMONDSTORM",
+          "GENESISSUPERNOVA",
+          "SEARINGSUNRAZESMASH",
+          "MENACINGMOONRAZEMAELSTROM"
+        ],
+        "The holy energy resonated with the attack!": [
+          "MYSTICALFIRE",
+          "MAGICALLEAF",
+          "ANCIENTPOWER",
+          "SACREDSWORD",
+          "RETURN"
+        ]
+      },
+      "name": "Holy Field",
+      "naturePower": "JUDGMENT",
+      "secretPower": "DAZZLINGGLEAM",
+      "seed": {
+        "animation": "MAGICCOAT",
+        "duration": true,
+        "effect": "MagicCoat",
+        "message": "{1} shrouded itself with Magic Coat!",
+        "seedtype": "MAGICALSEED",
+        "stats": {
+          "PBStats::SPATK": 1
+        }
+      },
+      "statusMods": [
+        "WISH",
+        "MIRACLEEYE",
+        "COSMICPOWER",
+        "NATURESMADNESS"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "0.5": [
+          "GHOST",
+          "DARK"
+        ],
+        "1.2": [
+          "PSYCHIC",
+          "DRAGON"
+        ],
+        "1.5": [
+          "FAIRY",
+          "NORMAL"
+        ]
+      },
+      "typeCondition": {
+        "DARK": "self.pbIsSpecial?(type)",
+        "FAIRY": "self.pbIsSpecial?(type)",
+        "NORMAL": "self.pbIsSpecial?(type)"
+      },
+      "typeEffects": {},
+      "typeMessages": {
+        "The attack was cleansed...": [
+          "GHOST",
+          "DARK"
+        ],
+        "The holy energy resonated with the attack!": [
+          "FAIRY",
+          "NORMAL"
+        ],
+        "The legendary energy resonated with the attack!": [
+          "PSYCHIC",
+          "DRAGON"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "FAIRY"
+        },
+        {
+          "factor": 1.5,
+          "type": "NORMAL"
+        },
+        {
+          "factor": 1.2,
+          "type": "PSYCHIC"
+        },
+        {
+          "factor": 1.2,
+          "type": "DRAGON"
+        },
+        {
+          "factor": 0.5,
+          "type": "GHOST"
+        },
+        {
+          "factor": 0.5,
+          "type": "DARK"
+        }
+      ]
+    }
+  },
+  "ICY": {
+    "description": "The field is covered in ice.",
+    "fieldAppSwitch": 612,
+    "id": "ICY",
+    "name": "Icy Field",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {
+        "INDOOR": "[:WATERSURFACE,:MURKWATERSURFACE].include?(@battle.field.backup)",
+        "WATERSURFACE": "@battle.field.counter > 1"
+      },
+      "changeEffects": {},
+      "changeMessage": {
+        "The hot water melted the ice!": [
+          "SCALD",
+          "STEAMERUPTION"
+        ],
+        "The ice melted away!": [
+          "HEATWAVE",
+          "ERUPTION",
+          "SEARINGSHOT",
+          "FLAMEBURST",
+          "LAVAPLUME",
+          "FIREPLEDGE",
+          "MINDBLOWN",
+          "INCINERATE",
+          "INFERNOOVERDRIVE"
+        ],
+        "The quake broke up the ice and revealed the water beneath!": [
+          "EARTHQUAKE",
+          "BULLDOZE",
+          "MAGNITUDE",
+          "FISSURE",
+          "TECTONICRAGE"
+        ]
+      },
+      "damageMods": {
+        "0.5": [
+          "SCALD",
+          "STEAMERUPTION"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 612,
+      "fieldChange": {
+        "INDOOR": [
+          "EARTHQUAKE",
+          "BULLDOZE",
+          "MAGNITUDE",
+          "FISSURE",
+          "TECTONICRAGE"
+        ],
+        "WATERSURFACE": [
+          "HEATWAVE",
+          "ERUPTION",
+          "SEARINGSHOT",
+          "FLAMEBURST",
+          "LAVAPLUME",
+          "FIREPLEDGE",
+          "MINDBLOWN",
+          "INCINERATE",
+          "INFERNOOVERDRIVE",
+          "SCALD",
+          "STEAMERUPTION"
+        ]
+      },
+      "fieldCounterIncreases": {
+        "[1, 1]": [
+          "SCALD",
+          "STEAMERUPTION"
+        ],
+        "[1, 2]": [
+          "HEATWAVE",
+          "ERUPTION",
+          "SEARINGSHOT",
+          "FLAMEBURST",
+          "LAVAPLUME",
+          "FIREPLEDGE",
+          "MINDBLOWN",
+          "INCINERATE",
+          "INFERNOOVERDRIVE"
+        ]
+      },
+      "fieldMessage": [
+        "The field is covered in ice."
+      ],
+      "graphic": [
+        "Icy"
+      ],
+      "mimicry": "ICE",
+      "moveEffects": {
+        "@battle.iceSpikes": [
+          "EARTHQUAKE",
+          "BULLDOZE",
+          "MAGNITUDE",
+          "FISSURE",
+          "TECTONICRAGE"
+        ]
+      },
+      "moveMessages": {
+        "The cold softened the attack...": [
+          "SCALD",
+          "STEAMERUPTION"
+        ]
+      },
+      "name": "Icy Field",
+      "naturePower": "ICEBEAM",
+      "secretPower": "ICESHARD",
+      "seed": {
+        "animation": null,
+        "duration": 0,
+        "effect": null,
+        "message": null,
+        "seedtype": "ELEMENTALSEED",
+        "stats": {
+          "PBStats::SPEED": 2
+        }
+      },
+      "statusMods": [
+        "ACIDARMOR"
+      ],
+      "typeAddOns": {
+        "ICE": [
+          "ROCK"
+        ]
+      },
+      "typeBoosts": {
+        "0.5": [
+          "FIRE"
+        ],
+        "1.5": [
+          "ICE"
+        ]
+      },
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {
+        "The cold softened the attack...": [
+          "FIRE"
+        ],
+        "The cold strengthened the attack!": [
+          "ICE"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": [
+        {
+          "addType": "ICE",
+          "match": {
+            "moveType": "ROCK"
+          }
+        }
+      ],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "ICE"
+        },
+        {
+          "factor": 0.5,
+          "type": "FIRE"
+        }
+      ]
+    }
+  },
+  "INDOOR": {
+    "description": "",
+    "fieldAppSwitch": null,
+    "id": "INDOOR",
+    "name": "",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {},
+      "damageMods": {},
+      "dontChangeBackup": [],
+      "fieldAppSwitch": null,
+      "fieldChange": {},
+      "fieldCounterIncreases": {},
+      "fieldMessage": [
+        ""
+      ],
+      "graphic": [
+        "Indoor",
+        "IndoorA",
+        "IndoorB",
+        "IndoorC",
+        "City",
+        "CityNew"
+      ],
+      "mimicry": "NORMAL",
+      "moveEffects": {},
+      "moveMessages": {},
+      "name": "",
+      "naturePower": "TRIATTACK",
+      "secretPower": "TRIATTACK",
+      "seed": {
+        "animation": null,
+        "duration": null,
+        "effect": null,
+        "message": null,
+        "seedtype": null,
+        "stats": {}
+      },
+      "statusMods": [],
+      "typeAddOns": {},
+      "typeBoosts": {},
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {},
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": []
+    }
+  },
+  "INVERSE": {
+    "description": "!trats elttaB",
+    "fieldAppSwitch": 635,
+    "id": "INVERSE",
+    "name": "Inverse Field",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {},
+      "damageMods": {},
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 635,
+      "fieldChange": {},
+      "fieldMessage": [
+        "!trats elttaB"
+      ],
+      "graphic": [
+        "Inverse"
+      ],
+      "mimicry": "NORMAL",
+      "moveEffects": {},
+      "moveMessages": {},
+      "name": "Inverse Field",
+      "naturePower": "TRICKROOM",
+      "secretPower": "CONFUSION",
+      "seed": {
+        "animation": null,
+        "duration": 1,
+        "effect": "HyperBeam",
+        "message": "{1} must recharge!",
+        "seedtype": "MAGICALSEED",
+        "stats": {
+          "PBStats::ATTACK": 1,
+          "PBStats::DEFENSE": 1,
+          "PBStats::SPATK": 1,
+          "PBStats::SPDEF": 1,
+          "PBStats::SPEED": 1
+        }
+      },
+      "statusMods": [],
+      "typeAddOns": {},
+      "typeBoosts": {},
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {},
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": []
+    }
+  },
+  "MIRROR": {
+    "description": "Mirror, mirror, on the field,",
+    "fieldAppSwitch": 629,
+    "id": "MIRROR",
+    "name": "Mirror Arena",
+    "raw": {
+      "accuracyMods": {
+        "0": [
+          "AURORABEAM",
+          "SIGNALBEAM",
+          "FLASHCANNON",
+          "LUSTERPURGE",
+          "DAZZLINGGLEAM",
+          "TECHNOBLAST",
+          "DOOMDUMMY",
+          "PRISMATICLASER",
+          "PHOTONGEYSER",
+          "LIGHTTHATBURNSTHESKY",
+          "MIRRORSHOT"
+        ]
+      },
+      "changeCondition": {},
+      "changeEffects": {
+        "@battle.mirrorShatter(basemove, user)": [
+          "EARTHQUAKE",
+          "BULLDOZE",
+          "MAGNITUDE",
+          "FISSURE",
+          "TECTONICRAGE",
+          "BOOMBURST",
+          "HYPERVOICE",
+          "SELFDESTRUCT",
+          "EXPLOSION"
+        ]
+      },
+      "changeMessage": {
+        "The mirror arena shattered!": [
+          "EARTHQUAKE",
+          "BULLDOZE",
+          "MAGNITUDE",
+          "FISSURE",
+          "TECTONICRAGE",
+          "BOOMBURST",
+          "HYPERVOICE",
+          "SELFDESTRUCT",
+          "EXPLOSION"
+        ]
+      },
+      "damageMods": {
+        "2": [
+          "MIRRORSHOT"
+        ],
+        "1.5": [
+          "AURORABEAM",
+          "SIGNALBEAM",
+          "FLASHCANNON",
+          "LUSTERPURGE",
+          "DAZZLINGGLEAM",
+          "TECHNOBLAST",
+          "DOOMDUMMY",
+          "PRISMATICLASER",
+          "PHOTONGEYSER",
+          "LIGHTTHATBURNSTHESKY"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 629,
+      "fieldChange": {
+        "INDOOR": [
+          "EARTHQUAKE",
+          "BULLDOZE",
+          "MAGNITUDE",
+          "FISSURE",
+          "TECTONICRAGE",
+          "BOOMBURST",
+          "HYPERVOICE",
+          "SELFDESTRUCT",
+          "EXPLOSION"
+        ]
+      },
+      "fieldMessage": [
+        "Mirror, mirror, on the field,",
+        "Who shall this fractured power wield?"
+      ],
+      "graphic": [
+        "Mirror"
+      ],
+      "mimicry": "STEEL",
+      "moveEffects": {},
+      "moveMessages": {
+        "The mirrors strengthened the attack!": [
+          "MIRRORSHOT"
+        ],
+        "The reflected light was blinding!": [
+          "AURORABEAM",
+          "SIGNALBEAM",
+          "FLASHCANNON",
+          "LUSTERPURGE",
+          "DAZZLINGGLEAM",
+          "TECHNOBLAST",
+          "DOOMDUMMY",
+          "PRISMATICLASER",
+          "PHOTONGEYSER",
+          "LIGHTTHATBURNSTHESKY"
+        ]
+      },
+      "name": "Mirror Arena",
+      "naturePower": "MIRRORSHOT",
+      "secretPower": "MIRRORSHOT",
+      "seed": {
+        "animation": "MAGICCOAT",
+        "duration": true,
+        "effect": "MagicCoat",
+        "message": "{1} shrouded itself with Magic Coat!",
+        "seedtype": "SYNTHETICSEED",
+        "stats": {
+          "PBStats::EVASION": 1
+        }
+      },
+      "statusMods": [
+        "LIGHTSCREEN",
+        "AURORAVEIL",
+        "REFLECT",
+        "MIRRORMOVE",
+        "MIRRORCOAT",
+        "DOUBLETEAM",
+        "FLASH"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {},
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {},
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": []
+    }
+  },
+  "MISTY": {
+    "description": "Mist settles on the field.",
+    "fieldAppSwitch": 602,
+    "id": "MISTY",
+    "name": "Misty Terrain",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {
+        "CORROSIVEMIST": "@battle.field.counter > 1"
+      },
+      "changeEffects": {},
+      "changeMessage": {
+        "The mist was blown away!": [
+          "WHIRLWIND",
+          "GUST",
+          "RAZORWIND",
+          "DEFOG",
+          "HURRICANE",
+          "TWISTER",
+          "TAILWIND",
+          "SUPERSONICSKYSTRIKE"
+        ],
+        "The mist was corroded!": [
+          "CLEARSMOG",
+          "POISONGAS",
+          "SMOG",
+          "ACIDDOWNPOUR"
+        ]
+      },
+      "damageMods": {
+        "0": [
+          "SELFDESTRUCT",
+          "EXPLOSION",
+          "MINDBLOWN"
+        ],
+        "0.5": [
+          "DARKPULSE",
+          "SHADOWBALL",
+          "NIGHTDAZE"
+        ],
+        "1.5": [
+          "FAIRYWIND",
+          "MYSTICALFIRE",
+          "MOONBLAST",
+          "MAGICALLEAF",
+          "DOOMDUMMY",
+          "ICYWIND",
+          "MISTBALL",
+          "AURASPHERE",
+          "STEAMERUPTION",
+          "DAZZLINGGLEAM",
+          "SILVERWIND",
+          "MOONGEISTBEAM"
+        ]
+      },
+      "dontChangeBackup": [
+        "CLEARSMOG",
+        "POISONGAS",
+        "SMOG",
+        "ACIDDOWNPOUR"
+      ],
+      "fieldAppSwitch": 602,
+      "fieldChange": {
+        "CORROSIVEMIST": [
+          "CLEARSMOG",
+          "POISONGAS",
+          "SMOG",
+          "ACIDDOWNPOUR"
+        ],
+        "INDOOR": [
+          "WHIRLWIND",
+          "GUST",
+          "RAZORWIND",
+          "DEFOG",
+          "HURRICANE",
+          "TWISTER",
+          "TAILWIND",
+          "SUPERSONICSKYSTRIKE"
+        ]
+      },
+      "fieldCounterIncreases": {
+        "[1, 1]": [
+          "CLEARSMOG",
+          "POISONGAS",
+          "SMOG"
+        ],
+        "[1, 2]": [
+          "ACIDDOWNPOUR"
+        ]
+      },
+      "fieldMessage": [
+        "Mist settles on the field."
+      ],
+      "graphic": [
+        "Misty"
+      ],
+      "mimicry": "FAIRY",
+      "moveEffects": {},
+      "moveMessages": {
+        "The dampness prevents the explosion!": [
+          "SELFDESTRUCT",
+          "EXPLOSION",
+          "MINDBLOWN"
+        ],
+        "The mist softened the attack...": [
+          "DARKPULSE",
+          "SHADOWBALL",
+          "NIGHTDAZE"
+        ],
+        "The mist's energy strengthened the attack!": [
+          "FAIRYWIND",
+          "MYSTICALFIRE",
+          "MOONBLAST",
+          "MAGICALLEAF",
+          "DOOMDUMMY",
+          "ICYWIND",
+          "MISTBALL",
+          "AURASPHERE",
+          "STEAMERUPTION",
+          "DAZZLINGGLEAM",
+          "SILVERWIND",
+          "MOONGEISTBEAM"
+        ]
+      },
+      "name": "Misty Terrain",
+      "naturePower": "MISTBALL",
+      "secretPower": "MISTBALL",
+      "seed": {
+        "animation": null,
+        "duration": 0,
+        "effect": null,
+        "message": null,
+        "seedtype": "ELEMENTALSEED",
+        "stats": {
+          "PBStats::SPDEF": 1
+        }
+      },
+      "statusMods": [
+        "COSMICPOWER",
+        "AROMATICMIST",
+        "SWEETSCENT"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "0.5": [
+          "DRAGON"
+        ]
+      },
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {
+        "The Misty Terrain weakened the attack!": [
+          "DRAGON"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 0.5,
+          "type": "DRAGON"
+        }
+      ]
+    }
+  },
+  "MOUNTAIN": {
+    "description": "Adieu to disappointment and spleen,",
+    "fieldAppSwitch": 626,
+    "id": "MOUNTAIN",
+    "name": "Mountain",
+    "raw": {
+      "accuracyMods": {
+        "0": [
+          "THUNDER"
+        ]
+      },
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {
+        "The mountain was covered in snow!": [
+          "BLIZZARD",
+          "GLACIATE",
+          "SUBZEROSLAMMER"
+        ]
+      },
+      "damageMods": {
+        "1.5": [
+          "VITALTHROW",
+          "CIRCLETHROW",
+          "STORMTHROW",
+          "OMINOUSWIND",
+          "ICYWIND",
+          "SILVERWIND",
+          "TWISTER",
+          "RAZORWIND",
+          "FAIRYWIND",
+          "THUNDER",
+          "ERUPTION",
+          "AVALANCHE",
+          "HYPERVOICE"
+        ]
+      },
+      "dontChangeBackup": [
+        "BLIZZARD",
+        "GLACIATE",
+        "SUBZEROSLAMMER"
+      ],
+      "fieldAppSwitch": 626,
+      "fieldChange": {
+        "SNOWYMOUNTAIN": [
+          "BLIZZARD",
+          "GLACIATE",
+          "SUBZEROSLAMMER"
+        ]
+      },
+      "fieldMessage": [
+        "Adieu to disappointment and spleen,",
+        "What are men to rocks and mountains?"
+      ],
+      "graphic": [
+        "Mountain"
+      ],
+      "mimicry": "ROCK",
+      "moveEffects": {},
+      "moveMessages": {
+        "The mountain strengthened the attack!": [
+          "THUNDER",
+          "ERUPTION",
+          "AVALANCHE"
+        ],
+        "The wind strengthened the attack!": [
+          "OMINOUSWIND",
+          "ICYWIND",
+          "SILVERWIND",
+          "TWISTER",
+          "RAZORWIND",
+          "FAIRYWIND"
+        ],
+        "Yodelayheehoo~": [
+          "HYPERVOICE"
+        ],
+        "{1} was thrown partway down the mountain!": [
+          "VITALTHROW",
+          "CIRCLETHROW",
+          "STORMTHROW"
+        ]
+      },
+      "name": "Mountain",
+      "naturePower": "ROCKSLIDE",
+      "secretPower": "ROCKBLAST",
+      "seed": {
+        "animation": null,
+        "duration": 0,
+        "effect": null,
+        "message": null,
+        "seedtype": "TELLURICSEED",
+        "stats": {
+          "PBStats::ACCURACY": -1,
+          "PBStats::ATTACK": 2
+        }
+      },
+      "statusMods": [
+        "TAILWIND",
+        "SUNNYDAY"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "1.5": [
+          "ROCK",
+          "FLYING"
+        ]
+      },
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {
+        "The mountain strengthened the attack!": [
+          "ROCK"
+        ],
+        "The open air strengthened the attack!": [
+          "FLYING"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "ROCK"
+        },
+        {
+          "factor": 1.5,
+          "type": "FLYING"
+        }
+      ]
+    }
+  },
+  "MURKWATERSURFACE": {
+    "description": "The water is tainted...",
+    "fieldAppSwitch": 625,
+    "id": "MURKWATERSURFACE",
+    "name": "Murkwater Surface",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {
+        "The maelstrom flushed out the poison!": [
+          "WHIRLPOOL"
+        ],
+        "The toxic water froze over!": [
+          "BLIZZARD",
+          "GLACIATE",
+          "SUBZEROSLAMMER"
+        ]
+      },
+      "damageMods": {
+        "0": [
+          "SPIKES",
+          "TOXICSPIKES"
+        ],
+        "1.5": [
+          "MUDBOMB",
+          "MUDSLAP",
+          "MUDSHOT",
+          "SMACKDOWN",
+          "ACID",
+          "ACIDSPRAY",
+          "BRINE",
+          "THOUSANDWAVES"
+        ]
+      },
+      "dontChangeBackup": [
+        "WHIRLPOOL",
+        "BLIZZARD",
+        "GLACIATE",
+        "SUBZEROSLAMMER"
+      ],
+      "fieldAppSwitch": 625,
+      "fieldChange": {
+        "ICY": [
+          "BLIZZARD",
+          "GLACIATE",
+          "SUBZEROSLAMMER"
+        ],
+        "WATERSURFACE": [
+          "WHIRLPOOL"
+        ]
+      },
+      "fieldMessage": [
+        "The water is tainted..."
+      ],
+      "graphic": [
+        "MurkwaterSurface"
+      ],
+      "mimicry": "POISON",
+      "moveEffects": {},
+      "moveMessages": {
+        "...The spikes sank into the water and vanished!": [
+          "SPIKES",
+          "TOXICSPIKES"
+        ],
+        "Stinging!": [
+          "BRINE"
+        ],
+        "The toxic water strengthened the attack!": [
+          "MUDBOMB",
+          "MUDSLAP",
+          "MUDSHOT",
+          "SMACKDOWN",
+          "ACID",
+          "ACIDSPRAY",
+          "THOUSANDWAVES"
+        ]
+      },
+      "name": "Murkwater Surface",
+      "naturePower": "SLUDGEWAVE",
+      "secretPower": "SLUDGEBOMB",
+      "seed": {
+        "animation": "AQUARING",
+        "duration": true,
+        "effect": "AquaRing",
+        "message": "{1} surrounded itself with a veil of water!",
+        "seedtype": "ELEMENTALSEED",
+        "stats": {
+          "PBStats::SPEED": 1
+        }
+      },
+      "statusMods": [
+        "ACIDARMOR"
+      ],
+      "typeAddOns": {
+        "POISON": [
+          "WATER"
+        ]
+      },
+      "typeBoosts": {
+        "0": [
+          "GROUND"
+        ],
+        "1.3": [
+          "ELECTRIC"
+        ],
+        "1.5": [
+          "WATER",
+          "POISON"
+        ]
+      },
+      "typeCondition": {
+        "ELECTRIC": "!opponent.isAirborne?"
+      },
+      "typeEffects": {},
+      "typeMessages": {
+        "...But there was no solid ground to attack from!": [
+          "GROUND"
+        ],
+        "The toxic water conducted the attack!": [
+          "ELECTRIC"
+        ],
+        "The toxic water strengthened the attack!": [
+          "WATER",
+          "POISON"
+        ]
+      },
+      "typeMods": {
+        "POISON": [
+          "MUDBOMB",
+          "MUDSLAP",
+          "MUDSHOT",
+          "SMACKDOWN",
+          "THOUSANDWAVES"
+        ],
+        "WATER": [
+          "SLUDGEWAVE"
+        ]
+      }
+    },
+    "rules": {
+      "failingMoveTypes": [
+        "GROUND"
+      ],
+      "secondaryTypes": [
+        {
+          "addType": "POISON",
+          "match": {
+            "moveType": "WATER"
+          }
+        }
+      ],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "WATER"
+        },
+        {
+          "factor": 1.5,
+          "type": "POISON"
+        },
+        {
+          "factor": 1.3,
+          "type": "ELECTRIC"
+        }
+      ]
+    }
+  },
+  "NEWWORLD": {
+    "description": "From darkness, from stardust,",
+    "fieldAppSwitch": 634,
+    "id": "NEWWORLD",
+    "name": "New World",
+    "raw": {
+      "accuracyMods": {
+        "85": [
+          "DARKVOID"
+        ]
+      },
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {
+        "The world was regenerated!": [
+          "GEOMANCY"
+        ],
+        "The world's matter reformed!": [
+          "GRAVITY"
+        ]
+      },
+      "damageMods": {
+        "0": [
+          "HAIL",
+          "SUNNYDAY",
+          "SANDSTORM",
+          "RAINDANCE",
+          "SHADOWSKY",
+          "GRASSYTERRAIN",
+          "PSYCHICTERRAIN",
+          "MISTYTERRAIN",
+          "ELECTRICTERRAIN",
+          "FISSURE"
+        ],
+        "2": [
+          "VACUUMWAVE",
+          "DRACOMETEOR",
+          "METEORMASH",
+          "MOONBLAST",
+          "COMETPUNCH",
+          "SWIFT",
+          "HYPERSPACEHOLE",
+          "SPACIALREND",
+          "HYPERSPACEFURY",
+          "ANCIENTPOWER",
+          "FUTUREDUMMY",
+          "BLACKHOLEECLIPSE"
+        ],
+        "4": [
+          "DOOMDUMMY"
+        ],
+        "0.25": [
+          "EARTHQUAKE",
+          "MAGNITUDE",
+          "BULLDOZE"
+        ],
+        "1.5": [
+          "AURORABEAM",
+          "SIGNALBEAM",
+          "FLASHCANNON",
+          "DAZZLINGGLEAM",
+          "MIRRORSHOT",
+          "PHOTONGEYSER",
+          "PSYSTRIKE",
+          "AEROBLAST",
+          "SACREDFIRE",
+          "MISTBALL",
+          "LUSTERPURGE",
+          "ORIGINPULSE",
+          "PRECIPICEBLADES",
+          "DRAGONASCENT",
+          "PSYCHOBOOST",
+          "ROAROFTIME",
+          "MAGMASTORM",
+          "CRUSHGRIP",
+          "JUDGMENT",
+          "SEEDFLARE",
+          "SHADOWFORCE",
+          "SEARINGSHOT",
+          "VCREATE",
+          "SECRETSWORD",
+          "SACREDSWORD",
+          "RELICSONG",
+          "FUSIONBOLT",
+          "FUSIONFLARE",
+          "ICEBURN",
+          "FREEZESHOCK",
+          "BOLTSTRIKE",
+          "BLUEFLARE",
+          "GLACIATE",
+          "TECHNOBLAST",
+          "OBLIVIONWING",
+          "LANDSWRATH",
+          "THOUSANDARROWS",
+          "THOUSANDWAVES",
+          "DIAMONDSTORM",
+          "STEAMERUPTION",
+          "COREENFORCER",
+          "FLEURCANNON",
+          "PRISMATICLASER",
+          "SUNSTEELSTRIKE",
+          "SPECTRALTHIEF",
+          "MOONGEISTBEAM",
+          "MULTIATTACK",
+          "MINDBLOWN",
+          "PLASMAFISTS",
+          "EARTHPOWER",
+          "POWERGEM",
+          "ERUPTION",
+          "CONTINENTALCRUSH",
+          "GENESISSUPERNOVA",
+          "SOULSTEALING7STARSTRIKE",
+          "SEARINGSUNRAZESMASH",
+          "MENACINGMOONRAZEMAELSTROM",
+          "LIGHTTHATBURNSTHESKY"
+        ]
+      },
+      "dontChangeBackup": [
+        "GRAVITY"
+      ],
+      "fieldAppSwitch": 634,
+      "fieldChange": {
+        "STARLIGHT": [
+          "GRAVITY",
+          "GEOMANCY"
+        ]
+      },
+      "fieldMessage": [
+        "From darkness, from stardust,",
+        "From memories of eons past and visions yet to come..."
+      ],
+      "graphic": [
+        "NewWorld"
+      ],
+      "mimicry": "QMARKS",
+      "moveEffects": {},
+      "moveMessages": {
+        "A star came crashing down on {1}!": [
+          "DOOMDUMMY"
+        ],
+        "The astral energy boosted the attack!": [
+          "VACUUMWAVE",
+          "DRACOMETEOR",
+          "METEORMASH",
+          "MOONBLAST",
+          "COMETPUNCH",
+          "SWIFT",
+          "HYPERSPACEHOLE",
+          "SPACIALREND",
+          "HYPERSPACEFURY",
+          "ANCIENTPOWER",
+          "FUTUREDUMMY"
+        ],
+        "The ethereal energy strengthened the attack!": [
+          "PSYSTRIKE",
+          "AEROBLAST",
+          "SACREDFIRE",
+          "MISTBALL",
+          "LUSTERPURGE",
+          "ORIGINPULSE",
+          "PRECIPICEBLADES",
+          "DRAGONASCENT",
+          "PSYCHOBOOST",
+          "ROAROFTIME",
+          "MAGMASTORM",
+          "CRUSHGRIP",
+          "JUDGMENT",
+          "SEEDFLARE",
+          "SHADOWFORCE",
+          "SEARINGSHOT",
+          "VCREATE",
+          "SECRETSWORD",
+          "SACREDSWORD",
+          "RELICSONG",
+          "FUSIONBOLT",
+          "FUSIONFLARE",
+          "ICEBURN",
+          "FREEZESHOCK",
+          "BOLTSTRIKE",
+          "BLUEFLARE",
+          "GLACIATE",
+          "TECHNOBLAST",
+          "OBLIVIONWING",
+          "LANDSWRATH",
+          "THOUSANDARROWS",
+          "THOUSANDWAVES",
+          "DIAMONDSTORM",
+          "STEAMERUPTION",
+          "COREENFORCER",
+          "FLEURCANNON",
+          "PRISMATICLASER",
+          "SUNSTEELSTRIKE",
+          "SPECTRALTHIEF",
+          "MOONGEISTBEAM",
+          "MULTIATTACK",
+          "MINDBLOWN",
+          "PLASMAFISTS",
+          "GENESISSUPERNOVA",
+          "SOULSTEALING7STARSTRIKE",
+          "SEARINGSUNRAZESMASH",
+          "MENACINGMOONRAZEMAELSTROM"
+        ],
+        "The germinal matter amassed in the attack!": [
+          "EARTHPOWER",
+          "POWERGEM",
+          "ERUPTION",
+          "CONTINENTALCRUSH"
+        ],
+        "The light shone through the infinite darkness!": [
+          "AURORABEAM",
+          "SIGNALBEAM",
+          "FLASHCANNON",
+          "DAZZLINGGLEAM",
+          "MIRRORSHOT",
+          "PHOTONGEYSER",
+          "LIGHTTHATBURNSTHESKY"
+        ],
+        "The terrain had no solid ground to attach...": [
+          "GRASSYTERRAIN",
+          "PSYCHICTERRAIN",
+          "MISTYTERRAIN",
+          "ELECTRICTERRAIN"
+        ],
+        "The unformed land diffused the attack...": [
+          "EARTHQUAKE",
+          "MAGNITUDE",
+          "BULLDOZE",
+          "FISSURE"
+        ],
+        "The weather drifted off into space...": [
+          "HAIL",
+          "SUNNYDAY",
+          "SANDSTORM",
+          "RAINDANCE",
+          "SHADOWSKY"
+        ],
+        "{1} was swallowed up by the void!": [
+          "BLACKHOLEECLIPSE"
+        ]
+      },
+      "name": "New World",
+      "naturePower": "SPACIALREND",
+      "secretPower": "ROAROFTIME",
+      "seed": {
+        "animation": null,
+        "duration": 1,
+        "effect": "HyperBeam",
+        "message": "{1} must recharge!",
+        "seedtype": "MAGICALSEED",
+        "stats": {
+          "PBStats::ATTACK": 1,
+          "PBStats::DEFENSE": 1,
+          "PBStats::SPATK": 1,
+          "PBStats::SPDEF": 1,
+          "PBStats::SPEED": 1
+        }
+      },
+      "statusMods": [
+        "DARKVOID",
+        "HEARTSWAP",
+        "TRICKROOM",
+        "MAGICROOM",
+        "WONDERROOM",
+        "COSMICPOWER",
+        "FLASH",
+        "MOONLIGHT",
+        "NATURESMADNESS",
+        "GUARDIANOFALOLA"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "1.5": [
+          "DARK"
+        ]
+      },
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {
+        "Infinity boosted the attack!": [
+          "DARK"
+        ]
+      },
+      "typeMods": {
+        "FIRE": [
+          "DOOMDUMMY"
+        ]
+      }
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "DARK"
+        }
+      ]
+    }
+  },
+  "PSYTERRAIN": {
+    "description": "The field became mysterious!",
+    "fieldAppSwitch": 636,
+    "id": "PSYTERRAIN",
+    "name": "Psychic Terrain",
+    "raw": {
+      "accuracyMods": {
+        "90": [
+          "HYPNOSIS"
+        ]
+      },
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {},
+      "damageMods": {
+        "1.5": [
+          "HEX",
+          "MAGICALLEAF",
+          "MYSTICALFIRE",
+          "MOONBLAST",
+          "AURASPHERE",
+          "MINDBLOWN"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 636,
+      "fieldChange": {},
+      "fieldMessage": [
+        "The field became mysterious!"
+      ],
+      "graphic": [
+        "Psychic"
+      ],
+      "mimicry": "PSYCHIC",
+      "moveEffects": {},
+      "moveMessages": {
+        "The psychic energy strengthened the attack!": [
+          "HEX",
+          "MAGICALLEAF",
+          "MYSTICALFIRE",
+          "MOONBLAST",
+          "AURASPHERE",
+          "MINDBLOWN"
+        ]
+      },
+      "name": "Psychic Terrain",
+      "naturePower": "PSYCHIC",
+      "secretPower": "PSYCHIC",
+      "seed": {
+        "animation": null,
+        "duration": 0,
+        "effect": null,
+        "message": null,
+        "seedtype": "MAGICALSEED",
+        "stats": {
+          "PBStats::SPATK": 2
+        }
+      },
+      "statusMods": [
+        "CALMMIND",
+        "COSMICPOWER",
+        "KINESIS",
+        "MEDITATE",
+        "NASTYPLOT",
+        "HYPNOSIS",
+        "TELEKINESIS",
+        "GRAVITY",
+        "MAGICROOM",
+        "TRICKROOM",
+        "WONDERROOM"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "1.5": [
+          "PSYCHIC"
+        ]
+      },
+      "typeCondition": {
+        "PSYCHIC": "!attacker.isAirborne?"
+      },
+      "typeEffects": {},
+      "typeMessages": {
+        "The Psychic Terrain strengthened the attack!": [
+          "PSYCHIC"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "PSYCHIC"
+        }
+      ]
+    }
+  },
+  "RAINBOW": {
+    "description": "What does it mean?",
+    "fieldAppSwitch": 608,
+    "id": "RAINBOW",
+    "name": "Rainbow Field",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {
+        "The rainbow was consumed!": [
+          "LIGHTTHATBURNSTHESKY"
+        ]
+      },
+      "damageMods": {
+        "0.5": [
+          "DARKPULSE",
+          "SHADOWBALL",
+          "NIGHTDAZE",
+          "NEVERENDINGNIGHTMARE"
+        ],
+        "1.5": [
+          "SILVERWIND",
+          "MYSTICALFIRE",
+          "DRAGONPULSE",
+          "TRIATTACK",
+          "SACREDFIRE",
+          "FIREPLEDGE",
+          "WATERPLEDGE",
+          "GRASSPLEDGE",
+          "AURORABEAM",
+          "JUDGMENT",
+          "RELICSONG",
+          "HIDDENPOWER",
+          "SECRETPOWER",
+          "WEATHERBALL",
+          "MISTBALL",
+          "HEARTSTAMP",
+          "MOONBLAST",
+          "ZENHEADBUTT",
+          "SPARKLINGARIA",
+          "FLEURCANNON",
+          "PRISMATICLASER",
+          "TWINKLETACKLE",
+          "OCEANICOPERETTA",
+          "SOLARBEAM",
+          "SOLARBLADE",
+          "DAZZLINGGLEAM"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 608,
+      "fieldChange": {
+        "INDOOR": [
+          "LIGHTTHATBURNSTHESKY"
+        ]
+      },
+      "fieldMessage": [
+        "What does it mean?"
+      ],
+      "graphic": [
+        "Rainbow"
+      ],
+      "mimicry": "DRAGON",
+      "moveEffects": {},
+      "moveMessages": {
+        "The attack was rainbow-charged!": [
+          "SILVERWIND",
+          "MYSTICALFIRE",
+          "DRAGONPULSE",
+          "TRIATTACK",
+          "SACREDFIRE",
+          "FIREPLEDGE",
+          "WATERPLEDGE",
+          "GRASSPLEDGE",
+          "AURORABEAM",
+          "JUDGMENT",
+          "RELICSONG",
+          "HIDDENPOWER",
+          "SECRETPOWER",
+          "WEATHERBALL",
+          "MISTBALL",
+          "HEARTSTAMP",
+          "MOONBLAST",
+          "ZENHEADBUTT",
+          "SPARKLINGARIA",
+          "FLEURCANNON",
+          "PRISMATICLASER",
+          "TWINKLETACKLE",
+          "OCEANICOPERETTA",
+          "SOLARBEAM",
+          "SOLARBLADE",
+          "DAZZLINGGLEAM"
+        ],
+        "The rainbow softened the attack...": [
+          "DARKPULSE",
+          "SHADOWBALL",
+          "NIGHTDAZE",
+          "NEVERENDINGNIGHTMARE"
+        ]
+      },
+      "name": "Rainbow Field",
+      "naturePower": "AURORABEAM",
+      "secretPower": "AURORABEAM",
+      "seed": {
+        "animation": null,
+        "duration": 0,
+        "effect": null,
+        "message": null,
+        "seedtype": "MAGICALSEED",
+        "stats": {
+          "PBStats::SPATK": 1
+        }
+      },
+      "statusMods": [
+        "COSMICPOWER",
+        "MEDITATE",
+        "WISH"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "1.5": [
+          "NORMAL"
+        ]
+      },
+      "typeCondition": {
+        "NORMAL": "self.pbIsSpecial?(type)"
+      },
+      "typeEffects": {},
+      "typeMessages": {
+        "The rainbow energized the attack!": [
+          "NORMAL"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "NORMAL"
+        }
+      ]
+    }
+  },
+  "ROCKY": {
+    "description": "The field is littered with rocks.",
+    "fieldAppSwitch": 613,
+    "id": "ROCKY",
+    "name": "Rocky Field",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {},
+      "damageMods": {
+        "2": [
+          "ROCKSMASH"
+        ],
+        "1.5": [
+          "ROCKCLIMB",
+          "STRENGTH",
+          "MAGNITUDE",
+          "EARTHQUAKE",
+          "BULLDOZE",
+          "ACCELEROCK"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 613,
+      "fieldChange": {},
+      "fieldMessage": [
+        "The field is littered with rocks."
+      ],
+      "graphic": [
+        "Rocky"
+      ],
+      "mimicry": "ROCK",
+      "moveEffects": {},
+      "moveMessages": {
+        "SMASH'D!": [
+          "ROCKSMASH"
+        ],
+        "The rocks strengthened the attack!": [
+          "ROCKCLIMB",
+          "STRENGTH",
+          "MAGNITUDE",
+          "EARTHQUAKE",
+          "BULLDOZE",
+          "ACCELEROCK"
+        ]
+      },
+      "name": "Rocky Field",
+      "naturePower": "ROCKSMASH",
+      "secretPower": "ROCKTHROW",
+      "seed": {
+        "animation": null,
+        "duration": 0,
+        "effect": null,
+        "message": null,
+        "seedtype": "TELLURICSEED",
+        "stats": {
+          "PBStats::DEFENSE": 1
+        }
+      },
+      "statusMods": [
+        "ROCKPOLISH"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "1.5": [
+          "ROCK"
+        ]
+      },
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {
+        "The field strengthened the attack!": [
+          "ROCK"
+        ]
+      },
+      "typeMods": {
+        "ROCK": [
+          "ROCKCLIMB",
+          "EARTHQUAKE",
+          "MAGNITUDE",
+          "STRENGTH",
+          "BULLDOZE"
+        ]
+      }
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "ROCK"
+        }
+      ]
+    }
+  },
+  "SHORTCIRCUIT": {
+    "description": "Bzzt!",
+    "fieldAppSwitch": 617,
+    "id": "SHORTCIRCUIT",
+    "name": "Short-Circuit Field",
+    "raw": {
+      "accuracyMods": {
+        "80": [
+          "ZAPCANNON"
+        ]
+      },
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {
+        "SYSTEM ONLINE.": [
+          "PARABOLICCHARGE",
+          "WILDCHARGE",
+          "CHARGEBEAM",
+          "IONDELUGE",
+          "GIGAVOLTHAVOC",
+          "DISCHARGE"
+        ]
+      },
+      "damageMods": {
+        "0.5": [
+          "LIGHTTHATBURNSTHESKY"
+        ],
+        "1.3": [
+          "DARKPULSE",
+          "NIGHTDAZE",
+          "NIGHTSLASH",
+          "SHADOWBALL",
+          "SHADOWPUNCH",
+          "SHADOWCLAW",
+          "SHADOWSNEAK",
+          "SHADOWFORCE",
+          "SHADOWBONE"
+        ],
+        "1.5": [
+          "DAZZLINGGLEAM",
+          "SURF",
+          "MUDDYWATER",
+          "MAGNETBOMB",
+          "GYROBALL",
+          "FLASHCANNON",
+          "GEARGRIND",
+          "HYDROVORTEX"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 617,
+      "fieldChange": {
+        "FACTORY": [
+          "PARABOLICCHARGE",
+          "WILDCHARGE",
+          "CHARGEBEAM",
+          "IONDELUGE",
+          "GIGAVOLTHAVOC",
+          "DISCHARGE"
+        ]
+      },
+      "fieldMessage": [
+        "Bzzt!"
+      ],
+      "graphic": [
+        "Shortcircuit"
+      ],
+      "mimicry": "ELECTRIC",
+      "moveEffects": {},
+      "moveMessages": {
+        "Blinding!": [
+          "DAZZLINGGLEAM"
+        ],
+        "The attack picked up electricity!": [
+          "SURF",
+          "MUDDYWATER",
+          "MAGNETBOMB",
+          "GYROBALL",
+          "FLASHCANNON",
+          "GEARGRIND",
+          "HYDROVORTEX"
+        ],
+        "The darkness strengthened the attack!": [
+          "DARKPULSE",
+          "NIGHTDAZE",
+          "NIGHTSLASH",
+          "SHADOWBALL",
+          "SHADOWPUNCH",
+          "SHADOWCLAW",
+          "SHADOWSNEAK",
+          "SHADOWFORCE",
+          "SHADOWBONE"
+        ],
+        "{1} couldn't consume much light...": [
+          "LIGHTTHATBURNSTHESKY"
+        ]
+      },
+      "name": "Short-Circuit Field",
+      "naturePower": "DISCHARGE",
+      "secretPower": "ELECTROBALL",
+      "seed": {
+        "animation": "MAGNETRISE",
+        "duration": 5,
+        "effect": "MagnetRise",
+        "message": "{1} levitated with electromagnetism!",
+        "seedtype": "SYNTHETICSEED",
+        "stats": {
+          "PBStats::SPDEF": 1
+        }
+      },
+      "statusMods": [
+        "FLASH",
+        "METALSOUND",
+        "MAGNETRISE"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {},
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {},
+      "typeMods": {
+        "ELECTRIC": [
+          "SURF",
+          "MUDDYWATER",
+          "MAGNETBOMB",
+          "GYROBALL",
+          "FLASHCANNON",
+          "GEARGRIND"
+        ]
+      }
+    },
+    "rules": {
+      "secondaryTypes": []
+    }
+  },
+  "SNOWYMOUNTAIN": {
+    "description": "The snow glows white on the mountain...",
+    "fieldAppSwitch": 627,
+    "id": "SNOWYMOUNTAIN",
+    "name": "Snowy Mountain",
+    "raw": {
+      "accuracyMods": {
+        "0": [
+          "THUNDER"
+        ]
+      },
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {
+        "The snow melted away!": [
+          "HEATWAVE",
+          "ERUPTION",
+          "SEARINGSHOT",
+          "FLAMEBURST",
+          "LAVAPLUME",
+          "FIREPLEDGE",
+          "MINDBLOWN",
+          "INCINERATE",
+          "INFERNOOVERDRIVE"
+        ]
+      },
+      "damageMods": {
+        "2": [
+          "ICYWIND"
+        ],
+        "0.5": [
+          "SCALD",
+          "STEAMERUPTION"
+        ],
+        "1.5": [
+          "VITALTHROW",
+          "CIRCLETHROW",
+          "STORMTHROW",
+          "OMINOUSWIND",
+          "SILVERWIND",
+          "TWISTER",
+          "RAZORWIND",
+          "FAIRYWIND",
+          "AVALANCHE",
+          "POWDERSNOW",
+          "HYPERVOICE",
+          "GLACIATE"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 627,
+      "fieldChange": {
+        "MOUNTAIN": [
+          "HEATWAVE",
+          "ERUPTION",
+          "SEARINGSHOT",
+          "FLAMEBURST",
+          "LAVAPLUME",
+          "FIREPLEDGE",
+          "MINDBLOWN",
+          "INCINERATE",
+          "INFERNOOVERDRIVE"
+        ]
+      },
+      "fieldMessage": [
+        "The snow glows white on the mountain..."
+      ],
+      "graphic": [
+        "SnowyMountain"
+      ],
+      "mimicry": "ICE",
+      "moveEffects": {},
+      "moveMessages": {
+        "The cold softened the attack...": [
+          "SCALD",
+          "STEAMERUPTION"
+        ],
+        "The frigid wind strengthened the attack!": [
+          "ICYWIND"
+        ],
+        "The snow strengthened the attack!": [
+          "AVALANCHE",
+          "POWDERSNOW"
+        ],
+        "The wind strengthened the attack!": [
+          "OMINOUSWIND",
+          "SILVERWIND",
+          "TWISTER",
+          "RAZORWIND",
+          "FAIRYWIND"
+        ],
+        "Yodelayheehoo~": [
+          "HYPERVOICE"
+        ],
+        "{1} was thrown partway down the mountain!": [
+          "VITALTHROW",
+          "CIRCLETHROW",
+          "STORMTHROW"
+        ]
+      },
+      "name": "Snowy Mountain",
+      "naturePower": "AVALANCHE",
+      "secretPower": "ICEBALL",
+      "seed": {
+        "animation": null,
+        "duration": 0,
+        "effect": null,
+        "message": null,
+        "seedtype": "TELLURICSEED",
+        "stats": {
+          "PBStats::ACCURACY": -1,
+          "PBStats::SPATK": 2
+        }
+      },
+      "statusMods": [
+        "TAILWIND",
+        "SUNNYDAY",
+        "HAIL"
+      ],
+      "typeAddOns": {
+        "ICE": [
+          "ROCK"
+        ]
+      },
+      "typeBoosts": {
+        "0.5": [
+          "FIRE"
+        ],
+        "1.5": [
+          "ROCK",
+          "ICE",
+          "FLYING"
+        ]
+      },
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {
+        "The cold softened the attack!": [
+          "FIRE"
+        ],
+        "The open air strengthened the attack!": [
+          "FLYING"
+        ],
+        "The snowy mountain strengthened the attack!": [
+          "ROCK",
+          "ICE"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": [
+        {
+          "addType": "ICE",
+          "match": {
+            "moveType": "ROCK"
+          }
+        }
+      ],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "ROCK"
+        },
+        {
+          "factor": 1.5,
+          "type": "ICE"
+        },
+        {
+          "factor": 1.5,
+          "type": "FLYING"
+        },
+        {
+          "factor": 0.5,
+          "type": "FIRE"
+        }
+      ]
+    }
+  },
+  "STARLIGHT": {
+    "description": "Starlight fills the battlefield.",
+    "fieldAppSwitch": 633,
+    "id": "STARLIGHT",
+    "name": "Starlight Arena",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {
+        "The cosmic light was consumed!": [
+          "LIGHTTHATBURNSTHESKY"
+        ]
+      },
+      "damageMods": {
+        "2": [
+          "DRACOMETEOR",
+          "METEORMASH",
+          "COMETPUNCH",
+          "SPACIALREND",
+          "SWIFT",
+          "HYPERSPACEHOLE",
+          "HYPERSPACEFURY",
+          "MOONGEISTBEAM",
+          "SUNSTEELSTRIKE",
+          "BLACKHOLEECLIPSE",
+          "SEARINGSUNRAZESMASH",
+          "MENACINGMOONRAZEMAELSTROM"
+        ],
+        "4": [
+          "DOOMDUMMY"
+        ],
+        "1.5": [
+          "AURORABEAM",
+          "SIGNALBEAM",
+          "FLASHCANNON",
+          "LUSTERPURGE",
+          "DAZZLINGGLEAM",
+          "MIRRORSHOT",
+          "TECHNOBLAST",
+          "SOLARBEAM",
+          "PHOTONGEYSER",
+          "MOONBLAST"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 633,
+      "fieldChange": {
+        "INDOOR": [
+          "LIGHTTHATBURNSTHESKY"
+        ]
+      },
+      "fieldMessage": [
+        "Starlight fills the battlefield."
+      ],
+      "graphic": [
+        "Starlight"
+      ],
+      "mimicry": "DARK",
+      "moveEffects": {},
+      "moveMessages": {
+        "A star came crashing down!": [
+          "DOOMDUMMY"
+        ],
+        "Lunar energy surged through the attack!": [
+          "MOONBLAST"
+        ],
+        "Starlight surged through the attack!": [
+          "AURORABEAM",
+          "SIGNALBEAM",
+          "FLASHCANNON",
+          "LUSTERPURGE",
+          "DAZZLINGGLEAM",
+          "MIRRORSHOT",
+          "TECHNOBLAST",
+          "SOLARBEAM",
+          "PHOTONGEYSER"
+        ],
+        "The astral energy boosted the attack!": [
+          "DRACOMETEOR",
+          "METEORMASH",
+          "COMETPUNCH",
+          "SPACIALREND",
+          "SWIFT",
+          "HYPERSPACEFURY",
+          "MOONGEISTBEAM",
+          "SUNSTEELSTRIKE",
+          "BLACKHOLEECLIPSE",
+          "SEARINGSUNRAZESMASH",
+          "MENACINGMOONRAZEMAELSTROM"
+        ],
+        "The astral vortex accelerated the attack!": [
+          "HYPERSPACEHOLE"
+        ]
+      },
+      "name": "Starlight Arena",
+      "naturePower": "MOONBLAST",
+      "secretPower": "SWIFT",
+      "seed": {
+        "animation": null,
+        "duration": 0,
+        "effect": null,
+        "message": null,
+        "seedtype": "MAGICALSEED",
+        "stats": {
+          "PBStats::SPATK": 1
+        }
+      },
+      "statusMods": [
+        "COSMICPOWER",
+        "FLASH",
+        "WISH",
+        "HEALINGWISH",
+        "LUNARDANCE",
+        "MOONLIGHT"
+      ],
+      "typeAddOns": {
+        "FAIRY": [
+          "DARK"
+        ]
+      },
+      "typeBoosts": {
+        "1.3": [
+          "FAIRY"
+        ],
+        "1.5": [
+          "DARK",
+          "PSYCHIC"
+        ]
+      },
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {
+        "Starlight supercharged the attack!": [
+          "FAIRY"
+        ],
+        "The astral energy boosted the attack!": [
+          "PSYCHIC"
+        ],
+        "The night sky boosted the attack!": [
+          "DARK"
+        ]
+      },
+      "typeMods": {
+        "FIRE": [
+          "DOOMDUMMY"
+        ]
+      }
+    },
+    "rules": {
+      "secondaryTypes": [
+        {
+          "addType": "FAIRY",
+          "match": {
+            "moveType": "DARK"
+          }
+        }
+      ],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "DARK"
+        },
+        {
+          "factor": 1.5,
+          "type": "PSYCHIC"
+        },
+        {
+          "factor": 1.3,
+          "type": "FAIRY"
+        }
+      ]
+    }
+  },
+  "SUPERHEATED": {
+    "description": "The field is super-heated!",
+    "fieldAppSwitch": 615,
+    "id": "SUPERHEATED",
+    "name": "Super-Heated Field",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {
+        "BURNING": "ignitecheck"
+      },
+      "changeEffects": {},
+      "changeMessage": {
+        "The field combusted!": [
+          "HEATWAVE",
+          "ERUPTION",
+          "SEARINGSHOT",
+          "FLAMEBURST",
+          "LAVAPLUME",
+          "FIREPLEDGE",
+          "MINDBLOWN",
+          "INCINERATE",
+          "INFERNOOVERDRIVE",
+          "SELFDESTRUCT",
+          "EXPLOSION"
+        ],
+        "The field cooled off!": [
+          "BLIZZARD",
+          "GLACIATE",
+          "SUBZEROSLAMMER"
+        ]
+      },
+      "damageMods": {
+        "0.5": [
+          "SURF",
+          "MUDDYWATER",
+          "WATERPLEDGE",
+          "WATERSPOUT",
+          "SPARKLINGARIA",
+          "HYDROVORTEX",
+          "OCEANICOPERETTA"
+        ],
+        "1.5": [
+          "SCALD",
+          "STEAMERUPTION"
+        ]
+      },
+      "dontChangeBackup": [
+        "HEATWAVE",
+        "ERUPTION",
+        "SEARINGSHOT",
+        "FLAMEBURST",
+        "LAVAPLUME",
+        "FIREPLEDGE",
+        "MINDBLOWN",
+        "INCINERATE",
+        "INFERNOOVERDRIVE",
+        "SELFDESTRUCT",
+        "EXPLOSION"
+      ],
+      "fieldAppSwitch": 615,
+      "fieldChange": {
+        "BURNING": [
+          "HEATWAVE",
+          "ERUPTION",
+          "SEARINGSHOT",
+          "FLAMEBURST",
+          "LAVAPLUME",
+          "FIREPLEDGE",
+          "MINDBLOWN",
+          "INCINERATE",
+          "INFERNOOVERDRIVE",
+          "SELFDESTRUCT",
+          "EXPLOSION"
+        ],
+        "INDOOR": [
+          "BLIZZARD",
+          "GLACIATE",
+          "SUBZEROSLAMMER"
+        ]
+      },
+      "fieldMessage": [
+        "The field is super-heated!"
+      ],
+      "graphic": [
+        "Superheated"
+      ],
+      "mimicry": "FIRE",
+      "moveEffects": {
+        "@battle.fieldAccuracyDrop": [
+          "SURF",
+          "MUDDYWATER",
+          "WATERPLEDGE",
+          "WATERSPOUT",
+          "SPARKLINGARIA",
+          "OCEANICOPERETTA",
+          "HYDROVORTEX"
+        ]
+      },
+      "moveMessages": {
+        "The field super-heated the attack!": [
+          "SCALD",
+          "STEAMERUPTION"
+        ]
+      },
+      "name": "Super-Heated Field",
+      "naturePower": "HEATWAVE",
+      "secretPower": "FLAMEBURST",
+      "seed": {
+        "animation": "ShellTrap",
+        "duration": true,
+        "effect": "ShellTrap",
+        "message": "{1} primed a trap!",
+        "seedtype": "TELLURICSEED",
+        "stats": {
+          "PBStats::DEFENSE": 1
+        }
+      },
+      "statusMods": [],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "0.5": [
+          "ICE"
+        ],
+        "0.9": [
+          "WATER"
+        ],
+        "1.1": [
+          "FIRE"
+        ]
+      },
+      "typeCondition": {
+        "WATER": "self.move!=:SCALD && self.move!=:STEAMERUPTION"
+      },
+      "typeEffects": {},
+      "typeMessages": {
+        "The attack was super-heated!": [
+          "FIRE"
+        ],
+        "The extreme heat softened the attack...": [
+          "ICE",
+          "WATER"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 0.5,
+          "type": "ICE"
+        },
+        {
+          "factor": 0.9,
+          "type": "WATER"
+        },
+        {
+          "factor": 1.1,
+          "type": "FIRE"
+        }
+      ]
+    }
+  },
+  "SWAMP": {
+    "description": "The field is swamped.",
+    "fieldAppSwitch": 607,
+    "id": "SWAMP",
+    "name": "Swamp Field",
+    "raw": {
+      "accuracyMods": {
+        "100": [
+          "SLEEPPOWDER"
+        ]
+      },
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {},
+      "damageMods": {
+        "0": [
+          "SELFDESTRUCT",
+          "EXPLOSION",
+          "MINDBLOWN"
+        ],
+        "0.25": [
+          "EARTHQUAKE",
+          "MAGNITUDE",
+          "BULLDOZE"
+        ],
+        "1.5": [
+          "MUDBOMB",
+          "MUDSHOT",
+          "MUDSLAP",
+          "MUDDYWATER",
+          "SURF",
+          "SLUDGEWAVE",
+          "GUNKSHOT",
+          "BRINE",
+          "SMACKDOWN",
+          "THOUSANDARROWS",
+          "HYDROVORTEX"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 607,
+      "fieldChange": {},
+      "fieldMessage": [
+        "The field is swamped."
+      ],
+      "graphic": [
+        "Swamp"
+      ],
+      "mimicry": "WATER",
+      "moveEffects": {},
+      "moveMessages": {
+        "The attack dissipated in the soggy ground...": [
+          "EARTHQUAKE",
+          "MAGNITUDE",
+          "BULLDOZE"
+        ],
+        "The dampness prevents the explosion!": [
+          "SELFDESTRUCT",
+          "EXPLOSION",
+          "MINDBLOWN"
+        ],
+        "The murk strengthened the attack!": [
+          "MUDBOMB",
+          "MUDSHOT",
+          "MUDSLAP",
+          "MUDDYWATER",
+          "SURF",
+          "SLUDGEWAVE",
+          "GUNKSHOT",
+          "BRINE",
+          "SMACKDOWN",
+          "THOUSANDARROWS",
+          "HYDROVORTEX"
+        ]
+      },
+      "name": "Swamp Field",
+      "naturePower": "MUDDYWATER",
+      "secretPower": "MUDDYWATER",
+      "seed": {
+        "animation": "INGRAIN",
+        "duration": true,
+        "effect": "Ingrain",
+        "message": "{1} planted its roots!",
+        "seedtype": "TELLURICSEED",
+        "stats": {
+          "PBStats::DEFENSE": 1,
+          "PBStats::SPDEF": 1
+        }
+      },
+      "statusMods": [
+        "SLEEPPOWDER",
+        "AQUARING"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "1.5": [
+          "POISON"
+        ]
+      },
+      "typeCondition": {
+        "POISON": "!opponent.isAirborne?"
+      },
+      "typeEffects": {},
+      "typeMessages": {
+        "The poison infected the nearby murk!": [
+          "POISON"
+        ]
+      },
+      "typeMods": {
+        "WATER": [
+          "SMACKDOWN",
+          "THOUSANDARROWS"
+        ]
+      }
+    },
+    "rules": {
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "POISON"
+        }
+      ]
+    }
+  },
+  "UNDERWATER": {
+    "description": "Blub blub...",
+    "fieldAppSwitch": 621,
+    "id": "UNDERWATER",
+    "name": "Underwater",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {
+        "MURKWATERSURFACE": "@battle.field.counter > 1"
+      },
+      "changeEffects": {
+        "@battle.waterPollution": [
+          "SLUDGEWAVE",
+          "ACIDDOWNPOUR"
+        ]
+      },
+      "changeMessage": {
+        "The battle resurfaced!": [
+          "DIVE",
+          "SKYDROP",
+          "FLY",
+          "BOUNCE"
+        ],
+        "The grime sank beneath the battlers!": [
+          "SLUDGEWAVE",
+          "ACIDDOWNPOUR"
+        ]
+      },
+      "damageMods": {
+        "0": [
+          "SUNNYDAY",
+          "HAIL",
+          "SANDSTORM",
+          "RAINDANCE"
+        ],
+        "2": [
+          "ANCHORSHOT"
+        ],
+        "1.5": [
+          "WATERPULSE"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 621,
+      "fieldChange": {
+        "MURKWATERSURFACE": [
+          "SLUDGEWAVE",
+          "ACIDDOWNPOUR"
+        ],
+        "WATERSURFACE": [
+          "DIVE",
+          "SKYDROP",
+          "FLY",
+          "BOUNCE"
+        ]
+      },
+      "fieldCounterIncreases": {
+        "[1, 1]": [
+          "SLUDGEWAVE"
+        ],
+        "[1, 2]": [
+          "ACIDDOWNPOUR"
+        ]
+      },
+      "fieldMessage": [
+        "Blub blub..."
+      ],
+      "graphic": [
+        "Underwater"
+      ],
+      "mimicry": "WATER",
+      "moveEffects": {},
+      "moveMessages": {
+        "From the depths!": [
+          "ANCHORSHOT"
+        ],
+        "Jet-streamed!": [
+          "WATERPULSE"
+        ],
+        "Poison spread through the water!": [
+          "SLUDGEWAVE"
+        ],
+        "You're too deep to notice the weather!": [
+          "SUNNYDAY",
+          "HAIL",
+          "SANDSTORM",
+          "RAINDANCE"
+        ]
+      },
+      "name": "Underwater",
+      "naturePower": "WATERPULSE",
+      "secretPower": "AQUATAIL",
+      "seed": {
+        "animation": "SOAK",
+        "duration": 0,
+        "effect": null,
+        "message": "{1} transformed into the Water type!",
+        "seedtype": "ELEMENTALSEED",
+        "stats": {
+          "PBStats::SPEED": 1
+        }
+      },
+      "statusMods": [
+        "AQUARING"
+      ],
+      "typeAddOns": {
+        "WATER": [
+          "GROUND"
+        ]
+      },
+      "typeBoosts": {
+        "0": [
+          "FIRE"
+        ],
+        "2": [
+          "ELECTRIC"
+        ],
+        "1.5": [
+          "WATER"
+        ]
+      },
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {
+        "...But the attack was doused instantly!": [
+          "FIRE"
+        ],
+        "The water strengthened the attack!": [
+          "WATER"
+        ],
+        "The water super-conducted the attack!": [
+          "ELECTRIC"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "failingMoveTypes": [
+        "FIRE"
+      ],
+      "secondaryTypes": [
+        {
+          "addType": "WATER",
+          "match": {
+            "moveType": "GROUND"
+          }
+        }
+      ],
+      "typeBoosts": [
+        {
+          "factor": 2,
+          "type": "ELECTRIC"
+        },
+        {
+          "factor": 1.5,
+          "type": "WATER"
+        }
+      ]
+    }
+  },
+  "WASTELAND": {
+    "description": "The waste is watching...",
+    "fieldAppSwitch": 618,
+    "id": "WASTELAND",
+    "name": "Wasteland",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {},
+      "changeEffects": {},
+      "changeMessage": {},
+      "damageMods": {
+        "2": [
+          "SPITUP"
+        ],
+        "0.25": [
+          "EARTHQUAKE",
+          "MAGNITUDE",
+          "BULLDOZE"
+        ],
+        "1.2": [
+          "OCTAZOOKA",
+          "SLUDGE",
+          "GUNKSHOT",
+          "SLUDGEWAVE",
+          "SLUDGEBOMB"
+        ],
+        "1.5": [
+          "VINEWHIP",
+          "POWERWHIP",
+          "MUDSLAP",
+          "MUDBOMB",
+          "MUDSHOT"
+        ]
+      },
+      "dontChangeBackup": [],
+      "fieldAppSwitch": 618,
+      "fieldChange": {},
+      "fieldMessage": [
+        "The waste is watching..."
+      ],
+      "graphic": [
+        "Wasteland"
+      ],
+      "mimicry": "POISON",
+      "moveEffects": {},
+      "moveMessages": {
+        "BLEAAARGGGGH!": [
+          "SPITUP"
+        ],
+        "The waste did it for the vine!": [
+          "VINEWHIP",
+          "POWERWHIP"
+        ],
+        "The waste joined the attack!": [
+          "OCTAZOOKA",
+          "SLUDGE",
+          "GUNKSHOT",
+          "SLUDGEWAVE",
+          "SLUDGEBOMB"
+        ],
+        "The waste was added to the attack!": [
+          "MUDSLAP",
+          "MUDBOMB",
+          "MUDSHOT"
+        ],
+        "Wibble-wibble wobble-wobb...": [
+          "EARTHQUAKE",
+          "MAGNITUDE",
+          "BULLDOZE"
+        ]
+      },
+      "name": "Wasteland",
+      "naturePower": "GUNKSHOT",
+      "secretPower": "GUNKSHOT",
+      "seed": {
+        "animation": null,
+        "duration": 0,
+        "effect": null,
+        "message": null,
+        "seedtype": "TELLURICSEED",
+        "stats": {
+          "PBStats::ATTACK": 1,
+          "PBStats::SPATK": 1
+        }
+      },
+      "statusMods": [
+        "SWALLOW",
+        "STEALTHROCK",
+        "SPIKES",
+        "TOXICSPIKES",
+        "STICKYWEB"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {},
+      "typeCondition": {},
+      "typeEffects": {},
+      "typeMessages": {},
+      "typeMods": {
+        "POISON": [
+          "MUDBOMB",
+          "MUDSLAP",
+          "MUDSHOT"
+        ]
+      }
+    },
+    "rules": {
+      "secondaryTypes": []
+    }
+  },
+  "WATERSURFACE": {
+    "description": "The water's surface is calm.",
+    "fieldAppSwitch": 620,
+    "id": "WATERSURFACE",
+    "name": "Water Surface",
+    "raw": {
+      "accuracyMods": {},
+      "changeCondition": {
+        "MURKWATERSURFACE": "@battle.field.counter > 1"
+      },
+      "changeEffects": {},
+      "changeMessage": {
+        "The battle sank into the depths!": [
+          "GRAVITY"
+        ],
+        "The battle was pulled underwater!": [
+          "DIVE"
+        ],
+        "The water froze over!": [
+          "BLIZZARD",
+          "GLACIATE",
+          "SUBZEROSLAMMER"
+        ],
+        "The water was polluted!": [
+          "SLUDGEWAVE",
+          "ACIDDOWNPOUR"
+        ]
+      },
+      "damageMods": {
+        "0": [
+          "SPIKES",
+          "TOXICSPIKES"
+        ],
+        "1.5": [
+          "SURF",
+          "MUDDYWATER",
+          "WHIRLPOOL",
+          "DIVE",
+          "HYDROVORTEX"
+        ]
+      },
+      "dontChangeBackup": [
+        "BLIZZARD",
+        "GLACIATE",
+        "SUBZEROSLAMMER"
+      ],
+      "fieldAppSwitch": 620,
+      "fieldChange": {
+        "ICY": [
+          "BLIZZARD",
+          "GLACIATE",
+          "SUBZEROSLAMMER"
+        ],
+        "MURKWATERSURFACE": [
+          "SLUDGEWAVE",
+          "ACIDDOWNPOUR"
+        ],
+        "UNDERWATER": [
+          "GRAVITY",
+          "DIVE"
+        ]
+      },
+      "fieldCounterIncreases": {
+        "[1, 1]": [
+          "SLUDGEWAVE"
+        ],
+        "[1, 2]": [
+          "ACIDDOWNPOUR"
+        ]
+      },
+      "fieldMessage": [
+        "The water's surface is calm."
+      ],
+      "graphic": [
+        "WaterSurface"
+      ],
+      "mimicry": "WATER",
+      "moveEffects": {},
+      "moveMessages": {
+        "...The spikes sank into the water and vanished!": [
+          "SPIKES",
+          "TOXICSPIKES"
+        ],
+        "Poison spread through the water!": [
+          "SLUDGEWAVE"
+        ],
+        "The attack rode the current!": [
+          "SURF",
+          "MUDDYWATER",
+          "WHIRLPOOL",
+          "DIVE",
+          "HYDROVORTEX"
+        ]
+      },
+      "name": "Water Surface",
+      "naturePower": "WHIRLPOOL",
+      "secretPower": "AQUAJET",
+      "seed": {
+        "animation": "AQUARING",
+        "duration": true,
+        "effect": "AquaRing",
+        "message": "{1} surrounded itself with a veil of water!",
+        "seedtype": "ELEMENTALSEED",
+        "stats": {
+          "PBStats::SPDEF": 1
+        }
+      },
+      "statusMods": [
+        "SPLASH",
+        "AQUARING"
+      ],
+      "typeAddOns": {},
+      "typeBoosts": {
+        "0": [
+          "GROUND"
+        ],
+        "0.5": [
+          "FIRE"
+        ],
+        "1.5": [
+          "WATER",
+          "ELECTRIC"
+        ]
+      },
+      "typeCondition": {
+        "ELECTRIC": "!opponent.isAirborne?",
+        "FIRE": "!opponent.isAirborne?"
+      },
+      "typeEffects": {},
+      "typeMessages": {
+        "...But there was no solid ground to attack from!": [
+          "GROUND"
+        ],
+        "The water conducted the attack!": [
+          "ELECTRIC"
+        ],
+        "The water deluged the attack...": [
+          "FIRE"
+        ],
+        "The water strengthened the attack!": [
+          "WATER"
+        ]
+      },
+      "typeMods": {}
+    },
+    "rules": {
+      "failingMoveTypes": [
+        "GROUND"
+      ],
+      "secondaryTypes": [],
+      "typeBoosts": [
+        {
+          "factor": 1.5,
+          "type": "WATER"
+        },
+        {
+          "factor": 1.5,
+          "type": "ELECTRIC"
+        },
+        {
+          "factor": 0.5,
+          "type": "FIRE"
+        }
+      ]
+    }
+  }
+}

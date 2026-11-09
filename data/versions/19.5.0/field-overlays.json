@@ -1,0 +1,129 @@
+[
+  {
+    "fieldId": "INVERSE",
+    "invert": true,
+    "notes": [
+      "Ability immunities, Freeze-Dry vs Water and Thunder Wave vs Ground still apply."
+    ],
+    "source": "Fandom Field Effects; research doc section 3"
+  },
+  {
+    "fieldId": "GLITCH",
+    "moveTypeRemap": [
+      {
+        "from": "DARK",
+        "to": "NORMAL"
+      },
+      {
+        "from": "STEEL",
+        "to": "NORMAL"
+      },
+      {
+        "from": "FAIRY",
+        "to": "NORMAL"
+      }
+    ],
+    "notes": [
+      "Dragon moves are neutral against everything.",
+      "The physical/special split by type returns."
+    ],
+    "overrides": [
+      {
+        "attack": "GHOST",
+        "defend": "PSYCHIC",
+        "multiplier": 0
+      },
+      {
+        "attack": "ICE",
+        "defend": "FIRE",
+        "multiplier": 1
+      },
+      {
+        "attack": "POISON",
+        "defend": "BUG",
+        "multiplier": 2
+      },
+      {
+        "attack": "BUG",
+        "defend": "POISON",
+        "multiplier": 2
+      },
+      {
+        "attack": "DRAGON",
+        "defend": "DRAGON",
+        "multiplier": 1
+      },
+      {
+        "attack": "DRAGON",
+        "defend": "STEEL",
+        "multiplier": 1
+      },
+      {
+        "attack": "DRAGON",
+        "defend": "FAIRY",
+        "multiplier": 1
+      }
+    ],
+    "source": "Fandom Field Effects; research doc section 3"
+  },
+  {
+    "fieldId": "HOLY",
+    "notes": [],
+    "overrides": [
+      {
+        "attack": "NORMAL",
+        "defend": "GHOST",
+        "multiplier": 2
+      },
+      {
+        "attack": "NORMAL",
+        "defend": "DARK",
+        "multiplier": 2
+      }
+    ],
+    "source": "Fandom Field Effects; research doc section 3"
+  },
+  {
+    "failingMoveTypes": [
+      "FIRE"
+    ],
+    "fieldId": "UNDERWATER",
+    "notes": [],
+    "overrides": [
+      {
+        "attack": "WATER",
+        "defend": "WATER",
+        "multiplier": 1
+      }
+    ],
+    "secondaryTypes": [
+      {
+        "addType": "WATER",
+        "match": {
+          "moveType": "GROUND"
+        }
+      }
+    ],
+    "source": "Fandom Field Effects; research doc section 3"
+  },
+  {
+    "fieldId": "CRYSTALCAVERN",
+    "notes": [
+      "Rock moves cycle through Fire, Water, Grass and Psychic as a secondary type."
+    ],
+    "secondaryTypes": [
+      {
+        "match": {
+          "moveType": "ROCK"
+        },
+        "oneOf": [
+          "FIRE",
+          "WATER",
+          "GRASS",
+          "PSYCHIC"
+        ]
+      }
+    ],
+    "source": "Fandom Field Effects; research doc section 3"
+  }
+]

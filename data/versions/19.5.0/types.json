@@ -1,0 +1,264 @@
+{
+  "chart": {
+    "BUG": {
+      "DARK": 2,
+      "FAIRY": 0.5,
+      "FIGHTING": 0.5,
+      "FIRE": 0.5,
+      "FLYING": 0.5,
+      "GHOST": 0.5,
+      "GRASS": 2,
+      "POISON": 0.5,
+      "PSYCHIC": 2,
+      "STEEL": 0.5
+    },
+    "DARK": {
+      "DARK": 0.5,
+      "FAIRY": 0.5,
+      "FIGHTING": 0.5,
+      "GHOST": 2,
+      "PSYCHIC": 2
+    },
+    "DRAGON": {
+      "DRAGON": 2,
+      "FAIRY": 0,
+      "STEEL": 0.5
+    },
+    "ELECTRIC": {
+      "DRAGON": 0.5,
+      "ELECTRIC": 0.5,
+      "FLYING": 2,
+      "GRASS": 0.5,
+      "GROUND": 0,
+      "WATER": 2
+    },
+    "FAIRY": {
+      "DARK": 2,
+      "DRAGON": 2,
+      "FIGHTING": 2,
+      "FIRE": 0.5,
+      "POISON": 0.5,
+      "SHADOW": 2,
+      "STEEL": 0.5
+    },
+    "FIGHTING": {
+      "BUG": 0.5,
+      "DARK": 2,
+      "FAIRY": 0.5,
+      "FLYING": 0.5,
+      "GHOST": 0,
+      "ICE": 2,
+      "NORMAL": 2,
+      "POISON": 0.5,
+      "PSYCHIC": 0.5,
+      "ROCK": 2,
+      "STEEL": 2
+    },
+    "FIRE": {
+      "BUG": 2,
+      "DRAGON": 0.5,
+      "FIRE": 0.5,
+      "GRASS": 2,
+      "ICE": 2,
+      "ROCK": 0.5,
+      "STEEL": 2,
+      "WATER": 0.5
+    },
+    "FLYING": {
+      "BUG": 2,
+      "ELECTRIC": 0.5,
+      "FIGHTING": 2,
+      "GRASS": 2,
+      "ROCK": 0.5,
+      "STEEL": 0.5
+    },
+    "GHOST": {
+      "DARK": 0.5,
+      "GHOST": 2,
+      "NORMAL": 0,
+      "PSYCHIC": 2
+    },
+    "GRASS": {
+      "BUG": 0.5,
+      "DRAGON": 0.5,
+      "FIRE": 0.5,
+      "FLYING": 0.5,
+      "GRASS": 0.5,
+      "GROUND": 2,
+      "POISON": 0.5,
+      "ROCK": 2,
+      "STEEL": 0.5,
+      "WATER": 2
+    },
+    "GROUND": {
+      "BUG": 0.5,
+      "ELECTRIC": 2,
+      "FIRE": 2,
+      "FLYING": 0,
+      "GRASS": 0.5,
+      "POISON": 2,
+      "ROCK": 2,
+      "STEEL": 2
+    },
+    "ICE": {
+      "DRAGON": 2,
+      "FIRE": 0.5,
+      "FLYING": 2,
+      "GRASS": 2,
+      "GROUND": 2,
+      "ICE": 0.5,
+      "STEEL": 0.5,
+      "WATER": 0.5
+    },
+    "NORMAL": {
+      "GHOST": 0,
+      "ROCK": 0.5,
+      "STEEL": 0.5
+    },
+    "POISON": {
+      "FAIRY": 2,
+      "GHOST": 0.5,
+      "GRASS": 2,
+      "GROUND": 0.5,
+      "POISON": 0.5,
+      "ROCK": 0.5,
+      "STEEL": 0
+    },
+    "PSYCHIC": {
+      "DARK": 0,
+      "FIGHTING": 2,
+      "POISON": 2,
+      "PSYCHIC": 0.5,
+      "STEEL": 0.5
+    },
+    "ROCK": {
+      "BUG": 2,
+      "FIGHTING": 0.5,
+      "FIRE": 2,
+      "FLYING": 2,
+      "GROUND": 0.5,
+      "ICE": 2,
+      "STEEL": 0.5
+    },
+    "SHADOW": {
+      "BUG": 2,
+      "DARK": 2,
+      "DRAGON": 2,
+      "ELECTRIC": 2,
+      "FAIRY": 0.5,
+      "FIGHTING": 2,
+      "FIRE": 2,
+      "FLYING": 2,
+      "GHOST": 2,
+      "GRASS": 2,
+      "GROUND": 2,
+      "ICE": 2,
+      "NORMAL": 2,
+      "POISON": 2,
+      "PSYCHIC": 2,
+      "ROCK": 2,
+      "SHADOW": 0.5,
+      "STEEL": 2,
+      "WATER": 2
+    },
+    "STEEL": {
+      "ELECTRIC": 0.5,
+      "FAIRY": 2,
+      "FIRE": 0.5,
+      "ICE": 2,
+      "ROCK": 2,
+      "STEEL": 0.5,
+      "WATER": 0.5
+    },
+    "WATER": {
+      "DRAGON": 0.5,
+      "FIRE": 2,
+      "GRASS": 0.5,
+      "GROUND": 2,
+      "ROCK": 2,
+      "WATER": 0.5
+    }
+  },
+  "types": [
+    {
+      "id": "NORMAL",
+      "name": "Normal"
+    },
+    {
+      "id": "FIGHTING",
+      "name": "Fighting"
+    },
+    {
+      "id": "FLYING",
+      "name": "Flying"
+    },
+    {
+      "id": "POISON",
+      "name": "Poison"
+    },
+    {
+      "id": "GROUND",
+      "name": "Ground"
+    },
+    {
+      "id": "ROCK",
+      "name": "Rock"
+    },
+    {
+      "id": "BUG",
+      "name": "Bug"
+    },
+    {
+      "id": "GHOST",
+      "name": "Ghost"
+    },
+    {
+      "id": "STEEL",
+      "name": "Steel"
+    },
+    {
+      "id": "QMARKS",
+      "name": "???"
+    },
+    {
+      "id": "FIRE",
+      "name": "Fire"
+    },
+    {
+      "id": "WATER",
+      "name": "Water"
+    },
+    {
+      "id": "GRASS",
+      "name": "Grass"
+    },
+    {
+      "id": "ELECTRIC",
+      "name": "Electric"
+    },
+    {
+      "id": "PSYCHIC",
+      "name": "Psychic"
+    },
+    {
+      "id": "ICE",
+      "name": "Ice"
+    },
+    {
+      "id": "DRAGON",
+      "name": "Dragon"
+    },
+    {
+      "id": "DARK",
+      "name": "Dark"
+    },
+    {
+      "id": "FAIRY",
+      "name": "Fairy"
+    },
+    {
+      "id": "SHADOW",
+      "name": "Shadow"
+    }
+  ]
+}

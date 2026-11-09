@@ -1,0 +1,899 @@
+{
+  "ACEALLSUITS": {
+    "name": "Meteor Agent"
+  },
+  "ACECLUBS": {
+    "name": "Meteor Manager"
+  },
+  "ACEDIAMONDS": {
+    "name": "Meteor Agent"
+  },
+  "ACEHEARTS": {
+    "name": "Meteor Agent"
+  },
+  "ACESPADES": {
+    "name": "Meteor Agent"
+  },
+  "ADRIENN": {
+    "name": "Visionary"
+  },
+  "AGGRON": {
+    "name": "Pokemon"
+  },
+  "ALTALICE": {
+    "name": "Alter"
+  },
+  "ALTARI": {
+    "name": "Alter"
+  },
+  "ALTDECIBEL": {
+    "name": "Alter"
+  },
+  "ALTKURO": {
+    "name": "Alter"
+  },
+  "ALTLUCIA": {
+    "name": "Alter"
+  },
+  "ALTVERO": {
+    "name": "Alter"
+  },
+  "AMARIA1": {
+    "name": "Flotsam"
+  },
+  "AMARIA2": {
+    "name": "Jetsam"
+  },
+  "AME": {
+    "name": "League Manager"
+  },
+  "ANAMSHADE": {
+    "name": "Anamnestic"
+  },
+  "ANAMTERRA": {
+    "name": "Anamnestic"
+  },
+  "ANNA": {
+    "name": "Elite Four Starcrosser"
+  },
+  "ANNA2": {
+    "name": "Dreamsick"
+  },
+  "ANNA3": {
+    "name": "Starcrosser"
+  },
+  "ANOMGARDEVOIR": {
+    "name": "Anomaly"
+  },
+  "ANTICS": {
+    "name": "Her"
+  },
+  "AQUA1": {
+    "name": "Aqua Gang"
+  },
+  "AQUA2": {
+    "name": "Aqua Gang"
+  },
+  "ARCEUS": {
+    "name": "Anomaly"
+  },
+  "ARCLIGHT": {
+    "name": "DJ"
+  },
+  "ARCLIGHT2": {
+    "name": "DJ"
+  },
+  "ASTER": {
+    "name": "Hotshot"
+  },
+  "AUTUMN": {
+    "name": "Buttercups and Butterflies"
+  },
+  "AVALUGG": {
+    "name": "Pokemon"
+  },
+  "AYA": {
+    "name": "Wasteland Punk"
+  },
+  "AZZIE": {
+    "name": "Storyteller"
+  },
+  "AceTrainerF": {
+    "name": "Ace Trainer"
+  },
+  "AceTrainerM": {
+    "name": "Ace Trainer"
+  },
+  "Archer": {
+    "name": "Aqua Mastermind"
+  },
+  "AsterAce": {
+    "name": "Meteor Ace"
+  },
+  "AsterKnight": {
+    "name": "Meteor Private"
+  },
+  "BATTLEGIRL": {
+    "name": "Battle Girl"
+  },
+  "BEARTIC": {
+    "name": "Pokemon"
+  },
+  "BEAUTY": {
+    "name": "Posh"
+  },
+  "BEE": {
+    "name": "Ranger"
+  },
+  "BENNETT": {
+    "name": "Lepidopterist"
+  },
+  "BENNETT2": {
+    "name": "Elite Four Imago"
+  },
+  "BENNETTLAURA": {
+    "name": "Elite Four Tag Team"
+  },
+  "BLACKBELT": {
+    "name": "Black Belt"
+  },
+  "BLAKE": {
+    "name": "Agent"
+  },
+  "BRELOOM": {
+    "name": "BreloomBot"
+  },
+  "BUFF": {
+    "name": "Bouffalant"
+  },
+  "BUGCATCHER": {
+    "name": "Pokemon"
+  },
+  "CAMERUPT": {
+    "name": "PULSE"
+  },
+  "CASS": {
+    "name": "Friendly Local"
+  },
+  "CELEBI": {
+    "name": "Anomaly"
+  },
+  "CHARLOTTE": {
+    "name": "Firebug"
+  },
+  "CHIEF": {
+    "name": "Police Chief"
+  },
+  "CHILDLIN": {
+    "name": "Mordant Urchin"
+  },
+  "CIEL": {
+    "name": "Skydancer"
+  },
+  "COOLTRAINER_Female": {
+    "name": "Arcade Star"
+  },
+  "COOLTRAINER_Male": {
+    "name": "Hotshot"
+  },
+  "CORINROUGE": {
+    "name": "Dashing Rogue"
+  },
+  "CRESSELIA": {
+    "name": "Anomaly"
+  },
+  "CRIM": {
+    "name": "Daydreamer"
+  },
+  "CUEBALL": {
+    "name": "Q Gang"
+  },
+  "Cain": {
+    "name": "Pretty Boy"
+  },
+  "Casanova": {
+    "name": "Casanova"
+  },
+  "Clown": {
+    "name": "Clown"
+  },
+  "Corey": {
+    "name": "Agent"
+  },
+  "Cultist": {
+    "name": "Acolyte"
+  },
+  "CultistF": {
+    "name": "Acolyte"
+  },
+  "DARKRAI": {
+    "name": "Anomaly"
+  },
+  "DEFNOT": {
+    "name": "Definitely Not"
+  },
+  "DEOXYS": {
+    "name": "Anomaly"
+  },
+  "DIALGA": {
+    "name": "Anomaly"
+  },
+  "DIANCIE": {
+    "name": "Anomaly"
+  },
+  "DIASWORD": {
+    "name": "the Crystal"
+  },
+  "DOCTOR": {
+    "name": "Dr."
+  },
+  "Developer": {
+    "name": "Developer"
+  },
+  "Doxy": {
+    "name": "Doxy"
+  },
+  "EL": {
+    "name": "Parson"
+  },
+  "ELENA": {
+    "name": "Elite Four Skyspectre"
+  },
+  "ELIAS": {
+    "name": "Elite Four Agent"
+  },
+  "ENTEI": {
+    "name": "Anomaly"
+  },
+  "EUPHIE": {
+    "name": "Umbral"
+  },
+  "EUROPA": {
+    "name": "Ranger"
+  },
+  "EVE": {
+    "name": "Sunray"
+  },
+  "EXPERT_Male": {
+    "name": "Elder"
+  },
+  "EclipseDame": {
+    "name": "Meteor Private"
+  },
+  "Exleader": {
+    "name": "Igneous"
+  },
+  "FERN2": {
+    "name": "Swag Jockey"
+  },
+  "FISHERMAN": {
+    "name": "Fisherman"
+  },
+  "FLORA": {
+    "name": "Axis High Senior"
+  },
+  "FLORINIA": {
+    "name": "Head Instructor"
+  },
+  "FRIEND": {
+    "name": "Dr."
+  },
+  "FUTURESHELLY": {
+    "name": "Reborn Champion"
+  },
+  "Fiancee": {
+    "name": "Beau"
+  },
+  "GARCHOMP": {
+    "name": "Pokemon"
+  },
+  "GENESECT": {
+    "name": "Anomaly"
+  },
+  "GENIES": {
+    "name": "Djinn"
+  },
+  "GENTLEMAN": {
+    "name": "Gentleman"
+  },
+  "GIRATINA": {
+    "name": "Anomalized"
+  },
+  "GLITCH1": {
+    "name": "MIS5INGN0"
+  },
+  "GLITCH2": {
+    "name": "PKMNPKMNT"
+  },
+  "GLITCH3": {
+    "name": "OPKMN4X"
+  },
+  "GLITCH4": {
+    "name": "M1SS1NGO"
+  },
+  "GROUDON": {
+    "name": "Anomaly"
+  },
+  "GUITARIST": {
+    "name": "Guitarist"
+  },
+  "GULPIN": {
+    "name": "Pokemon"
+  },
+  "HARDHAT": {
+    "name": "Hard Hat"
+  },
+  "HARDY": {
+    "name": "Rockstar"
+  },
+  "HARRIDAN": {
+    "name": "Harridan"
+  },
+  "HAXORUS": {
+    "name": "Pokemon"
+  },
+  "HEATHER": {
+    "name": "Elite Four Wind Maiden"
+  },
+  "HEATRAN": {
+    "name": "Anomaly"
+  },
+  "HIKER": {
+    "name": "Hiker"
+  },
+  "HOOH": {
+    "name": "Anomaly"
+  },
+  "HOOPA": {
+    "name": "Anomaly"
+  },
+  "HYPNO": {
+    "name": "PULSE"
+  },
+  "HYPNO2": {
+    "name": "PULSE"
+  },
+  "Hotshot": {
+    "name": "Swag Jockey"
+  },
+  "IKARU": {
+    "name": "Starchaser"
+  },
+  "INDRA": {
+    "name": "Clown"
+  },
+  "JAN": {
+    "name": "Intern"
+  },
+  "JIRACHI": {
+    "name": "Anomaly"
+  },
+  "JULIA": {
+    "name": "Cheer Captain"
+  },
+  "KANAYA": {
+    "name": "Lone Wolf"
+  },
+  "KECLEON": {
+    "name": "Purple"
+  },
+  "KECLEONS": {
+    "name": "Kecleon"
+  },
+  "KELDEO": {
+    "name": "Anomaly"
+  },
+  "KLINKLANG": {
+    "name": "Pokemon"
+  },
+  "KNIGHT": {
+    "name": "Knight"
+  },
+  "KUROTSUNE": {
+    "name": "Illusory Spirit"
+  },
+  "KYOGRE": {
+    "name": "Anomaly"
+  },
+  "KYRA": {
+    "name": "Brat Child"
+  },
+  "KYUREM1": {
+    "name": "Anomaly"
+  },
+  "KYUREM2": {
+    "name": "Multi-iterative"
+  },
+  "LADY": {
+    "name": "Lady"
+  },
+  "LAHVER": {
+    "name": "Mr."
+  },
+  "LATIAS": {
+    "name": "Anomaly"
+  },
+  "LATIOS": {
+    "name": "Anomaly"
+  },
+  "LAURA": {
+    "name": "Elite Four Floral Artist"
+  },
+  "LIN": {
+    "name": "Meteor Champion"
+  },
+  "LUCARIO": {
+    "name": "Pokemon"
+  },
+  "LUGIA": {
+    "name": "Anomaly"
+  },
+  "LUMI": {
+    "name": "Snow Angel"
+  },
+  "LUNA": {
+    "name": "Dark Dreamer"
+  },
+  "MAEL": {
+    "name": "Inspector"
+  },
+  "MAGEARNA": {
+    "name": "Anomaly"
+  },
+  "MAGMA1": {
+    "name": "Magma Gang"
+  },
+  "MAGMA2": {
+    "name": "Magma Gang"
+  },
+  "MANAPHY": {
+    "name": "Anomaly"
+  },
+  "MARCELLO": {
+    "name": "Not a Child; Just Short"
+  },
+  "MASTERMIND": {
+    "name": "Mastermind"
+  },
+  "MCKREZZY": {
+    "name": "Guitarist"
+  },
+  "MEGANIUM": {
+    "name": "Madame"
+  },
+  "MELOETTA": {
+    "name": "Anomaly"
+  },
+  "MEW": {
+    "name": "Anomaly"
+  },
+  "MEWTWO": {
+    "name": "Anomaly"
+  },
+  "MIGHTYENA": {
+    "name": "Pokemon"
+  },
+  "MIME": {
+    "name": "Master"
+  },
+  "MIME2": {
+    "name": "Master"
+  },
+  "MISSDIRECTION": {
+    "name": "Miss"
+  },
+  "MURMINA": {
+    "name": "Doxy"
+  },
+  "MUSKETEER1": {
+    "name": "Anomaly"
+  },
+  "MUSKETEER2": {
+    "name": "All"
+  },
+  "MUSKETEER3": {
+    "name": "the Spectral"
+  },
+  "Maxwell": {
+    "name": "Magma Kingpin"
+  },
+  "MeteorAceF": {
+    "name": "Meteor Ace"
+  },
+  "MeteorAceM": {
+    "name": "Meteor Ace"
+  },
+  "MeteorDame": {
+    "name": "Meteor Dame"
+  },
+  "MeteorGrunt": {
+    "name": "Meteor Grunt"
+  },
+  "MeteorGrunt_090": {
+    "name": "Meteor Grunt"
+  },
+  "MeteorGrunts": {
+    "name": "Meteor Privates"
+  },
+  "MeteorKnight": {
+    "name": "Meteor Knight"
+  },
+  "NAGANADEL": {
+    "name": "Anomaly"
+  },
+  "NECROZMA": {
+    "name": "Anomaly"
+  },
+  "NOEL": {
+    "name": "Prodigy"
+  },
+  "NOEL2": {
+    "name": "Prodigy"
+  },
+  "NWCultist": {
+    "name": "New World Cultist"
+  },
+  "NWCultistF": {
+    "name": "New World Cultist"
+  },
+  "NWOrderly": {
+    "name": "New World Orderly"
+  },
+  "NWOrderlyF": {
+    "name": "New World Orderly"
+  },
+  "NatureGirl": {
+    "name": "Nature Girl"
+  },
+  "OLDCAL": {
+    "name": "Volcanic"
+  },
+  "Orderly": {
+    "name": "Orderly"
+  },
+  "OrderlyF": {
+    "name": "Orderly"
+  },
+  "PALKIA": {
+    "name": "Anomaly"
+  },
+  "PANGORO": {
+    "name": "Pokemon"
+  },
+  "PERRY": {
+    "name": "Held at Gunpoint"
+  },
+  "PGB": {
+    "name": "Post-Game Battle"
+  },
+  "PIKANYU": {
+    "name": "Pokefan"
+  },
+  "POACHERB": {
+    "name": "Poacher"
+  },
+  "POACHERF": {
+    "name": "Poacher"
+  },
+  "POACHERM": {
+    "name": "Poacher"
+  },
+  "PREDATORS": {
+    "name": "Pokemon"
+  },
+  "PSYCHIC_Female": {
+    "name": "Psychic"
+  },
+  "PSYCHIC_Male": {
+    "name": "Psychic"
+  },
+  "PYUKMUK": {
+    "name": "High King"
+  },
+  "PkMnRANGER_Female": {
+    "name": "Ranger"
+  },
+  "PkMnRANGER_Male": {
+    "name": "Ranger"
+  },
+  "PkMnTRAINER_Female": {
+    "name": "PkMn Trainer"
+  },
+  "PkMnTRAINER_Female2": {
+    "name": "PkMn Trainer"
+  },
+  "PkMnTRAINER_Male": {
+    "name": "PkMn Trainer"
+  },
+  "PkMnTRAINER_Male2": {
+    "name": "PkMn Trainer"
+  },
+  "PkMnTRAINER_NB": {
+    "name": "PkMn Trainer"
+  },
+  "PkMnTRAINER_NB2": {
+    "name": "PkMn Trainer"
+  },
+  "Pokemon": {
+    "name": "Pokemon"
+  },
+  "PoliceOfficer": {
+    "name": "Police Officer"
+  },
+  "Punk": {
+    "name": "Punk"
+  },
+  "QCHAMP": {
+    "name": "Q Gang"
+  },
+  "QMARK": {
+    "name": "???"
+  },
+  "QSAWK": {
+    "name": "Q Gang"
+  },
+  "QTHROH": {
+    "name": "Q Gang"
+  },
+  "RADOMUS": {
+    "name": "Grandmaster"
+  },
+  "RAIKOU": {
+    "name": "Anomaly"
+  },
+  "RAINBOWSWARM": {
+    "name": "Pokémon"
+  },
+  "RANDALL": {
+    "name": "Street Rat"
+  },
+  "RANGERF": {
+    "name": "Ranger"
+  },
+  "RAYQUAZA": {
+    "name": "Anomaly"
+  },
+  "REBORN": {
+    "name": "Reborn"
+  },
+  "REGIGIGAS": {
+    "name": "Anomaly"
+  },
+  "REGIS": {
+    "name": "Golem"
+  },
+  "RESHIRAM": {
+    "name": "Anomaly"
+  },
+  "RINGMASTER": {
+    "name": "Ringmaster"
+  },
+  "SAMSON": {
+    "name": "Strongman"
+  },
+  "SAMUROTT": {
+    "name": "Pokemon"
+  },
+  "SANDY": {
+    "name": "Activist"
+  },
+  "SAPHIRA": {
+    "name": "Keeper"
+  },
+  "SEACREST": {
+    "name": "Elder"
+  },
+  "SEER": {
+    "name": "Posh"
+  },
+  "SERRA": {
+    "name": "Beauty Queen"
+  },
+  "SHADE": {
+    "name": "Entity"
+  },
+  "SHANNON": {
+    "name": "Commissioner"
+  },
+  "SHAYMIN1": {
+    "name": "Anomaly"
+  },
+  "SHAYMIN2": {
+    "name": "Gracidea"
+  },
+  "SHELLY": {
+    "name": "Bookworm"
+  },
+  "SHIINOTIC": {
+    "name": "Creeping"
+  },
+  "SHIV": {
+    "name": "Dreamer"
+  },
+  "SIGMUND": {
+    "name": "Schoolboy"
+  },
+  "SIMON": {
+    "name": "Ace Trainer"
+  },
+  "SMEARGLE": {
+    "name": "Wandering Artist"
+  },
+  "SPIRITF": {
+    "name": "Wandering Spirit"
+  },
+  "SPIRITM": {
+    "name": "Wandering Spirit"
+  },
+  "STATRESHIRAM": {
+    "name": "The Legendary"
+  },
+  "STATZEKROM": {
+    "name": "The Legendary"
+  },
+  "SUICUNE": {
+    "name": "Anomaly"
+  },
+  "SWALOT": {
+    "name": "Pokemon"
+  },
+  "SWIMMERBOI": {
+    "name": "Swimmer"
+  },
+  "SWIMMERGRIL": {
+    "name": "Swimmer"
+  },
+  "Sensei": {
+    "name": "Sensei"
+  },
+  "Sirius": {
+    "name": "Meteor Admin"
+  },
+  "Solaris": {
+    "name": "Meteor Leader"
+  },
+  "Spectral": {
+    "name": "Spectral"
+  },
+  "Steelix": {
+    "name": "Pokemon"
+  },
+  "StreetRat": {
+    "name": "Street Rat"
+  },
+  "Swarm": {
+    "name": "Pokemon"
+  },
+  "TANGROWTH": {
+    "name": "PULSE"
+  },
+  "TAPUBULU": {
+    "name": "Anomaly"
+  },
+  "TAPUFINI": {
+    "name": "Anomaly"
+  },
+  "TAPUKOKO": {
+    "name": "Anomaly"
+  },
+  "TAPULELE": {
+    "name": "Anomaly"
+  },
+  "TAUBE": {
+    "name": "Guiding Star"
+  },
+  "TERRA": {
+    "name": "M3G4"
+  },
+  "TEST": {
+    "name": "Test Train"
+  },
+  "TITANIA": {
+    "name": "Guardian"
+  },
+  "TITANIA1": {
+    "name": "Guardian Princess"
+  },
+  "TITANIA2": {
+    "name": "Guardian Exile"
+  },
+  "Taka": {
+    "name": "Meteor Admin"
+  },
+  "Taka2": {
+    "name": "Vagrant Scion"
+  },
+  "TechNerd": {
+    "name": "Techie"
+  },
+  "Tribe": {
+    "name": "Pokemon"
+  },
+  "UMBACE": {
+    "name": "Umbral Agent"
+  },
+  "UMBAMARIA": {
+    "name": "Umbral"
+  },
+  "UMBCAIN": {
+    "name": "Umbral"
+  },
+  "UMBCIEL": {
+    "name": "Umbral"
+  },
+  "UMBCOREY": {
+    "name": "Umbral"
+  },
+  "UMBECLIPSE": {
+    "name": "Umbral"
+  },
+  "UMBFERN": {
+    "name": "Umbral"
+  },
+  "UMBKIKI": {
+    "name": "Umbral"
+  },
+  "UMBNOEL": {
+    "name": "Umbral"
+  },
+  "UMBRADOMUS": {
+    "name": "Umbral"
+  },
+  "UMBSAMSON": {
+    "name": "Umbral"
+  },
+  "UMBTAKA": {
+    "name": "Umbral"
+  },
+  "UMBTERRA": {
+    "name": "Umbral"
+  },
+  "UMBTITANIA": {
+    "name": "Umbral"
+  },
+  "VOLCANION": {
+    "name": "Anomaly"
+  },
+  "VOLCARONA": {
+    "name": "Pokemon"
+  },
+  "VULPES": {
+    "name": "Emerging Violet"
+  },
+  "Victoria": {
+    "name": "Apprentice"
+  },
+  "Victoria2": {
+    "name": "Sensei"
+  },
+  "XERNEAS": {
+    "name": "Anomaly"
+  },
+  "YOUNGSTER": {
+    "name": "Youngster"
+  },
+  "YVELTAL": {
+    "name": "Anomaly"
+  },
+  "ZEKROM": {
+    "name": "Anomaly"
+  },
+  "ZEL": {
+    "name": "Meteor Admin"
+  },
+  "ZEL2": {
+    "name": "Meteor Grunt"
+  },
+  "ZEL3": {
+    "name": "Rogue"
+  },
+  "ZINA": {
+    "name": "Lost Starscaper"
+  },
+  "ZTAKA2": {
+    "name": "Vagrant Scion"
+  },
+  "ZYGARDE": {
+    "name": "Anomalized"
+  }
+}

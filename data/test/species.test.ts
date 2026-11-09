@@ -21,10 +21,23 @@ it("merges alternate forms over the base form", () => {
   });
 });
 
+it("treats unspaced and empty form keys as forms", () => {
+  const out = extractSpecies({
+    UNOWN: { A: { name: "Unown", dexnum: 201, Type1: "PSYCHIC", BaseStats: [48, 72, 48, 72, 48, 48], Abilities: ["LEVITATE"] }, B: {}, OnCreation: { $ruby: "proc { rand(28) }" } },
+  });
+  expect(out.UNOWN.forms.map((f) => [f.form, f.formName, f.name, f.types])).toEqual([
+    [0, null, "Unown", ["PSYCHIC"]],
+    [1, "B", "Unown", ["PSYCHIC"]],
+  ]);
+});
+
 describe.runIf(REAL)("real install", () => {
   it("extracts Bulbasaur and Alolan Raichu", async () => {
     const out = extractSpecies(await loadReal("species"));
     expect(Object.keys(out).length).toBeGreaterThan(800);
+    expect(Object.keys(out)).toHaveLength(807);
+    expect(out.UNOWN.forms.length).toBeGreaterThan(20);
+    expect(out.MEOWSTIC.forms.map((f) => f.formName)).toEqual([null, "Female"]);
     expect(out.BULBASAUR.dexNum).toBe(1);
     expect(out.BULBASAUR.forms[0].types).toEqual(["GRASS", "POISON"]);
     expect(out.BULBASAUR.forms[0].baseStats).toEqual([45, 49, 49, 65, 65, 45]);

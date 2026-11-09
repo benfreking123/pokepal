@@ -5,7 +5,10 @@ export interface SpeciesEntry { id: string; dexNum: number; forms: SpeciesForm[]
 
 type Obj = Record<string, RubyValue>;
 const isObj = (v: RubyValue | undefined): v is Obj => !!v && typeof v === "object" && !Array.isArray(v) && !("$ruby" in v) && !("$const" in v);
-const isFormKey = (k: string, v: RubyValue) => isObj(v) && k.includes(" ");
+// Species-level hashes that are not forms. Real form keys are not always spaced ("A", "Male", "Red-Striped"),
+// and later forms may be empty ("B" => {}), so a form is any hash-valued key that is not one of these.
+const SPECIES_LEVEL_KEYS = new Set(["OnCreation", "PulseForm", "PrimalForm", "UltraForm"]);
+const isFormKey = (k: string, v: RubyValue) => isObj(v) && !SPECIES_LEVEL_KEYS.has(k);
 const str = (v: RubyValue | undefined) => (typeof v === "string" ? v : null);
 const list = (v: RubyValue | undefined) => (Array.isArray(v) ? v.filter((x): x is string => typeof x === "string") : typeof v === "string" ? [v] : []);
 
