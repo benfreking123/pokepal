@@ -136,9 +136,11 @@
       }
     ],
     "fieldId": "SHORTCIRCUIT",
-    "doubles": false,
+    "doubles": true,
     "location": "Yureyu HQ",
-    "notes": [],
+    "notes": [
+      "rebornversecalc lists this fight as doubles; the wiki Battle Guide says single."
+    ],
     "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages"
   },
   {
@@ -419,8 +421,10 @@
     ],
     "fieldId": "DRAGONSDEN",
     "doubles": true,
-    "location": "Victory Road (Ruby Area)",
-    "notes": [],
+    "location": "Victory Road",
+    "notes": [
+      "Ruby Area of Victory Road."
+    ],
     "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages"
   },
   {

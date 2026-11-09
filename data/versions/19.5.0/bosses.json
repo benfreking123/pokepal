@@ -125,13 +125,15 @@
     ]
   },
   {
-    "doubles": false,
+    "doubles": true,
     "fieldId": "SHORTCIRCUIT",
     "group": "other",
     "id": "sirius-yureyu-hq",
     "location": "Yureyu HQ",
     "name": "Sirius (Yureyu HQ)",
-    "notes": [],
+    "notes": [
+      "rebornversecalc lists this fight as doubles; the wiki Battle Guide says single."
+    ],
     "order": 8,
     "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
     "variants": [
@@ -411,9 +413,11 @@
     "fieldId": "DRAGONSDEN",
     "group": "other",
     "id": "sirius-e18",
-    "location": "Victory Road (Ruby Area)",
+    "location": "Victory Road",
     "name": "Sirius (Victory Road)",
-    "notes": [],
+    "notes": [
+      "Ruby Area of Victory Road."
+    ],
     "order": 24,
     "source": "pokemon-reborn.fandom.com Battle Guide and Gym Leaders pages",
     "variants": [
