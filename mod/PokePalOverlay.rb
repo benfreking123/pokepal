@@ -316,9 +316,9 @@ module PokePalOverlay
   PAD = 6 unless const_defined?(:PAD, false)
   ROW_H = 18 unless const_defined?(:ROW_H, false)
   CHIP_H = 14 unless const_defined?(:CHIP_H, false)
-  NAME_W = 66 unless const_defined?(:NAME_W, false)
-  DEF_W = 62 unless const_defined?(:DEF_W, false)
-  OFF_W = 92 unless const_defined?(:OFF_W, false)
+  NAME_W = 64 unless const_defined?(:NAME_W, false)
+  DEF_W = 66 unless const_defined?(:DEF_W, false)
+  OFF_W = 88 unless const_defined?(:OFF_W, false)
   MESSAGE_BOX_H = 96 unless const_defined?(:MESSAGE_BOX_H, false)
 
   COLORS = {
@@ -370,8 +370,82 @@ module PokePalOverlay
     COLORS[:poor]
   end
 
+  # ---- Type icons: the SWM sheet (32x12 cells in PBTypes id order, what the data box tags use), else the game's
+  # Graphics/Icons/type<TYPE>.png scaled to 32x12, else drawn pills. Built once and kept. ----
+  ICON_W = 32 unless const_defined?(:ICON_W, false)
+  ICON_H = 12 unless const_defined?(:ICON_H, false)
+  ICON_SHEET = 'patch/Mods/SWM - TypeBattleIcons.png' unless const_defined?(:ICON_SHEET, false)
+  @icons = {}
+  @sheet = nil
+
+  # The index comes from the game's own PBTypes constants, never from a list kept here.
+  def self.type_index(t)
+    return nil unless defined?(::PBTypes)
+    name = t.to_s.upcase.to_sym
+    return nil unless ::PBTypes.const_defined?(name)
+    i = ::PBTypes.const_get(name)
+    i.is_a?(Integer) ? i : nil
+  rescue StandardError
+    nil
+  end
+
+  def self.icon_sheet
+    @sheet = nil if @sheet && @sheet.disposed?
+    return @sheet if @sheet
+    return nil unless File.exist?(ICON_SHEET)
+    bmp = Bitmap.new(ICON_SHEET)
+    if bmp.width == ICON_W && bmp.height % ICON_H == 0
+      @sheet = bmp
+    else
+      bmp.dispose
+      nil
+    end
+  end
+
+  def self.type_icon(t)
+    key = t.to_s.upcase
+    e = @icons[key]
+    return (e || nil) if e == false || (e && !e[0].disposed?)
+    @icons[key] = build_icon(key)
+    @icons[key] || nil
+  end
+
+  def self.build_icon(key)
+    idx = type_index(key)
+    sheet = idx && icon_sheet
+    return [sheet, Rect.new(0, idx * ICON_H, ICON_W, ICON_H)] if sheet && (idx + 1) * ICON_H <= sheet.height
+    path = "Graphics/Icons/type#{key}.png"
+    return false unless File.exist?(path)
+    src = Bitmap.new(path)
+    bmp = Bitmap.new(ICON_W, ICON_H)
+    bmp.stretch_blt(Rect.new(0, 0, ICON_W, ICON_H), src, Rect.new(0, 0, src.width, src.height))
+    src.dispose
+    [bmp, Rect.new(0, 0, ICON_W, ICON_H)]
+  rescue StandardError
+    false
+  end
+
+  def self.icon_available?(t)
+    !type_icon(t).nil?
+  end
+
+  def self.type_chip_w(tw, t)
+    icon_available?(t) ? ICON_W : [tw.call(type_abbr(t)) + 6, 26].max
+  end
+
+  # A type pill: the game's icon when there is one, else a drawn pill. Returns its width.
+  def self.type_chip(ops, tw, x, y, t, border = nil, width = nil)
+    if icon_available?(t)
+      ops << [:rect, x - 1, y, ICON_W + 2, CHIP_H, border] if border
+      ops << [:icon, x, y + (CHIP_H - ICON_H) / 2, t.to_s.upcase]
+      ICON_W
+    else
+      chip(ops, tw, x, y, type_abbr(t), type_color(t), width, border)
+    end
+  end
+
   def self.chip(ops, tw, x, y, label, rgb, width = nil, border = nil)
-    w = width || [tw.call(label) + 6, 26].max
+    w = width || [tw.call(label) + 4, 22].max
     ops << [:rect, x, y, w, CHIP_H, border || COLORS[:frame_out]]
     ops << [:rect, x + 1, y + 1, w - 2, CHIP_H - 2, rgb]
     ops << [:text, x, y, w, CHIP_H, label, 1, :white]
@@ -382,7 +456,7 @@ module PokePalOverlay
     ops << [:text, PAD, y, iw, ROW_H, "vs #{f['name']}", 0, :white]
     x = PAD + tw.call("vs #{f['name']}") + 6
     Array(f['types']).each do |t|
-      x += chip(ops, tw, x, y + (ROW_H - CHIP_H) / 2, type_abbr(t), type_color(t)) + 2
+      x += type_chip(ops, tw, x, y + (ROW_H - CHIP_H) / 2, t) + 2
     end
     y += ROW_H
     groups = [['x4', Array(f['weak4']), COLORS[:gold]], ['x2', Array(f['weak2']), nil]].reject { |g| g[1].empty? }
@@ -394,12 +468,12 @@ module PokePalOverlay
       ops << [:text, PAD, y, 18, CHIP_H, label, 0, border ? :gold : :white]
       x = PAD + 20
       types.each do |t|
-        cw = [tw.call(type_abbr(t)) + 6, 26].max
+        cw = type_chip_w(tw, t)
         if x + cw > PAD + iw
           y += CHIP_H + 3
           x = PAD + 20
         end
-        x += chip(ops, tw, x, y, type_abbr(t), type_color(t), nil, border) + 2
+        x += type_chip(ops, tw, x, y, t, border) + 2
       end
       y += CHIP_H + 3
     end
@@ -421,7 +495,7 @@ module PokePalOverlay
       end
     return chip(ops, tw, x, y, word, rgb, DEF_W) unless df['t']
     ww = chip(ops, tw, x, y, word, rgb)
-    chip(ops, tw, x + ww + 1, y, type_abbr(df['t']), type_color(df['t']), DEF_W - ww - 1)
+    type_chip(ops, tw, x + ww + 1, y, df['t'], nil, DEF_W - ww - 1)
     DEF_W
   end
 
@@ -569,6 +643,9 @@ module PokePalOverlay
     case op[0]
     when :rect
       bmp.fill_rect(op[1], op[2], op[3], op[4], rgb(op[5])) if op[3] > 0 && op[4] > 0
+    when :icon
+      e = type_icon(op[3])
+      bmp.blt(op[1], op[2], e[0], e[1]) if e
     when :text
       _, x, y, w, h, text, align, color = op
       bmp.font.color = rgb(COLORS[:shadow])

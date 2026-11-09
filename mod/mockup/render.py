@@ -13,7 +13,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 FONT = '/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf'
 SIZE = 11
 font = ImageFont.truetype(FONT, SIZE)
-COLORS = None
+SHEET = os.environ.get('TYPE_SHEET')
+# PBTypes id order on Ben's install (the mod itself reads the ids from PBTypes; this is only for the mockup)
+ORDER = 'NORMAL FIGHTING FLYING POISON GROUND ROCK BUG GHOST STEEL QMARKS FIRE WATER GRASS ELECTRIC PSYCHIC ICE DRAGON DARK FAIRY SHADOW'.split()
 
 def widths():
     w = {chr(c): font.getlength(chr(c)) for c in range(32, 127)}
@@ -51,6 +53,10 @@ def render(lay, col):
             _, x, y, w, h, rgb = op
             if w > 0 and h > 0:
                 d.rectangle([x, y, x + w - 1, y + h - 1], fill=tuple(rgb))
+        elif op[0] == 'icon':
+            i = ORDER.index(op[3])
+            cell = Image.open(SHEET).convert('RGBA').crop((0, i * 12, 32, i * 12 + 12))
+            img.paste(cell, (op[1], op[2]), cell)
         else:
             _, x, y, w, h, text, align, color = op
             draw_text(img, d, x, y, w, h, text, align, col[color], col['shadow'])

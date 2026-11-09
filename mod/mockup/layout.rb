@@ -7,5 +7,6 @@ load MOD
 overlay = JSON.parse(File.read(ARGV[0]))
 widths = JSON.parse(File.read(ARGV[1]))
 boxes = ARGV[2].to_s.split(';').map { |b| b.split(',').map(&:to_i) }
+PokePalOverlay.define_singleton_method(:icon_available?) { |_t| true } unless ENV['NO_ICONS']
 tw = ->(s) { s.to_s.each_char.sum { |c| widths['w'][c] || widths['default'] } }
 puts JSON.generate(PokePalOverlay.layout(overlay, tw, boxes))

@@ -17,14 +17,22 @@ module Input
   def self.press! = (@pressed = true)
   def self.trigger?(k) = (k == F6 && @pressed ? (@pressed = false; true) : false)
 end
+class Rect; attr_reader :x, :y, :width, :height; def initialize(x, y, w, h) = (@x = x; @y = y; @width = w; @height = h); end
 class Color; def initialize(*a); end; end
 class Font; attr_accessor :size, :color; end
 class Bitmap
   LIVE = []
   attr_reader :font, :width, :height
-  def initialize(w, h) = (@font = Font.new; @width = w; @height = h; @disposed = false; LIVE << self)
+  def initialize(w, h = nil)
+    @font = Font.new
+    @width, @height = w.is_a?(String) ? (w.include?('SWM') ? [32, 240] : [64, 28]) : [w, h]
+    @disposed = false
+    LIVE << self
+  end
   def fill_rect(*a); end
   def draw_text(*a); end
+  def blt(*a); end
+  def stretch_blt(*a); end
   def text_size(s) = Struct.new(:width, :height).new(s.to_s.length * 7, 14)
   def dispose = (@disposed = true; LIVE.delete(self))
   def disposed? = @disposed

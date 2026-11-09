@@ -2,7 +2,7 @@
 require_relative 'support'
 load MOD
 
-TW = ->(s) { s.to_s.length * 7 }
+TW = ->(s) { s.to_s.length * 6 }
 P = PokePalOverlay
 
 def op_texts(ops) = ops.select { |o| o[0] == :text }.map { |o| o[5] }
@@ -54,8 +54,8 @@ check('speed note shown for ties', [true, true, false], [t.include?('faster'), t
 # Long names and moves are shortened to their column; the multiplier is always kept.
 long = bring.merge('picks' => [{ 'name' => 'Extraordinarilylong', 'hp' => 50, 'def' => { 'k' => 'immune', 't' => 'GROUND' }, 'off' => { 'm' => 'Extremely Fast Dragon Dance', 'x' => 4, 't' => 'DRAGON' } }])
 lt = op_texts(P.compose(long, TW, 0)[0])
-check('names are fitted', true, lt.any? { |x| x.start_with?('Extra') && x.end_with?('..') && x.length * 7 <= P::NAME_W })
-check('moves keep the multiplier', true, lt.any? { |x| x.start_with?('Extr') && x.end_with?('.. 4x') && x.length * 7 <= P::OFF_W - 6 })
+check('names are fitted', true, lt.any? { |x| x.start_with?('Extra') && x.end_with?('..') && x.length * 6 <= P::NAME_W })
+check('moves keep the multiplier', true, lt.any? { |x| x.start_with?('Extr') && x.end_with?('.. 4x') && x.length * 6 <= P::OFF_W - 6 })
 check('immune is a word plus the type pill', true, lt.include?('imm') && lt.include?('GRO'))
 
 # Old files (a text tag instead of rows) still draw.
@@ -105,5 +105,42 @@ tick(sc)
 panel = Sprite::LIVE.find { |sp| sp.bitmap && sp.bitmap.width == P::PANEL_WIDTH }
 check('and shrinks when the box rises', true, panel.y + panel.bitmap.height <= 120 - 4)
 check('without leaking bitmaps', 2, Bitmap::LIVE.count { |b| b.width == P::PANEL_WIDTH || b.width == 8 })
+
+# ---- Type icons ----
+check('no icons without the files or PBTypes', [false, true], [P.icon_available?('FIRE'), op_texts(P.compose(bring, TW, 0)[0]).include?('NOR')])
+P.instance_variable_set(:@icons, {})
+Dir.chdir(DIR) do
+  FileUtils.mkdir_p('patch/Mods')
+  File.write(P::ICON_SHEET, 'x')
+  module PBTypes; NORMAL = 0; FIGHTING = 1; FLYING = 2; FIRE = 10; end
+  before = Bitmap::LIVE.size
+  ic = P.type_icon('FIRE')
+  check('sheet cell comes from the PBTypes constant', [10 * 12, 32, 12], [ic[1].y, ic[1].width, ic[1].height])
+  check('the sheet is loaded once and shared', true, P.type_icon('FLYING')[0].equal?(ic[0]) && Bitmap::LIVE.size == before + 1)
+  check('an unknown type has no icon and no guess', false, P.icon_available?('SHADOWY'))
+  iops, = P.compose(bring, TW, 0)
+  icons = iops.select { |o| o[0] == :icon }
+  check('type pills become icons (foe types and weaknesses)', %w[NORMAL FIGHTING FIGHTING FLYING], icons.first(4).map { |o| o[3] })
+  check('and the words for them are gone', false, op_texts(iops).include?('FIG'))
+  check('icons are not taller than their row', true, icons.all? { |o| o[2] >= 0 && o[2] + P::ICON_H <= P::PANEL_WIDTH * 10 })
+  inside = iops.all? { |o| o[0] != :icon || (o[1] >= 0 && o[1] + P::ICON_W <= P::PANEL_WIDTH) }
+  check('icons stay inside the panel', true, inside)
+  _, ih = P.compose(bring, TW, 0)
+  check('the row height is unchanged by icons', true, ih <= hs[0])
+  before = Bitmap::LIVE.size
+  3.times { P.compose(bring, TW, 0) }
+  check('composing again builds no bitmaps', before, Bitmap::LIVE.size)
+  lay = P.layout(bring, TW, [])
+  check('rects and text stay inside the panel with icons too', true, lay[:ops].all? { |o| o[0] == :icon || o[1] + o[3] <= P::PANEL_WIDTH })
+
+  File.delete(P::ICON_SHEET)
+  P.instance_variable_set(:@icons, {})
+  P.instance_variable_set(:@sheet, nil)
+  FileUtils.mkdir_p('Graphics/Icons')
+  File.write('Graphics/Icons/typeFIRE.png', 'x')
+  fb = P.type_icon('FIRE')
+  check('falls back to the scaled Graphics/Icons file', [0, 0, 32, 12], [fb[1].x, fb[1].y, fb[1].width, fb[1].height])
+  check('and to drawn pills for the rest', false, P.icon_available?('WATER'))
+end
 
 puts 'panel ok'
