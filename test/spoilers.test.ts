@@ -86,3 +86,10 @@ it("builds the bundle: field rules hidden until Field Notes are found, trainer i
   expect(JSON.stringify(none)).not.toMatch(/VOLTORB|SPARK|Electric Studio/);
   expect(buildBundle(data, { ...state, settings: { ...state.settings, opponentLevels: false } }, null).trainerIndex[0]).not.toHaveProperty("maxLevel");
 });
+
+it("an update only changes the switches it names", () => {
+  const base: SpoilerState = { settings: { ...DEFAULT_SPOILERS, opponentLevels: false }, seen: {}, foundFieldNotes: [] };
+  const next = applyUpdate(base, SpoilerUpdateSchema.parse({ settings: { opponentMoves: true } }));
+  expect(next.settings).toEqual({ ...DEFAULT_SPOILERS, opponentLevels: false, opponentMoves: true });
+  expect(() => SpoilerUpdateSchema.parse({ settings: { nope: true } })).toThrow();
+});

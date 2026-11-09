@@ -1,0 +1,1 @@
+{ "LEADER_X:X:0": { "key": "LEADER_X:X:0", "trainerType": "LEADER_X", "name": "X", "partyId": 0, "mons": [{ "species": "GENGAR", "form": 0, "level": 50, "item": "LEFTOVERS", "ability": "CURSEDBODY", "moves": ["SHADOWBALL"], "nature": "TIMID", "iv": 31, "ev": null }] } }

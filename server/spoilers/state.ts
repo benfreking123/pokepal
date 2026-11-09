@@ -13,8 +13,13 @@ export const SpoilerStateSchema = z.object({
   foundFieldNotes: z.array(z.string()).default([]),
 });
 export type SpoilerState = z.infer<typeof SpoilerStateSchema>;
+// Plain optional booleans (no defaults, strict): an update must never reset switches it does not mention,
+// and an unknown switch name is an error rather than silently dropped.
+const SettingsUpdate = z.strictObject(
+  Object.fromEntries(Object.keys(DEFAULT_SPOILERS).map((k) => [k, z.boolean().optional()])) as Record<keyof SpoilerSettings, z.ZodOptional<z.ZodBoolean>>,
+);
 export const SpoilerUpdateSchema = z.object({
-  settings: Settings.partial().optional(),
+  settings: SettingsUpdate.optional(),
   foundFieldNotes: z.array(z.string()).optional(),
   clearSeen: z.boolean().optional(),
 }).strict();
