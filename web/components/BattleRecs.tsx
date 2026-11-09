@@ -4,12 +4,13 @@ import { toFoes, type PrepFoe } from "../../shared/prep/score";
 import { NO_FIELD } from "../../shared/typechart";
 import type { ClientBundle, LiveBattle, OwnedMon, SaveSummary, TrainerView } from "../../shared/types";
 import { IncomingFoe } from "./IncomingFoe";
+import { FoeCards } from "./FoeCards";
 import { TypeBadge } from "./TypeBadge";
 
 const formName = (b: ClientBundle, species: string, form: number) =>
   (b.species[species]?.forms.find((f) => f.form === form) ?? b.species[species]?.forms[0])?.name ?? species;
 
-const ownedToRec = (m: OwnedMon, b: ClientBundle, box: string | null): RecMon => ({
+export const ownedToRec = (m: OwnedMon, b: ClientBundle, box: string | null): RecMon => ({
   uid: m.uid, name: m.nickname ?? formName(b, m.species, m.form), level: m.level, types: formTypes(b, m.species, m.form), baseStatTotal: baseStatTotal(b, m.species, m.form), box,
 });
 
@@ -45,14 +46,8 @@ function RecList({ title, result, bundle }: { title: string; result: RecResult; 
   );
 }
 
-export function BattleRecs({ bundle, save, view, fieldId, live, onRevealNext }: {
-  bundle: ClientBundle; save: SaveSummary | null; view: TrainerView | null; fieldId: string; live: LiveBattle | null; onRevealNext?: () => void;
-}) {
-  const overlay = bundle.overlays[fieldId] ?? NO_FIELD;
-  const fieldName = fieldId === "NONE" ? "" : bundle.fields[fieldId]?.name ?? fieldId;
-  const typeName = (t: string) => bundle.types.find((x) => x.id === t)?.name ?? t;
-
-  const mons = useMemo(() => {
+export function useRecMons(save: SaveSummary | null, live: LiveBattle | null, bundle: ClientBundle) {
+  return useMemo(() => {
     if (!save) return null;
     const pc = save.boxes.flatMap((b) => b.mons.filter((m) => !m.isEgg).map((m) => ownedToRec(m, bundle, b.name)));
     if (live) {
@@ -61,6 +56,16 @@ export function BattleRecs({ bundle, save, view, fieldId, live, onRevealNext }: 
     }
     return { party: save.party.filter((m) => !m.isEgg).map((m) => ownedToRec(m, bundle, null)), fainted: [], pc };
   }, [save, live, bundle]);
+}
+
+export function BattleRecs({ bundle, save, view, fieldId, live, onRevealNext }: {
+  bundle: ClientBundle; save: SaveSummary | null; view: TrainerView | null; fieldId: string; live: LiveBattle | null; onRevealNext?: () => void;
+}) {
+  const overlay = bundle.overlays[fieldId] ?? NO_FIELD;
+  const fieldName = fieldId === "NONE" ? "" : bundle.fields[fieldId]?.name ?? fieldId;
+  const typeName = (t: string) => bundle.types.find((x) => x.id === t)?.name ?? t;
+
+  const mons = useRecMons(save, live, bundle);
 
   const teamFoes = useMemo(() => (view ? toFoes(view, bundle) : []), [view, bundle]);
   const outNow: PrepFoe[] = useMemo(
@@ -81,7 +86,10 @@ export function BattleRecs({ bundle, save, view, fieldId, live, onRevealNext }: 
       {live && now ? <RecList title={`On the field: ${outNow.map((f) => f.name).join(" + ")}`} result={now} bundle={bundle} /> : null}
       {live && outNow.length === 0 ? <p className="rec-note">No foe on the field right now.</p> : null}
       {team ? (
-        <RecList title={`${live ? "Whole team" : `vs ${view?.label ?? "this trainer"}`} · ${teamFoes.length} known`} result={team} bundle={bundle} />
+        <>
+          <h3 className="rec-head">{live ? "Whole team" : `vs ${view?.label ?? "this trainer"}`} · {teamFoes.length} known</h3>
+          <FoeCards bundle={bundle} save={save} foes={teamFoes} fieldId={fieldId} live={live} hiddenMore={!!view?.partial} />
+        </>
       ) : view && teamFoes.length === 0 ? <p className="notice">No Pokémon revealed yet, so there is nothing to suggest.{onRevealNext && view.partial ? <> <button onClick={onRevealNext}>Show one more</button> <a href="#settings-spoilers">Turn on full team</a></> : null}</p> : null}
       {view?.partial && teamFoes.length > 0 ? <p className="rec-note">Only seen Pokémon counted.{onRevealNext ? <> <button onClick={onRevealNext}>Show one more</button></> : null} <a href="#settings-spoilers">Full team</a></p> : null}
       <p className="rec-note">Types, field, levels, base stats only{fieldName ? ` · ${fieldName}` : ""}</p>

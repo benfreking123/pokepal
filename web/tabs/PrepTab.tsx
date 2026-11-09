@@ -7,6 +7,7 @@ import { NO_FIELD } from "../../shared/typechart";
 import type { BattleStream } from "../battleStream";
 import { BattleBanners } from "../components/BattleBanners";
 import { CopyButton } from "../components/CopyButton";
+import { FoeCards } from "../components/FoeCards";
 import { FieldPicker } from "../components/FieldPicker";
 import { SpoilerChip } from "../components/SpoilerChip";
 import { TrainerPicker } from "../components/TrainerPicker";
@@ -82,17 +83,7 @@ export function PrepTab({ bundle, stream }: { bundle: ClientBundle; stream: Batt
           <h2>Their team</h2>
           {view ? (
             <>
-              <div className="grid">
-                {foes.map((f, i) => (
-                  <section key={`${view.mons[i]?.slot ?? i}`} className="card">
-                    <strong>{f.name}</strong>{f.level !== null ? <small> Lv. {f.level}</small> : null}
-                    <div>{f.types.map((t) => <TypeBadge key={t} type={t} data={bundle} />)}</div>
-                    {f.moves ? <p className="muted">{f.moves.map((m) => m.label).join(", ")}</p> : null}
-                    {f.ability !== undefined ? <p className="muted">Ability: {f.ability ? bundle.abilities[f.ability]?.name ?? f.ability : "Unknown"}</p> : null}
-                    {f.item !== undefined ? <p className="muted">Item: {f.item ? bundle.items[f.item]?.name ?? f.item : "None"}</p> : null}
-                  </section>
-                ))}
-              </div>
+              <FoeCards bundle={bundle} save={save} foes={foes} fieldId={fieldId} live={live} hiddenMore={view.partial} />
               {view.partial ? (
                 <p className="notice">
                   Other Pokémon hidden (full team is off).{" "}

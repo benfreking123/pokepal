@@ -12,6 +12,7 @@ import { registerCrossplayRoutes } from "./routes/crossplay";
 import { registerDataRoutes } from "./routes/data";
 import { latestFieldNotes, registerSaveRoutes } from "./routes/save";
 import { openSpoilers, registerSpoilerRoutes } from "./routes/spoilers";
+import { registerSpriteRoutes } from "./sprites";
 import { registerTrainerRoutes } from "./routes/trainers";
 import { registerWhatsNextRoutes } from "./routes/whatsNext";
 
@@ -45,6 +46,7 @@ if (config.battleStateFile && !(data instanceof Error)) {
   battleFeed.subscribe(() => void overlay.refresh());
   app.addHook("onClose", () => overlay.close());
 }
+registerSpriteRoutes(app, config.gameDir, data);
 registerSaveRoutes(app, config, data);
 registerWhatsNextRoutes(app, config, data, spoilers);
 registerCrossplayRoutes(app, config, data);
