@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { panelFromHash, PANELS, type PanelId } from "./layout";
+import { panelFromHash, PANELS, SHOW_PANEL_EVENT, type PanelId } from "./layout";
 import { Panel } from "./panels";
 
 export function MobileDashboard() {
   const [current, setCurrent] = useState<PanelId>(() => panelFromHash(location.hash) ?? "battle");
   useEffect(() => {
     const onHash = () => { const id = panelFromHash(location.hash); if (id) setCurrent(id); };
+    const onShow = (e: Event) => setCurrent((e as CustomEvent<PanelId>).detail);
     window.addEventListener("hashchange", onHash);
-    return () => window.removeEventListener("hashchange", onHash);
+    window.addEventListener(SHOW_PANEL_EVENT, onShow);
+    return () => { window.removeEventListener("hashchange", onHash); window.removeEventListener(SHOW_PANEL_EVENT, onShow); };
   }, []);
   return (
     <div className="mobile-dashboard">

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { BattleTab } from "../tabs/BattleTab";
+import { HistoryTab } from "../tabs/HistoryTab";
 import { GuidesTab } from "../tabs/GuidesTab";
 import { PrepTab } from "../tabs/PrepTab";
 import { SaveSwapTab } from "../tabs/SaveSwapTab";
@@ -11,12 +12,13 @@ import { useDashboard } from "./context";
 import { PANELS, type PanelId } from "./layout";
 
 function Body({ id }: { id: PanelId }): ReactNode {
-  const { bundle, stream, reload } = useDashboard();
+  const { bundle, stream, reload, focus } = useDashboard();
   if (id === "save-swap") return <SaveSwapTab />;
   if (id === "guides") return <GuidesTab />;
   if (!bundle) return <p className="muted">Loading data…</p>;
   switch (id) {
-    case "battle": return <BattleTab bundle={bundle} stream={stream} />;
+    case "battle": return <BattleTab bundle={bundle} stream={stream} focus={focus} />;
+    case "history": return <HistoryTab bundle={bundle} stream={stream} />;
     case "team": return <TeamTab bundle={bundle} />;
     case "prep": return <PrepTab bundle={bundle} stream={stream} />;
     case "whats-next": return <WhatsNextTab bundle={bundle} />;

@@ -18,8 +18,8 @@ export function TrainerPicker({ bundle, trainerKey, onPick }: { bundle: ClientBu
           const parties = partyCounts.get(`${entry.trainerType}:${entry.name}`) ?? 1;
           return (
             <li key={entry.key}>
-              <button className={entry.key === trainerKey ? "active" : ""} onClick={() => onPick(entry.key)}>
-                {b ? <strong>{b.name}</strong> : entry.label}
+              <button type="button" className={entry.key === trainerKey ? "active" : ""} aria-pressed={entry.key === trainerKey} onClick={() => onPick(entry.key)}>
+                {entry.key === trainerKey ? "✓ " : ""}{b ? <strong>{b.name}</strong> : entry.label}
                 {parties > 1 ? ` · team ${entry.partyId}` : ""}
                 {entry.maxLevel !== undefined ? ` · up to Lv. ${entry.maxLevel}` : ""}
                 {b?.context?.location ? ` · ${b.context.location}` : ""}

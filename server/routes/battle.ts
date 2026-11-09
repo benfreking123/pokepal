@@ -2,6 +2,7 @@ import type { FastifyInstance } from "fastify";
 import type { LiveBattleMessage, TrainerFull } from "../../shared/types";
 import { enrichBattle, type BattleMatch } from "../battle/enrich";
 import type { BattleState } from "../battle/schema";
+import { historyView, type BattleHistory } from "../battle/history";
 import { watchBattleState } from "../battle/watch";
 import { liveBattleView } from "../spoilers/filter";
 import { writeSpoilerState } from "../spoilers/state";
@@ -17,6 +18,7 @@ export function createBattleFeed(opts: {
   file: string | null;
   trainers: Record<string, TrainerFull>;
   store: SpoilerStore;
+  history?: BattleHistory;
   log?: (msg: string) => void;
 }): BattleFeed {
   const subscribers = new Set<(m: LiveBattleMessage) => void>();
@@ -38,6 +40,7 @@ export function createBattleFeed(opts: {
     }
     const { match, spoilers } = enrichBattle(s, opts.trainers, opts.store.state);
     raw = { state: s, match };
+    opts.history?.record(s, match?.key ?? null);
     if (spoilers !== opts.store.state) {
       // Replace the in-memory state before the write so a concurrent settings update builds on it.
       opts.store.state = spoilers;
@@ -57,7 +60,12 @@ export function createBattleFeed(opts: {
   };
 }
 
-export function registerBattleRoutes(app: FastifyInstance, feed: BattleFeed) {
+export function registerBattleRoutes(app: FastifyInstance, feed: BattleFeed, history?: BattleHistory, store?: SpoilerStore) {
+  app.get("/api/battle/history", async (_req, reply) => {
+    reply.header("cache-control", "no-store");
+    return historyView(history?.entries() ?? [], store?.state.settings.opponentLevels ?? true);
+  });
+
   app.get("/api/battle/state", async (_req, reply) => {
     reply.header("cache-control", "no-store");
     const m = feed.latest();

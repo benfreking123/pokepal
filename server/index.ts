@@ -4,6 +4,7 @@ import Fastify from "fastify";
 import fastifyStatic from "@fastify/static";
 import { loadConfig } from "./config";
 import { loadGameData } from "./data/loadData";
+import { openBattleHistory } from "./battle/history";
 import { createBattleFeed, registerBattleRoutes } from "./routes/battle";
 import { createOverlayWriter, overlayFile } from "./overlay/write";
 import { registerConfigRoutes } from "./routes/config";
@@ -23,14 +24,16 @@ await app.register(fastifyStatic, { root: path.resolve("dist/web") });
 registerSpoilerRoutes(app, spoilers);
 registerDataRoutes(app, data, spoilers, latestFieldNotes);
 if (!(data instanceof Error)) registerTrainerRoutes(app, data, spoilers);
+const battleHistory = await openBattleHistory(config.stateDir ? path.join(config.stateDir, "battle-history.json") : null, (m) => app.log.warn(m));
 const battleFeed = createBattleFeed({
   file: config.battleStateFile,
   trainers: data instanceof Error ? {} : data.trainers,
   store: spoilers,
+  history: battleHistory,
   log: (m) => app.log.debug(m),
 });
-registerBattleRoutes(app, battleFeed);
-app.addHook("onClose", () => battleFeed.close());
+registerBattleRoutes(app, battleFeed, battleHistory, spoilers);
+app.addHook("onClose", async () => { await battleFeed.close(); await battleHistory.flush(); });
 if (config.battleStateFile && !(data instanceof Error)) {
   const overlay = createOverlayWriter({
     file: overlayFile(config.battleStateFile),

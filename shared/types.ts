@@ -86,3 +86,11 @@ export interface LiveBattle extends Omit<LiveBattleBase, "foes" | "incoming"> {
   match: { key: string; exact: boolean } | null;
 }
 export type LiveBattleMessage = LiveBattle | { error: string };
+
+export type BattleResult = "won" | "lost";
+export interface BattleHistoryEntry {
+  battleId: string; startedAt: string; updatedAt: string; state: "active" | "ended"; result: BattleResult | null;
+  kind: "trainer" | "wild"; trainer: { type: string; name: string } | null; trainerKey: string | null;
+  field: { id: string; name: string };
+  foes: { name: string; species: string; form: number; level?: number }[];
+}
