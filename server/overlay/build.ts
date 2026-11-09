@@ -1,7 +1,7 @@
 import { liveFieldId, liveFoeTypes } from "../../shared/live";
 import { baseStatTotal, formTypes, recommend, type RecMon } from "../../shared/prep/recommend";
 import { scoreMatchup } from "../../shared/prep/score";
-import { moveEffectiveness, NO_FIELD } from "../../shared/typechart";
+import { moveEffectiveness, NO_FIELD, typeVsType } from "../../shared/typechart";
 import type { FieldOverlay, GameData, LiveBattle, SpoilerSettings } from "../../shared/types";
 
 export const OVERLAY_SCHEMA = 1;
@@ -9,10 +9,22 @@ export const MAX_PICKS = 3;
 
 export interface OverlayFoe { name: string; types: string[]; weak4: string[]; weak2: string[] }
 export interface OverlayPick { name: string; tag: string }
+/** Compact type rules for the fight menu's move markers: the mod multiplies these cells for the foe's types. */
+export interface OverlayRules {
+  /** Attack type to defend type to multiplier, only cells that are not 1, with the field's overrides and inversion applied. */
+  chart: Record<string, Record<string, number>>;
+  /** Attacks of `from` count as `to`. */
+  remap: { from: string; to: string }[];
+  /** Attack types that do nothing on this field. */
+  failing: string[];
+  /** Attacks that gain a second type: `on` is the attack type, `ids` and `cat` narrow it, `add` or `oneOf` is the extra type. */
+  secondary: { on?: string; ids?: string[]; cat?: string; add?: string; oneOf?: string[] }[];
+}
 export interface Overlay {
   schema: 1;
   updatedAt: string;
   field: { id: string; name: string };
+  rules: OverlayRules;
   foes: OverlayFoe[];
   picks?: OverlayPick[];
 }
@@ -60,8 +72,30 @@ export function buildOverlay(live: LiveBattle, data: GameData, settings: Spoiler
   }).party.slice(0, MAX_PICKS).map((r) => ({ name: clip(r.mon.name), tag: pickTag(data, overlay, r.mon, foeInputs.map((x) => x.types), typeName) }));
 
   return {
-    schema: OVERLAY_SCHEMA, updatedAt: now.toISOString(), field: { id: fieldId, name: fieldName || "No field" }, foes,
+    schema: OVERLAY_SCHEMA, updatedAt: now.toISOString(), field: { id: fieldId, name: fieldName || "No field" }, rules: overlayRules(data, overlay), foes,
     ...(picks.length ? { picks } : {}),
+  };
+}
+
+export function overlayRules(data: GameData, overlay: FieldOverlay): OverlayRules {
+  const chart: OverlayRules["chart"] = {};
+  for (const a of data.types) {
+    for (const d of data.types) {
+      const m = typeVsType(data.chart, a.id, d.id, overlay);
+      if (m !== 1) (chart[a.id] ??= {})[d.id] = m;
+    }
+  }
+  return {
+    chart,
+    remap: overlay.moveTypeRemap ?? [],
+    failing: overlay.failingMoveTypes ?? [],
+    secondary: (overlay.secondaryTypes ?? []).map((r) => ({
+      ...(r.match.moveType ? { on: r.match.moveType } : {}),
+      ...(r.match.moveIds ? { ids: r.match.moveIds } : {}),
+      ...(r.match.category ? { cat: r.match.category } : {}),
+      ...(r.addType ? { add: r.addType } : {}),
+      ...(r.oneOf ? { oneOf: r.oneOf } : {}),
+    })),
   };
 }
 

@@ -72,6 +72,24 @@ it("uses the base chart for a hidden field, until its Field Notes are found", ()
   expect(buildOverlay(l, data, hidden, new Set(["GLITCH"]))!.foes[0].weak2).not.toContain("Ground");
 });
 
+it("sends the field-adjusted chart, remaps, failing types and secondary types for move markers", () => {
+  const base = buildOverlay(live(), data, DEFAULT_SPOILERS, none)!.rules;
+  expect(base.chart.FIRE.GRASS).toBe(2);
+  expect(base.chart.NORMAL.GHOST).toBe(0);
+  expect(base.chart.NORMAL.NORMAL).toBeUndefined();
+  expect([base.remap, base.failing, base.secondary]).toEqual([[], [], []]);
+  const glitch = buildOverlay(live({ field: { id: "GLITCH", name: "GLITCH" } }), data, DEFAULT_SPOILERS, none)!.rules;
+  expect(glitch.chart.FIRE.GRASS).toBe(0.5);
+  const water = buildOverlay(live({ field: { id: "UNDERWATER", name: "UNDERWATER" } }), data, DEFAULT_SPOILERS, none)!.rules;
+  expect(water.failing).toEqual(["FIRE"]);
+});
+
+it("sends the base rules for a field whose details are hidden", () => {
+  const hidden = { ...DEFAULT_SPOILERS, fieldDetails: false };
+  const rules = buildOverlay(live({ field: { id: "UNDERWATER", name: "UNDERWATER" } }), data, hidden, none)!.rules;
+  expect(rules.failing).toEqual([]);
+});
+
 it("never writes levels, moves, abilities or items", () => {
   const text = JSON.stringify(buildOverlay(live({ foes: [{ ...live().foes[0], level: 99 }] }), data, { ...DEFAULT_SPOILERS, opponentLevels: true }, none));
   expect(text).not.toMatch(/level|move|abilit|item/i);

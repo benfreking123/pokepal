@@ -1,7 +1,8 @@
 # PokePal overlay: draws a small battle panel from the overlay.json that PokePal writes. Delete this file to uninstall.
 # The panel only draws; PokePal computes the content. To switch it off without uninstalling, set ENABLED below to
 # false, or create an empty file named "disabled" in the PokePal folder next to the save (the bridge honours it too).
-# F6 shows and hides the panel in game.
+# F6 shows and hides the panel in game. In the fight menu it also marks each of your moves with its effectiveness
+# against the foes' visible types, and shows the selected move's category, power and accuracy.
 module PokePalOverlay
   ENABLED = true unless const_defined?(:ENABLED, false)
   VERSION = '1.0.0' unless const_defined?(:VERSION, false)
@@ -12,6 +13,8 @@ module PokePalOverlay
   PANEL_WIDTH = 168 unless const_defined?(:PANEL_WIDTH, false)
   PANEL_MARGIN = 4 unless const_defined?(:PANEL_MARGIN, false)
   PANEL_TOP = 4 unless const_defined?(:PANEL_TOP, false)
+  # Fight menu move markers (x2, x4, 1/2, 1/4, x0). Set to false to keep only the battle panel.
+  MOVE_MARKS = true unless const_defined?(:MOVE_MARKS, false)
   # Survives F12 soft resets, which re-run every script in the same Ruby VM.
   HOOKED = {} unless const_defined?(:HOOKED, false)
 
@@ -156,6 +159,48 @@ module PokePalOverlay
       !!(w && !w.disposed? && w.visible)
     end
 
+    # Battle_Scene.rb:218 FightMenuDisplay (battler, index, zButton readers) is the scene's "fightwindow".
+    def self.fight_menu(scene)
+      w = scene.sprites['fightwindow']
+      w && !w.disposed? && w.visible && w.respond_to?(:battler) ? w : nil
+    end
+
+    # The moves the buttons show: the battler's, or its Z-moves while the Z button is pressed (Battle_Scene.rb:392-409).
+    def self.menu_moves(menu)
+      b = menu.battler
+      return [] unless b && b.moves
+      moves = b.moves.to_a.dup
+      if menu.zButton == 2 && b.zmoves
+        b.zmoves.each_with_index { |z, i| moves[i] = z unless z.nil? }
+      end
+      moves.first(4)
+    end
+
+    # Foes still in the fight, by battler index. Battle_Scene.rb:2859 uses pbIsOpposing?(index).
+    def self.foes(battle)
+      battle.battlers.compact.select { |b| battle.pbIsOpposing?(b.index) && b.pokemon && b.hp.to_i > 0 }
+    end
+
+    # Same rule as the bridge: an Illusion foe's real types must not leak.
+    def self.foe_types(b)
+      effects = b.respond_to?(:effects) ? b.effects : nil
+      return nil if effects.is_a?(Hash) && effects[:Illusion]
+      [b.type1, b.type2].compact.uniq.map(&:to_s)
+    end
+
+    # Battle_Scene.rb:432 pbType(battler, type) is the move's type after Hidden Power, -ate abilities and field changes.
+    def self.move_type(move, battler)
+      move.pbType(battler, move.type).to_s
+    end
+
+    def self.category(move)
+      return 'Status' if move.basedamage.to_i <= 0
+      c = move.respond_to?(:category) ? move.category : nil
+      c = c.to_s.downcase
+      return c.capitalize if %w[physical special].include?(c)
+      nil
+    end
+
     def self.battle_of(scene)
       scene.instance_variable_get(:@battle)
     end
@@ -174,6 +219,13 @@ module PokePalOverlay
   @online_scene = nil
   @ended_scene = nil
   @has_data = false
+  @moves = nil
+  @moves_sprite = nil
+  @moves_drawn = nil
+  @moves_off = false
+  @marks = nil
+  @marks_key = nil
+  @marks_at = 0.0
 
   def self.dir
     File.join(Game.save_dir, 'PokePal')
@@ -206,7 +258,10 @@ module PokePalOverlay
     @sprite.bitmap.dispose if @sprite && !@sprite.disposed? && @sprite.bitmap && !@sprite.bitmap.disposed?
     @sprite.dispose if @sprite && !@sprite.disposed?
     @viewport.dispose if @viewport && !@viewport.disposed?
+    @moves_sprite.bitmap.dispose if @moves_sprite && !@moves_sprite.disposed? && @moves_sprite.bitmap && !@moves_sprite.bitmap.disposed?
+    @moves_sprite.dispose if @moves_sprite && !@moves_sprite.disposed?
     @sprite = @viewport = @scene = @data = @drawn = @mtime = nil
+    @moves_sprite = @moves_drawn = @marks = @marks_key = nil
     @next_poll = 0.0
     @has_data = false
   end
@@ -293,6 +348,10 @@ module PokePalOverlay
     @sprite.x = Graphics.width - PANEL_WIDTH - PANEL_MARGIN
     @sprite.y = PANEL_TOP
     @sprite.visible = false
+    @moves_sprite = Sprite.new(@viewport)
+    @moves_sprite.x = 0
+    @moves_sprite.y = Graphics.height - 96
+    @moves_sprite.visible = false
   end
 
   # Runs from the scene's per-frame update, so it must stay cheap: one clock read per frame, and the
@@ -312,7 +371,6 @@ module PokePalOverlay
       @online_scene = scene
       return
     end
-    return dispose if switched_off? && @sprite
     if Game.toggle_pressed?
       @shown = !@shown
       @next_poll = 0.0
@@ -320,9 +378,14 @@ module PokePalOverlay
     now = Time.now.to_f
     if now >= @next_poll
       @next_poll = now + POLL_SECONDS
-      d = switched_off? ? nil : read
+      if switched_off?
+        dispose if @sprite
+        return
+      end
+      d = read
       if d && @shown
         ensure_sprite(scene)
+        @data = d
         draw(d)
         @has_data = true
       else
@@ -331,6 +394,135 @@ module PokePalOverlay
     end
     return unless @sprite && !@sprite.disposed?
     @sprite.visible = @has_data && @shown && @blocked == 0 && !Game.fight_menu_open?(scene)
+    update_moves(scene, now)
+  end
+
+  PILL_W = 27 unless const_defined?(:PILL_W, false)
+  PILL_H = 13 unless const_defined?(:PILL_H, false)
+
+  def self.moves_off?
+    !MOVE_MARKS || @moves_off ||
+      (defined?(::FightMenuButtons) && (::FightMenuButtons.method_defined?(:showMoveEffectivenessStatus) ||
+                                         ::FightMenuButtons.private_method_defined?(:showMoveEffectivenessStatus)))
+  end
+
+  # A move's multiplier against one foe's visible types, from the rules PokePal sent (the game's chart with the
+  # field's changes applied). Only types are used: never abilities, items or moves of the foe.
+  def self.effectiveness(rules, type, move_id, category, foe_types)
+    return 0.0 if Array(rules['failing']).include?(type)
+    atk = type
+    r = Array(rules['remap']).find { |x| x['from'] == type }
+    atk = r['to'] if r
+    chart = rules['chart'] || {}
+    cell = ->(a, d) { ((chart[a] || {})[d] || 1).to_f }
+    total = foe_types.inject(1.0) { |m, d| m * cell.call(atk, d) }
+    Array(rules['secondary']).each do |x|
+      next if x['on'] && x['on'] != type
+      next if x['ids'] && !x['ids'].include?(move_id)
+      next if x['cat'] && x['cat'] != category.to_s.downcase
+      opts = x['add'] ? [x['add']] : Array(x['oneOf'])
+      next if opts.empty?
+      total *= opts.map { |t| foe_types.inject(1.0) { |m, d| m * cell.call(t, d) } }.max
+    end
+    total
+  end
+
+  def self.label(mult)
+    return 'x0' if mult <= 0
+    return '1/4' if mult <= 0.25
+    return '1/2' if mult < 1
+    return 'x1' if mult == 1
+    mult <= 2 ? 'x2' : 'x4'
+  end
+
+  def self.marks_for(moves, battler, foes, rules)
+    moves.map do |m|
+      next nil if m.nil?
+      cat = Game.category(m)
+      next nil if cat == 'Status'
+      type = Game.move_type(m, battler)
+      id = m.move.to_s
+      foes.map do |f|
+        ft = Game.foe_types(f)
+        ft ? label(effectiveness(rules, type, id, cat, ft)) : '?'
+      end
+    end
+  end
+
+  def self.details_for(move)
+    return nil if move.nil?
+    cat = Game.category(move)
+    parts = []
+    parts << cat if cat
+    parts << (move.basedamage.to_i > 0 ? "BP #{move.basedamage.to_i}" : nil) if cat != 'Status'
+    if move.respond_to?(:accuracy)
+      acc = move.accuracy.to_i
+      parts << (acc > 0 ? "Acc #{acc}" : 'Acc ---')
+    end
+    parts.compact.join('  ')
+  end
+
+  PILL_COLORS = {
+    'x4' => [30, 140, 60], 'x2' => [50, 160, 80], 'x1' => [90, 90, 105],
+    '1/2' => [200, 110, 40], '1/4' => [190, 70, 40], 'x0' => [70, 40, 40], '?' => [90, 90, 105]
+  }.freeze unless const_defined?(:PILL_COLORS, false)
+
+  def self.draw_moves(index, moves, marks)
+    key = [index, marks, details_for(moves[index])]
+    return if key == @moves_drawn
+    @moves_drawn = key
+    old = @moves_sprite.bitmap
+    bmp = Bitmap.new(Graphics.width, 96)
+    bmp.font.size = 11
+    marks.each_with_index do |m, i|
+      next if m.nil? || m.empty?
+      x = (i % 2 == 0 ? 4 : 192) + 192 - 4 - m.length * PILL_W
+      y = (i / 2 == 0 ? 6 : 48) + 1
+      m.each_with_index do |lab, j|
+        c = PILL_COLORS[lab] || PILL_COLORS['x1']
+        px = x + j * PILL_W
+        bmp.fill_rect(px, y, PILL_W - 2, PILL_H, Color.new(0, 0, 0, 200))
+        bmp.fill_rect(px + 1, y + 1, PILL_W - 4, PILL_H - 2, Color.new(c[0], c[1], c[2], 255))
+        bmp.font.color = Color.new(255, 255, 255)
+        bmp.draw_text(px, y - 1, PILL_W - 2, PILL_H, lab, 1)
+      end
+    end
+    text = key[2]
+    if text
+      bmp.font.size = 13
+      bmp.font.color = Color.new(255, 255, 255)
+      bmp.draw_text(326, 1, Graphics.width - 330, 17, text, 1)
+    end
+    @moves_sprite.bitmap = bmp
+    old.dispose if old && !old.disposed?
+  end
+
+  def self.update_moves(scene, now)
+    return unless @moves_sprite && !@moves_sprite.disposed?
+    menu = nil
+    unless moves_off?
+      menu = Game.fight_menu(scene) if @has_data && @shown && @blocked == 0
+      rules = @data && @data['rules']
+      menu = nil unless rules.is_a?(Hash)
+    end
+    return @moves_sprite.visible = false unless menu
+    begin
+      battle = Game.battle_of(scene)
+      moves = Game.menu_moves(menu)
+      foes = Game.foes(battle)
+      key = [menu.battler.object_id, menu.zButton, foes.map { |f| [f.index, Game.foe_types(f)] }, @mtime]
+      if key != @marks_key || now >= @marks_at
+        @marks_key = key
+        @marks_at = now + POLL_SECONDS
+        @marks = marks_for(moves, menu.battler, foes, rules)
+      end
+      draw_moves(menu.index, moves, @marks)
+      @moves_sprite.visible = true
+    rescue StandardError => e
+      @moves_off = true
+      log_error(e)
+      @moves_sprite.visible = false
+    end
   end
 
   def self.block

@@ -79,4 +79,17 @@ Uninstall by deleting the file. It works with the SWM TypeBattleIcons mod: it on
 
 `PokeBattle_Scene#pbFrameUpdate(cw, update_cw = true)` (`Battle_Scene.rb:1890`, polling and F6), `#pbEndBattle(result)` (`:2473`, dispose), and `#pbShowBattleStats` (called at `:2923`, hides the panel; its definition isn't in the copied scripts, so it is wrapped only when present). Methods are wrapped by redefining them around the current one (alias-style chaining, like the bridge), never `prepend`. `PokeBattle_Scene` is also reopened in `Battle_TestEnvironment.rb:1111`; that file is not in the copied scripts. The mod draws in its own viewport (z 100000) with one sprite. It has no map panel (`Scene_Map` is not hooked).
 
-`npm run test:mod` runs it against stand-in RGSS classes.
+### Fight menu move markers
+
+In the fight menu each damaging move of your active Pokémon gets a small pill at the top right of its button: `x4`, `x2`, `x1`, `1/2`, `1/4` or `x0`, against the foe's current types. In doubles there is one pill per foe, in battler order. Status moves get no pill. The selected move's category, base power and accuracy appear above the type icon in the right-hand box (the game only shows type and PP).
+
+- The move's type comes from the game (`move.pbType(battler, move.type)`, so Hidden Power, -ate abilities and similar are counted). Z-moves are marked while the Z button is pressed.
+- Matchups come from PokePal: `overlay.json` carries the type chart with the current field's changes applied (inverted, overridden cells, type remaps, failing types, extra secondary types). PokePal must be running; with no fresh `overlay.json` there are no markers.
+- Only visible information is used: the foe's live types, never its ability, item or moves. A foe disguised by Illusion shows `?`. Abilities that grant immunity (Levitate, Flash Fire) are deliberately not counted.
+- The pills are drawn on a separate sprite and redrawn only when something changes, so the menu's own redraw is untouched.
+- F6 hides them with the panel. Set `MOVE_MARKS = false` to keep only the panel. On the first error the markers switch themselves off for the session and write `overlay_error.log` (the panel keeps working).
+- It does not run together with Alemi's ShowMoveEffectiveness mod: if that mod's `showMoveEffectivenessStatus` is present, the markers step aside. We didn't reuse that mod: it replaces `FightMenuButtons#refresh`, ships its own graphics, reads the foe's abilities, and crashed on game updates (`POWDERMOVES` on 19.5.5, several more after).
+- Install: nothing new. The same `zz_PokePalOverlay.rb`, plus a PokePal build from this branch (it adds `rules` to `overlay.json`).
+- Unverified on 19.5.0: `move.category` and `move.accuracy` (the category line is left out if unavailable, the markers don't need it except for field rules limited to physical/special moves) and `pbType`'s result for Hidden Power. Button positions follow `Battle_Scene.rb:392-430`.
+
+`npm run test:mod` runs both mod tests against stand-in RGSS classes.
