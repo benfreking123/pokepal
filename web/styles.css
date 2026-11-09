@@ -31,11 +31,11 @@
   --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
 }
 * { box-sizing: border-box; }
-html, body, #root { height: 100%; }
+html, body, #root { height: 100vh; height: 100dvh; margin: 0; overflow: hidden; }
 body { margin: 0; font-family: var(--font-sans); font-size: 13px; background: var(--bg); color: var(--text); }
 a { color: var(--accent); }
-.app { height: 100%; display: flex; flex-direction: column; }
-.app-body { flex: 1; min-height: 0; }
+.app { height: 100%; display: flex; flex-direction: column; overflow: hidden; }
+.app-body { flex: 1; min-height: 0; overflow: hidden; }
 .error-banner { width: 100%; background: #7a1f2b; color: #fff; padding: 10px 14px; }
 .card { background: var(--card); border-radius: 10px; padding: 12px 14px; margin: 10px 0; }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
@@ -95,11 +95,11 @@ code, .mono, .type-chart { font-family: var(--font-mono); }
 .card { border: 1px solid var(--border); background: var(--surface); }
 
 .dock-wrapper { display: flex; flex-direction: column; height: 100%; }
-.dock-toolbar { display: flex; align-items: center; justify-content: space-between; padding: 6px 16px; background: var(--surface); border-bottom: 1px solid var(--border); flex-shrink: 0; }
+.dock-toolbar { display: flex; align-items: center; justify-content: space-between; height: 40px; padding: 0 16px; background: var(--surface); border-bottom: 1px solid var(--border); flex: 0 0 40px; box-sizing: border-box; }
 .dock-toolbar-title { font-weight: 700; font-size: 14px; letter-spacing: .5px; }
 .dock-toolbar-btn { display: flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: var(--radius); font-size: 12px; font-weight: 500; border: 1px solid rgba(51,65,85,.6); background: rgba(15,23,42,.8); color: var(--text); transition: all .15s; }
 .dock-toolbar-btn:hover { background: rgba(30,41,59,.9); border-color: rgba(59,130,246,.4); }
-.dock-container { flex: 1; min-height: 0; }
+.dock-container { flex: 1; min-height: 0; position: relative; overflow: hidden; }
 
 .dock-panel { height: 100%; display: flex; flex-direction: column; overflow: hidden; padding: 8px; background: var(--bg); color: var(--text); }
 .dock-panel-header { flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 6px; flex-wrap: wrap; }
