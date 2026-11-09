@@ -4,7 +4,7 @@ import path from "node:path";
 import Fastify from "fastify";
 import { PNG } from "pngjs";
 import { expect, it } from "vitest";
-import { CELL, FORM_ROWS, frontSprite, registerSpriteRoutes, spriteNames, trim } from "../server/sprites";
+import { CELL, FORM_ROWS, frontSprite, registerSpriteRoutes, spriteNames, stripTrailingBytes, trim } from "../server/sprites";
 import type { LoadedData } from "../shared/types";
 
 const data = { game: { species: {
@@ -114,4 +114,23 @@ it("says why a sprite is unavailable when its file cannot be decoded", async () 
   expect(r.statusCode).toBe(404);
   expect(r.json().error).toContain("abra.png could not be read");
   expect((await get(await setup({}), "/api/sprites/ABRA/0")).r.json().error).toContain("no matching file");
+});
+
+it("decodes PNGs that have stray bytes after IEND, as the game's files do", async () => {
+  const good = PNG.sync.write(sheet());
+  const dirty = Buffer.concat([good, Buffer.from([0x00, 0x0a])]);
+  expect(() => PNG.sync.read(dirty)).toThrow();
+  expect(stripTrailingBytes(dirty).equals(good)).toBe(true);
+  expect(stripTrailingBytes(good).equals(good)).toBe(true);
+  const trunc = good.subarray(0, good.length - 6);
+  expect(stripTrailingBytes(trunc).equals(trunc)).toBe(true);
+
+  const dir = await mkdtemp(path.join(os.tmpdir(), "pokepal-sprites-"));
+  await mkdir(path.join(dir, "Graphics", "Battlers"), { recursive: true });
+  await writeFile(path.join(dir, "Graphics", "Battlers", "abra.png"), dirty);
+  const app = Fastify();
+  registerSpriteRoutes(app, dir, data);
+  const r = await app.inject("/api/sprites/ABRA/0");
+  expect(r.statusCode).toBe(200);
+  expect([PNG.sync.read(r.rawPayload).width]).toEqual([30]);
 });

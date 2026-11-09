@@ -28,6 +28,21 @@ export function spriteNames(dexNum: number, species: string, form: number, femal
   return [...new Set(names)];
 }
 
+const PNG_SIGNATURE = 8;
+
+/** The game's PNGs can carry stray bytes after IEND, which pngjs rejects: cut the buffer right after the IEND chunk's CRC. */
+export function stripTrailingBytes(buf: Buffer): Buffer {
+  let pos = PNG_SIGNATURE;
+  while (pos + 12 <= buf.length) {
+    const len = buf.readUInt32BE(pos);
+    const end = pos + 12 + len;
+    if (buf.toString("latin1", pos + 4, pos + 8) === "IEND") return end <= buf.length ? buf.subarray(0, end) : buf;
+    if (end > buf.length) break;
+    pos = end;
+  }
+  return buf;
+}
+
 const isSheet = (png: PNG) => png.width === SHEET_WIDTH && png.height % FORM_ROWS === 0;
 
 function crop(png: PNG, x: number, y: number, w: number, h: number): PNG {
@@ -88,7 +103,7 @@ export function registerSpriteRoutes(app: FastifyInstance, gameDir: string | nul
     const file = await locate(species, form, female);
     if (file) {
       try {
-        out = PNG.sync.write(trim(frontSprite(PNG.sync.read(await readFile(file)), form)));
+        out = PNG.sync.write(trim(frontSprite(PNG.sync.read(stripTrailingBytes(await readFile(file))), form)));
         why = "";
       } catch (e) {
         why = `${path.basename(file)} could not be read: ${(e as Error).message}`;
