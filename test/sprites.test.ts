@@ -103,3 +103,15 @@ it("404s for unknown species, path tricks, missing files and a missing game fold
   expect((await get(app, "/api/sprites/..%2F..%2Fetc/0")).r.statusCode).toBe(404);
   expect((await get(await setup({}, false), "/api/sprites/PIKACHU/0")).r.statusCode).toBe(404);
 });
+
+it("says why a sprite is unavailable when its file cannot be decoded", async () => {
+  const dir = await mkdtemp(path.join(os.tmpdir(), "pokepal-sprites-"));
+  await mkdir(path.join(dir, "Graphics", "Battlers"), { recursive: true });
+  await writeFile(path.join(dir, "Graphics", "Battlers", "abra.png"), "not a png");
+  const app = Fastify();
+  registerSpriteRoutes(app, dir, data);
+  const r = await app.inject("/api/sprites/ABRA/0");
+  expect(r.statusCode).toBe(404);
+  expect(r.json().error).toContain("abra.png could not be read");
+  expect((await get(await setup({}), "/api/sprites/ABRA/0")).r.json().error).toContain("no matching file");
+});

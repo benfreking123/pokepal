@@ -66,7 +66,7 @@ export function frontSprite(png: PNG, form: number): PNG {
 }
 
 export function registerSpriteRoutes(app: FastifyInstance, gameDir: string | null, data: LoadedData | Error) {
-  const cache = new Map<string, { png: Buffer | null; at: number }>();
+  const cache = new Map<string, { png: Buffer | null; why: string; at: number }>();
 
   const locate = async (species: string, form: number, female: boolean): Promise<string | null> => {
     if (!gameDir || data instanceof Error) return null;
@@ -79,23 +79,31 @@ export function registerSpriteRoutes(app: FastifyInstance, gameDir: string | nul
     return null;
   };
 
-  const render = async (species: string, form: number, female: boolean): Promise<Buffer | null> => {
+  const render = async (species: string, form: number, female: boolean): Promise<{ png: Buffer | null; why: string }> => {
     const key = `${species}:${form}:${female}`;
     const hit = cache.get(key);
-    if (hit && (hit.png || Date.now() - hit.at < MISS_TTL_MS)) return hit.png;
+    if (hit && (hit.png || Date.now() - hit.at < MISS_TTL_MS)) return hit;
     let out: Buffer | null = null;
+    let why = "no matching file in Graphics/Battlers";
     const file = await locate(species, form, female);
     if (file) {
-      try { out = PNG.sync.write(trim(frontSprite(PNG.sync.read(await readFile(file)), form))); } catch { out = null; }
+      try {
+        out = PNG.sync.write(trim(frontSprite(PNG.sync.read(await readFile(file)), form)));
+        why = "";
+      } catch (e) {
+        why = `${path.basename(file)} could not be read: ${(e as Error).message}`;
+        app.log.warn(`sprite ${species}/${form}: ${why}`);
+      }
     }
-    cache.set(key, { png: out, at: Date.now() });
-    return out;
+    const entry = { png: out, why, at: Date.now() };
+    cache.set(key, entry);
+    return entry;
   };
 
   app.get<{ Params: { species: string; form: string }; Querystring: { female?: string } }>("/api/sprites/:species/:form", async (req, reply) => {
     const form = Number(req.params.form);
-    const png = Number.isInteger(form) && form >= 0 ? await render(req.params.species, form, req.query.female === "1") : null;
-    if (!png) return reply.code(404).header("cache-control", "no-store").send({ error: "No sprite found" });
-    return reply.header("content-type", "image/png").header("cache-control", "public, max-age=86400").send(png);
+    const r = Number.isInteger(form) && form >= 0 ? await render(req.params.species, form, req.query.female === "1") : null;
+    if (!r?.png) return reply.code(404).header("cache-control", "no-store").send({ error: r?.why ?? "No sprite found" });
+    return reply.header("content-type", "image/png").header("cache-control", "public, max-age=86400").send(r.png);
   });
 }
