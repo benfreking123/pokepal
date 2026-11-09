@@ -174,3 +174,5 @@ code, .mono, .type-chart { font-family: var(--font-mono); }
 .rec-note { margin: 4px 0 0; font-size: 0.72rem; color: var(--muted); }
 .wn-status { font-size: 12px; }
 .wn-status-done { color: #86efac; }
+
+.incoming-foe .pill { display: inline-block; padding: 0 8px; border-radius: 999px; background: var(--accent, #3b5ea8); color: #fff; font-size: 0.8em; }

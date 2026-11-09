@@ -18,7 +18,8 @@ export function trainerView(t: TrainerFull, s: SpoilerSettings, seen: number[]):
 }
 
 export function liveBattleView(state: BattleState, match: LiveBattle["match"], s: SpoilerSettings): LiveBattle {
-  return { ...state, match, foes: state.foes.map(({ level, ...f }) => (s.opponentLevels ? { ...f, level } : f)) };
+  const incoming = state.incoming ? (s.opponentLevels ? state.incoming : (({ level: _level, ...rest }) => rest)(state.incoming)) : state.incoming;
+  return { ...state, match, foes: state.foes.map(({ level, ...f }) => (s.opponentLevels ? { ...f, level } : f)), incoming };
 }
 
 export function bossView(b: Boss, s: SpoilerSettings): BossView {

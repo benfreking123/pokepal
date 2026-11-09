@@ -13,6 +13,8 @@ PokeBattle_Scene.class_eval do
   def pbFrameUpdate(*args) = (@calls << :later; later_pbFrameUpdate(*args))
 end
 
+inc = overlay('incoming' => true, 'foes' => [{ 'name' => 'Porygon-Z', 'types' => ['Normal'], 'weak4' => [], 'weak2' => ['Fighting'] }],
+              'picks' => [{ 'name' => 'Rio', 'tag' => 'resists Normal', 'stay' => true }, { 'name' => 'Umbreon', 'tag' => '2x FIG' }])
 check('json parser matches stdlib', JSON.parse('{"a":[1,2.5,-3e2,true,false,null,"x\\u00e9\\n\\"q"],"b":{}}'),
       PokePalOverlay::Json.parse('{"a":[1,2.5,-3e2,true,false,null,"x\\u00e9\\n\\"q"],"b":{}}'))
 begin
@@ -79,10 +81,18 @@ s2 = PokeBattle_Scene.new(Battle.new)
 tick(s2)
 check('next offline battle draws again', true, shown?)
 
+write_overlay(inc)
+t = PokeBattle_Scene.new(Battle.new)
+tick(t)
+check('incoming panel is drawn', true, shown?)
+t.pbEndBattle(:won)
 PokePalOverlay.define_singleton_method(:draw) { |_d| raise 'boom' }
 write_overlay(overlay(' x' => 1))
 s3 = PokeBattle_Scene.new(Battle.new)
 check('errors never reach the game', :won, (tick(s3); s3.pbEndBattle(:won)))
 check('first error disposes and logs', [0, true], [Sprite::LIVE.size, File.exist?(File.join(PP_DIR, 'overlay_error.log'))])
 check('overlay stays off after an error', 0, (tick(s3); Sprite::LIVE.size))
+check('incoming rows', [[:title, 'No field'], [:foe, 'Next: Porygon-Z  Normal'], [:weak, '2x FIG'], [:head, 'Bring in'], [:pick, 'Rio', 'stay in: resists Normal'], [:pick, 'Umbreon', '2x FIG']],
+      PokePalOverlay.rows(inc))
+check('normal rows keep the Switch heading', 'Switch', PokePalOverlay.rows(overlay)[3][1])
 puts 'overlay mod ok'

@@ -43,12 +43,13 @@ end
 def marks_for(foes, mv) = marks(fight_scene(foes, [mv]).first)[0]
 def moves_sprite = PokePalOverlay.instance_variable_get(:@moves_sprite)
 
-moves = [Mv.new(:DISCHARGE, :ELECTRIC, 80, 100, :special), Mv.new(:THUNDERWAVE, :ELECTRIC, 0, 90), Mv.new(:EARTHQUAKE, :GROUND, 100, 100, :physical),
+moves = [Mv.new(:DISCHARGE, :ELECTRIC, 80, 100, :special), Mv.new(:THUNDERWAVE, :ELECTRIC, 0, 90, :status), Mv.new(:EARTHQUAKE, :GROUND, 100, 100, :physical),
          Mv.new(:ICEBEAM, :ICE, 90, 100, :special)]
 sc, menu = fight_scene([Foe.new(1, :WATER, :FLYING)], moves)
 check('markers: x4, none for status, x0 immune, x0 for a failing type', [['x4'], nil, ['x0'], ['x0']], marks(sc))
 check('fight menu shows the marker sprite', true, moves_sprite.visible)
 check('selected move details', 'Special  BP 80  Acc 100', PokePalOverlay.details_for(moves[0]))
+check('a never-miss move', 'Physical  Acc ---', PokePalOverlay.details_for(Mv.new(:X, :NORMAL, 0, 0, :physical)))
 check('status details', 'Status  Acc 90', PokePalOverlay.details_for(moves[1]))
 check('physical details', 'Physical  BP 100  Acc 100', PokePalOverlay.details_for(moves[2]))
 

@@ -94,6 +94,25 @@ module PokePalBridge
       battle.class.ancestors.any? { |k| k.name.to_s =~ /Online/ }
     end
 
+    # Battle_Scene.rb:1800: the text of the paused message the game shows before a trainer sends in its next
+    # Pokemon ("Prodigy Noel is about to send in Porygon-Z."). Only that announced name is read from it.
+    def self.incoming_name(msg)
+      m = /\bis about to send in (.+?)\.?\z/.match(msg.to_s)
+      m && m[1]
+    end
+
+    # The announced Pokemon from the opposing party: healthy, not already on the field, and named as announced.
+    def self.incoming(battle, name)
+      return nil unless battle.respond_to?(:party2)
+      active = battlers(battle).map(&:pokemon)
+      party = battle.party2.to_a
+      i = party.index { |pk| pk && pk.hp.to_i > 0 && pk.name.to_s == name && active.none? { |a| a.equal?(pk) } }
+      return nil if i.nil?
+      pk = party[i]
+      types = pk.respond_to?(:type1) ? [pk.type1, pk.respond_to?(:type2) ? pk.type2 : nil].compact.uniq.map(&:to_s) : []
+      { 'slot' => i, 'species' => pk.species.to_s, 'form' => pk.form.to_i, 'level' => pk.level.to_i, 'types' => types }
+    end
+
     # RTP.rb:80-82
     def self.save_dir
       File.dirname(RTP.getSaveFileName('Game.rxdata'))
@@ -113,7 +132,8 @@ module PokePalBridge
     end
     { 'schema' => SCHEMA, 'bridgeVersion' => VERSION, 'updatedAt' => Time.now.utc.strftime('%Y-%m-%dT%H:%M:%SZ'),
       'battleId' => battle.instance_variable_get(:@pokepal_id) || '', 'state' => state, 'isDouble' => Game.double?(battle),
-      'field' => Game.field(battle), 'trainer' => Game.trainer(battle), 'foes' => foes, 'party' => party }
+      'field' => Game.field(battle), 'trainer' => Game.trainer(battle), 'foes' => foes, 'party' => party,
+      'incoming' => battle.instance_variable_get(:@pokepal_incoming) }
   end
 
   @last = nil
@@ -178,11 +198,11 @@ module PokePalBridge
                  else :public
                  end
     klass.send(:define_method, name) do |*args, **kwargs, &block|
-      PokePalBridge.safely { before.call(self) } if before
+      PokePalBridge.safely { before.call(self, args) } if before
       begin
         current.bind(self).call(*args, **kwargs, &block)
       ensure
-        PokePalBridge.safely { after.call(self) } if after
+        PokePalBridge.safely { after.call(self, args) } if after
       end
     end
     klass.send(visibility, name)
@@ -192,13 +212,35 @@ module PokePalBridge
 
   # Battle.rb:3585 pbStartBattle (returns when the battle is over), Battle.rb:2857 pbOnActiveOne
   # (every send-out and switch-in), Battle.rb:4372 pbEndOfRoundPhase.
+  # Battle_Scene.rb:1800 (scene) pbDisplayPausedMessage(msg) shows the "is about to send in" announcement; the
+  # bridge records the announced Pokemon before the message is shown and clears it when a foe is sent out.
+  def self.announce(scene, args)
+    battle = scene.instance_variable_get(:@battle)
+    return if battle.nil? || Game.online?(battle)
+    name = Game.incoming_name(args[0])
+    return unless name
+    inc = Game.incoming(battle, name)
+    return unless inc
+    battle.instance_variable_set(:@pokepal_incoming, inc)
+    write(battle, 'active')
+  end
+
+  def self.clear_incoming(battle)
+    battle.instance_variable_set(:@pokepal_incoming, nil)
+  end
+
   def self.install_hooks
     return unless defined?(::PokeBattle_Battle)
     wrap(::PokeBattle_Battle, :pbStartBattle,
-         before: ->(b) { b.instance_variable_set(:@pokepal_id, "#{Time.now.to_i}-#{rand(10_000)}") unless Game.online?(b); write(b, 'active') },
-         after: ->(b) { write(b, 'ended') })
-    wrap(::PokeBattle_Battle, :pbOnActiveOne, after: ->(b) { write(b, 'active') })
-    wrap(::PokeBattle_Battle, :pbEndOfRoundPhase, after: ->(b) { write(b, 'active') })
+         before: ->(b, _a) { b.instance_variable_set(:@pokepal_id, "#{Time.now.to_i}-#{rand(10_000)}") unless Game.online?(b); write(b, 'active') },
+         after: ->(b, _a) { clear_incoming(b); write(b, 'ended') })
+    wrap(::PokeBattle_Battle, :pbOnActiveOne,
+         after: lambda { |b, a|
+           clear_incoming(b) if a[0].respond_to?(:index) && Game.foe?(b, a[0])
+           write(b, 'active')
+         })
+    wrap(::PokeBattle_Battle, :pbEndOfRoundPhase, after: ->(b, _a) { write(b, 'active') })
+    wrap(::PokeBattle_Scene, :pbDisplayPausedMessage, before: ->(s, a) { announce(s, a) }) if defined?(::PokeBattle_Scene)
   end
 end
 

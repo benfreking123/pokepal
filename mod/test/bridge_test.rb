@@ -143,7 +143,8 @@ PokePalBridge::Game.define_singleton_method(:save_dir) { dir }
 gengar = battler(1, :GENGAR, types: [:GHOST, :POISON])
 fb = fake_battle(battlers: [battler(0, :RIOLU), gengar, nil, nil], opponent: Trainer.new(:LEADER_SIRIUS, 'Sirius'))
 state = PokePalBridge.build_state(fb, 'active')
-check('schema keys', %w[schema bridgeVersion updatedAt battleId state isDouble field trainer foes party], state.keys)
+check('schema keys', %w[schema bridgeVersion updatedAt battleId state isDouble field trainer foes party incoming], state.keys)
+check('no incoming by default', nil, state['incoming'])
 check('trainer', { 'type' => 'LEADER_SIRIUS', 'name' => 'Sirius' }, state['trainer'])
 check('foe', [{ 'slot' => 0, 'name' => 'Gengar', 'species' => 'GENGAR', 'form' => 0, 'formName' => nil, 'level' => 50,
                 'types' => %w[GHOST POISON], 'hpPercent' => 40, 'fainted' => false }], state['foes'])
@@ -198,6 +199,42 @@ check('battle without isOnline? is offline', false, PokePalBridge::Game.online?(
 PokePalBridge.write(live, 'active')
 check('offline battle writes again', true, File.exist?(path))
 check('no error log', false, File.exist?(File.join(dir, 'PokePal', 'bridge_error.log')))
+
+# The "is about to send in" announcement (Battle_Scene.rb:1800 pbDisplayPausedMessage).
+class PokeBattle_Scene
+  attr_reader :shown
+  def initialize(battle) = (@battle = battle; @shown = [])
+  def pbDisplayPausedMessage(msg, *rest) = (@shown << msg; :shown)
+end
+load MOD
+PokePalBridge::Game.define_singleton_method(:save_dir) { dir }
+PokePalBridge.instance_variable_set(:@disabled, false)
+PokePalBridge.instance_variable_set(:@last, nil)
+File.delete(path) if File.exist?(path)
+next_mon = Mon.new(:PORYGONZ, 0, 'Porygon-Z', 62, 100, 100, :NORMAL, nil)
+fainted_mon = Mon.new(:PORYGONZ, 0, 'Porygon-Z', 62, 0, 100, :NORMAL, nil)
+cinccino = battler(1, :CINCCINO, hp: 0)
+incoming_battle = fake_battle(battlers: [battler(0, :RIOLU), cinccino], opponent: Trainer.new(:PRODIGY, 'Noel'))
+incoming_battle.define_singleton_method(:party2) { [cinccino.pokemon, fainted_mon, nil, next_mon] }
+scene = PokeBattle_Scene.new(incoming_battle)
+check('scene method result passes through', :shown, scene.pbDisplayPausedMessage('Prodigy Noel is about to send in Porygon-Z.'))
+check('incoming is in the file before the message is shown', true, File.binread(path).include?('"incoming":{"slot":3,"species":"PORYGONZ","form":0,"level":62,"types":["NORMAL"]}'))
+check('incoming has no extra keys', %w[slot species form level types], incoming_battle.instance_variable_get(:@pokepal_incoming).keys)
+scene.pbDisplayPausedMessage('Wild Rattata appeared!')
+check('other messages leave it alone', 3, incoming_battle.instance_variable_get(:@pokepal_incoming)['slot'])
+incoming_battle.pbOnActiveOne(battler(0, :RIOLU))
+check('own send-out keeps it', true, !incoming_battle.instance_variable_get(:@pokepal_incoming).nil?)
+incoming_battle.pbOnActiveOne(battler(1, :PORYGONZ))
+check('foe send-out clears it', [nil, true], [incoming_battle.instance_variable_get(:@pokepal_incoming), File.binread(path).include?('"incoming":null')])
+unknown = fake_battle(battlers: [battler(0, :RIOLU), cinccino])
+unknown.define_singleton_method(:party2) { [cinccino.pokemon] }
+PokeBattle_Scene.new(unknown).pbDisplayPausedMessage('Noel is about to send in Missingno.')
+check('unknown name records nothing', nil, unknown.instance_variable_get(:@pokepal_incoming))
+online_inc = fake_battle(battlers: [battler(0, :RIOLU), cinccino], online: true)
+online_inc.define_singleton_method(:party2) { [next_mon] }
+File.delete(path) if File.exist?(path)
+PokeBattle_Scene.new(online_inc).pbDisplayPausedMessage('Noel is about to send in Porygon-Z.')
+check('online records nothing', [nil, false], [online_inc.instance_variable_get(:@pokepal_incoming), File.exist?(path)])
 
 # The only constants and globals the file adds.
 check('no stray globals', [], global_variables.grep(/pokepal/i))

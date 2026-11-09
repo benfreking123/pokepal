@@ -92,4 +92,10 @@ In the fight menu each damaging move of your active Pokémon gets a small pill a
 - Install: nothing new. The same `zz_PokePalOverlay.rb`, plus a PokePal build from this branch (it adds `rules` to `overlay.json`).
 - Unverified on 19.5.0: `move.category` and `move.accuracy` (the category line is left out if unavailable, the markers don't need it except for field rules limited to physical/special moves) and `pbType`'s result for Hidden Power. Button positions follow `Battle_Scene.rb:392-430`.
 
-`npm run test:mod` runs both mod tests against stand-in RGSS classes.
+### Switch-in prompt ("X is about to send in Y")
+
+- **Bridge** (`PokePalBridge.rb`): wraps `PokeBattle_Scene#pbDisplayPausedMessage(msg)` (`Battle_Scene.rb:1800`), which shows the announcement. Before the message appears it finds the announced Pokémon in the opposing party (healthy, not on the field, named as announced) and writes `incoming` (slot, species, form, level, types) into `battle_state.json`. It is cleared when a foe is sent out (`pbOnActiveOne` for a foe battler) and at battle end. Only what the game just announced is read; offline battles only. `Battle.rb` isn't in the copied scripts, so the message text format (`is about to send in <name>.`) comes from Essentials and Ben's screenshot.
+- **Panel**: while `incoming` is set, the panel header becomes "Next: Porygon-Z  Normal" with its weaknesses, then a "Bring in" list of up to three healthy party Pokémon: resisting or being immune to the foe's types counts most, then hitting it, then HP. The Pokémon already out only appears if it is the best choice, marked "stay in". The web Battle tab shows the same "Next foe" card.
+- **Install**: replace both `zz_PokePalBridge.rb` and `zz_PokePalOverlay.rb` in `patch/Mods`, and run PokePal from this branch.
+
+`npm run test:mod` runs the mod tests against stand-in RGSS classes.

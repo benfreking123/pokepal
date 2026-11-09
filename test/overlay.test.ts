@@ -18,6 +18,8 @@ const data = {
     LUCARIO: { id: "LUCARIO", dexNum: 448, ...form("Lucario", ["FIGHTING", "STEEL"]) },
     SNORLAX: { id: "SNORLAX", dexNum: 143, ...form("Snorlax", ["NORMAL"]) },
     UMBREON: { id: "UMBREON", dexNum: 197, ...form("Umbreon", ["DARK"]) },
+    PORYGONZ: { id: "PORYGONZ", dexNum: 474, ...form("Porygon-Z", ["NORMAL"]) },
+    GOLEM: { id: "GOLEM", dexNum: 76, ...form("Golem", ["ROCK", "GROUND"]) },
     SCIZOR: { id: "SCIZOR", dexNum: 212, ...form("Scizor", ["BUG", "STEEL"]) },
   },
   fields: { GLITCH: { id: "GLITCH", name: "Glitch Field", description: "", fieldAppSwitch: null }, UNDERWATER: { id: "UNDERWATER", name: "Underwater", description: "", fieldAppSwitch: null } },
@@ -88,6 +90,29 @@ it("sends the base rules for a field whose details are hidden", () => {
   const hidden = { ...DEFAULT_SPOILERS, fieldDetails: false };
   const rules = buildOverlay(live({ field: { id: "UNDERWATER", name: "UNDERWATER" } }), data, hidden, none)!.rules;
   expect(rules.failing).toEqual([]);
+});
+
+const incoming = { slot: 3, species: "PORYGONZ", form: 0, level: 62, types: ["NORMAL"] };
+
+it("switches the panel to the announced foe and ranks who to bring in", () => {
+  const o = buildOverlay(live({ incoming }), data, DEFAULT_SPOILERS, none)!;
+  expect(o.incoming).toBe(true);
+  expect(o.foes).toEqual([{ name: "Porygon-Z", types: ["Normal"], weak4: [], weak2: ["Fighting"] }]);
+  expect(o.picks![0]).toEqual({ name: "Rio", tag: "resists Normal", stay: true });
+  expect(o.picks!.map((p) => p.name)).toEqual(["Rio", "Umbreon", "Snorlax"]);
+  expect(o.picks!.length).toBeLessThanOrEqual(3);
+});
+
+it("leaves fainted Pokémon out of the bring-in list and doesn't suggest the active one unless it is best", () => {
+  const party = [pm("SNORLAX", "Snorlax", { active: true }), pm("LUCARIO", "Rio"), pm("UMBREON", "Umbreon"), pm("SCIZOR", "Scizor", { fainted: true })];
+  const o = buildOverlay(live({ incoming, party }), data, DEFAULT_SPOILERS, none)!;
+  expect(o.picks!.map((p) => p.name)).toEqual(["Rio", "Umbreon"]);
+  expect(o.picks!.every((p) => !p.stay)).toBe(true);
+});
+
+it("tells the field's rules apart in the bring-in list and stays offline-safe without foe types", () => {
+  const o = buildOverlay(live({ incoming: { ...incoming, types: [] } }), data, DEFAULT_SPOILERS, none)!;
+  expect(o.foes[0].types).toEqual(["Normal"]);
 });
 
 it("never writes levels, moves, abilities or items", () => {

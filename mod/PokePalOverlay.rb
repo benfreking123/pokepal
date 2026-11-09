@@ -193,12 +193,13 @@ module PokePalOverlay
       move.pbType(battler, move.type).to_s
     end
 
-    def self.category(move)
-      return 'Status' if move.basedamage.to_i <= 0
-      c = move.respond_to?(:category) ? move.category : nil
+    # Battle_Move.rb:13 category is :physical, :special or :status; :190-206 betterCategory(type) also covers
+    # Glitch, where the category follows the type. Z-moves keep the base move's category (Battle_Move.rb:51).
+    def self.category(move, type = nil)
+      return 'Status' if move.respond_to?(:pbIsStatus?) ? move.pbIsStatus? : move.category.to_s == 'status'
+      c = move.respond_to?(:betterCategory) && type ? move.betterCategory(type.to_sym) : move.category
       c = c.to_s.downcase
-      return c.capitalize if %w[physical special].include?(c)
-      nil
+      %w[physical special].include?(c) ? c.capitalize : nil
     end
 
     def self.battle_of(scene)
@@ -289,15 +290,15 @@ module PokePalOverlay
   def self.rows(d)
     out = [[:title, d['field'].is_a?(Hash) ? d['field']['name'].to_s : '']]
     Array(d['foes']).each do |f|
-      out << [:foe, "#{f['name']}  #{Array(f['types']).join('/')}"]
+      out << [:foe, "#{d['incoming'] ? 'Next: ' : ''}#{f['name']}  #{Array(f['types']).join('/')}"]
       w4 = abbr(f['weak4'])
       w2 = abbr(f['weak2'])
       out << [:weak, "4x #{w4.join(' ')}"] unless w4.empty?
       out << [:weak, "2x #{w2.join(' ')}"] unless w2.empty?
     end
     Array(d['picks']).each_with_index do |p, i|
-      out << [:head, 'Switch'] if i == 0
-      out << [:pick, "#{p['name']}", p['tag'].to_s]
+      out << [:head, d['incoming'] ? 'Bring in' : 'Switch'] if i == 0
+      out << [:pick, "#{p['name']}", p['stay'] ? "stay in: #{p['tag']}" : p['tag'].to_s]
     end
     out
   end
@@ -438,9 +439,9 @@ module PokePalOverlay
   def self.marks_for(moves, battler, foes, rules)
     moves.map do |m|
       next nil if m.nil?
-      cat = Game.category(m)
-      next nil if cat == 'Status'
       type = Game.move_type(m, battler)
+      cat = Game.category(m, type)
+      next nil if cat == 'Status'
       id = m.move.to_s
       foes.map do |f|
         ft = Game.foe_types(f)
@@ -449,9 +450,9 @@ module PokePalOverlay
     end
   end
 
-  def self.details_for(move)
+  def self.details_for(move, battler = nil)
     return nil if move.nil?
-    cat = Game.category(move)
+    cat = Game.category(move, battler ? Game.move_type(move, battler) : nil)
     parts = []
     parts << cat if cat
     parts << (move.basedamage.to_i > 0 ? "BP #{move.basedamage.to_i}" : nil) if cat != 'Status'
@@ -467,8 +468,8 @@ module PokePalOverlay
     '1/2' => [200, 110, 40], '1/4' => [190, 70, 40], 'x0' => [70, 40, 40], '?' => [90, 90, 105]
   }.freeze unless const_defined?(:PILL_COLORS, false)
 
-  def self.draw_moves(index, moves, marks)
-    key = [index, marks, details_for(moves[index])]
+  def self.draw_moves(index, moves, marks, battler)
+    key = [index, marks, details_for(moves[index], battler)]
     return if key == @moves_drawn
     @moves_drawn = key
     old = @moves_sprite.bitmap
@@ -516,7 +517,7 @@ module PokePalOverlay
         @marks_at = now + POLL_SECONDS
         @marks = marks_for(moves, menu.battler, foes, rules)
       end
-      draw_moves(menu.index, moves, @marks)
+      draw_moves(menu.index, moves, @marks, menu.battler)
       @moves_sprite.visible = true
     rescue StandardError => e
       @moves_off = true

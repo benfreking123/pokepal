@@ -3,6 +3,7 @@ import { baseStatTotal, formTypes, recommend, type RecMon, type RecResult, type 
 import { toFoes, type PrepFoe } from "../../shared/prep/score";
 import { NO_FIELD } from "../../shared/typechart";
 import type { ClientBundle, LiveBattle, OwnedMon, SaveSummary, TrainerView } from "../../shared/types";
+import { IncomingFoe } from "./IncomingFoe";
 import { TypeBadge } from "./TypeBadge";
 
 const formName = (b: ClientBundle, species: string, form: number) =>
@@ -71,9 +72,11 @@ export function BattleRecs({ bundle, save, view, fieldId, live, onRevealNext }: 
   const now = useMemo(() => (mons && outNow.length ? recommend({ ...base, foes: outNow, ...mons }) : null), [mons, outNow, overlay]); // eslint-disable-line react-hooks/exhaustive-deps
   const team = useMemo(() => (mons && teamFoes.length ? recommend({ ...base, foes: teamFoes, ...mons }) : null), [mons, teamFoes, overlay]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (!save) return <p className="muted">Loading your save…</p>;
+  const incomingCard = live?.incoming ? <IncomingFoe bundle={bundle} live={live} fieldId={fieldId} /> : null;
+  if (!save) return <>{incomingCard}<p className="muted">Loading your save…</p></>;
   return (
     <div className="battle-recs">
+      {incomingCard}
       {fieldId !== "NONE" && !bundle.overlays[fieldId] ? <p className="notice">Field Notes not found yet, so this field's type rules are not used.</p> : null}
       {live && now ? <RecList title={`On the field: ${outNow.map((f) => f.name).join(" + ")}`} result={now} bundle={bundle} /> : null}
       {live && outNow.length === 0 ? <p className="rec-note">No foe on the field right now.</p> : null}
