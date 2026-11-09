@@ -5,6 +5,8 @@ module PokePalBridge
   ENABLED = true unless const_defined?(:ENABLED, false)
   VERSION = '1.0.0' unless const_defined?(:VERSION, false)
   SCHEMA = 1 unless const_defined?(:SCHEMA, false)
+  # Set to true to append timing lines to <save dir>\PokePal\bridge_timing.log (how long each write took).
+  DEBUG = false unless const_defined?(:DEBUG, false)
   # Survives F12 soft resets, which re-run every script in the same Ruby VM.
   HOOKED = {} unless const_defined?(:HOOKED, false)
 
@@ -94,6 +96,45 @@ module PokePalBridge
       battle.class.ancestors.any? { |k| k.name.to_s =~ /Online/ }
     end
 
+    # Battle_Scene.rb:1800: the text of the paused message the game shows before a trainer sends in its next
+    # Pokemon ("Prodigy Noel is about to send in Porygon-Z."). Only that announced name is read from it.
+    def self.incoming_name(msg)
+      m = /\bis about to send in (.+?)\.?\z/.match(msg.to_s)
+      m && m[1]
+    end
+
+    # Battle.rb:1745 and :1903 pbSwitchInName: the announcement uses getMonName(species, form) for a foe (not its
+    # nickname), and for an Illusion Pokemon the name of the party's last healthy Pokemon, which is the one this finds.
+    def self.shown_name(pk)
+      return pk.name.to_s unless Object.private_method_defined?(:getMonName) || Object.method_defined?(:getMonName)
+      getMonName(pk.species, pk.form).to_s
+    rescue StandardError
+      pk.name.to_s
+    end
+
+    # The announced Pokemon from the opposing party: healthy, not already on the field, and named as announced.
+    def self.incoming(battle, name)
+      return nil unless battle.respond_to?(:party2)
+      active = battlers(battle).map(&:pokemon)
+      party = battle.party2.to_a
+      i = party.index { |pk| pk && pk.hp.to_i > 0 && (shown_name(pk) == name || pk.name.to_s == name) && active.none? { |a| a.equal?(pk) } }
+      return nil if i.nil?
+      pk = party[i]
+      types = pk.respond_to?(:type1) ? [pk.type1, pk.respond_to?(:type2) ? pk.type2 : nil].compact.uniq.map(&:to_s) : []
+      { 'slot' => i, 'species' => pk.species.to_s, 'form' => pk.form.to_i, 'level' => pk.level.to_i, 'types' => types }
+    end
+
+    # Pokemon#moves holds PBMove objects whose #move is the id (Battle.rb:2754, Battle_Move.rb:128); empty slots are
+    # nil or 0. Your own Pokemon's moves are not a secret.
+    def self.move_ids(pk)
+      return [] unless pk.respond_to?(:moves) && pk.moves
+      pk.moves.to_a.map { |m| m.respond_to?(:move) ? m.move : nil }.reject { |id| id.nil? || id == 0 }.map(&:to_s).first(4)
+    end
+
+    def self.speed(pk)
+      pk.respond_to?(:speed) ? pk.speed.to_i : 0
+    end
+
     # RTP.rb:80-82
     def self.save_dir
       File.dirname(RTP.getSaveFileName('Game.rxdata'))
@@ -109,11 +150,13 @@ module PokePalBridge
     active = Game.active_pokemon(battle)
     party = Game.party(battle).map do |pk|
       { 'species' => pk.species.to_s, 'form' => pk.form.to_i, 'nickname' => pk.name.to_s, 'level' => pk.level.to_i,
-        'hpPercent' => Game.hp_percent(pk.hp, pk.totalhp), 'fainted' => pk.hp.to_i <= 0, 'active' => active.any? { |a| a.equal?(pk) } }
+        'hpPercent' => Game.hp_percent(pk.hp, pk.totalhp), 'fainted' => pk.hp.to_i <= 0, 'active' => active.any? { |a| a.equal?(pk) },
+        'moves' => Game.move_ids(pk), 'speed' => Game.speed(pk) }
     end
     { 'schema' => SCHEMA, 'bridgeVersion' => VERSION, 'updatedAt' => Time.now.utc.strftime('%Y-%m-%dT%H:%M:%SZ'),
       'battleId' => battle.instance_variable_get(:@pokepal_id) || '', 'state' => state, 'isDouble' => Game.double?(battle),
-      'field' => Game.field(battle), 'trainer' => Game.trainer(battle), 'foes' => foes, 'party' => party }
+      'field' => Game.field(battle), 'trainer' => Game.trainer(battle), 'foes' => foes, 'party' => party,
+      'incoming' => battle.instance_variable_get(:@pokepal_incoming) }
   end
 
   @last = nil
@@ -154,6 +197,7 @@ module PokePalBridge
 
   def self.write(battle, state)
     return if switched_off?(battle)
+    t0 = DEBUG ? Time.now : nil
     data = build_state(battle, state)
     comparable = encode(data.reject { |k, _| k == 'updatedAt' })
     return if comparable == @last
@@ -162,6 +206,13 @@ module PokePalBridge
     path = File.join(dir, 'battle_state.json')
     File.open(path + '.tmp', 'wb') { |f| f.write(encode(data)) }
     replace_file(path + '.tmp', path)
+    timing("write #{state} #{((Time.now - t0) * 1000).round(2)}ms") if t0
+  end
+
+  def self.timing(text)
+    File.open(File.join(dir, 'bridge_timing.log'), 'a') { |f| f.puts("#{Time.now.strftime('%H:%M:%S.%L')} #{text}") }
+  rescue StandardError
+    nil
   end
 
   # Wraps klass#name without adding alias names to the class, so it chains with alias-based
@@ -178,11 +229,11 @@ module PokePalBridge
                  else :public
                  end
     klass.send(:define_method, name) do |*args, **kwargs, &block|
-      PokePalBridge.safely { before.call(self) } if before
+      PokePalBridge.safely { before.call(self, args) } if before
       begin
         current.bind(self).call(*args, **kwargs, &block)
       ensure
-        PokePalBridge.safely { after.call(self) } if after
+        PokePalBridge.safely { after.call(self, args) } if after
       end
     end
     klass.send(visibility, name)
@@ -192,13 +243,46 @@ module PokePalBridge
 
   # Battle.rb:3585 pbStartBattle (returns when the battle is over), Battle.rb:2857 pbOnActiveOne
   # (every send-out and switch-in), Battle.rb:4372 pbEndOfRoundPhase.
+  # Battle_Scene.rb:1800 (scene) pbDisplayPausedMessage(msg) shows the "is about to send in" announcement; the
+  # bridge records the announced Pokemon before the message is shown and clears it when a foe is sent out.
+  def self.announce(scene, args)
+    battle = scene.instance_variable_get(:@battle)
+    return if battle.nil? || Game.online?(battle)
+    name = Game.incoming_name(args[0])
+    return unless name
+    inc = Game.incoming(battle, name)
+    return unless inc
+    battle.instance_variable_set(:@pokepal_incoming, inc)
+    write(battle, 'active')
+  end
+
+  # Battle_Scene.rb:3507 pbHPChanged and :3540 pbFainted run after the battler's HP is already set, so the file
+  # follows every hit and faint instead of waiting for the end of the turn.
+  def self.write_for_scene(scene)
+    battle = scene.instance_variable_get(:@battle)
+    write(battle, 'active') if battle
+  end
+
+  def self.clear_incoming(battle)
+    battle.instance_variable_set(:@pokepal_incoming, nil)
+  end
+
   def self.install_hooks
     return unless defined?(::PokeBattle_Battle)
     wrap(::PokeBattle_Battle, :pbStartBattle,
-         before: ->(b) { b.instance_variable_set(:@pokepal_id, "#{Time.now.to_i}-#{rand(10_000)}") unless Game.online?(b); write(b, 'active') },
-         after: ->(b) { write(b, 'ended') })
-    wrap(::PokeBattle_Battle, :pbOnActiveOne, after: ->(b) { write(b, 'active') })
-    wrap(::PokeBattle_Battle, :pbEndOfRoundPhase, after: ->(b) { write(b, 'active') })
+         before: ->(b, _a) { b.instance_variable_set(:@pokepal_id, "#{Time.now.to_i}-#{rand(10_000)}") unless Game.online?(b); write(b, 'active') },
+         after: ->(b, _a) { clear_incoming(b); write(b, 'ended') })
+    wrap(::PokeBattle_Battle, :pbOnActiveOne,
+         after: lambda { |b, a|
+           clear_incoming(b) if a[0].respond_to?(:index) && Game.foe?(b, a[0])
+           write(b, 'active')
+         })
+    wrap(::PokeBattle_Battle, :pbEndOfRoundPhase, after: ->(b, _a) { write(b, 'active') })
+    wrap(::PokeBattle_Battle, :pbCommandPhase, before: ->(b, _a) { write(b, 'active') })
+    return unless defined?(::PokeBattle_Scene)
+    wrap(::PokeBattle_Scene, :pbDisplayPausedMessage, before: ->(s, a) { announce(s, a) })
+    wrap(::PokeBattle_Scene, :pbHPChanged, before: ->(s, _a) { write_for_scene(s) })
+    wrap(::PokeBattle_Scene, :pbFainted, before: ->(s, _a) { write_for_scene(s) })
   end
 end
 

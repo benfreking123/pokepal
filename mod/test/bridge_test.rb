@@ -1,4 +1,5 @@
 # Runs with any Ruby >= 3.0: ruby mod/test/bridge_test.rb
+require "json"
 require 'tmpdir'
 
 MOD = File.expand_path('../PokePalBridge.rb', __dir__)
@@ -143,7 +144,8 @@ PokePalBridge::Game.define_singleton_method(:save_dir) { dir }
 gengar = battler(1, :GENGAR, types: [:GHOST, :POISON])
 fb = fake_battle(battlers: [battler(0, :RIOLU), gengar, nil, nil], opponent: Trainer.new(:LEADER_SIRIUS, 'Sirius'))
 state = PokePalBridge.build_state(fb, 'active')
-check('schema keys', %w[schema bridgeVersion updatedAt battleId state isDouble field trainer foes party], state.keys)
+check('schema keys', %w[schema bridgeVersion updatedAt battleId state isDouble field trainer foes party incoming], state.keys)
+check('no incoming by default', nil, state['incoming'])
 check('trainer', { 'type' => 'LEADER_SIRIUS', 'name' => 'Sirius' }, state['trainer'])
 check('foe', [{ 'slot' => 0, 'name' => 'Gengar', 'species' => 'GENGAR', 'form' => 0, 'formName' => nil, 'level' => 50,
                 'types' => %w[GHOST POISON], 'hpPercent' => 40, 'fainted' => false }], state['foes'])
@@ -198,6 +200,90 @@ check('battle without isOnline? is offline', false, PokePalBridge::Game.online?(
 PokePalBridge.write(live, 'active')
 check('offline battle writes again', true, File.exist?(path))
 check('no error log', false, File.exist?(File.join(dir, 'PokePal', 'bridge_error.log')))
+
+# The "is about to send in" announcement (Battle_Scene.rb:1800 pbDisplayPausedMessage).
+class PokeBattle_Scene
+  attr_reader :shown
+  def initialize(battle) = (@battle = battle; @shown = [])
+  def pbDisplayPausedMessage(msg, *rest) = (@shown << msg; :shown)
+  def pbHPChanged(mons, anim = false) = :hp
+  def pbFainted(pkmn) = :fainted
+end
+load MOD
+PokePalBridge::Game.define_singleton_method(:save_dir) { dir }
+PokePalBridge.instance_variable_set(:@disabled, false)
+PokePalBridge.instance_variable_set(:@last, nil)
+File.delete(path) if File.exist?(path)
+next_mon = Mon.new(:PORYGONZ, 0, 'Porygon-Z', 62, 100, 100, :NORMAL, nil)
+fainted_mon = Mon.new(:PORYGONZ, 0, 'Porygon-Z', 62, 0, 100, :NORMAL, nil)
+cinccino = battler(1, :CINCCINO, hp: 0)
+incoming_battle = fake_battle(battlers: [battler(0, :RIOLU), cinccino], opponent: Trainer.new(:PRODIGY, 'Noel'))
+incoming_battle.define_singleton_method(:party2) { [cinccino.pokemon, fainted_mon, nil, next_mon] }
+scene = PokeBattle_Scene.new(incoming_battle)
+check('scene method result passes through', :shown, scene.pbDisplayPausedMessage('Prodigy Noel is about to send in Porygon-Z.'))
+check('incoming is in the file before the message is shown', true, File.binread(path).include?('"incoming":{"slot":3,"species":"PORYGONZ","form":0,"level":62,"types":["NORMAL"]}'))
+check('incoming has no extra keys', %w[slot species form level types], incoming_battle.instance_variable_get(:@pokepal_incoming).keys)
+scene.pbDisplayPausedMessage('Wild Rattata appeared!')
+check('other messages leave it alone', 3, incoming_battle.instance_variable_get(:@pokepal_incoming)['slot'])
+incoming_battle.pbOnActiveOne(battler(0, :RIOLU))
+check('own send-out keeps it', true, !incoming_battle.instance_variable_get(:@pokepal_incoming).nil?)
+incoming_battle.pbOnActiveOne(battler(1, :PORYGONZ))
+check('foe send-out clears it', [nil, true], [incoming_battle.instance_variable_get(:@pokepal_incoming), File.binread(path).include?('"incoming":null')])
+unknown = fake_battle(battlers: [battler(0, :RIOLU), cinccino])
+unknown.define_singleton_method(:party2) { [cinccino.pokemon] }
+PokeBattle_Scene.new(unknown).pbDisplayPausedMessage('Noel is about to send in Missingno.')
+check('unknown name records nothing', nil, unknown.instance_variable_get(:@pokepal_incoming))
+online_inc = fake_battle(battlers: [battler(0, :RIOLU), cinccino], online: true)
+online_inc.define_singleton_method(:party2) { [next_mon] }
+File.delete(path) if File.exist?(path)
+PokeBattle_Scene.new(online_inc).pbDisplayPausedMessage('Noel is about to send in Porygon-Z.')
+check('online records nothing', [nil, false], [online_inc.instance_variable_get(:@pokepal_incoming), File.exist?(path)])
+
+# Every hit and faint is written as it happens (HP is already set when the scene hears about it).
+hit = battler(1, :GENGAR, hp: 80)
+hit_battle = fake_battle(battlers: [battler(0, :RIOLU), hit])
+hit_scene = PokeBattle_Scene.new(hit_battle)
+PokePalBridge.instance_variable_set(:@last, nil)
+hit_scene.pbHPChanged([[hit, 100]])
+check('hp change is written', true, File.binread(path).include?('"hpPercent":80'))
+hit.hp = 0
+hit.pokemon.hp = 0
+check('scene method result passes through', :fainted, hit_scene.pbFainted(hit))
+check('faint is written', true, File.binread(path).include?('"fainted":true'))
+
+# The party's real moves (PBMove#move ids) and Speed go out so PokePal can show each pick's best attack.
+PBMoveStub = Struct.new(:move)
+lead = battler(0, :LUCARIO)
+lead.pokemon.define_singleton_method(:moves) { [PBMoveStub.new(:CLOSECOMBAT), PBMoveStub.new(0), nil, PBMoveStub.new(:BULLETPUNCH)] }
+lead.pokemon.define_singleton_method(:speed) { 187 }
+PokePalBridge.instance_variable_set(:@last, nil)
+PokePalBridge.write(fake_battle(battlers: [lead, battler(1, :GENGAR)]), 'active')
+sent = JSON.parse(File.binread(path))['party'].find { |m| m['species'] == 'LUCARIO' && m['moves'] != [] }
+check('party moves and speed are written', [%w[CLOSECOMBAT BULLETPUNCH], 187], [sent['moves'], sent['speed']])
+check('a mon without that data sends none', [[], 0], JSON.parse(File.binread(path))['party'].last.values_at('moves', 'speed'))
+
+# Writes are cheap enough to do per hit: build, compare and (when changed) write a small file.
+bench = fake_battle(battlers: [battler(0, :RIOLU), battler(1, :GENGAR)])
+PokePalBridge.instance_variable_set(:@last, nil)
+t0 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+200.times { |i| bench.battlers[1].hp = 100 - (i % 100); bench.battlers[1].pokemon.hp = bench.battlers[1].hp; PokePalBridge.write(bench, 'active') }
+per_write_ms = (Process.clock_gettime(Process::CLOCK_MONOTONIC) - t0) * 1000 / 200
+puts format('bridge write: %.2f ms per changed write', per_write_ms)
+check('a changed write takes well under 5 ms', true, per_write_ms < 5)
+t0 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+2000.times { PokePalBridge.write(bench, 'active') }
+per_skip_us = (Process.clock_gettime(Process::CLOCK_MONOTONIC) - t0) * 1_000_000 / 2000
+puts format('bridge write: %.1f us when nothing changed (no file access beyond the disabled check)', per_skip_us)
+check('an unchanged write is skipped cheaply', true, per_skip_us < 500)
+
+# A foe announced by its species name (Battle.rb:1912 getMonName), whatever its nickname or form name.
+def getMonName(species, form) = form == 1 ? "Alolan #{species.to_s.capitalize}" : species.to_s.capitalize
+nick = Mon.new(:RAICHU, 1, 'Sparky', 40, 100, 100, :ELECTRIC, :PSYCHIC)
+nick_battle = fake_battle(battlers: [battler(0, :RIOLU), cinccino])
+nick_battle.define_singleton_method(:party2) { [cinccino.pokemon, nick] }
+PokeBattle_Scene.new(nick_battle).pbDisplayPausedMessage('Noel is about to send in Alolan Raichu.')
+check('announced by species and form name, not nickname', ['RAICHU', 1], nick_battle.instance_variable_get(:@pokepal_incoming).values_at('species', 'form'))
+Object.send(:remove_method, :getMonName)
 
 # The only constants and globals the file adds.
 check('no stray globals', [], global_variables.grep(/pokepal/i))
