@@ -1,0 +1,4 @@
+node_modules/
+dist/
+pokepal.config.json
+*.log
