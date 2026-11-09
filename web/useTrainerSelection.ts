@@ -46,6 +46,14 @@ export function useTrainerSelection(bundle: ClientBundle, live: LiveBattle | nul
       const b = bundle.bosses.find((x) => x.variants.some((v) => v.trainerKey === key));
       setFieldId(b?.fieldId ?? "NONE");
     },
+    /** Show this trainer and field and stop live mode from replacing them for the current battle. */
+    openTrainer: (key: string, field: string) => {
+      manualBattle.current = liveBattleId;
+      setFromBattle(null);
+      setTrainerKey(key);
+      setFieldId(field);
+    },
+    holdManual: () => { manualBattle.current = liveBattleId; },
     chooseVariant: (key: string) => { manualBattle.current = liveBattleId; setFromBattle(null); setTrainerKey(key); },
     switchParty: (key: string) => { if (fromBattle) manualBattle.current = fromBattle.battleId; setTrainerKey(key); },
     revealNext: () => {

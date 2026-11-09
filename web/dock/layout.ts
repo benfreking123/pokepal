@@ -1,10 +1,13 @@
 export const LAYOUT_STORAGE_KEY = "pokepal.dashboard.layout.v1";
+/** Window event that asks the dashboard to bring a panel to the front (detail: PanelId). */
+export const SHOW_PANEL_EVENT = "pokepal:show-panel";
 export const MOBILE_QUERY = "(max-width: 768px)";
 
 export const PANELS = [
   { id: "battle", title: "Battle" },
   { id: "type-chart", title: "Type Chart" },
   { id: "prep", title: "Battle Prep" },
+  { id: "history", title: "History" },
   { id: "team", title: "Team / PC" },
   { id: "whats-next", title: "What's next" },
   { id: "save-swap", title: "Save Swap" },
