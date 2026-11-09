@@ -31,16 +31,29 @@ export function saveCandidates(env: NodeJS.ProcessEnv, gameDir: string | null): 
   return out;
 }
 
+function insideWorkingTree(dir: string): boolean {
+  const rel = path.relative(process.cwd(), path.resolve(dir));
+  return rel === "" || (!rel.startsWith("..") && !path.isAbsolute(rel));
+}
+
+// Backups hold saves, so they must never land inside the repo clone (relative paths resolve against it).
+function safeBackupDir(configured: string | null, pokepalDir: string | null): string | null {
+  const fallback = pokepalDir ? path.join(pokepalDir, "backups") : null;
+  if (!configured) return fallback;
+  return insideWorkingTree(configured) && fallback ? fallback : configured;
+}
+
 function autodetect(config: Config, env: NodeJS.ProcessEnv): Config {
   const saveFile = config.saveFile ?? saveCandidates(env, config.gameDir).find((p) => existsSync(p)) ?? null;
   const home = env.USERPROFILE ?? null;
+  const pokepalDir = saveFile ? path.join(path.dirname(saveFile), "PokePal") : home ? path.join(home, "Documents", "PokePal") : null;
   const icloud = home ? path.join(home, "iCloudDrive", "Pokemon Reborn Sync") : null;
   return {
     ...config,
     saveFile,
     syncDir: config.syncDir ?? (icloud && existsSync(icloud) ? icloud : null),
-    stateDir: config.stateDir ?? (home ? path.join(home, "Documents", "PokePal", "state") : null),
-    backupDir: config.backupDir ?? (home ? path.join(home, "Documents", "PokePal", "backups") : null),
+    stateDir: config.stateDir ?? (pokepalDir ? path.join(pokepalDir, "state") : null),
+    backupDir: safeBackupDir(config.backupDir, pokepalDir),
     battleStateFile: config.battleStateFile ?? (saveFile ? path.join(path.dirname(saveFile), "PokePal", "battle_state.json") : null),
   };
 }
