@@ -76,3 +76,7 @@ button { cursor: pointer; background: var(--accent); border: 0; color: #fff; }
 .prep-results { list-style: none; margin: 8px 0 0; padding: 0; max-height: 260px; overflow-y: auto; }
 .prep-results button { width: 100%; text-align: left; margin: 2px 0; }
 .prep-results button.active { outline: 2px solid var(--accent); }
+.live-chip { background: #1f5c34; }
+.live.ended .foe-panel, .live.ended .live-party { opacity: 0.55; filter: grayscale(0.8); }
+.live-foes .fainted { opacity: 0.5; }
+.live-party-mon { margin: 6px 0; }
