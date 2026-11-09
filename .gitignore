@@ -6,3 +6,7 @@ state/
 
 test/fixtures/saves/pc-*
 test/fixtures/runa/
+
+backups/
+*.rxdata
+!test/fixtures/saves/synthetic-Game.rxdata
