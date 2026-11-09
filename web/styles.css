@@ -135,3 +135,26 @@ code, .mono, .type-chart { font-family: var(--font-mono); }
 .mobile-panel[hidden] { display: none; }
 .mobile-dashboard-content .dock-panel { padding: 12px; }
 .dockview-theme-pokepal .dv-default-tab .dv-default-tab-action { display: none; }
+
+.wn h2 { font-size: 13px; margin: 14px 0 6px; }
+.wn-summary { display: flex; flex-wrap: wrap; gap: 6px; }
+.wn-step.wn-current { border-color: var(--accent); }
+.wn-legs { list-style: none; padding: 0; margin: 8px 0; display: flex; flex-direction: column; gap: 6px; }
+.wn-leg { display: flex; gap: 8px; }
+.wn-leg-mark { width: 14px; flex: 0 0 14px; text-align: center; color: var(--muted); }
+.wn-here { color: var(--accent); font-style: normal; font-weight: 600; }
+.wn-leg.wn-done { opacity: .6; }
+.wn-needs, .wn-context { margin: 4px 0; font-size: 12px; }
+.wn-sources { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 6px; font-size: 11px; }
+.wn-list { list-style: none; margin: 0; padding: 0; }
+.wn-item { display: flex; flex-direction: column; gap: 2px; }
+.wn-item-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.wn-item-done { opacity: .65; }
+.wn-check { width: 14px; text-align: center; color: var(--muted); }
+.wn-kind { font-size: 10px; padding: 2px 8px; }
+.wn-warn { background: #5c4a14; font-size: 10px; padding: 2px 8px; }
+.wn-locked { display: flex; align-items: center; gap: 8px; }
+.wn-link { background: none; color: var(--accent); padding: 0; border: 0; text-decoration: underline; }
+.wn-link:hover { background: none; }
+.wn-done-list { list-style: none; padding: 0; margin: 4px 0; color: var(--muted); }
+.wn-foot { font-size: 11px; margin-top: 12px; }
