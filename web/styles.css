@@ -65,3 +65,11 @@ a { color: var(--accent); }
 input, select, button { font: inherit; padding: 6px 8px; border-radius: 6px; border: 1px solid #3b4568; background: #232b40; color: var(--text); }
 button { cursor: pointer; background: var(--accent); border: 0; color: #fff; }
 @media (max-width: 700px) { .type-chart { font-size: 0.7em; } .type-chart th, .type-chart td { padding: 3px 4px; min-width: 24px; } }
+.muted { color: var(--muted); }
+.mon-card { margin: 0; }
+.mon-moves { margin: 4px 0; padding-left: 18px; }
+.iv-table td, .iv-table th { padding: 2px 6px; text-align: center; }
+.pill { display: inline-block; border-radius: 999px; padding: 2px 10px; background: #5c1f2b; }
+.warnings { padding-left: 18px; }
+.dialog-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.6); display: flex; align-items: center; justify-content: center; z-index: 20; padding: 12px; }
+.dialog { background: var(--card); border-radius: 12px; padding: 16px; max-width: 560px; width: 100%; max-height: 90vh; overflow: auto; }

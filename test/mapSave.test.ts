@@ -1,4 +1,6 @@
-import { expect, it } from "vitest";
+import { existsSync } from "node:fs";
+import { describe, expect, it } from "vitest";
+import { loadGameData } from "../server/data/loadData";
 import { mapSave, toStatBlock } from "../server/save/mapSave";
 import { readSaveFile, SaveParseError } from "../server/save/readSave";
 import { hiddenPowerType, isShiny, STAT_ORDER } from "../server/save/schema";
@@ -51,4 +53,13 @@ it("reads and maps a save in the 19.5 layout", async () => {
 
 it("rejects an unreadable save with SaveParseError", async () => {
   await expect(readSaveFile("test/fixtures/saves/missing.rxdata")).rejects.toBeInstanceOf(SaveParseError);
+});
+
+describe.runIf(existsSync("test/fixtures/saves/pc-Game.rxdata") && existsSync("data/versions/manifest.json"))("real save (needs the PC fixtures)", () => {
+  it("maps Benjamin's save with no unknown IDs", async () => {
+    const real = mapSave(await readSaveFile("test/fixtures/saves/pc-Game.rxdata"), (await loadGameData("data/versions", null)).game);
+    expect(real.meta.trainerName).toBe("Bean");
+    expect(real.boxes).toHaveLength(50);
+    expect(real.unknownIds).toEqual([]);
+  });
 });
