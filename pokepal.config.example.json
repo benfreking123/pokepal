@@ -6,8 +6,8 @@
   "gameDir": "C:\\Users\\Ben\\Desktop\\Reborn-19.5.0",
   "saveFile": "C:\\Users\\Ben\\Saved Games\\Pokemon Reborn\\Game.rxdata",
   "syncDir": "C:\\Users\\Ben\\iCloudDrive\\Pokemon Reborn Sync",
-  "stateDir": "C:\\Users\\Ben\\Documents\\PokePal\\state",
-  "backupDir": "C:\\Users\\Ben\\Documents\\PokePal\\backups",
+  "stateDir": "C:\\Users\\Ben\\Saved Games\\Pokemon Reborn\\PokePal\\state",
+  "backupDir": "C:\\Users\\Ben\\Saved Games\\Pokemon Reborn\\PokePal\\backups",
   "runaFormat": { "kind": "zip", "entryPath": "data/Game.rxdata" },
   "battleStateFile": "C:\\Users\\Ben\\Saved Games\\Pokemon Reborn\\PokePal\\battle_state.json",
   "gameProcessNames": ["Game.exe"]
