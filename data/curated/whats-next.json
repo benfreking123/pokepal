@@ -1,0 +1,1493 @@
+{
+  "gameVersion": "19.5.0",
+  "note": "Text-only, hand-curated from the Pokemon Reborn wiki. Step and quest wording is deliberately spoiler-free; names of bosses live in namedBattles/gym and are only shown when the 'Trainer locations and story context' spoiler switch is on. Progress ids come from the game's own Scripts (SystemConstants.rb Switches/Variables and NewGamePlus.rb completion checks).",
+  "sources": {
+    "gym-leaders": {
+      "label": "Reborn wiki: Gym Leaders (badge order, TM/TMX rewards, level caps)",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Gym_Leaders"
+    },
+    "battle-guide": {
+      "label": "Reborn wiki: Battle Guide (story order of major battles by badge count)",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Battle_Guide"
+    },
+    "tm-locations": {
+      "label": "Reborn wiki: TM Locations (TMX field-move unlocks)",
+      "url": "https://pokemon-reborn.fandom.com/wiki/TM_Locations"
+    },
+    "puzzle-guides": {
+      "label": "Reborn wiki: Puzzle Guides (what opens after which badge)",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Puzzle_Guides"
+    },
+    "memory-locations": {
+      "label": "Reborn wiki: Memory Locations",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Memory_Locations"
+    },
+    "dawn-stone": {
+      "label": "Reborn wiki: Dawn Stone locations",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Dawn_Stone"
+    },
+    "day-care": {
+      "label": "Reborn wiki: Day-Care Couple Rescue Quest",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Day-Care_Couple_Rescue_Quest"
+    },
+    "rainbow-scent": {
+      "label": "Reborn wiki: Rainbow Scent Sidequest",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Rainbow_Scent_Sidequest"
+    },
+    "house-raid": {
+      "label": "Reborn wiki: House Raid Sidequest",
+      "url": "https://pokemon-reborn.fandom.com/wiki/House_Raid_Sidequest"
+    },
+    "bicycle": {
+      "label": "Reborn wiki: Bicycle Sidequest",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Bicycle_Sidequest"
+    },
+    "gang-raid": {
+      "label": "Reborn wiki: Gang Raid Sidequest",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Gang_Raid_Sidequest"
+    },
+    "police": {
+      "label": "Reborn wiki: Police Officers Sidequest",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Police_Officers_Sidequest"
+    },
+    "stickers": {
+      "label": "Reborn wiki: Department Store Stickers Sidequests",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Department_Store_Stickers_Sidequests"
+    },
+    "aron-sticker": {
+      "label": "Reborn wiki: Aron Sticker Sidequest",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Aron_Sticker_Sidequest"
+    },
+    "magikarp": {
+      "label": "Reborn wiki: Magikarp Sidequest",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Magikarp_Sidequest"
+    },
+    "missing-furniture": {
+      "label": "Reborn wiki: Missing Furniture Sidequest",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Missing_Furniture_Sidequest"
+    },
+    "eeveelutions": {
+      "label": "Reborn wiki: Eeveelutions Petting Sidequest",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Eeveelutions_Petting_Sidequest"
+    },
+    "spinel-town": {
+      "label": "Reborn wiki: Spinel Town (sidequests and special encounters)",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Spinel_Town"
+    },
+    "tanzan-mountain": {
+      "label": "Reborn wiki: Tanzan Mountain (special encounters)",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Tanzan_Mountain"
+    },
+    "tanzan-cove": {
+      "label": "Reborn wiki: Tanzan Cove",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Tanzan_Cove"
+    },
+    "tara-identity": {
+      "label": "Reborn wiki: Tara's Identity Sidequest",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Tara%27s_Identity_Sidequest"
+    },
+    "starter-egg": {
+      "label": "Reborn wiki: where each starter Pokemon appears",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Starter_Egg_Quest"
+    },
+    "spirit": {
+      "label": "Reborn wiki: Spirit Sidequest",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Spirit_Sidequest"
+    },
+    "postgame": {
+      "label": "Reborn wiki: Postgame (Nightclub tiers)",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Postgame"
+    },
+    "route-2": {
+      "label": "Reborn wiki: Route 2",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Route_2"
+    },
+    "devon-corp": {
+      "label": "Reborn wiki: Devon Corp",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Devon_Corp"
+    },
+    "type-null": {
+      "label": "Reborn wiki: Type: Null Special Encounter",
+      "url": "https://pokemon-reborn.fandom.com/wiki/Type:_Null_Special_Encounter"
+    },
+    "scripts-ngp": {
+      "label": "Game script NewGamePlus.rb (the game's own quest-completion checks)",
+      "url": null
+    },
+    "scripts-constants": {
+      "label": "Game script SystemConstants.rb (named switches and variables)",
+      "url": null
+    }
+  },
+  "progress": {
+    "variables": {
+      "150": {
+        "name": "E10_Story",
+        "from": "SystemConstants.rb",
+        "note": "Vanhanen Castle chess puzzle: >= 40 is solved (NewGamePlus.rb chessPuzzle)"
+      },
+      "173": {
+        "name": "Route 2 progress",
+        "from": "NewGamePlus.rb",
+        "note": ">= 8 counts as the Route 2 quest done (route2)"
+      },
+      "339": {
+        "name": "Devon Corp progress",
+        "from": "NewGamePlus.rb",
+        "note": ">= 39 counts as done (devon)"
+      },
+      "438": {
+        "name": "Starter_Quest",
+        "from": "SystemConstants.rb",
+        "note": ">= 21 means all 21 starters handed in (starterQ)"
+      },
+      "549": {
+        "name": "Spirit_Rewards",
+        "from": "SystemConstants.rb",
+        "note": "Spirit Tracker quest; 25 spirits is the last reward tier"
+      },
+      "552": {
+        "name": "E4_Tracker",
+        "from": "SystemConstants.rb",
+        "note": "Elite Four progress; not used for decisions yet, listed so it can be read from the real save"
+      }
+    },
+    "switches": {
+      "414": {
+        "name": "Has_PokeSnax",
+        "from": "SystemConstants.rb",
+        "note": "Needed for the Tanzan Mountain static encounter"
+      },
+      "599": {
+        "name": "Field_Notes",
+        "from": "SystemConstants.rb",
+        "note": "Field Notes app unlocked"
+      },
+      "1028": {
+        "name": "Magic_Square_Done",
+        "from": "SystemConstants.rb",
+        "note": "Magic Square puzzle solved (magicS)"
+      }
+    },
+    "items": {
+      "HM01": "TMX1 Cut",
+      "HM02": "TMX2 Fly",
+      "HM03": "TMX3 Surf",
+      "HM04": "TMX4 Strength",
+      "HM05": "TMX5 Waterfall",
+      "HM06": "TMX6 Dive",
+      "HM09": "TMX9 Rock Climb",
+      "BICYCLE": "Bicycle",
+      "SUPERROD": "Super Rod",
+      "TM94": "TMX7 Rock Smash (the game's item id is TM94)",
+      "TM70": "TMX8 Flash (the game's item id is TM70)"
+    }
+  },
+  "mainSteps": [
+    {
+      "id": "badges-0",
+      "badges": 0,
+      "title": "Settle into Reborn City and start the League challenge",
+      "route": [
+        {
+          "where": "Grand Hall",
+          "what": "Follow the opening events through the Grand Hall and out into the Wards.",
+          "maps": [
+            "Grand Hall",
+            "Opal Ward"
+          ]
+        },
+        {
+          "where": "Lower Peridot Ward / Peridot Ward",
+          "what": "Work your way through Peridot Ward; a few story errands stand between you and the first gym.",
+          "maps": [
+            "Lower Peridot Ward",
+            "Peridot Ward",
+            "Mosswater Industrial"
+          ]
+        },
+        {
+          "where": "Peridot Gym",
+          "what": "Take the first gym challenge.",
+          "maps": [
+            "Peridot Gym"
+          ]
+        }
+      ],
+      "gym": {
+        "number": 1,
+        "bossId": "julia"
+      },
+      "namedBattles": [
+        "Cain and Victoria (Grand Hall)",
+        "Fern (Peridot Ward)",
+        "Aster & Eclipse (Mosswater Industrial)"
+      ],
+      "levelCap": 20,
+      "unlocks": [],
+      "sources": [
+        "battle-guide",
+        "gym-leaders"
+      ]
+    },
+    {
+      "id": "badges-1",
+      "badges": 1,
+      "title": "Head through Obsidia to Onyx Trainers' School",
+      "route": [
+        {
+          "where": "Obsidia Slums",
+          "what": "Make your way through the Slums.",
+          "maps": [
+            "Obsidia Slums",
+            "Obsidia Ward",
+            "Obsidia Park"
+          ]
+        },
+        {
+          "where": "Coral Ward",
+          "what": "Continue the story through Coral Ward.",
+          "maps": [
+            "Coral Ward"
+          ]
+        },
+        {
+          "where": "Onyx Trainers' School",
+          "what": "Take the next gym challenge.",
+          "maps": [
+            "Onyx Trainers' School"
+          ]
+        }
+      ],
+      "gym": {
+        "number": 2,
+        "bossId": "florinia"
+      },
+      "namedBattles": [
+        "Victoria and Cain (Obsidia Slums / Coral Ward)",
+        "Meteor admin ZEL (Obsidia Park)",
+        "Fern (Onyx Trainers' School)"
+      ],
+      "levelCap": 25,
+      "unlocks": [
+        "TMX1 Cut (Coral Ward)"
+      ],
+      "sources": [
+        "battle-guide",
+        "gym-leaders",
+        "tm-locations"
+      ]
+    },
+    {
+      "id": "badges-2",
+      "badges": 2,
+      "title": "Go on to Rhodochrine Jungle, the Grand Stairway and Lapis Ward",
+      "route": [
+        {
+          "where": "Malchous Forest Park and Rhodochrine Jungle",
+          "what": "Follow the story out to the forest park and the jungle.",
+          "maps": [
+            "Malchous Forest Park",
+            "Rhodochrine Jungle"
+          ]
+        },
+        {
+          "where": "Beryl Ward / Beryl Gym",
+          "what": "Continue to Beryl Ward.",
+          "maps": [
+            "Beryl Ward",
+            "Beryl Gym"
+          ]
+        },
+        {
+          "where": "Grand Stairway and North Obsidia Ward",
+          "what": "Push on through the Grand Stairway and back up into North Obsidia Ward.",
+          "maps": [
+            "Grand Stairway",
+            "North Obsidia Ward"
+          ]
+        },
+        {
+          "where": "Lapis Ward and Lapis Gym",
+          "what": "Take the next gym challenge in Lapis Ward.",
+          "maps": [
+            "Lapis Ward",
+            "Lapis Gym"
+          ]
+        }
+      ],
+      "gym": {
+        "number": 3,
+        "bossId": "shelly"
+      },
+      "namedBattles": [
+        "Taka (Malchous Forest Park)",
+        "Ace (Rhodochrine Jungle)",
+        "Corey (Beryl Gym)",
+        "Aster & Eclipse (Grand Stairway)"
+      ],
+      "levelCap": 35,
+      "unlocks": [
+        "TMX7 Rock Smash (North Obsidia Ward)"
+      ],
+      "sources": [
+        "battle-guide",
+        "gym-leaders",
+        "tm-locations"
+      ]
+    },
+    {
+      "id": "badges-3",
+      "badges": 3,
+      "title": "Visit Dr. Connal's Orphanage, then the Yureyu Power Plant",
+      "route": [
+        {
+          "where": "Lapis Ward and Dr. Connal's Orphanage",
+          "what": "Follow the story to the orphanage.",
+          "maps": [
+            "Dr. Connal's Orphanage"
+          ]
+        },
+        {
+          "where": "Yureyu Power Plant",
+          "what": "Take the next gym challenge at the power plant.",
+          "maps": [
+            "Yureyu Power Plant"
+          ]
+        }
+      ],
+      "gym": {
+        "number": 4,
+        "bossId": "shade"
+      },
+      "namedBattles": [
+        "Cain (Lapis Ward)",
+        "Dr. Sigmund Connal (Orphanage)"
+      ],
+      "levelCap": 40,
+      "unlocks": [
+        "TMX8 Flash (Underground Railnet)"
+      ],
+      "sources": [
+        "battle-guide",
+        "gym-leaders",
+        "tm-locations"
+      ]
+    },
+    {
+      "id": "badges-4",
+      "badges": 4,
+      "title": "Work through the Blacksteam Factory, Apophyll Academy and the Wasteland",
+      "route": [
+        {
+          "where": "Blacksteam Factory",
+          "what": "Make your way through the factory.",
+          "maps": [
+            "Blacksteam Factory"
+          ]
+        },
+        {
+          "where": "Apophyll Academy",
+          "what": "Continue the story at the academy.",
+          "maps": [
+            "Apophyll Academy"
+          ]
+        },
+        {
+          "where": "Pyrous Mountain and Azurine Island",
+          "what": "Cross to the mountain and the island.",
+          "maps": [
+            "Pyrous Mountain",
+            "Azurine Island"
+          ]
+        },
+        {
+          "where": "Byxbysion Wasteland and Wasteland Hideout",
+          "what": "Take the next gym challenge at the end of the Wasteland.",
+          "maps": [
+            "Byxbysion Wasteland",
+            "Wasteland Hideout"
+          ]
+        }
+      ],
+      "gym": {
+        "number": 5,
+        "bossId": "aya"
+      },
+      "namedBattles": [
+        "Kiki (Apophyll Academy)",
+        "Solaris (Pyrous Mountain)",
+        "Taka and Aster & Eclipse (Azurine Island)",
+        "Ace (Byxbysion Wasteland)"
+      ],
+      "levelCap": 45,
+      "unlocks": [],
+      "sources": [
+        "battle-guide",
+        "gym-leaders"
+      ]
+    },
+    {
+      "id": "badges-5",
+      "badges": 5,
+      "title": "Cross Yureyu HQ to Spinel Town and the Voclain Estate",
+      "route": [
+        {
+          "where": "Byxbysion Wasteland",
+          "what": "Finish up in the Wasteland and head back toward the city.",
+          "maps": [
+            "Byxbysion Wasteland",
+            "Underground Railnet",
+            "Lost Railcave"
+          ]
+        },
+        {
+          "where": "Yureyu HQ",
+          "what": "Continue the story at the Yureyu HQ.",
+          "maps": [
+            "Yureyu HQ"
+          ]
+        },
+        {
+          "where": "Spinel Town and Voclain Estate",
+          "what": "Take the next gym challenge in Spinel Town.",
+          "maps": [
+            "Spinel Town",
+            "Spinel Museum",
+            "Voclain Estate"
+          ]
+        }
+      ],
+      "gym": {
+        "number": 6,
+        "bossId": "serra"
+      },
+      "namedBattles": [
+        "Cain (Byxbysion Wasteland)",
+        "Dr. Sigmund Connal or Sirius (Yureyu HQ)",
+        "Bennett (Voclain Estate)"
+      ],
+      "levelCap": 50,
+      "unlocks": [
+        "TMX4 Strength (South Obsidia Ward)"
+      ],
+      "sources": [
+        "battle-guide",
+        "gym-leaders",
+        "tm-locations",
+        "spinel-town"
+      ]
+    },
+    {
+      "id": "badges-6",
+      "badges": 6,
+      "title": "Cross Tanzan Mountain to Tanzan Cove",
+      "route": [
+        {
+          "where": "Belrose Manse (Tanzan Cove area)",
+          "what": "Follow the story at the manse before heading into the mountain.",
+          "maps": [
+            "Belrose Manse"
+          ]
+        },
+        {
+          "where": "Tanzan Mountain",
+          "what": "Climb through Tanzan Mountain; Tanzan Depths branches off it.",
+          "maps": [
+            "Tanzan Mountain",
+            "Tanzan Depths"
+          ]
+        },
+        {
+          "where": "Tanzan Meteor Base",
+          "what": "Get through the base hidden in the mountain (it has a colour-tile puzzle).",
+          "maps": [
+            "Tanzan Meteor Base"
+          ]
+        },
+        {
+          "where": "Tanzan Cove",
+          "what": "Take the next gym challenge at the cove.",
+          "maps": [
+            "Tanzan Cove"
+          ]
+        }
+      ],
+      "gym": {
+        "number": 7,
+        "bossId": "noel"
+      },
+      "namedBattles": [
+        "Dr. Sigmund Connal or Sirius (Belrose Manse)",
+        "ZEL (Tanzan Meteor Base)"
+      ],
+      "levelCap": 55,
+      "unlocks": [
+        "TM10 Hidden Power (Tanzan Cove)"
+      ],
+      "sources": [
+        "battle-guide",
+        "gym-leaders",
+        "tanzan-mountain",
+        "tanzan-cove"
+      ]
+    },
+    {
+      "id": "badges-7",
+      "badges": 7,
+      "title": "Make for Route 1, Citae Astrae and Vanhanen Castle",
+      "route": [
+        {
+          "where": "Route 1",
+          "what": "Head out along Route 1.",
+          "maps": [
+            "Route 1"
+          ]
+        },
+        {
+          "where": "Citae Astrae",
+          "what": "Work through the logic puzzles.",
+          "maps": [
+            "Citae Astrae"
+          ]
+        },
+        {
+          "where": "Vanhanen Castle",
+          "what": "Take the next gym challenge in the castle (it has a chess-themed puzzle).",
+          "maps": [
+            "Vanhanen Castle"
+          ]
+        }
+      ],
+      "gym": {
+        "number": 8,
+        "bossId": "radomus"
+      },
+      "namedBattles": [
+        "Fern (Route 1)",
+        "Cain (Vanhanen Castle)",
+        "Elias (Citae Astrae)"
+      ],
+      "levelCap": 60,
+      "unlocks": [],
+      "sources": [
+        "battle-guide",
+        "gym-leaders",
+        "puzzle-guides"
+      ]
+    },
+    {
+      "id": "badges-8",
+      "badges": 8,
+      "title": "Go through Subseven Sanctum to Iolia Valley",
+      "route": [
+        {
+          "where": "Subseven Sanctum",
+          "what": "Make your way through the Sanctum.",
+          "maps": [
+            "Subseven Sanctum"
+          ]
+        },
+        {
+          "where": "Iolia Valley",
+          "what": "Take the next gym challenge in the valley.",
+          "maps": [
+            "Iolia Valley"
+          ]
+        }
+      ],
+      "gym": {
+        "number": 9,
+        "bossId": "luna"
+      },
+      "namedBattles": [
+        "Ace (Subseven Sanctum)",
+        "Bennett (Iolia Valley)"
+      ],
+      "levelCap": 65,
+      "unlocks": [],
+      "sources": [
+        "battle-guide",
+        "gym-leaders"
+      ]
+    },
+    {
+      "id": "badges-9",
+      "badges": 9,
+      "title": "Travel to the Agate Circus and Big Top",
+      "route": [
+        {
+          "where": "Agate Circus",
+          "what": "Follow the story to the circus.",
+          "maps": [
+            "Agate Circus"
+          ]
+        },
+        {
+          "where": "Big Top",
+          "what": "Take the next gym challenge in the big top.",
+          "maps": [
+            "Big Top"
+          ]
+        }
+      ],
+      "gym": {
+        "number": 10,
+        "bossId": "samson"
+      },
+      "namedBattles": [
+        "Alistasia (Big Top)"
+      ],
+      "levelCap": 70,
+      "unlocks": [],
+      "sources": [
+        "battle-guide",
+        "gym-leaders"
+      ]
+    },
+    {
+      "id": "badges-10",
+      "badges": 10,
+      "title": "Go through Route 2 to Calcenon",
+      "route": [
+        {
+          "where": "Route 2 and Fiore Mansion",
+          "what": "Cross Route 2 and continue on to the mansion.",
+          "maps": [
+            "Route 2",
+            "Celestinine Cascade",
+            "Fiore Mansion"
+          ]
+        },
+        {
+          "where": "Calcenon City and Calcenon Gym",
+          "what": "Take the next gym challenge in Calcenon.",
+          "maps": [
+            "Calcenon City",
+            "Calcenon Gym"
+          ]
+        }
+      ],
+      "gym": {
+        "number": 11,
+        "bossId": "charlotte"
+      },
+      "namedBattles": [
+        "Aster & Eclipse (LCCC)"
+      ],
+      "levelCap": 70,
+      "unlocks": [
+        "TMX3 Surf (Fiore Mansion)",
+        "TMX6 Dive (Calcenon City)"
+      ],
+      "sources": [
+        "battle-guide",
+        "gym-leaders",
+        "tm-locations"
+      ]
+    },
+    {
+      "id": "badges-11",
+      "badges": 11,
+      "title": "Continue to Ametrine City and beyond",
+      "route": [
+        {
+          "where": "Ametrine City and Ametrine Mountain",
+          "what": "Follow the story up through Ametrine.",
+          "maps": [
+            "Ametrine City",
+            "Ametrine Mountain"
+          ]
+        },
+        {
+          "where": "Glitch World",
+          "what": "Take the next gym challenge in an unusual place.",
+          "maps": []
+        }
+      ],
+      "gym": {
+        "number": 12,
+        "bossId": "terra"
+      },
+      "namedBattles": [
+        "Blake (Ametrine City)",
+        "Aster (Ametrine Mountain)"
+      ],
+      "levelCap": 75,
+      "unlocks": [
+        "TMX5 Waterfall (Ametrine City or Mountain)"
+      ],
+      "sources": [
+        "battle-guide",
+        "gym-leaders",
+        "tm-locations"
+      ]
+    },
+    {
+      "id": "badges-12",
+      "badges": 12,
+      "title": "Work through the Water Treatment Center and Fiore Mansion",
+      "route": [
+        {
+          "where": "Water Treatment Center",
+          "what": "Make your way through the Center.",
+          "maps": [
+            "Water Treatment Center"
+          ]
+        },
+        {
+          "where": "Fiore Mansion",
+          "what": "Continue the story at the mansion.",
+          "maps": [
+            "Fiore Mansion"
+          ]
+        },
+        {
+          "where": "Big Top",
+          "what": "Take the next gym challenge back at the big top.",
+          "maps": [
+            "Big Top"
+          ]
+        }
+      ],
+      "gym": {
+        "number": 13,
+        "bossId": "ciel"
+      },
+      "namedBattles": [
+        "Pokemon Stopple, Taka and Ace (Water Treatment Center)",
+        "Kenan & Diana, Blake & Fern, Solaris & John (Fiore Mansion)"
+      ],
+      "levelCap": 75,
+      "unlocks": [
+        "TMX2 Fly (Celestinine Cascade)"
+      ],
+      "sources": [
+        "battle-guide",
+        "gym-leaders",
+        "tm-locations"
+      ]
+    },
+    {
+      "id": "badges-13",
+      "badges": 13,
+      "title": "Investigate Devon Corp, then go to Coral Gym",
+      "route": [
+        {
+          "where": "Devon Corp",
+          "what": "Follow the story through the corporation's building.",
+          "maps": [
+            "Devon Corp"
+          ]
+        },
+        {
+          "where": "Coral Gym",
+          "what": "Take the next gym challenge in Coral Ward.",
+          "maps": [
+            "Coral Ward",
+            "Coral Gym"
+          ]
+        }
+      ],
+      "gym": {
+        "number": 14,
+        "bossId": "adrienn"
+      },
+      "namedBattles": [
+        "Victoria and Arclight (Devon Corp)",
+        "ZEL (Devon Corp)"
+      ],
+      "levelCap": 80,
+      "unlocks": [],
+      "sources": [
+        "battle-guide",
+        "gym-leaders",
+        "devon-corp"
+      ]
+    },
+    {
+      "id": "badges-14",
+      "badges": 14,
+      "title": "Cross the Tourmaline Desert to Never After",
+      "route": [
+        {
+          "where": "Tourmaline Desert",
+          "what": "Cross the desert.",
+          "maps": [
+            "Tourmaline Desert"
+          ]
+        },
+        {
+          "where": "Never After",
+          "what": "Take the next gym challenge.",
+          "maps": [
+            "Never After"
+          ]
+        }
+      ],
+      "gym": {
+        "number": 15,
+        "bossId": "titania"
+      },
+      "namedBattles": [
+        "Taka (Tourmaline Desert)"
+      ],
+      "levelCap": 85,
+      "unlocks": [],
+      "sources": [
+        "battle-guide",
+        "gym-leaders"
+      ]
+    },
+    {
+      "id": "badges-15",
+      "badges": 15,
+      "title": "Head for Fiore Arena",
+      "route": [
+        {
+          "where": "Fiore Arena",
+          "what": "Take the next gym challenge at the arena (it has its own puzzle).",
+          "maps": [
+            "Fiore Arena"
+          ]
+        }
+      ],
+      "gym": {
+        "number": 16,
+        "bossId": "amaria"
+      },
+      "namedBattles": [],
+      "levelCap": 90,
+      "unlocks": [],
+      "sources": [
+        "battle-guide",
+        "gym-leaders",
+        "puzzle-guides"
+      ]
+    },
+    {
+      "id": "badges-16",
+      "badges": 16,
+      "title": "Go through the Glass Workstation to Agate Arena",
+      "route": [
+        {
+          "where": "Glass Workstation (off Route 4)",
+          "what": "Make your way through the workstation.",
+          "maps": [
+            "Route 4",
+            "Glass Workstation"
+          ]
+        },
+        {
+          "where": "Agate City and Agate Arena",
+          "what": "Take the next gym challenge at the arena.",
+          "maps": [
+            "Agate City",
+            "Agate Arena"
+          ]
+        }
+      ],
+      "gym": {
+        "number": 17,
+        "bossId": "hardy"
+      },
+      "namedBattles": [
+        "Aster, Cain & Shelly (Glass Workstation)",
+        "Solaris (Agate City)"
+      ],
+      "levelCap": 90,
+      "unlocks": [
+        "TMX9 Rock Climb (Route 4)"
+      ],
+      "sources": [
+        "battle-guide",
+        "gym-leaders",
+        "tm-locations"
+      ]
+    },
+    {
+      "id": "badges-17",
+      "badges": 17,
+      "title": "Finish in Labradorra",
+      "route": [
+        {
+          "where": "Labradorra City and Labradorra Arena",
+          "what": "Follow the story through the city and arena.",
+          "maps": [
+            "Labradorra City",
+            "Labradorra Arena"
+          ]
+        },
+        {
+          "where": "Labradorra Gym",
+          "what": "Take the last gym challenge.",
+          "maps": [
+            "Labradorra Gym"
+          ]
+        }
+      ],
+      "gym": {
+        "number": 18,
+        "bossId": "saphira"
+      },
+      "namedBattles": [
+        "Zero (Labradorra City)"
+      ],
+      "levelCap": 95,
+      "unlocks": [],
+      "sources": [
+        "battle-guide",
+        "gym-leaders"
+      ]
+    },
+    {
+      "id": "badges-18",
+      "badges": 18,
+      "title": "Cross Victory Road to the Pokemon League",
+      "route": [
+        {
+          "where": "Victory Road",
+          "what": "Work through Victory Road's areas in order.",
+          "maps": [
+            "Victory Road"
+          ]
+        },
+        {
+          "where": "Charous Hall",
+          "what": "Take on the Pokemon League.",
+          "maps": [
+            "Charous Hall"
+          ]
+        }
+      ],
+      "gym": null,
+      "namedBattles": [
+        "Blake, Sirius and Fern (Victory Road)",
+        "The Elite Four and Champion (Charous Hall)"
+      ],
+      "levelCap": 100,
+      "unlocks": [],
+      "sources": [
+        "battle-guide",
+        "gym-leaders"
+      ]
+    }
+  ],
+  "optional": [
+    {
+      "id": "magikarp",
+      "kind": "sidequest",
+      "minBadges": 0,
+      "title": "Magikarp errand chain",
+      "where": "Grand Hall (Opal Ward)",
+      "needs": "Pocket money and patience; it spans about 14 gyms.",
+      "hint": "A fisherman near the Grand Hall entrance sells a rare Pokemon; things go wrong from there.",
+      "sources": [
+        "magikarp"
+      ]
+    },
+    {
+      "id": "day-care",
+      "kind": "sidequest",
+      "minBadges": 1,
+      "title": "Day-Care Couple rescue",
+      "where": "Obsidia Ward (Pokemon Day Care, east of the Pokemon Center)",
+      "needs": "A normal battle team.",
+      "hint": "The Day-Care Couple keep shooing you away. Keep talking to them.",
+      "sources": [
+        "day-care"
+      ]
+    },
+    {
+      "id": "unlock-cut",
+      "kind": "unlock",
+      "minBadges": 1,
+      "title": "TMX1 Cut",
+      "where": "Coral Ward",
+      "needs": "A normal battle team.",
+      "hint": "The field move for thin trees.",
+      "done": {
+        "item": "HM01"
+      },
+      "doneLabel": "it's in your bag",
+      "sources": [
+        "tm-locations"
+      ]
+    },
+    {
+      "id": "dept-stickers",
+      "kind": "sidequest",
+      "minBadges": 1,
+      "title": "Department Store sticker cards",
+      "where": "Obsidia Department Store, plus sticker NPCs around the Wards",
+      "needs": "Sticker-collecting takes a while; later stickers open as you earn more badges.",
+      "hint": "Eleven stickers for the membership card; most are earned by talking to certain NPCs.",
+      "sources": [
+        "stickers",
+        "puzzle-guides"
+      ]
+    },
+    {
+      "id": "rainbow-scent",
+      "kind": "sidequest",
+      "minBadges": 1,
+      "lastBadges": 3,
+      "title": "Rainbow Scent (Obsidia version)",
+      "where": "Obsidia Park",
+      "needs": "Three flower-themed Pokemon to show an NPC.",
+      "hint": "Talk to the woman in Obsidia Park. This version closes after the orphanage events.",
+      "sources": [
+        "rainbow-scent"
+      ]
+    },
+    {
+      "id": "unlock-rock-smash",
+      "kind": "unlock",
+      "minBadges": 2,
+      "title": "TMX7 Rock Smash",
+      "where": "North Obsidia Ward",
+      "needs": "A normal battle team.",
+      "hint": "The field move for cracked rocks.",
+      "done": {
+        "item": "TM94"
+      },
+      "doneLabel": "it's in your bag",
+      "sources": [
+        "tm-locations"
+      ]
+    },
+    {
+      "id": "house-raid",
+      "kind": "sidequest",
+      "minBadges": 2,
+      "title": "House raid errand (opens the gang errands)",
+      "where": "Lapis Ward (house below the Pokemon Center)",
+      "needs": "A normal battle team; the reward depends on which gang you sided with.",
+      "hint": "Your gang leader will point you to the house.",
+      "sources": [
+        "house-raid"
+      ]
+    },
+    {
+      "id": "bicycle",
+      "kind": "unlock",
+      "minBadges": 2,
+      "title": "Bicycle",
+      "where": "Lapis Ward (old woman's house, then the Bicycle shop below it)",
+      "needs": "Finish the house raid errand first.",
+      "hint": "A Growlithe at the door shows the quest is ready. You get a Bike Voucher; trading it in is optional. Done once the Bicycle is in the bag.",
+      "sources": [
+        "bicycle"
+      ],
+      "done": {
+        "item": "BICYCLE"
+      },
+      "doneLabel": "it's in your bag"
+    },
+    {
+      "id": "police",
+      "kind": "sidequest",
+      "minBadges": 2,
+      "lastBadges": 6,
+      "title": "Missing police officers",
+      "where": "Jasper Ward police station (then Jasper Ward, Beryl Ward, Rhodochrine Jungle and the Underroot)",
+      "needs": "Time-sensitive: it can no longer be finished once you earn the 7th badge.",
+      "hint": "Talk to the Police Chief first, otherwise the officers do not appear.",
+      "sources": [
+        "police"
+      ]
+    },
+    {
+      "id": "gang-raid",
+      "kind": "sidequest",
+      "minBadges": 3,
+      "title": "Gang raid errand",
+      "where": "North Obsidia Alleyway or Lapis Alleyway (depends on your gang)",
+      "needs": "Finish the house raid errand first; a team that can handle a few grunts and a gang leader.",
+      "hint": "Talk to your gang leader to start it.",
+      "sources": [
+        "gang-raid"
+      ]
+    },
+    {
+      "id": "unlock-flash",
+      "kind": "unlock",
+      "minBadges": 3,
+      "title": "TMX8 Flash",
+      "where": "Underground Railnet",
+      "needs": "Rock Smash helps; a team for the Railnet trainers.",
+      "hint": "Lights up dark caves.",
+      "done": {
+        "item": "TM70"
+      },
+      "doneLabel": "it's in your bag",
+      "sources": [
+        "tm-locations"
+      ]
+    },
+    {
+      "id": "aron-sticker",
+      "kind": "sidequest",
+      "minBadges": 3,
+      "title": "Aron sticker",
+      "where": "Obsidia Slums / Underground Railnet",
+      "needs": "Rock Smash.",
+      "hint": "Follow the escalators on the right side of the Slums.",
+      "sources": [
+        "aron-sticker"
+      ]
+    },
+    {
+      "id": "dawn-stone",
+      "kind": "unlock",
+      "minBadges": 3,
+      "title": "Dawn Stone (first copies)",
+      "where": "Mining, then Byxbysion Grotto after the 4th badge",
+      "needs": "Pickaxe-style mining; later copies appear in more places.",
+      "hint": "More copies turn up in Opal Ward, the Department Store and further on.",
+      "sources": [
+        "dawn-stone"
+      ]
+    },
+    {
+      "id": "memory-dragon",
+      "kind": "unlock",
+      "minBadges": 4,
+      "title": "Silvally Memory: Dragon",
+      "where": "Apophyll Cave",
+      "needs": "Check the wiki guide for the puzzle or fight involved.",
+      "hint": "One of the 17 Memory discs.",
+      "sources": [
+        "memory-locations"
+      ]
+    },
+    {
+      "id": "unlock-strength",
+      "kind": "unlock",
+      "minBadges": 5,
+      "title": "TMX4 Strength",
+      "where": "South Obsidia Ward",
+      "needs": "A normal battle team.",
+      "hint": "The field move for heavy boulders.",
+      "done": {
+        "item": "HM04"
+      },
+      "doneLabel": "it's in your bag",
+      "sources": [
+        "tm-locations"
+      ]
+    },
+    {
+      "id": "starter-encounters",
+      "kind": "area",
+      "minBadges": 5,
+      "title": "Starter special encounters",
+      "where": "Byxbysion Wasteland, Pyrous Mountain, Azurine Island and others",
+      "needs": "Pokeballs and time; these start the egg collection for a later quest.",
+      "hint": "Several of the 21 starters can be found well before the quest that asks for their eggs.",
+      "sources": [
+        "starter-egg"
+      ]
+    },
+    {
+      "id": "missing-furniture",
+      "kind": "sidequest",
+      "minBadges": 5,
+      "title": "Missing furniture errand",
+      "where": "Spinel Town (one of the houses)",
+      "needs": "Walking around town; the reward is the Exp. All (or a Reborn Ball if you already have it).",
+      "hint": "A girl's furniture vanishes when you first enter her house.",
+      "sources": [
+        "missing-furniture",
+        "spinel-town"
+      ]
+    },
+    {
+      "id": "eevee-petting",
+      "kind": "sidequest",
+      "minBadges": 5,
+      "title": "Eeveelution petting",
+      "where": "Spinel Town (house left of the Pokemon Center)",
+      "needs": "Spotting all eight Eeveelutions across Reborn; some vanish over time.",
+      "hint": "Reward is a Choice Scarf and the Eevee-starter password.",
+      "sources": [
+        "eeveelutions",
+        "spinel-town"
+      ]
+    },
+    {
+      "id": "memory-bug",
+      "kind": "unlock",
+      "minBadges": 5,
+      "title": "Silvally Memory: Bug",
+      "where": "Voclain Estate",
+      "needs": "Check the wiki guide for the exact trigger.",
+      "hint": "Another of the 17 Memory discs.",
+      "sources": [
+        "memory-locations"
+      ]
+    },
+    {
+      "id": "museum-fossil",
+      "kind": "area",
+      "minBadges": 5,
+      "lastBadges": 6,
+      "title": "Museum fossil reward",
+      "where": "Spinel Museum, then Tanzan Mountain",
+      "needs": "A team that can beat a few grunts. Missed once the mountain's base is destroyed.",
+      "hint": "Talk to the suspicious people in the museum; they run off to the mountain.",
+      "sources": [
+        "tanzan-mountain"
+      ]
+    },
+    {
+      "id": "solrock-lunatone",
+      "kind": "area",
+      "minBadges": 6,
+      "title": "Solrock and Lunatone",
+      "where": "Tanzan Mountain (just past the entrance)",
+      "needs": "PokeSnax in your bag to lure them out.",
+      "hint": "A static encounter near the mountain entrance.",
+      "done": {
+        "sw": 414
+      },
+      "doneLabel": "you have PokeSnax",
+      "sources": [
+        "tanzan-mountain"
+      ]
+    },
+    {
+      "id": "tara-identity",
+      "kind": "sidequest",
+      "minBadges": 6,
+      "title": "Tara's Identity",
+      "where": "Tanzan Meteor Base (talk to Simon), then back at Tanzan Cove",
+      "needs": "Starts as soon as you enter the base; the reward includes a Super Rod.",
+      "hint": "Cannot be done once postgame starts.",
+      "sources": [
+        "tara-identity",
+        "tanzan-cove"
+      ],
+      "done": {
+        "item": "SUPERROD"
+      },
+      "doneLabel": "you have the Super Rod"
+    },
+    {
+      "id": "tanzan-depths-boss",
+      "kind": "battle",
+      "minBadges": 6,
+      "title": "Giant wild Pokemon in Tanzan Depths",
+      "where": "Tanzan Depths (branches off Tanzan Mountain)",
+      "needs": "A strong, well-rounded team. Optional.",
+      "hint": "A boss-sized wild Pokemon.",
+      "namedBattles": [
+        "Pokemon Gargantuan"
+      ],
+      "sources": [
+        "battle-guide"
+      ]
+    },
+    {
+      "id": "memory-psychic",
+      "kind": "unlock",
+      "minBadges": 7,
+      "title": "Silvally Memory: Psychic",
+      "where": "Vanhanen Castle",
+      "needs": "Check the wiki guide.",
+      "hint": "Another Memory disc.",
+      "sources": [
+        "memory-locations"
+      ]
+    },
+    {
+      "id": "chess-puzzle",
+      "kind": "area",
+      "minBadges": 7,
+      "title": "Vanhanen Castle chess puzzles",
+      "where": "Vanhanen Castle",
+      "needs": "Patience; the puzzles can be skipped.",
+      "hint": "The castle's chess-themed rooms.",
+      "done": {
+        "var": 150,
+        "gte": 40
+      },
+      "sources": [
+        "puzzle-guides",
+        "scripts-ngp"
+      ]
+    },
+    {
+      "id": "type-null",
+      "kind": "sidequest",
+      "minBadges": 8,
+      "title": "Type: Null special encounter",
+      "where": "7th Street (dark alley left of the Subseven Sanctum entrance)",
+      "needs": "A good team for the encounter.",
+      "hint": "Talk to the lead scientist in the alley.",
+      "sources": [
+        "type-null"
+      ]
+    },
+    {
+      "id": "route-2",
+      "kind": "area",
+      "minBadges": 9,
+      "title": "Route 2 secrets",
+      "where": "Route 2 (west of Agate Circus)",
+      "needs": "Crustle-style jumping puzzles.",
+      "hint": "Detours off the main path.",
+      "done": {
+        "var": 173,
+        "gte": 8
+      },
+      "sources": [
+        "route-2",
+        "scripts-ngp"
+      ]
+    },
+    {
+      "id": "unlock-surf",
+      "kind": "unlock",
+      "minBadges": 10,
+      "title": "TMX3 Surf",
+      "where": "Fiore Mansion",
+      "needs": "Your team needs to survive the mansion's trainers.",
+      "hint": "A water field move.",
+      "sources": [
+        "tm-locations"
+      ],
+      "done": {
+        "item": "HM03"
+      },
+      "doneLabel": "it's in your bag"
+    },
+    {
+      "id": "unlock-dive",
+      "kind": "unlock",
+      "minBadges": 10,
+      "title": "TMX6 Dive",
+      "where": "Calcenon City",
+      "needs": "Surf first.",
+      "hint": "An underwater field move.",
+      "sources": [
+        "tm-locations"
+      ],
+      "done": {
+        "item": "HM06"
+      },
+      "doneLabel": "it's in your bag"
+    },
+    {
+      "id": "unlock-waterfall",
+      "kind": "unlock",
+      "minBadges": 11,
+      "title": "TMX5 Waterfall",
+      "where": "Ametrine City or Ametrine Mountain",
+      "needs": "Surf first.",
+      "hint": "A waterfall-climbing field move.",
+      "sources": [
+        "tm-locations"
+      ],
+      "done": {
+        "item": "HM05"
+      },
+      "doneLabel": "it's in your bag"
+    },
+    {
+      "id": "unlock-fly",
+      "kind": "unlock",
+      "minBadges": 12,
+      "title": "TMX2 Fly",
+      "where": "Celestinine Cascade",
+      "needs": "Surf and Waterfall help getting there.",
+      "hint": "Fast travel field move.",
+      "sources": [
+        "tm-locations"
+      ],
+      "done": {
+        "item": "HM02"
+      },
+      "doneLabel": "it's in your bag"
+    },
+    {
+      "id": "devon-corp",
+      "kind": "area",
+      "minBadges": 13,
+      "title": "Devon Corp walkthrough",
+      "where": "Devon Corp",
+      "needs": "Puzzles and several battles.",
+      "hint": "The corporation building's later floors.",
+      "done": {
+        "var": 339,
+        "gte": 39
+      },
+      "sources": [
+        "devon-corp",
+        "scripts-ngp"
+      ]
+    },
+    {
+      "id": "starter-egg",
+      "kind": "sidequest",
+      "minBadges": 14,
+      "title": "Starter Egg Quest",
+      "where": "Grand Hall basement (after donating to a restoration project)",
+      "needs": "Eggs of all 21 starter Pokemon.",
+      "hint": "Hand in every starter's egg to the NPC down in the basement.",
+      "done": {
+        "var": 438,
+        "gte": 21
+      },
+      "sources": [
+        "starter-egg",
+        "scripts-ngp"
+      ]
+    },
+    {
+      "id": "unlock-rock-climb",
+      "kind": "unlock",
+      "minBadges": 16,
+      "title": "TMX9 Rock Climb",
+      "where": "Route 4",
+      "needs": "Your team to clear the route.",
+      "hint": "A climbing field move.",
+      "sources": [
+        "tm-locations"
+      ],
+      "done": {
+        "item": "HM09"
+      },
+      "doneLabel": "it's in your bag"
+    },
+    {
+      "id": "spirit-tracker",
+      "kind": "sidequest",
+      "minBadges": 18,
+      "title": "Spirit hunt",
+      "where": "Victory Road (Pokemon Center just before it)",
+      "needs": "A strong team: 25 optional trainers with unique fields.",
+      "hint": "Rewards every five spirits beaten.",
+      "done": {
+        "var": 549,
+        "gte": 25
+      },
+      "sources": [
+        "spirit",
+        "scripts-ngp"
+      ]
+    },
+    {
+      "id": "postgame",
+      "kind": "area",
+      "minBadges": 18,
+      "title": "Postgame quests (Nightclub)",
+      "where": "Nightclub, North Obsidia Ward",
+      "needs": "Finish the League first; quests are grouped in tiers with rising level caps.",
+      "hint": "The Nightclub is the hub for everything after the credits.",
+      "sources": [
+        "postgame"
+      ]
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import type { SaveProgress } from "./whatsNext";
 export type TypeId = string;
 export type BaseChart = Record<TypeId, Record<TypeId, number>>;
 export type Multiplier = 0 | 0.5 | 1 | 2;
@@ -64,7 +65,7 @@ export interface OwnedMon {
   ivs: StatBlock; evs: StatBlock; hiddenPowerType: TypeId | null;
 }
 export interface SaveMeta { trainerName: string; playtimeSeconds: number; badgeCount: number; mapId: number; mapName: string | null; sha256: string; mtimeMs: number; sizeBytes: number }
-export interface SaveSummary { meta: SaveMeta; party: OwnedMon[]; boxes: { name: string; mons: OwnedMon[] }[]; unknownIds: string[]; fieldNotesFound: string[] | null }
+export interface SaveSummary { meta: SaveMeta; party: OwnedMon[]; boxes: { name: string; mons: OwnedMon[] }[]; unknownIds: string[]; fieldNotesFound: string[] | null; progress: SaveProgress }
 
 export interface LiveFoeState { slot: number; name: string; species: string; form: number; formName: string | null; level: number; types: string[]; hpPercent: number; fainted: boolean }
 export interface LivePartyMon { species: string; form: number; nickname: string; level: number; hpPercent: number; fainted: boolean; active: boolean }

@@ -11,6 +11,7 @@ import { registerDataRoutes } from "./routes/data";
 import { latestFieldNotes, registerSaveRoutes } from "./routes/save";
 import { openSpoilers, registerSpoilerRoutes } from "./routes/spoilers";
 import { registerTrainerRoutes } from "./routes/trainers";
+import { registerWhatsNextRoutes } from "./routes/whatsNext";
 
 const config = await loadConfig();
 const data = await loadGameData(config.dataDir, config.dataVersion).catch((e: Error) => e);
@@ -30,6 +31,7 @@ const battleFeed = createBattleFeed({
 registerBattleRoutes(app, battleFeed);
 app.addHook("onClose", () => battleFeed.close());
 registerSaveRoutes(app, config, data);
+registerWhatsNextRoutes(app, config, data, spoilers);
 registerCrossplayRoutes(app, config, data);
 registerConfigRoutes(app, config);
 

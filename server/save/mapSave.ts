@@ -1,5 +1,6 @@
 import type { GameData, MonLocation, OwnedMon, SaveMeta, SaveSummary, StatBlock } from "../../shared/types";
 import { readSaveFile, type SaveRead } from "./readSave";
+import { readProgress, type TrackedIds } from "./progress";
 import { hiddenPowerType, isShiny, MON, SAVE_PATHS, STAT_ORDER } from "./schema";
 
 export type SaveData = Pick<GameData, "species" | "moves" | "items" | "abilities" | "maps" | "types" | "fields">;
@@ -15,7 +16,7 @@ export function fieldNotesFound(switches: unknown[] | null, fields: SaveData["fi
   return Object.values(fields).filter((f) => f.fieldAppSwitch !== null && switches[f.fieldAppSwitch] === true).map((f) => f.id).sort();
 }
 
-export function mapSave(read: SaveRead, data: SaveData): SaveSummary {
+export function mapSave(read: SaveRead, data: SaveData, tracked: TrackedIds = { variables: [], switches: [] }): SaveSummary {
   const typeIds = data.types.map((t) => t.id);
   const unknown = new Set<string>();
   const check = (id: string | null, table: Record<string, unknown>) => { if (id && !(id in table)) unknown.add(id); };
@@ -49,7 +50,9 @@ export function mapSave(read: SaveRead, data: SaveData): SaveSummary {
     mapId, mapName: data.maps[String(mapId)] ?? null,
     sha256: read.sha256, mtimeMs: read.mtimeMs, sizeBytes: read.sizeBytes,
   };
-  return { meta, party, boxes, unknownIds: [...unknown].sort(), fieldNotesFound: fieldNotesFound(SAVE_PATHS.switches(read.roots), data.fields) };
+  const notes = fieldNotesFound(SAVE_PATHS.switches(read.roots), data.fields);
+  const progress = readProgress(read.roots, { variables: tracked.variables, switches: [...new Set([...tracked.switches, 599])], items: tracked.items }, { mapName: meta.mapName, fieldNoteCount: notes?.length ?? null });
+  return { meta, party, boxes, unknownIds: [...unknown].sort(), fieldNotesFound: notes, progress };
 }
 
 export async function readSaveMeta(file: string, data: SaveData): Promise<SaveMeta> {
