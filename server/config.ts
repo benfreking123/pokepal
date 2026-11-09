@@ -39,31 +39,37 @@ export function insideWorkingTree(dir: string, cwd = process.cwd(), platform: No
   return rel === "" || (!rel.startsWith("..") && !p.isAbsolute(rel));
 }
 
-// Backups hold saves, so they must never land inside the repo clone (relative paths resolve against it).
-function safeBackupDir(configured: string | null, pokepalDir: string | null): string | null {
-  const fallback = pokepalDir ? path.join(pokepalDir, "backups") : null;
-  if (!configured) return fallback;
-  return insideWorkingTree(configured) && fallback ? fallback : configured;
+export function defaultPokepalDir(saveFile: string | null, env: NodeJS.ProcessEnv, cwd = process.cwd(), platform: NodeJS.Platform = process.platform): string | null {
+  const home = env.USERPROFILE ?? env.HOME ?? null;
+  const local = env.LOCALAPPDATA ?? (home ? path.join(home, "AppData", "Local") : null);
+  const candidates = [saveFile ? path.join(path.dirname(saveFile), "PokePal") : null, local ? path.join(local, "PokePal") : null].filter((x): x is string => !!x);
+  return candidates.find((c) => !insideWorkingTree(c, cwd, platform)) ?? null;
 }
 
-function autodetect(config: Config, env: NodeJS.ProcessEnv): Config {
+// Backups hold saves, so they must never land inside the repo clone (relative paths resolve against it).
+function safeBackupDir(configured: string | null, fallback: string | null, cwd: string): string | null {
+  if (!configured) return fallback;
+  return insideWorkingTree(configured, cwd) && fallback ? fallback : configured;
+}
+
+function autodetect(config: Config, env: NodeJS.ProcessEnv, cwd: string): Config {
   const saveFile = config.saveFile ?? saveCandidates(env, config.gameDir).find((p) => existsSync(p)) ?? null;
   const home = env.USERPROFILE ?? null;
-  const pokepalDir = saveFile ? path.join(path.dirname(saveFile), "PokePal") : home ? path.join(home, "Documents", "PokePal") : null;
+  const pokepalDir = defaultPokepalDir(saveFile, env, cwd);
   const icloud = home ? path.join(home, "iCloudDrive", "Pokemon Reborn Sync") : null;
   return {
     ...config,
     saveFile,
     syncDir: config.syncDir ?? (icloud && existsSync(icloud) ? icloud : null),
     stateDir: config.stateDir ?? (pokepalDir ? path.join(pokepalDir, "state") : null),
-    backupDir: safeBackupDir(config.backupDir, pokepalDir),
+    backupDir: safeBackupDir(config.backupDir, pokepalDir ? path.join(pokepalDir, "backups") : null, cwd),
     battleStateFile: config.battleStateFile ?? (saveFile ? path.join(path.dirname(saveFile), "PokePal", "battle_state.json") : null),
   };
 }
 
-export async function loadConfig(file = CONFIG_FILE, env = process.env): Promise<Config> {
+export async function loadConfig(file = CONFIG_FILE, env = process.env, cwd = process.cwd()): Promise<Config> {
   const raw = existsSync(file) ? JSON.parse(await readFile(file, "utf8")) : {};
-  const config = autodetect(ConfigSchema.parse(raw), env);
+  const config = autodetect(ConfigSchema.parse(raw), env, cwd);
   if (!existsSync(file)) await saveConfig(config, file);
   return config;
 }
