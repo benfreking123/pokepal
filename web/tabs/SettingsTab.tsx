@@ -69,8 +69,10 @@ function GeneralSettings({ bundle }: { bundle: ClientBundle }) {
 function SpoilerSettingsSection({ bundle, onChange }: { bundle: ClientBundle; onChange: () => void }) {
   const [state, setState] = useState<SpoilerResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [fromSave, setFromSave] = useState<string[]>([]);
 
   useEffect(() => {
+    getJson<{ fieldNotesFound: string[] | null }>("/api/save/summary").then((s) => setFromSave(s.fieldNotesFound ?? []), () => undefined);
     getJson<SpoilerResponse>("/api/spoilers").then(setState, (e: Error) => setError(e.message));
   }, []);
 
@@ -106,10 +108,11 @@ function SpoilerSettingsSection({ bundle, onChange }: { bundle: ClientBundle; on
               <label key={f.id}>
                 <input
                   type="checkbox"
-                  checked={state.foundFieldNotes.includes(f.id)}
+                  checked={fromSave.includes(f.id) || state.foundFieldNotes.includes(f.id)}
+                  disabled={fromSave.includes(f.id)}
                   onChange={(e) => update({ foundFieldNotes: e.target.checked ? [...state.foundFieldNotes, f.id] : state.foundFieldNotes.filter((x) => x !== f.id) })}
                 />{" "}
-                {f.name}
+                {f.name}{fromSave.includes(f.id) ? <small> (from your save)</small> : null}
               </label>
             ))}
           </div>

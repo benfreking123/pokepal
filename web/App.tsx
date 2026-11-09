@@ -3,7 +3,9 @@ import type { ClientBundle } from "../shared/types";
 import { getJson } from "./api";
 import { BattleTab } from "./tabs/BattleTab";
 import { GuidesTab } from "./tabs/GuidesTab";
+import { SaveSwapTab } from "./tabs/SaveSwapTab";
 import { SettingsTab } from "./tabs/SettingsTab";
+import { TeamTab } from "./tabs/TeamTab";
 import { TypeChartTab } from "./tabs/TypeChartTab";
 
 const TABS = [
@@ -17,7 +19,7 @@ const TABS = [
 ] as const;
 type TabId = (typeof TABS)[number]["id"];
 
-const COMING: Partial<Record<TabId, number>> = { team: 2, "save-swap": 2, prep: 3 };
+const COMING: Partial<Record<TabId, number>> = { prep: 3 };
 
 function tabFromHash(hash: string): TabId {
   const h = hash.replace(/^#/, "");
@@ -51,6 +53,8 @@ export function App() {
     if (phase) return <p>Coming in Phase {phase}</p>;
     switch (tab) {
       case "battle": return <BattleTab bundle={bundle} />;
+      case "team": return <TeamTab bundle={bundle} />;
+      case "save-swap": return <SaveSwapTab />;
       case "type-chart": return <TypeChartTab bundle={bundle} />;
       case "guides": return <GuidesTab />;
       case "settings": return <SettingsTab bundle={bundle} onChange={reload} />;
