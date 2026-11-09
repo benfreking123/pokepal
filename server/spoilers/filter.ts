@@ -1,4 +1,5 @@
-import type { Boss, BossView, ClientBundle, LoadedData, SpoilerSettings, TrainerFull, TrainerView } from "../../shared/types";
+import type { Boss, BossView, ClientBundle, LiveBattle, LoadedData, SpoilerSettings, TrainerFull, TrainerView } from "../../shared/types";
+import type { BattleState } from "../battle/schema";
 import type { SpoilerState } from "./state";
 
 export function trainerView(t: TrainerFull, s: SpoilerSettings, seen: number[]): TrainerView {
@@ -14,6 +15,10 @@ export function trainerView(t: TrainerFull, s: SpoilerSettings, seen: number[]):
     }];
   });
   return { key: t.key, label: t.label, partyId: t.partyId, mons, partial: !s.opponentFullTeam };
+}
+
+export function liveBattleView(state: BattleState, match: LiveBattle["match"], s: SpoilerSettings): LiveBattle {
+  return { ...state, match, foes: state.foes.map(({ level, ...f }) => (s.opponentLevels ? { ...f, level } : f)) };
 }
 
 export function bossView(b: Boss, s: SpoilerSettings): BossView {

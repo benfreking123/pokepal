@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import type { ClientBundle } from "../shared/types";
 import { getJson } from "./api";
+import { useBattleStream } from "./battleStream";
 import { BattleTab } from "./tabs/BattleTab";
 import { GuidesTab } from "./tabs/GuidesTab";
 import { PrepTab } from "./tabs/PrepTab";
@@ -31,6 +32,7 @@ export function App() {
   const [bundle, setBundle] = useState<ClientBundle | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [tab, setTab] = useState<TabId>(() => tabFromHash(location.hash));
+  const stream = useBattleStream();
 
   const reload = useCallback(() => {
     getJson<ClientBundle>("/api/data/bundle").then((b) => { setBundle(b); setError(null); }, (e: Error) => setError(e.message));
@@ -53,9 +55,9 @@ export function App() {
     const phase = COMING[tab];
     if (phase) return <p>Coming in Phase {phase}</p>;
     switch (tab) {
-      case "battle": return <BattleTab bundle={bundle} />;
+      case "battle": return <BattleTab bundle={bundle} stream={stream} />;
       case "team": return <TeamTab bundle={bundle} />;
-      case "prep": return <PrepTab bundle={bundle} />;
+      case "prep": return <PrepTab bundle={bundle} stream={stream} />;
       case "save-swap": return <SaveSwapTab />;
       case "type-chart": return <TypeChartTab bundle={bundle} />;
       case "guides": return <GuidesTab />;

@@ -4,6 +4,7 @@ import Fastify from "fastify";
 import fastifyStatic from "@fastify/static";
 import { loadConfig } from "./config";
 import { loadGameData } from "./data/loadData";
+import { createBattleFeed, registerBattleRoutes } from "./routes/battle";
 import { registerConfigRoutes } from "./routes/config";
 import { registerCrossplayRoutes } from "./routes/crossplay";
 import { registerDataRoutes } from "./routes/data";
@@ -20,6 +21,14 @@ await app.register(fastifyStatic, { root: path.resolve("dist/web") });
 registerSpoilerRoutes(app, spoilers);
 registerDataRoutes(app, data, spoilers, latestFieldNotes);
 if (!(data instanceof Error)) registerTrainerRoutes(app, data, spoilers);
+const battleFeed = createBattleFeed({
+  file: config.battleStateFile,
+  trainers: data instanceof Error ? {} : data.trainers,
+  store: spoilers,
+  log: (m) => app.log.debug(m),
+});
+registerBattleRoutes(app, battleFeed);
+app.addHook("onClose", () => battleFeed.close());
 registerSaveRoutes(app, config, data);
 registerCrossplayRoutes(app, config, data);
 registerConfigRoutes(app, config);
