@@ -5,6 +5,7 @@ import fastifyStatic from "@fastify/static";
 import { loadConfig } from "./config";
 import { loadGameData } from "./data/loadData";
 import { createBattleFeed, registerBattleRoutes } from "./routes/battle";
+import { createOverlayWriter, overlayFile } from "./overlay/write";
 import { registerConfigRoutes } from "./routes/config";
 import { registerCrossplayRoutes } from "./routes/crossplay";
 import { registerDataRoutes } from "./routes/data";
@@ -29,6 +30,17 @@ const battleFeed = createBattleFeed({
 });
 registerBattleRoutes(app, battleFeed);
 app.addHook("onClose", () => battleFeed.close());
+if (config.battleStateFile && !(data instanceof Error)) {
+  const overlay = createOverlayWriter({
+    file: overlayFile(config.battleStateFile),
+    data: data.game,
+    latest: battleFeed.latest,
+    settings: () => ({ settings: spoilers.state.settings, found: new Set([...spoilers.state.foundFieldNotes, ...(latestFieldNotes() ?? [])]) }),
+    log: (m) => app.log.debug(m),
+  });
+  battleFeed.subscribe(() => void overlay.refresh());
+  app.addHook("onClose", () => overlay.close());
+}
 registerSaveRoutes(app, config, data);
 registerCrossplayRoutes(app, config, data);
 registerConfigRoutes(app, config);

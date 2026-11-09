@@ -49,3 +49,34 @@ It adds no alias names, no globals and no methods on core classes, and wraps eac
 ## Support
 
 Mods are unsupported by the Reborn developers. Remove this file before reporting a game bug.
+
+## In-game overlay (`PokePalOverlay.rb`)
+
+A second, separate mod that draws a small battle panel from `overlay.json`. PokePal computes everything (field name, each foe's types and their 4x/2x weaknesses on the current field, and up to three switch picks with a short tag); the mod only draws it. Spoiler switches apply on the server, so anything hidden is simply absent from the file.
+
+### Install
+
+1. Close the game and start PokePal (it writes `<save dir>\PokePal\overlay.json` next to `battle_state.json`, only during a battle).
+2. Copy `mod\PokePalOverlay.rb` into `<game dir>\patch\Mods\` **as `zz_PokePalOverlay.rb`**. It sorts after `zz_PokePalBridge.rb`.
+
+```powershell
+Copy-Item mod\PokePalOverlay.rb "C:\Users\Ben\Desktop\Reborn-19.5.0\patch\Mods\zz_PokePalOverlay.rb"
+```
+
+Uninstall by deleting the file. It works with the SWM TypeBattleIcons mod: it only wraps `PokeBattle_Scene` methods and never touches the data boxes or the scene's `@sprites`.
+
+### Behaviour
+
+- **F6** shows or hides the panel (it starts shown).
+- Polls the file about twice a second. Nothing is drawn if the file is missing or more than 5 s old (PokePal closed, or no battle). PokePal rewrites it every 2 s during a battle to keep it fresh.
+- Hidden while the fight menu is open and while the Battle Stats / Inspect screen is up. It stays visible on the command menu and during messages. Field Notes and Pulse Dex opened from the fight menu are covered by the fight-menu rule.
+- Off in online battles (same `isOnline?` check as the bridge). Safari battles use another scene class, so it never runs there.
+- Off if `ENABLED = false` in the file, or an empty `disabled` file exists in `<save dir>\PokePal\` (this also switches the bridge off).
+- Every hook runs inside `PokePalOverlay.safely`: on the first error it writes `overlay_error.log` in the PokePal folder, disposes its sprites and stays off until the game restarts. Sprites and bitmaps are disposed in `pbEndBattle`.
+- Position is the top right; change `PANEL_TOP`, `PANEL_MARGIN` and `PANEL_WIDTH` at the top of the file if it covers something.
+
+### Hooks (Reborn 19.5.0, verified on Ben's install)
+
+`PokeBattle_Scene#pbFrameUpdate(cw, update_cw = true)` (`Battle_Scene.rb:1890`, polling and F6), `#pbEndBattle(result)` (`:2473`, dispose), and `#pbShowBattleStats` (called at `:2923`, hides the panel; its definition isn't in the copied scripts, so it is wrapped only when present). Methods are wrapped by redefining them around the current one (alias-style chaining, like the bridge), never `prepend`. `PokeBattle_Scene` is also reopened in `Battle_TestEnvironment.rb:1111`; that file is not in the copied scripts. The mod draws in its own viewport (z 100000) with one sprite. It has no map panel (`Scene_Map` is not hooked).
+
+`npm run test:mod` runs it against stand-in RGSS classes.
