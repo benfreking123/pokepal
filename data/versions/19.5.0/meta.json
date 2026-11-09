@@ -1,0 +1,16 @@
+{
+  "extractedAt": "2026-11-09T01:46:14.037Z",
+  "extractorVersion": "1.0.0",
+  "gameVersion": "19.5.0",
+  "sources": {
+    "Data/MapInfos.rxdata": "fe86af00158d019a2d50eca846e9bb414229a51f7fef300aeae9062c6855e3e4",
+    "Scripts/Reborn/abiltext.rb": "56e314782e37ff4a35888235bbd8b002ac963877d9fb10bca7ca60fec7efde21",
+    "Scripts/Reborn/fieldtext.rb": "2e3373c0532df965a61afa51eaf1d24fb4f1cd38abaf3505e82ac881d5669721",
+    "Scripts/Reborn/itemtext.rb": "490734ae5f28f6ae17aa15ae0dfe915309d5ca415287764c06037e2ef38a9051",
+    "Scripts/Reborn/montext.rb": "8957511e32a40f123c3544b23d764d1e761bd86d4a3bcc293f43d0e0bcd1ed96",
+    "Scripts/Reborn/movetext.rb": "856bddabfd72fd6d18f01dde1f280f2ad5af4bca9a5e42f0c9ce0bc6dd73cf11",
+    "Scripts/Reborn/trainertext.rb": "99cbcadb1f69f7d0aaf9ef71b0ae5b2401f54c34e54c85e2557a8599a97336ac",
+    "Scripts/Reborn/ttypetext.rb": "8ad1e6812da61a26983195fd1a9ddc738145dc0a1467a23f5fce37b0617273ce",
+    "Scripts/Reborn/typetext.rb": "fcb38c7007cda1b7551cad0d7b747eddcc32d076503162d07a5a27b31d864c44"
+  }
+}

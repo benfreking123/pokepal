@@ -1,0 +1,1 @@
+{ "UNDERWATER": { "id": "UNDERWATER", "name": "Underwater", "description": "", "rules": { "typeBoosts": [{ "type": "WATER", "factor": 1.5 }] }, "raw": {} } }

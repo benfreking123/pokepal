@@ -1,0 +1,1 @@
+{ "GENGAR": { "id": "GENGAR", "dexNum": 94, "forms": [{ "form": 0, "formName": null, "name": "Gengar", "types": ["GHOST", "POISON"], "baseStats": [60, 65, 60, 110, 130, 75], "abilities": ["CURSEDBODY"], "hiddenAbility": null }] } }

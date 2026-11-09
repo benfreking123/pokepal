@@ -1,0 +1,3194 @@
+{
+  "ABILITYCAPSULE": {
+    "description": "A capsule that allows a Pokémon with at least two Abilities to switch between these Abilities when it is used.",
+    "name": "Ability Capsule"
+  },
+  "ABOMASITE": {
+    "description": "Have Abomasnow hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Abomasite"
+  },
+  "ABSOLITE": {
+    "description": "Have Absol hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Absolite"
+  },
+  "ABSORBBULB": {
+    "description": "It boosts Sp. Atk if hit with a Water-type attack. It can only be used once.",
+    "name": "Absorb Bulb"
+  },
+  "ADAMANTMINT": {
+    "description": "When a Pokémon smells this mint, its Attack will grow more easily, but its Sp. Atk will grow more slowly.",
+    "name": "Adamant Mint"
+  },
+  "ADAMANTORB": {
+    "description": "A brightly gleaming orb to be held by Dialga. It boosts the power of Dragon- and Steel-type moves when it is held.",
+    "name": "Adamant Orb"
+  },
+  "ADRENALINEORB": {
+    "description": "If held by a Pokémon, it boosts Speed when intimidated. It can be used only once.",
+    "name": "Adrenaline Orb"
+  },
+  "AERODACTYLITE": {
+    "description": "Have Aerodactyl hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Aerodactylite"
+  },
+  "AGGRONITE": {
+    "description": "Have Aggron hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Aggronite"
+  },
+  "AGUAVBERRY": {
+    "description": "If held by a Pokémon, it restores the user's HP in a pinch, but it will cause confusion if the user hates the taste.",
+    "name": "Aguav Berry"
+  },
+  "AIRBALLOON": {
+    "description": "The holder will float in the air until hit. Once hit, this item will burst.",
+    "name": "Air Balloon"
+  },
+  "ALAKAZITE": {
+    "description": "Have Alakazam hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Alakazite"
+  },
+  "ALORAICHIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Alternate Raichu's Thunderbolt to an exclusive Z-Move.",
+    "name": "Aloraichium-Z"
+  },
+  "ALTARIANITE": {
+    "description": "Have Altaria hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Altarianite"
+  },
+  "AMETHYSTPENDANT": {
+    "description": "Anna's Amethyst Pendant. Team Meteor covets it as a special key.",
+    "name": "Amethyst Pendant"
+  },
+  "AMETHYSTSTAR": {
+    "description": "A violet crystal star found deep inside Victory Road. It sparkles with something more.",
+    "name": "Amethyst Star"
+  },
+  "AMPHAROSITE": {
+    "description": "Have Ampharos hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Ampharosite"
+  },
+  "AMPLIFIELDROCK": {
+    "description": "It extends the duration of the area-altering moves used by the holder.",
+    "name": "Amplifield Rock"
+  },
+  "AMULETCOIN": {
+    "description": "It doubles any prize money received if the holding Pokémon joins a battle.",
+    "name": "Amulet Coin"
+  },
+  "ANTIDOTE": {
+    "description": "A spray-type medicine against poisoning. Used once to lift the effects of poison from a Pokémon.",
+    "name": "Antidote"
+  },
+  "APARTMENTKEY": {
+    "description": "It looks like a modern key to a home. Maybe someone dropped it?",
+    "name": "House Key"
+  },
+  "APICOTBERRY": {
+    "description": "A Berry to be consumed by Pokémon. If a Pokémon holds one, its Sp. Def stat will increase when in a pinch.",
+    "name": "Apicot Berry"
+  },
+  "APOPHYLLAPP": {
+    "description": "Application for Apophyll Academy. Requirements: None. All interested are welcome!",
+    "name": "Apophyll Application"
+  },
+  "ARCAUTOGRAPH": {
+    "description": "'Thanks for listening! DJ Arclight will always look out for you. --A'",
+    "name": "DJ Arc Autograph"
+  },
+  "ARCHIVEKEY": {
+    "description": "A key to the client archives in the Lapis Ward Orphanage.",
+    "name": "Archive Key"
+  },
+  "ARMORFOSSIL": {
+    "description": "A fossil from a prehistoric Pokémon once living on the land. It looks like a part of a protective collar.",
+    "name": "Armor Fossil"
+  },
+  "ASPEARBERRY": {
+    "description": "A Berry to be consumed by Pokémon. A Pokémon holding it can recover from being frozen on its own in battle.",
+    "name": "Aspear Berry"
+  },
+  "ASSAULTVEST": {
+    "description": "This offensive vest raises Sp. Def but prevents the use of status moves.",
+    "name": "Assault Vest"
+  },
+  "ATKRESETBAG": {
+    "description": "A reusable special program that causes the Pokémon to forget its training in the Attack stat.",
+    "name": "Reset Disc- ATK"
+  },
+  "AUDINITE": {
+    "description": "Have Audino hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Audinite"
+  },
+  "AWAKENING": {
+    "description": "A spray-type medicine used against sleep. It can be used once to rouse a Pokémon from the clutches of sleep.",
+    "name": "Awakening"
+  },
+  "BABIRIBERRY": {
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Steel-type attack.",
+    "name": "Babiri Berry"
+  },
+  "BALMMUSHROOM": {
+    "description": "A rare mushroom that gives off a nice fragrance. It can be sold to shops at a high price.",
+    "name": "Balm Mushroom"
+  },
+  "BANETTITE": {
+    "description": "Have Banette hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Banettite"
+  },
+  "BATTLEPASS1": {
+    "description": "A ticket to battle Samson at the Agate Circus.",
+    "name": "Battle Pass- Strike"
+  },
+  "BATTLEPASS2": {
+    "description": "A ticket to battle Terra at the Agate Circus.",
+    "name": "Battle Pass- Gravity"
+  },
+  "BATTLEPASS3": {
+    "description": "A ticket to battle Ciel at the Agate Circus.",
+    "name": "Battle Pass- Suspension"
+  },
+  "BEASTBALL": {
+    "description": "A special Poké Ball designed to catch Ultra Beasts. It has a low success rate for catching others.",
+    "name": "Beast Ball"
+  },
+  "BEEDRILLITE": {
+    "description": "Have Beedrill hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Beedrillite"
+  },
+  "BELROSEPICTURE": {
+    "description": "A photograph showing a man with dark blue hair, a woman with rose pink hair, and three smiling children.",
+    "name": "Family Picture"
+  },
+  "BELUEBERRY": {
+    "description": "Used to make Pokéblocks that will enhance your Beauty, this Berry is rare in most regions.",
+    "name": "Belue Berry"
+  },
+  "BERRYJUICE": {
+    "description": "A 100% pure juice made of Berries. When consumed, it restores 20 HP to an injured Pokémon.",
+    "name": "Berry Juice"
+  },
+  "BERYLGRIDKEY": {
+    "description": "A key to open the door to the Beryl Water Grid in the Water Treatment Center.",
+    "name": "Beryl Grid Key"
+  },
+  "BICYCLE": {
+    "description": "A folding bike that enables a rider to get around much faster than with Running Shoes.",
+    "name": "Bicycle"
+  },
+  "BIGMALASADA": {
+    "description": "The Alola Region's special fried bread. It can be used once to heal all the status conditions of a Pokémon.",
+    "name": "Big Malasada"
+  },
+  "BIGMUSHROOM": {
+    "description": "A very large, rare mushroom. It's popular with a certain class of collectors and sought out by them.",
+    "name": "Big Mushroom"
+  },
+  "BIGNUGGET": {
+    "description": "A big nugget of pure gold that gives off a lustrous gleam. It can be sold to shops at a high price.",
+    "name": "Big Nugget"
+  },
+  "BIGPEARL": {
+    "description": "A rather large pearl that has a very nice silvery sheen. It can be sold to shops for a high price.",
+    "name": "Big Pearl"
+  },
+  "BIGROOT": {
+    "description": "It boosts the amount of HP the holder recovers from HP-stealing moves.",
+    "name": "Big Root"
+  },
+  "BIKEVOUCHER": {
+    "description": "'Redeem for one free Bike at the Lapis Luxury Cycle Shop!'",
+    "name": "Bike Voucher"
+  },
+  "BINDINGBAND": {
+    "description": "A band that increases the power of binding moves used by the holder.",
+    "name": "Binding Band"
+  },
+  "BLACKBELT": {
+    "description": "It helps the wearer to focus and boosts the power of Fighting-type moves.",
+    "name": "Black Belt"
+  },
+  "BLACKFLUTE": {
+    "description": "A black flute made from blown glass. Its melody makes wild Pokémon less likely to appear.",
+    "name": "Black Flute"
+  },
+  "BLACKGLASSES": {
+    "description": "A pair of shady-looking glasses that boost the power of Dark-type moves.",
+    "name": "Black Glasses"
+  },
+  "BLACKSLUDGE": {
+    "description": "It gradually restores HP to Poison-type Pokémon. It damages any other type.",
+    "name": "Black Sludge"
+  },
+  "BLASTOISINITE": {
+    "description": "Have Blastoise hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Blastoisinite"
+  },
+  "BLASTPOWDER": {
+    "description": "A powder made from Electrode. Explodes to break up certain rock formations.",
+    "name": "Blast Powder"
+  },
+  "BLAZIKENITE": {
+    "description": "Have Blaziken hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Blazikenite"
+  },
+  "BLUEFLUTE": {
+    "description": "A flute made from blue glass that awakens sleeping Pokémon.",
+    "name": "Blue Flute"
+  },
+  "BLUEMIC": {
+    "description": "An extremely rare and coveted flavored treat! Eat it before it melts to restore 200 HP!",
+    "name": "Blue Moon Ice Cream"
+  },
+  "BLUEORB": {
+    "description": "A shiny blue orb that is said to have a legend tied to it. It's known to have a deep connection with the Hoenn Region.",
+    "name": "Blue Orb"
+  },
+  "BLUEORB2": {
+    "description": "A shiny blue orb that is said to have a legend tied to it. It's known to have a deep connection with the Hoenn Region.",
+    "name": "Blue Orb"
+  },
+  "BLUEORB3": {
+    "description": "A shiny blue orb that is said to have a legend tied to it. It's known to have a deep connection with the Hoenn Region.",
+    "name": "Blue Orb"
+  },
+  "BLUESCARF": {
+    "description": "Gives its holder an aura of beauty.",
+    "name": "Blue Scarf"
+  },
+  "BLUESHARD": {
+    "description": "A small blue shard. It appears to be a fragment of some sort of implement made long ago.",
+    "name": "Blue Shard"
+  },
+  "BLUKBERRY": {
+    "description": "Used to make Pokéblocks that will enhance your Beauty. Its blue flesh is sour when eaten.",
+    "name": "Bluk Berry"
+  },
+  "BLUNDERPOLICY": {
+    "description": "Raises Speed sharply when a Pokémon misses with a move because of accuracy.",
+    "name": "Blunder Policy"
+  },
+  "BOLDMINT": {
+    "description": "When a Pokémon smells this mint, its Defense will grow more easily, but its Attack will grow more slowly.",
+    "name": "Bold Mint"
+  },
+  "BRAVEMINT": {
+    "description": "When a Pokémon smells this mint, its Attack will grow more easily, but its Speed will grow more slowly.",
+    "name": "Brave Mint"
+  },
+  "BRIGHTPOWDER": {
+    "description": "It casts a tricky glare that lowers the opponent's Accuracy.",
+    "name": "Bright Powder"
+  },
+  "BUBBLETEA": {
+    "description": "A sweet drink decorated with candy spheres. When consumed, it restores up to 180 HP to an injured Pokémon.",
+    "name": "Bubble Tea"
+  },
+  "BUGGEM": {
+    "description": "A gem with an insect-like essence. When held, it strengthens the power of a Bug-type move one time.",
+    "name": "Bug Gem"
+  },
+  "BUGINIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Bug-type moves to Bug-type Z-Moves.",
+    "name": "Buginium-Z"
+  },
+  "BUGMEMORY": {
+    "description": "A memory disc that contains Bug-type data. It changes the type of the holder if held by a certain Pokémon.",
+    "name": "Bug Memory"
+  },
+  "BURNDRIVE": {
+    "description": "A cassette to be held by Genesect. It changes Genesect's Techno Blast move so it becomes Fire-type.",
+    "name": "Burn Drive"
+  },
+  "BURNHEAL": {
+    "description": "A spray-type medicine for treating burns. It can be used once to heal a Pokémon suffering from a burn.",
+    "name": "Burn Heal"
+  },
+  "CAGEKEY": {
+    "description": "A simple key to a cage's padlock. It's slightly bent.",
+    "name": "Cage Key"
+  },
+  "CALCIUM": {
+    "description": "A nutritious drink for Pokémon. When consumed, it raises the base Sp. Atk stat of a single Pokémon.",
+    "name": "Calcium"
+  },
+  "CALMMINT": {
+    "description": "When a Pokémon smells this mint, its Sp. Def will grow more easily, but its Attack will grow more slowly.",
+    "name": "Calm Mint"
+  },
+  "CAMERUPTITE": {
+    "description": "Have Camerupt hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Cameruptite"
+  },
+  "CARBOS": {
+    "description": "A nutritious drink for Pokémon. When consumed, it raises the base Speed stat of a single Pokémon.",
+    "name": "Carbos"
+  },
+  "CAREFULMINT": {
+    "description": "When a Pokémon smells this mint, its Sp. Def will grow more easily, but its Sp. Atk will grow more slowly.",
+    "name": "Careful Mint"
+  },
+  "CASTELIACONE": {
+    "description": "Castelia City's specialty, soft-serve ice cream. It can be used once to heal all the status conditions of a Pokémon.",
+    "name": "Casteliacone"
+  },
+  "CATCHINGCHARM": {
+    "description": "Holding it is said to increase the chance of getting a critical catch. Stacks.",
+    "name": "Catching Charm: Ruby"
+  },
+  "CATCHINGCHARM2": {
+    "description": "Holding it is said to increase the chance of getting a critical catch. Stacks.",
+    "name": "Catching Charm: Sapphire"
+  },
+  "CATCHINGCHARM3": {
+    "description": "Holding it is said to increase the chance of getting a critical catch. Stacks.",
+    "name": "Catching Charm: Emerald"
+  },
+  "CATCHINGCHARM4": {
+    "description": "Holding it is said to increase the chance of getting a critical catch. Stacks.",
+    "name": "Catching Charm: Amethyst"
+  },
+  "CELLBATTERY": {
+    "description": "It boosts Attack if hit with an Electric-type attack. It can only be used once.",
+    "name": "Cell Battery"
+  },
+  "CELLIMPRINT": {
+    "description": "Extracted data from a mysterious cell. Using it can increase a Pokémon's natural potential.",
+    "name": "Cell Imprint"
+  },
+  "CHARCOAL": {
+    "description": "It's a combustible fuel that boosts the power of Fire-type moves.",
+    "name": "Charcoal"
+  },
+  "CHARIZARDITEX": {
+    "description": "Have Charizard hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Charizardite X"
+  },
+  "CHARIZARDITEY": {
+    "description": "Have Charizard hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Charizardite Y"
+  },
+  "CHARTIBERRY": {
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Rock-type attack.",
+    "name": "Charti Berry"
+  },
+  "CHERIBERRY": {
+    "description": "A Berry to be consumed by Pokémon. A Pokémon holding it can recover from paralysis on its own in battle.",
+    "name": "Cheri Berry"
+  },
+  "CHERISHBALL": {
+    "description": "A quite rare Poké Ball that has been crafted in order to commemorate a special occasion of some sort.",
+    "name": "Cherish Ball"
+  },
+  "CHESTOBERRY": {
+    "description": "A Berry to be consumed by Pokémon. A Pokémon holding it can recover from sleep on its own in battle.",
+    "name": "Chesto Berry"
+  },
+  "CHEWINGGUM": {
+    "description": "A sweet, chewy gum. It fixes a Pokémon's paralysis.",
+    "name": "Chewing Gum"
+  },
+  "CHILANBERRY": {
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one Normal-type attack.",
+    "name": "Chilan Berry"
+  },
+  "CHILLDRIVE": {
+    "description": "A cassette to be held by Genesect. It changes Genesect's Techno Blast move so it becomes Ice-type.",
+    "name": "Chill Drive"
+  },
+  "CHIPPEDPOT": {
+    "description": "A peculiar teapot that can make a certain species of Pokémon evolve. It may be chipped, but tea poured from it is delicious.",
+    "name": "Chipped Pot"
+  },
+  "CHOCOLATEIC": {
+    "description": "A chocolate flavored treat! Eat it before it melts to restore 70 HP!",
+    "name": "Choc Ice Cream"
+  },
+  "CHOICEBAND": {
+    "description": "This curious headband boosts Attack but only allows the use of one move.",
+    "name": "Choice Band"
+  },
+  "CHOICESCARF": {
+    "description": "This curious scarf boosts Speed but only allows the use of one move.",
+    "name": "Choice Scarf"
+  },
+  "CHOICESPECS": {
+    "description": "These curious glasses boost Sp. Atk but only allow the use of one move.",
+    "name": "Choice Specs"
+  },
+  "CHOPLEBERRY": {
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Fighting-type attack.",
+    "name": "Chople Berry"
+  },
+  "CIRCUSAPP": {
+    "description": "Application for the Agate Circus. Requirements: Arm wrestle with Samson. Victory not expected.",
+    "name": "Circus Application"
+  },
+  "CLAWFOSSIL": {
+    "description": "A fossil from a prehistoric Pokémon that once lived in the sea. It appears to be a fragment of a claw.",
+    "name": "Claw Fossil"
+  },
+  "CLEANSETAG": {
+    "description": "It helps keeping wild Pokémon away if the holder is the head of the party.",
+    "name": "Cleanse Tag"
+  },
+  "CLEVERWING": {
+    "description": "An item for use on a Pokémon. It slightly increases the base Sp. Def stat of a single Pokémon.",
+    "name": "Clever Wing"
+  },
+  "COBABERRY": {
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Flying-type attack.",
+    "name": "Coba Berry"
+  },
+  "COINCASE": {
+    "description": "A case for holding coins obtained at the Game Corner. It can hold up to 50,000 coins.",
+    "name": "Coin Case"
+  },
+  "COLBURBERRY": {
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Dark-type attack.",
+    "name": "Colbur Berry"
+  },
+  "COMETSHARD": {
+    "description": "A shard that fell to the ground when a comet approached. It can be sold to shops at a high price.",
+    "name": "Comet Shard"
+  },
+  "COMMONCANDY": {
+    "description": "An ordinary, unhealthy piece of candy. It lowers the level of a single Pokémon by one.",
+    "name": "Common Candy"
+  },
+  "CONSTRUCTIONAPP": {
+    "description": "Application for city construction. Requirements: Hard hat and hardy spirit!",
+    "name": "Construction App"
+  },
+  "CORALKEY": {
+    "description": "A key to the Coral Lighthouse. It's rusted over after recent neglect.",
+    "name": "Coral Key"
+  },
+  "CORNNBERRY": {
+    "description": "Used to make Pokéblocks that will enhance your Beauty, this Berry is rare in most regions.",
+    "name": "Cornn Berry"
+  },
+  "CORRUPTEDBALL": {
+    "description": "A Poké Ball with expired data. It can no longer be opened.",
+    "name": "Corrupted Poké Ball"
+  },
+  "COTTONCANDY": {
+    "description": "A sweet, fluffy delicacy that can revive fainted Pokémon.",
+    "name": "Cotton Candy"
+  },
+  "COVERFOSSIL": {
+    "description": "A fossil from a prehistoric Pokémon that once lived in the sea. It appears as though it could be part of its back.",
+    "name": "Cover Fossil"
+  },
+  "CRACKEDPOT": {
+    "description": "A peculiar teapot that can make a certain species of Pokémon evolve. It may be cracked, but tea poured from it is delicious.",
+    "name": "Cracked Pot"
+  },
+  "CRITICALAPP": {
+    "description": "Application for Critical Capture. Requirements: Moderate understanding of Poké Ball technology.",
+    "name": "Critical Application"
+  },
+  "CRYSTALBALL": {
+    "description": "A glassy crystal ball used to divine the future. It cost 100 milllion yen and boasts a 30% success rate.",
+    "name": "Crystal Ball"
+  },
+  "CRYSTALPLUG1": {
+    "description": "Resonates with large Red Crystals.",
+    "name": "Crystal Key"
+  },
+  "CRYSTALPLUG2": {
+    "description": "Resonates with large Red and Green Crystals.",
+    "name": "Crystal Key"
+  },
+  "CRYSTALPLUG3": {
+    "description": "Resonates with large Red, Green and Blue Crystals.",
+    "name": "Crystal Key"
+  },
+  "CRYSTALPLUG4": {
+    "description": "Resonates with large Red, Green, Blue and Purple Crystals.",
+    "name": "Crystal Key"
+  },
+  "CUSTAPBERRY": {
+    "description": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it will be able to move first just once when in a pinch.",
+    "name": "Custap Berry"
+  },
+  "CYCLEAPP": {
+    "description": "Application for the Lapis Luxury Cycle Shop. Requirements: Business casual attire, refined appearance.",
+    "name": "Cycle Application"
+  },
+  "DAMPMULCH": {
+    "description": "",
+    "name": "Damp Mulch"
+  },
+  "DAMPROCK": {
+    "description": "It extends the duration of the move Rain Dance when used by the holder.",
+    "name": "Damp Rock"
+  },
+  "DARKGEM": {
+    "description": "A gem with an essence of darkness. When held, it strengthens the power of a Dark-type move one time.",
+    "name": "Dark Gem"
+  },
+  "DARKINIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Dark-type moves to Dark-type Z-Moves.",
+    "name": "Darkinium-Z"
+  },
+  "DARKMATTER": {
+    "description": "A fragment of pitch-dark energy.",
+    "name": "Dark Material"
+  },
+  "DARKMEMORY": {
+    "description": "A memory disc that contains Dark-type data. It changes the type of the holder if held by a certain Pokémon.",
+    "name": "Dark Memory"
+  },
+  "DATACHIP": {
+    "description": "A discarded fragment of data. Plugging it into a computer might crash it.",
+    "name": "Data Chip"
+  },
+  "DAWNSTONE": {
+    "description": "A peculiar stone that can make certain species of Pokémon evolve. It sparkles like a glittering eye.",
+    "name": "Dawn Stone"
+  },
+  "DECIDIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Decidueye's Spirit Shackle to an exclusive Z-Move.",
+    "name": "Decidium-Z"
+  },
+  "DEEPSEASCALE": {
+    "description": "An item to be held by Clamperl. This scale shines with a faint pink and raises the holder's Sp. Def stat.",
+    "name": "Deep Sea Scale"
+  },
+  "DEEPSEATOOTH": {
+    "description": "An item to be held by Clamperl. This fang gleams a sharp silver and raises the holder's Sp. Atk stat.",
+    "name": "Deep Sea Tooth"
+  },
+  "DEFRESETBAG": {
+    "description": "A reusable special program that causes the Pokémon to forget its training in the Defense stat.",
+    "name": "Reset Disc- DEF"
+  },
+  "DESTINYKNOT": {
+    "description": "If the holder becomes infatuated, the opposing Pokémon will be, too.",
+    "name": "Destiny Knot"
+  },
+  "DEVONSCOPE": {
+    "description": "A device made by the combined efforts of Devon Corp. and Silph Co. It can reveal any Pokémon.",
+    "name": "Silvon Scope"
+  },
+  "DEVONSCOPEM": {
+    "description": "A model of the Devon Scope made by Devon Corp. It doesn't actually function.",
+    "name": "Devon Scope Model"
+  },
+  "DIAMONDRING": {
+    "description": "A sparkling new engagement ring. Only the finest.",
+    "name": "Diamond Ring"
+  },
+  "DIANCITE": {
+    "description": "Have Diancie hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Diancite"
+  },
+  "DIREHIT": {
+    "description": "Raises the critical-hit ratio greatly. Can be used only once and wears off if the Pokémon is withdrawn.",
+    "name": "Dire Hit"
+  },
+  "DIVEBALL": {
+    "description": "A somewhat different Poké Ball that works especially well when catching Pokémon that live underwater.",
+    "name": "Dive Ball"
+  },
+  "DNASPLICERS": {
+    "description": "A splicer that fuses Kyurem and a certain Pokémon. They are said to have been one in the beginning.",
+    "name": "DNA Splicers"
+  },
+  "DOMEFOSSIL": {
+    "description": "A fossil from a prehistoric Pokémon that once lived in the sea. It could be a shell or carapace.",
+    "name": "Dome Fossil"
+  },
+  "DOUSEDRIVE": {
+    "description": "A cassette to be held by Genesect. It changes Genesect's Techno Blast move so it becomes Water-type.",
+    "name": "Douse Drive"
+  },
+  "DOWSINGMCHN": {
+    "description": "It checks for unseen items in the area and makes noise and lights when it finds something.",
+    "name": "Dowsing MCHN"
+  },
+  "DRACOPLATE": {
+    "description": "It's a stone tablet that boosts the power of Dragon-type moves.",
+    "name": "Draco Plate"
+  },
+  "DRAGONFANG": {
+    "description": "This hard and sharp fang boosts the power of Dragon-type moves.",
+    "name": "Dragon Fang"
+  },
+  "DRAGONGEM": {
+    "description": "A gem with a draconic essence. When held, it strengthens the power of a Dragon-type move one time.",
+    "name": "Dragon Gem"
+  },
+  "DRAGONIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Dragon-type moves to Dragon-type Z-Moves.",
+    "name": "Dragonium-Z"
+  },
+  "DRAGONMEMORY": {
+    "description": "A memory disc that contains Dragon-type data. It changes the type of the holder if held by a certain Pokémon.",
+    "name": "Dragon Memory"
+  },
+  "DRAGONSCALE": {
+    "description": "A very tough and inflexible scale. Dragon-type Pokémon may be holding this item when caught.",
+    "name": "Dragon Scale"
+  },
+  "DRARECANDY": {
+    "description": "Rare Candy infused with hallucinogenic components. Best not to use this...",
+    "name": "'Rare Candy'"
+  },
+  "DREADPLATE": {
+    "description": "It's a stone tablet that boosts the power of Dark-type moves.",
+    "name": "Dread Plate"
+  },
+  "DREAMBALL": {
+    "description": "A somewhat different Poké Ball that makes it easier to catch wild Pokémon while they're asleep.",
+    "name": "Dream Ball"
+  },
+  "DUBIOUSDISC": {
+    "description": "A transparent device overflowing with dubious data. Its producer is unknown.",
+    "name": "Dubious Disc"
+  },
+  "DULLKEY": {
+    "description": "A lost, ordinary dark key. There seems to be a bit of spray paint on it.",
+    "name": "Dull Key"
+  },
+  "DURINBERRY": {
+    "description": "Used to make Pokéblocks that will enhance your Cleverness, this Berry is rare in most regions.",
+    "name": "Durin Berry"
+  },
+  "DUSKBALL": {
+    "description": "A somewhat different Poké Ball that makes it easier to catch wild Pokémon at night or in dark places like caves.",
+    "name": "Dusk Ball"
+  },
+  "DUSKSTONE": {
+    "description": "A peculiar stone that can make certain species of Pokémon evolve. It holds shadows as dark as can be.",
+    "name": "Dusk Stone"
+  },
+  "EARTHPLATE": {
+    "description": "It's a stone tablet that boosts the power of Ground-type moves.",
+    "name": "Earth Plate"
+  },
+  "EBONYKEY": {
+    "description": "In the end, isn't the total surrender of control still a way to try and survive?",
+    "name": "Ebony Key"
+  },
+  "EBONYSTONEPIECE": {
+    "description": "Everything begins with an ending.",
+    "name": "Ebony Stonepiece"
+  },
+  "EEVIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Eevee's Last Resort to an exclusive Z-Move.",
+    "name": "Eevium-Z"
+  },
+  "EJECTBUTTON": {
+    "description": "If the holder is hit by an attack, they will be switched out of battle.",
+    "name": "Eject Button"
+  },
+  "EJECTPACK": {
+    "description": "When the holder's stats are lowered, it will be switched out of battle.",
+    "name": "Eject Pack"
+  },
+  "ELECTIRIZER": {
+    "description": "A box packed with a tremendous amount of electric energy. It's loved by a certain Pokémon.",
+    "name": "Electirizer"
+  },
+  "ELECTRICGEM": {
+    "description": "A gem with an essence of electricity. When held, it strengthens the power of an Electric-type move one time.",
+    "name": "Electric Gem"
+  },
+  "ELECTRICMEMORY": {
+    "description": "A memory disc that contains Electric-type data. It changes the type of the holder if held by a certain Pokémon.",
+    "name": "Electric Memory"
+  },
+  "ELECTRIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Electric-type moves to Electric-type Z-Moves.",
+    "name": "Electrium-Z"
+  },
+  "ELEMENTALSEED": {
+    "description": "A single-use seed that boosts its holder in Elemental Fields.",
+    "name": "Elemental Seed"
+  },
+  "ELIXIR": {
+    "description": "This medicine can restore 10 PP to each of the moves that have been learned by a Pokémon.",
+    "name": "Elixir"
+  },
+  "EMERALDBROOCH": {
+    "description": "Luna's Emerald Brooch. Team Meteor covets it as a special key.",
+    "name": "Emerald Brooch"
+  },
+  "EMERALDSTAR": {
+    "description": "A verdant crystal star found deep inside Victory Road. It shines with faith.",
+    "name": "Emerald Star"
+  },
+  "ENERGYPOWDER": {
+    "description": "A very bitter medicinal powder. When consumed, it restores up to 60 HP to an injured Pokémon.",
+    "name": "Energy Powder"
+  },
+  "ENERGYROOT": {
+    "description": "An extremely bitter medicinal root. When consumed, it restores up to 120 HP to an injured Pokémon.",
+    "name": "Energy Root"
+  },
+  "ENIGMABERRY": {
+    "description": "A Berry to be consumed by Pokémon. If a Pokémon holding it is hit by a supereffective attack, it restores HP.",
+    "name": "Enigma Berry"
+  },
+  "ESCAPEROPE": {
+    "description": "A long, durable rope. Use it to escape instantly from a cave or a dungeon.",
+    "name": "Escape Rope"
+  },
+  "ETHER": {
+    "description": "This medicine can restore 10 PP to a single selected move that has been learned by a Pokémon.",
+    "name": "Ether"
+  },
+  "EVBOOSTER": {
+    "description": "A super vitamin shot that immediately charges one stat with 252 EVs. Still in clinical trials.",
+    "name": "EV Booster"
+  },
+  "EVERSTONE": {
+    "description": "A Pokémon holding this peculiar stone is prevented from evolving.",
+    "name": "Everstone"
+  },
+  "EVIOLITE": {
+    "description": "A mysterious evolutionary lump. When a Pokémon that can still evolve holds it, it raises both Defense and Sp. Def.",
+    "name": "Eviolite"
+  },
+  "EVTUNER": {
+    "description": "A single-use device that switches a Pokémon's EV totals between two stats.",
+    "name": "EV Tuner"
+  },
+  "EXPALL": {
+    "description": "Turning on this special device will allow all the Pokémon on your team to receive Exp. Points from battles.",
+    "name": "Exp. All (On)"
+  },
+  "EXPALLOFF": {
+    "description": "Turning on this special device will allow all the Pokémon on your team to receive Exp. Points from battles.",
+    "name": "Exp. All (Off)"
+  },
+  "EXPCANDYL": {
+    "description": "A candy that is packed with energy. When consumed, it will grant a single Pokémon a large amount of Exp. Points.",
+    "name": "Exp. Candy L"
+  },
+  "EXPCANDYM": {
+    "description": "A candy that is packed with energy. When consumed, it will grant a single Pokémon a moderate amount of Exp. Points.",
+    "name": "Exp. Candy M"
+  },
+  "EXPCANDYS": {
+    "description": "A candy that is packed with energy. When consumed, it will grant a single Pokémon a small amount of Exp. Points.",
+    "name": "Exp. Candy S"
+  },
+  "EXPCANDYXL": {
+    "description": "A candy that is packed with energy. When consumed, it will grant a single Pokémon a very large amount of Exp. Points.",
+    "name": "Exp. Candy XL"
+  },
+  "EXPCANDYXS": {
+    "description": "A candy that is packed with energy. When consumed, it will grant a single Pokémon a very small amount of Exp. Points.",
+    "name": "Exp. Candy XS"
+  },
+  "EXPERTBELT": {
+    "description": "It's a well-worn belt that slightly boosts the power of supereffective moves.",
+    "name": "Expert Belt"
+  },
+  "EXPSHARE": {
+    "description": "The holder gets a share of a battle's Exp. Points without battling.",
+    "name": "Exp. Share"
+  },
+  "F10KEY": {
+    "description": "An old, rusted key. The base reads 'F10'.",
+    "name": "F10 Key"
+  },
+  "F14KEY": {
+    "description": "An old, rusted key. The base reads 'F14'.",
+    "name": "F14 Key"
+  },
+  "F1KEY": {
+    "description": "An old, rusted key. The base reads 'F1'.",
+    "name": "F1 Key"
+  },
+  "F34KEY": {
+    "description": "An old, rusted key. The base reads 'F34'.",
+    "name": "F34 Key"
+  },
+  "FAIRIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Fairy-type moves to Fairy-type Z-Moves.",
+    "name": "Fairium-Z"
+  },
+  "FAIRYGEM": {
+    "description": "A gem with an essence of the fey. When held, it strengthens the power of a Fairy-type move one time.",
+    "name": "Fairy Gem"
+  },
+  "FAIRYMEMORY": {
+    "description": "A memory disc that contains Fairy-type data. It changes the type of the holder if held by a certain Pokémon.",
+    "name": "Fairy Memory"
+  },
+  "FASTBALL": {
+    "description": "A Poké Ball that makes it easier to catch Pokémon that have a high Speed stat.",
+    "name": "Fast Ball"
+  },
+  "FIGHTINGGEM": {
+    "description": "A gem with an essence of combat. When held, it strengthens the power of a Fighting-type move one time.",
+    "name": "Fighting Gem"
+  },
+  "FIGHTINGMEMORY": {
+    "description": "A memory disc that contains Fighting-type data. It changes the type of the holder if held by a certain Pokémon.",
+    "name": "Fighting Memory"
+  },
+  "FIGHTINIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Fighting-type moves to Fighting-type Z-Moves.",
+    "name": "Fightinium-Z"
+  },
+  "FIGYBERRY": {
+    "description": "If held by a Pokémon, it restores the user's HP in a pinch, but it will cause confusion if the user hates the taste.",
+    "name": "Figy Berry"
+  },
+  "FIREGEM": {
+    "description": "A gem with an essence of fire. When held, it strengthens the power of a Fire-type move one time.",
+    "name": "Fire Gem"
+  },
+  "FIREMEMORY": {
+    "description": "A memory disc that contains Fire-type data. It changes the type of the holder if held by a certain Pokémon.",
+    "name": "Fire Memory"
+  },
+  "FIRESTONE": {
+    "description": "A peculiar stone that can make certain species of Pokémon evolve. The stone has a fiery orange heart.",
+    "name": "Fire Stone"
+  },
+  "FIRIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Fire-type moves to Fire-type Z-Moves.",
+    "name": "Firium-Z"
+  },
+  "FISTPLATE": {
+    "description": "It's a stone tablet that boosts the power of Fighting-type moves.",
+    "name": "Fist Plate"
+  },
+  "FLAMEORB": {
+    "description": "It's a bizarre orb that will afflict the holder with a burn during battle.",
+    "name": "Flame Orb"
+  },
+  "FLAMEPLATE": {
+    "description": "It's a stone tablet that boosts the power of Fire-type moves.",
+    "name": "Flame Plate"
+  },
+  "FLOATSTONE": {
+    "description": "This very light stone reduces the weight of a Pokémon when held.",
+    "name": "Float Stone"
+  },
+  "FLORALCHARM": {
+    "description": "A flower-shaped lucky pendant. It's said to gain favor with spirits of the plants.",
+    "name": "Floral Charm"
+  },
+  "FLUFFYTAIL": {
+    "description": "A toy that attracts the attention of a Pokémon. It guarantees escape from any battle with wild Pokémon.",
+    "name": "Fluffy Tail"
+  },
+  "FLYINGGEM": {
+    "description": "A gem with an essence of air. When held, it strengthens the power of a Flying-type move one time.",
+    "name": "Flying Gem"
+  },
+  "FLYINGMEMORY": {
+    "description": "A memory disc that contains Flying-type data. It changes the type of the holder if held by a certain Pokémon.",
+    "name": "Flying Memory"
+  },
+  "FLYINIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Flying-type moves to Flying-type Z-Moves.",
+    "name": "Flyinium-Z"
+  },
+  "FOCUSBAND": {
+    "description": "The holder may endure a potential KO attack, leaving it with just 1 HP.",
+    "name": "Focus Band"
+  },
+  "FOCUSSASH": {
+    "description": "When having full HP, the holder will endure a potential KO attack with 1 HP once.",
+    "name": "Focus Sash"
+  },
+  "FOSSILIZEDBIRD": {
+    "description": "The fossil of an ancient Pokémon that once soared through the sky. What it looked like is a mystery.",
+    "name": "Fossilized Bird"
+  },
+  "FOSSILIZEDDINO": {
+    "description": "The fossil of an ancient Pokémon that once lived in the sea. What it looked like is a mystery.",
+    "name": "Fossilized Dino"
+  },
+  "FOSSILIZEDDRAKE": {
+    "description": "The fossil of an ancient Pokémon that once roamed the land. What it looked like is a mystery.",
+    "name": "Fossilized Drake"
+  },
+  "FOSSILIZEDFISH": {
+    "description": "The fossil of an ancient Pokémon that once lived in the sea. What it looked like is a mystery.",
+    "name": "Fossilized Fish"
+  },
+  "FRESHWATER": {
+    "description": "Water with a high mineral content. When consumed, it restores up to 30 HP to an injured Pokémon.",
+    "name": "Fresh Water"
+  },
+  "FRIENDBALL": {
+    "description": "A strange Poké Ball that will make the wild Pokémon caught with it more friendly toward you immediately.",
+    "name": "Friend Ball"
+  },
+  "FULLHEAL": {
+    "description": "A spray-type medicine that is broadly effective. It can be used once to heal all the status conditions of a Pokémon.",
+    "name": "Full Heal"
+  },
+  "FULLINCENSE": {
+    "description": "This exotic-smelling incense makes the holder bloated and slow moving.",
+    "name": "Full Incense"
+  },
+  "FULLRESETBAG": {
+    "description": "A reusable special program that causes the Pokémon to forget its training in all stats.",
+    "name": "Reset Disc- ALL"
+  },
+  "FULLRESTORE": {
+    "description": "A medicine that can be used to fully restore the HP of a single Pokémon and heal any status conditions it has.",
+    "name": "Full Restore"
+  },
+  "GALLADITE": {
+    "description": "Have Gallade hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Galladite"
+  },
+  "GANLONBERRY": {
+    "description": "A Berry to be consumed by Pokémon. If a Pokémon holds one, its Defense stat will increase when in a pinch.",
+    "name": "Ganlon Berry"
+  },
+  "GARCHOMPITE": {
+    "description": "Have Garchomp hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Garchompite"
+  },
+  "GARDEVOIRITE": {
+    "description": "Have Gardevoir hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Gardevoirite"
+  },
+  "GATHERCUBE": {
+    "description": "A Mysterious Cube that has the power to gather various types of cells.",
+    "name": "Gather Cube"
+  },
+  "GENGARITE": {
+    "description": "Have Gengar hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Gengarite"
+  },
+  "GENIUSWING": {
+    "description": "An item for use on a Pokémon. It slightly increases the base Sp. Atk stat of a single Pokémon.",
+    "name": "Genius Wing"
+  },
+  "GENTLEMINT": {
+    "description": "When a Pokémon smells this mint, its Sp. Def will grow more easily, but its Defense will grow more slowly.",
+    "name": "Gentle Mint"
+  },
+  "GHOSTGEM": {
+    "description": "A gem with a spectral essence. When held, it strengthens the power of a Ghost-type move one time.",
+    "name": "Ghost Gem"
+  },
+  "GHOSTIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Ghost-type moves to Ghost-type Z-Moves.",
+    "name": "Ghostium-Z"
+  },
+  "GHOSTMEMORY": {
+    "description": "A memory disc that contains Ghost-type data. It changes the type of the holder if held by a certain Pokémon.",
+    "name": "Ghost Memory"
+  },
+  "GIFTBOX": {
+    "description": "What's inside? It's a surprise!",
+    "name": "Gift Box"
+  },
+  "GLALITITE": {
+    "description": "Have Glalie hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Glalitite"
+  },
+  "GLAMAPP": {
+    "description": "Application for the Glamazonia Salon. Requirements: Maximum glamour. Hot legs preferred.",
+    "name": "Glamazonia App"
+  },
+  "GLITTERBALL": {
+    "description": "A special Poké Ball that excels at catching shiny Pokémon, or turns a Pokémon shiny on catch.",
+    "name": "Glitter Ball"
+  },
+  "GOLDKEY": {
+    "description": "A key that doesn't exist. What are you doing here?",
+    "name": "Gold Key"
+  },
+  "GOODROD": {
+    "description": "A new, good-quality fishing rod. Use it at any body of water to fish for wild aquatic Pokémon.",
+    "name": "Good Rod"
+  },
+  "GOOEYMULCH": {
+    "description": "",
+    "name": "Gooey Mulch"
+  },
+  "GRACIDEA": {
+    "description": "A flower sometimes bundled in bouquets to convey gratitude on special occasions like birthdays.",
+    "name": "Gracidea"
+  },
+  "GRASSGEM": {
+    "description": "A gem with an essence of nature. When held, it strengthens the power of a Grass-type move one time.",
+    "name": "Grass Gem"
+  },
+  "GRASSIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Grass-type moves to Grass-type Z-Moves.",
+    "name": "Grassium-Z"
+  },
+  "GRASSMAIL": {
+    "description": "A blank stationery with no conceivable purpose. If you stare at it for too long, you can feel it winking at you.",
+    "name": "Lin Mail"
+  },
+  "GRASSMEMORY": {
+    "description": "A memory disc that contains Grass-type data. It changes the type of the holder if held by a certain Pokémon.",
+    "name": "Grass Memory"
+  },
+  "GREATBALL": {
+    "description": "A good, high-performance Poké Ball that provides a higher Pokémon catch rate than a standard Poké Ball.",
+    "name": "Great Ball"
+  },
+  "GREENSCARF": {
+    "description": "Gives its holder a smarter impression.",
+    "name": "Green Scarf"
+  },
+  "GREENSHARD": {
+    "description": "A small green shard. It appears to be a fragment of some sort of implement made long ago.",
+    "name": "Green Shard"
+  },
+  "GREPABERRY": {
+    "description": "A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its base Sp. Def.",
+    "name": "Grepa Berry"
+  },
+  "GRIPCLAW": {
+    "description": "It extends the duration of multi-turn attacks like Bind and Wrap.",
+    "name": "Grip Claw"
+  },
+  "GRISEOUSORB": {
+    "description": "A glowing orb to be held by Giratina. It boosts the power of Dragon- and Ghost-type moves when it is held.",
+    "name": "Griseous Orb"
+  },
+  "GROUNDGEM": {
+    "description": "A gem with an essence of land. When held, it strengthens the power of a Ground-type move one time.",
+    "name": "Ground Gem"
+  },
+  "GROUNDIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Ground-type moves to Ground-type Z-Moves.",
+    "name": "Groundium-Z"
+  },
+  "GROUNDMEMORY": {
+    "description": "A memory disc that contains Ground-type data. It changes the type of the holder if held by a certain Pokémon.",
+    "name": "Ground Memory"
+  },
+  "GROWTHMULCH": {
+    "description": "",
+    "name": "Growth Mulch"
+  },
+  "GUARDSPEC": {
+    "description": "An item that prevents stat reduction among the Trainer's party Pokémon for five turns after it is used in battle.",
+    "name": "Guard Spec."
+  },
+  "GUMKEY": {
+    "description": "A key with a pink label attached to it that only reads 'GUM'.",
+    "name": "GUM Key"
+  },
+  "GYARADOSITE": {
+    "description": "Have Gyarados hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Gyaradosite"
+  },
+  "HABANBERRY": {
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Dragon-type attack.",
+    "name": "Haban Berry"
+  },
+  "HARBORKEY": {
+    "description": "The key for Amaria's harbor in the Coral Ward.",
+    "name": "Harbor Key"
+  },
+  "HARDSTONE": {
+    "description": "It's a durable stone that boosts the power of Rock-type moves.",
+    "name": "Hard Stone"
+  },
+  "HASTYMINT": {
+    "description": "When a Pokémon smells this mint, its Speed will grow more easily, but its Defense will grow more slowly.",
+    "name": "Hasty Mint"
+  },
+  "HEADPHONES": {
+    "description": "Top quality, noise-cancelling headphones. They come at a steep price.",
+    "name": "Headphones"
+  },
+  "HEALBALL": {
+    "description": "A remedial Poké Ball that restores the HP of a Pokémon caught with it and eliminates any status conditions.",
+    "name": "Heal Ball"
+  },
+  "HEALPOWDER": {
+    "description": "A very bitter medicinal powder. It can be used once to heal all the status conditions of a Pokémon.",
+    "name": "Heal Powder"
+  },
+  "HEALTHWING": {
+    "description": "An item for use on a Pokémon. It slightly increases the base HP of a single Pokémon.",
+    "name": "Health Wing"
+  },
+  "HEARTSCALE": {
+    "description": "A pretty, heart-shaped scale that is extremely rare. Some people are happy to receive one.",
+    "name": "Heart Scale"
+  },
+  "HEATROCK": {
+    "description": "It extends the duration of the move Sunny Day when used by the holder.",
+    "name": "Heat Rock"
+  },
+  "HEAVYBALL": {
+    "description": "A Poké Ball that is better than usual at catching very heavy Pokémon.",
+    "name": "Heavy Ball"
+  },
+  "HEAVYDUTYBOOTS": {
+    "description": "These boots prevent the effects of traps set on the battlefield.",
+    "name": "Heavy-Duty Boots"
+  },
+  "HELIXFOSSIL": {
+    "description": "A fossil from a prehistoric Pokémon that once lived in the sea. It might be a piece of a seashell.",
+    "name": "Helix Fossil"
+  },
+  "HERACRONITE": {
+    "description": "Have Heracross hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Heracronite"
+  },
+  "HM01": {
+    "description": "The target is cut with a scythe or claw. This can also be used to cut down thin trees.",
+    "name": "TMX1"
+  },
+  "HM02": {
+    "description": "The user soars and then strikes their target on the next turn. This can also be used to fly to any familiar town.",
+    "name": "TMX2"
+  },
+  "HM03": {
+    "description": "The user swamps their surroundings with a giant wave. It can also be used for crossing water.",
+    "name": "TMX3"
+  },
+  "HM04": {
+    "description": "The target is slugged with a punch thrown at maximum power. This can also be used to move heavy boulders.",
+    "name": "TMX4"
+  },
+  "HM05": {
+    "description": "The user charges at the target and may make it flinch. This can also be used to climb a waterfall.",
+    "name": "TMX5"
+  },
+  "HM06": {
+    "description": "Dives on the first turn and floats up and attacks on the next turn. Can be used to dive deep in the ocean.",
+    "name": "TMX6"
+  },
+  "HM09": {
+    "description": "Smashes into the target with great force. May confuse the target. Can be used to scale rocky walls.",
+    "name": "TMX9"
+  },
+  "HONDEWBERRY": {
+    "description": "A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its base Sp. Atk.",
+    "name": "Hondew Berry"
+  },
+  "HONEY": {
+    "description": "A sweet honey with a lush aroma that attracts wild Pokémon when it is used on special trees.",
+    "name": "Honey"
+  },
+  "HOUNDOOMINITE": {
+    "description": "Have Houndoom hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Houndoominite"
+  },
+  "HPRESETBAG": {
+    "description": "A reusable special program that causes the Pokémon to forget its training in the HP stat.",
+    "name": "Reset Disc- HP"
+  },
+  "HPUP": {
+    "description": "A nutritious drink for Pokémon. When consumed, it raises the base HP of a single Pokémon.",
+    "name": "HP Up"
+  },
+  "HYPERPOTION": {
+    "description": "A spray-type medicine for treating wounds. It can be used to restore 120 HP to an injured Pokémon.",
+    "name": "Hyper Potion"
+  },
+  "IAPAPABERRY": {
+    "description": "If held by a Pokémon, it restores the user's HP in a pinch, but it will cause confusion if the user hates the taste.",
+    "name": "Iapapa Berry"
+  },
+  "ICEGEM": {
+    "description": "A gem with an essence of ice. When held, it strengthens the power of an Ice-type move one time.",
+    "name": "Ice Gem"
+  },
+  "ICEHEAL": {
+    "description": "A spray-type medicine against freezing. Usable once to defreeze a Pokémon that has been frozen solid.",
+    "name": "Ice Heal"
+  },
+  "ICEMEMORY": {
+    "description": "A memory disc that contains Ice-type data. It changes the type of the holder if held by a certain Pokémon.",
+    "name": "Ice Memory"
+  },
+  "ICESTONE": {
+    "description": "A peculiar stone that can make certain species of Pokémon evolve. It has an unmistakable snowflake pattern.",
+    "name": "Ice Stone"
+  },
+  "ICICLEPLATE": {
+    "description": "It's a stone tablet that boosts the power of Ice-type moves.",
+    "name": "Icicle Plate"
+  },
+  "ICIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Ice-type moves to Ice-type Z-Moves.",
+    "name": "Icium-Z"
+  },
+  "ICYROCK": {
+    "description": "It extends the duration of the move Hail when used by the holder.",
+    "name": "Icy Rock"
+  },
+  "IDTAG": {
+    "description": "A Team Meteor dog tag. The name reads 'Tara Copperman'.",
+    "name": "ID Tag"
+  },
+  "ILLFATEDDOLL": {
+    "description": "A cursed doll that brings ruin on anyone who keeps it.",
+    "name": "Ill-Fated Doll"
+  },
+  "IMPISHMINT": {
+    "description": "When a Pokémon smells this mint, its Defense will grow more easily, but its Sp. Atk will grow more slowly.",
+    "name": "Impish Mint"
+  },
+  "INCINIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Incineroar's Darkest Lariat to an exclusive Z-Move.",
+    "name": "Incinium-Z"
+  },
+  "INSECTPLATE": {
+    "description": "It's a stone tablet that boosts the power of Bug-type moves.",
+    "name": "Insect Plate"
+  },
+  "INTRIGUINGSTONE": {
+    "description": "A rather curious stone that might appear valuable to some. It's all in the eye of the beholder.",
+    "name": "Intriguing Stone"
+  },
+  "IRON": {
+    "description": "A nutritious drink for Pokémon. When consumed, it raises the base Defense stat of a single Pokémon.",
+    "name": "Iron"
+  },
+  "IRONBALL": {
+    "description": "Held by a Pokémon. It lowers Speed. Ground-type moves can hit the holder even if Flying-type or levitating.",
+    "name": "Iron Ball"
+  },
+  "IRONPLATE": {
+    "description": "It's a stone tablet that boosts the power of Steel-type moves.",
+    "name": "Iron Plate"
+  },
+  "ITEMFINDER": {
+    "description": "A device used for finding items. If there is a hidden item nearby when it is used, it emits a signal.",
+    "name": "Itemfinder"
+  },
+  "IVORYKEY": {
+    "description": "A key that doesn't exist. Why are you doing this?",
+    "name": "Ivory Key"
+  },
+  "JABOCABERRY": {
+    "description": "A Berry to be consumed by Pokémon. If a physical attack hits the holder, the attacker will also be hurt.",
+    "name": "Jaboca Berry"
+  },
+  "JAWFOSSIL": {
+    "description": "A fossil from a prehistoric Pokémon that once lived on the land. It looks as if it could be a piece of a large jaw.",
+    "name": "Jaw Fossil"
+  },
+  "JOLLYMINT": {
+    "description": "When a Pokémon smells this mint, its Speed will grow more easily, but its Sp. Atk will grow more slowly.",
+    "name": "Jolly Mint"
+  },
+  "K22KEY": {
+    "description": "An old, rusted key. The base reads 'K22'.",
+    "name": "K22 Key"
+  },
+  "K2KEY": {
+    "description": "An old, rusted key. The base reads 'K2'.",
+    "name": "K2 Key"
+  },
+  "K33KEY": {
+    "description": "An old, rusted key. The base reads 'K33'.",
+    "name": "K33 Key"
+  },
+  "K5KEY": {
+    "description": "An old, rusted key. The base reads 'K5'.",
+    "name": "K5 Key"
+  },
+  "KANGASKHANITE": {
+    "description": "Have Kangaskhan hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Kangaskhanite"
+  },
+  "KASIBBERRY": {
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Ghost-type attack.",
+    "name": "Kasib Berry"
+  },
+  "KEBIABERRY": {
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Poison-type attack.",
+    "name": "Kebia Berry"
+  },
+  "KEEBERRY": {
+    "description": "If held by a Pokémon, this Berry will increase the holder's Defense if they're hit with a physical move.",
+    "name": "Kee Berry"
+  },
+  "KELPSYBERRY": {
+    "description": "A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its base Attack.",
+    "name": "Kelpsy Berry"
+  },
+  "KINGSROCK": {
+    "description": "When the holder successfully inflicts damage, the target may also flinch.",
+    "name": "King's Rock"
+  },
+  "KINSOKUJIKOU": {
+    "description": "A sealed envelope marked 'TOP SECRET'. Better not read it.",
+    "name": "Classified Information"
+  },
+  "KOMMONIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Kommo-o's Clanging Scales to an exclusive Z-Move.",
+    "name": "Kommonium-Z"
+  },
+  "LAGGINGTAIL": {
+    "description": "It is tremendously heavy and makes the holder move slower than usual.",
+    "name": "Lagging Tail"
+  },
+  "LANSATBERRY": {
+    "description": "A Berry to be consumed by Pokémon. If a Pokémon holds one, its critical-hit ratio will increase when in a pinch.",
+    "name": "Lansat Berry"
+  },
+  "LATIASITE": {
+    "description": "Have Latias hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Latiasite"
+  },
+  "LATIOSITE": {
+    "description": "Have Latios hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Latiosite"
+  },
+  "LAVACOOKIE": {
+    "description": "Lavaridge Town's local specialty. It can be used once to heal all the status conditions of a Pokémon.",
+    "name": "Lava Cookie"
+  },
+  "LAXINCENSE": {
+    "description": "The beguiling aroma of this incense may cause attacks to miss its holder.",
+    "name": "Lax Incense"
+  },
+  "LAXMINT": {
+    "description": "When a Pokémon smells this mint, its Defense will grow more easily, but its Sp. Def will grow more slowly.",
+    "name": "Lax Mint"
+  },
+  "LEAFSTONE": {
+    "description": "A peculiar stone that can make certain species of Pokémon evolve. It has an unmistakable leaf pattern.",
+    "name": "Leaf Stone"
+  },
+  "LEFTOVERS": {
+    "description": "The holder's HP is slowly but steadily restored throughout every battle.",
+    "name": "Leftovers"
+  },
+  "LEMONADE": {
+    "description": "A very sweet and refreshing drink. When consumed, it restores up to 70 HP to an injured Pokémon.",
+    "name": "Lemonade"
+  },
+  "LEPPABERRY": {
+    "description": "A Berry to be consumed by Pokémon. A Pokémon holding it can restore 10 PP to a depleted move during battle.",
+    "name": "Leppa Berry"
+  },
+  "LEVELBALL": {
+    "description": "A Poké Ball that makes it easier to catch Pokémon that are at a lower level than your own Pokémon.",
+    "name": "Level Ball"
+  },
+  "LIBRARYAPP": {
+    "description": "Application for the Beryl Library. Requirements: A love for knowledge and calmness in equal measure.",
+    "name": "Library Application"
+  },
+  "LIECHIBERRY": {
+    "description": "A Berry to be consumed by Pokémon. If a Pokémon holds one, its Attack stat will increase when in a pinch.",
+    "name": "Liechi Berry"
+  },
+  "LIFEORB": {
+    "description": "It boosts the power of moves, but at the cost of some HP on each hit.",
+    "name": "Life Orb"
+  },
+  "LIGHTBALL": {
+    "description": "An item to be held by Pikachu. It's a puzzling orb that boosts its Attack and Sp. Atk stats.",
+    "name": "Light Ball"
+  },
+  "LIGHTCLAY": {
+    "description": "Protective moves like Light Screen and Reflect will be effective longer.",
+    "name": "Light Clay"
+  },
+  "LINKSTONE": {
+    "description": "A peculiar stone that can make certain species of Pokémon evolve. It has a link cable pattern.",
+    "name": "Link Stone"
+  },
+  "LONELYMINT": {
+    "description": "When a Pokémon smells this mint, its Attack will grow more easily, but its Defense will grow more slowly.",
+    "name": "Lonely Mint"
+  },
+  "LOPUNNITE": {
+    "description": "Have Lopunny hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Lopunnite"
+  },
+  "LOVEBALL": {
+    "description": "A Poké Ball that works best when catching a Pokémon that is of the opposite gender of your Pokémon.",
+    "name": "Love Ball"
+  },
+  "LUCARIONITE": {
+    "description": "Have Lucario hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Lucarionite"
+  },
+  "LUCKINCENSE": {
+    "description": "It doubles any prize money received if the holding Pokémon joins a battle.",
+    "name": "Luck Incense"
+  },
+  "LUCKYEGG": {
+    "description": "It's an egg filled with happiness that earns extra Exp. Points in battle.",
+    "name": "Lucky Egg"
+  },
+  "LUCKYPUNCH": {
+    "description": "An item to be held by Chansey. This pair of lucky boxing gloves will boost Chansey's critical-hit ratio.",
+    "name": "Lucky Punch"
+  },
+  "LUMBERRY": {
+    "description": "A Berry to be consumed by Pokémon. A Pokémon holding it can recover from any status condition during battle.",
+    "name": "Lum Berry"
+  },
+  "LUMINOUSMOSS": {
+    "description": "It boosts Sp. Def if hit with a Water-type attack. It can only be used once.",
+    "name": "Luminous Moss"
+  },
+  "LUMIOSEGALETTE": {
+    "description": "A popular treat in Lumiose City. It can be used once to heal all the status conditions of a Pokémon.",
+    "name": "Lumiose Galette"
+  },
+  "LUNALIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Lunala's Moongeist Beam to an exclusive Z-Move.",
+    "name": "Lunalium-Z"
+  },
+  "LUREBALL": {
+    "description": "A Poké Ball that is good for catching Pokémon that you reel in with a rod while out fishing.",
+    "name": "Lure Ball"
+  },
+  "LUSTROUSORB": {
+    "description": "A beautifully glowing orb to be held by Palkia. It boosts the power of Dragon- and Water-type moves when it is held.",
+    "name": "Lustrous Orb"
+  },
+  "LUXURYBALL": {
+    "description": "A particularly comfortable Poké Ball that makes a wild Pokémon quickly grow friendlier after being caught.",
+    "name": "Luxury Ball"
+  },
+  "LYCANIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Lycanroc's Stone Edge to an exclusive Z-Move.",
+    "name": "Lycanium-Z"
+  },
+  "MACHOBRACE": {
+    "description": "Boosted!  It helps Pokémon grow strong but cuts Speed in battle.",
+    "name": "Macho Brace"
+  },
+  "MAGICALSEED": {
+    "description": "A single-use seed that boosts its holder in Magical Fields.",
+    "name": "Magical Seed"
+  },
+  "MAGMARIZER": {
+    "description": "A box packed with a tremendous amount of magma energy. It's loved by a certain Pokémon.",
+    "name": "Magmarizer"
+  },
+  "MAGNET": {
+    "description": "It's a powerful magnet that boosts the power of Electric-type moves.",
+    "name": "Magnet"
+  },
+  "MAGNETICLURE": {
+    "description": "An item to be held. One polarity draws in uncaught species, while the other pushes them away for quick escape.",
+    "name": "Magnetic Lure"
+  },
+  "MAGNETPOWDER": {
+    "description": "A polarized powder made from ground-up magnets.",
+    "name": "Magnet Powder"
+  },
+  "MAGOBERRY": {
+    "description": "If held by a Pokémon, it restores the user's HP in a pinch, but it will cause confusion if the user hates the taste.",
+    "name": "Mago Berry"
+  },
+  "MAGOSTBERRY": {
+    "description": "Used to make Pokéblocks that will enhance your Cuteness, this Berry is rare in most regions.",
+    "name": "Magost Berry"
+  },
+  "MANAPHYGEM": {
+    "description": "An artificial gem. Two prongs on the back might fit into something else.",
+    "name": "Manaphy Gem"
+  },
+  "MANECTITE": {
+    "description": "Have Manectric hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Manectite"
+  },
+  "MARANGABERRY": {
+    "description": "If held by a Pokémon, this Berry will increase the holder's Sp. Def if they're hit with a special move.",
+    "name": "Maranga Berry"
+  },
+  "MARSHADIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Marshadow's Spectral Thief to an exclusive Z-Move.",
+    "name": "Marshadium-Z"
+  },
+  "MASTERBALL": {
+    "description": "The best Poké Ball with the ultimate level of performance. With it, you will catch any wild Pokémon without fail.",
+    "name": "Reborn Ball"
+  },
+  "MAWILITE": {
+    "description": "Have Mawile hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Mawilite"
+  },
+  "MAXELIXIR": {
+    "description": "This medicine can fully restore the PP of all of the moves that have been learned by a Pokémon.",
+    "name": "Max Elixir"
+  },
+  "MAXETHER": {
+    "description": "This medicine can fully restore the PP of a single selected move that has been learned by a Pokémon.",
+    "name": "Max Ether"
+  },
+  "MAXPOTION": {
+    "description": "A spray-type medicine for treating wounds. It will completely restore the max HP of a single Pokémon.",
+    "name": "Max Potion"
+  },
+  "MAXREPEL": {
+    "description": "An item that prevents any low-level wild Pokémon from jumping out at you for 500 steps.",
+    "name": "Max Repel"
+  },
+  "MAXREVIVE": {
+    "description": "A medicine that can revive fainted Pokémon. It also fully restores a fainted Pokémon's maximum HP.",
+    "name": "Max Revive"
+  },
+  "MCKREZZYAUTOGRAPH": {
+    "description": "'Blaze on, starshine. ~M'",
+    "name": "McKrezzy Autograph"
+  },
+  "MEADOWPLATE": {
+    "description": "It's a stone tablet that boosts the power of Grass-type moves.",
+    "name": "Meadow Plate"
+  },
+  "MEDICHAMITE": {
+    "description": "Have Medicham hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Medichamite"
+  },
+  "MEDICINE": {
+    "description": "A essential oil cure-all for human wounds and illnesses. It's made from flowers gathered by Comfey.",
+    "name": "Herbal Extract"
+  },
+  "MEDICINEAPP": {
+    "description": "Application for a Medicine Market. Requirements: Understanding of herbal and chemical treatments.",
+    "name": "Medicine Application"
+  },
+  "MEGARING": {
+    "description": "This ring contains an untold power that somehow enables Pokémon carrying special crystals to use them in battle.",
+    "name": "Mega-Z Ring"
+  },
+  "MEMBERSHIPCARD": {
+    "description": "A Membership Card for the Department Store in Obsidia. Collect Stickers to increase rank!",
+    "name": "Membership Card"
+  },
+  "MEMEONADE": {
+    "description": "The label appears to be illegibly scrawled on with crayon. It restores the HP of one Pokémon by 103 points.",
+    "name": "Blue Moon Lemonade"
+  },
+  "MENTALHERB": {
+    "description": "The holder shakes off move-binding effects to move freely. It can be used only once.",
+    "name": "Mental Herb"
+  },
+  "METAGROSSITE": {
+    "description": "Have Metagross hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Metagrossite"
+  },
+  "METALCOAT": {
+    "description": "It's a special metallic film that can boost the power of Steel-type moves.",
+    "name": "Metal Coat"
+  },
+  "METALPOWDER": {
+    "description": "An item to be held by Ditto. Extremely fine yet hard, this odd powder boosts the Defense stat.",
+    "name": "Metal Powder"
+  },
+  "METEORCARD": {
+    "description": "A card key belonging to a high-ranking Team Meteor officer. It can be used to open restricted areas.",
+    "name": "Meteor Card"
+  },
+  "METRONOME": {
+    "description": "It boosts moves used consecutively, but only until a different move is used.",
+    "name": "Metronome"
+  },
+  "MEWNIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Mew's Psychic to an exclusive Z-Move.",
+    "name": "Mewnium-Z"
+  },
+  "MEWTWONITEX": {
+    "description": "Have Mewtwo hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Mewtwonite X"
+  },
+  "MEWTWONITEY": {
+    "description": "Have Mewtwo hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Mewtwonite Y"
+  },
+  "MICLEBERRY": {
+    "description": "A Berry to be consumed by Pokémon. If a Pokémon holds one, its Accuracy will increase just once when in a pinch.",
+    "name": "Micle Berry"
+  },
+  "MILDMINT": {
+    "description": "When a Pokémon smells this mint, its Sp. Attack will grow more easily, but its Defense will grow more slowly.",
+    "name": "Mild Mint"
+  },
+  "MIMIKIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Mimikyu's Play Rough to an exclusive Z-Move.",
+    "name": "Mimikium-Z"
+  },
+  "MINDPLATE": {
+    "description": "It's a stone tablet that boosts the power of Psychic-type moves.",
+    "name": "Mind Plate"
+  },
+  "MININGKIT": {
+    "description": "A hammer and pickaxe for unearthing lost goods.",
+    "name": "Mining Kit"
+  },
+  "MIRACLESEED": {
+    "description": "It's a seed imbued with life force that boosts the power of Grass-type moves.",
+    "name": "Miracle Seed"
+  },
+  "MIRRORLURE": {
+    "description": "An item to be held. One polarity draws in identical species to the holder, while the other allows for quick escape.",
+    "name": "Mirror Lure"
+  },
+  "MODESTMINT": {
+    "description": "When a Pokémon smells this mint, its Sp. Attack will grow more easily, but its Attack will grow more slowly.",
+    "name": "Modest Mint"
+  },
+  "MOOMOOMILK": {
+    "description": "A bottle of highly nutritious milk. When consumed, it restores up to 100 HP to an injured Pokémon.",
+    "name": "Moomoo Milk"
+  },
+  "MOONBALL": {
+    "description": "A Poké Ball that will make it easier to catch Pokémon that can evolve using a Moon Stone.",
+    "name": "Moon Ball"
+  },
+  "MOONSTONE": {
+    "description": "A peculiar stone that can make certain species of Pokémon evolve. It is as black as the night sky.",
+    "name": "Moon Stone"
+  },
+  "MUSCLEBAND": {
+    "description": "This headband exudes strength, slightly boosting the power of physical moves.",
+    "name": "Muscle Band"
+  },
+  "MUSCLEWING": {
+    "description": "An item for use on a Pokémon. It slightly increases the base Attack stat of a single Pokémon.",
+    "name": "Muscle Wing"
+  },
+  "MYSTICWATER": {
+    "description": "This teardrop-shaped gem boosts the power of Water-type moves.",
+    "name": "Mystic Water"
+  },
+  "NAIVEMINT": {
+    "description": "When a Pokémon smells this mint, its Speed will grow more easily, but its Sp. Def will grow more slowly.",
+    "name": "Naive Mint"
+  },
+  "NANABBERRY": {
+    "description": "Used to make Pokéblocks that will enhance your Cuteness. Its pink flesh is sweet when eaten.",
+    "name": "Nanab Berry"
+  },
+  "NAUGHTYMINT": {
+    "description": "When a Pokémon smells this mint, its Attack will grow more easily, but its Sp. Def will grow more slowly.",
+    "name": "Naughty Mint"
+  },
+  "NEGATIVEIMPRINT": {
+    "description": "Extracted data from a mysterious cell. Using it can decrease a Pokémon's natural potential.",
+    "name": "Negative Imprint"
+  },
+  "NESTBALL": {
+    "description": "A somewhat different Poké Ball that becomes more effective the lower the level of the wild Pokémon.",
+    "name": "Nest Ball"
+  },
+  "NETBALL": {
+    "description": "A somewhat different Poké Ball that is more effective when attempting to catch Water- or Bug-type Pokémon.",
+    "name": "Net Ball"
+  },
+  "NEVERMELTICE": {
+    "description": "It's a heat-repelling piece of ice that boosts the power of Ice-type moves.",
+    "name": "Never-Melt Ice"
+  },
+  "NIGHTCLUBAPP": {
+    "description": "Application for the Reborn Nightclub. Requirements: See DJ Arclight.",
+    "name": "Nightclub Application"
+  },
+  "NLUNARIZER": {
+    "description": "This item is used to fuse Necrozma and Lunala to create Dawn Wings Necrozma.",
+    "name": "N-Lunarizer"
+  },
+  "NOMELBERRY": {
+    "description": "Used to make Pokéblocks that will enhance your Toughness, this Berry is rare in most regions.",
+    "name": "Nomel Berry"
+  },
+  "NORMALGEM": {
+    "description": "A gem with an ordinary essence. When held, it strengthens the power of a Normal-type move one time.",
+    "name": "Normal Gem"
+  },
+  "NORMALIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Normal-type moves to Normal-type Z-Moves.",
+    "name": "Normalium-Z"
+  },
+  "NSOLARIZER": {
+    "description": "This item is used to fuse Necrozma and Solgaleo to create Dusk Mane Necrozma.",
+    "name": "N-Solarizer"
+  },
+  "NUGGET": {
+    "description": "A nugget of purest gold that gives off a lustrous gleam in direct light. It can be sold to shops at a high price.",
+    "name": "Nugget"
+  },
+  "OCCABERRY": {
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Fire-type attack.",
+    "name": "Occa Berry"
+  },
+  "ODDINCENSE": {
+    "description": "This exotic-smelling incense boosts the power of Psychic-type moves.",
+    "name": "Odd Incense"
+  },
+  "ODDISHWEED": {
+    "description": "Leaves from a passed Oddish's head. Some fanatics use them to cure ailments.",
+    "name": "Oddishweed"
+  },
+  "ODDKEYSTONE": {
+    "description": "A vital item that is needed to keep a stone tower from collapsing. Voices can be heard from it occasionally.",
+    "name": "Odd Keystone"
+  },
+  "OLDAMBER": {
+    "description": "A piece of amber that contains the genetic material of an ancient Pokémon. It is clear with a tawny tint.",
+    "name": "Old Amber"
+  },
+  "OLDGATEAU": {
+    "description": "The Old Chateau's hidden specialty. It can be used once to heal all the status conditions of a Pokémon.",
+    "name": "Old Gateau"
+  },
+  "OLDROD": {
+    "description": "An old and beat-up fishing rod. Use it at any body of water to fish for wild aquatic Pokémon.",
+    "name": "Old Rod"
+  },
+  "ORANBERRY": {
+    "description": "A Berry to be consumed by Pokémon. A Pokémon holding it can restore its own HP by 10 points during battle.",
+    "name": "Oran Berry"
+  },
+  "ORPHANAGEKEY": {
+    "description": "A key to open the orphanage and psychiatric facility in the Lapis Ward.",
+    "name": "Orphanage Key"
+  },
+  "OVALCHARM": {
+    "description": "An oval charm said to increase the chance of Pokémon Eggs being found at the Day Care.",
+    "name": "Oval Charm"
+  },
+  "OVALSTONE": {
+    "description": "A peculiar stone that can make certain species of Pokémon evolve. It's as round as a Pokémon Egg.",
+    "name": "Oval Stone"
+  },
+  "PAMTREBERRY": {
+    "description": "Used to make Pokéblocks that will enhance your Beauty, this Berry is rare in most regions.",
+    "name": "Pamtre Berry"
+  },
+  "PARLYZHEAL": {
+    "description": "A spray-type medicine against paralysis. It can be used once to free a Pokémon that has been paralyzed.",
+    "name": "Paralyze Heal"
+  },
+  "PASSHOBERRY": {
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Water-type attack.",
+    "name": "Passho Berry"
+  },
+  "PAYAPABERRY": {
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Psychic-type attack.",
+    "name": "Payapa Berry"
+  },
+  "PEARL": {
+    "description": "A rather small pearl that has a very nice silvery sheen to it. It can be sold to shops cheaply.",
+    "name": "Pearl"
+  },
+  "PEARLSTRING": {
+    "description": "Very large pearls that sparkle in a pretty silver color. They can be sold to shops at a high price.",
+    "name": "Pearl String"
+  },
+  "PECHABERRY": {
+    "description": "A Berry to be consumed by Pokémon. A Pokémon holding it can recover from poisoning on its own in battle.",
+    "name": "Pecha Berry"
+  },
+  "PEPPERMINT": {
+    "description": "A sweet, minty-fresh candy. It cures a Pokémon of poison.",
+    "name": "Peppermint"
+  },
+  "PERSIMBERRY": {
+    "description": "A Berry to be consumed by Pokémon. A Pokémon holding it can recover from confusion on its own in battle.",
+    "name": "Persim Berry"
+  },
+  "PETAYABERRY": {
+    "description": "A Berry to be consumed by Pokémon. If a Pokémon holds one, its Sp. Atk stat will increase when in a pinch.",
+    "name": "Petaya Berry"
+  },
+  "PIDGEOTITE": {
+    "description": "Have Pidgeot hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Pidgeotite"
+  },
+  "PIKANIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Pikachu's Volt Tackle to an exclusive Z-Move.",
+    "name": "Pikanium-Z"
+  },
+  "PINAPBERRY": {
+    "description": "Used to make Pokéblocks that will enhance your Toughness. Its yellow flesh is sour when eaten.",
+    "name": "Pinap Berry"
+  },
+  "PINKNECTAR": {
+    "description": "A flower nectar imported from the Royal Avenue. It changes the form of certain species of Pokémon.",
+    "name": "Pink Nectar"
+  },
+  "PINKPEARL": {
+    "description": "A large, round pearl, originally from a Clamperl. It looks well-cared for.",
+    "name": "Pink Pearl"
+  },
+  "PINKSCARF": {
+    "description": "Gives its holder a cuter appearance.",
+    "name": "Pink Scarf"
+  },
+  "PINSIRITE": {
+    "description": "Have Pinsir hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Pinsirite"
+  },
+  "PIXIEPLATE": {
+    "description": "It's a stone tablet that boosts the power of Fairy-type moves.",
+    "name": "Pixie Plate"
+  },
+  "PLUMEFOSSIL": {
+    "description": "A fossil from a prehistoric Pokémon that once lived in the sky. It looks as if it could come from part of its wing.",
+    "name": "Plume Fossil"
+  },
+  "POISONBARB": {
+    "description": "This small, poisonous barb boosts the power of Poison-type moves.",
+    "name": "Poison Barb"
+  },
+  "POISONGEM": {
+    "description": "A gem with an essence of poison. When held, it strengthens the power of a Poison-type move one time.",
+    "name": "Poison Gem"
+  },
+  "POISONIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Poison-type moves to Poison-type Z-Moves.",
+    "name": "Poisonium-Z"
+  },
+  "POISONMEMORY": {
+    "description": "A memory disc that contains Poison-type data. It changes the type of the holder if held by a certain Pokémon.",
+    "name": "Poison Memory"
+  },
+  "POKEBALL": {
+    "description": "A device for catching wild Pokémon. It's thrown like a ball at a Pokémon, comfortably encapsulating its target.",
+    "name": "Poké Ball"
+  },
+  "POKEDOLL": {
+    "description": "A doll that attracts the attention of a Pokémon. It guarantees escape from any battle with wild Pokémon.",
+    "name": "Poké Doll"
+  },
+  "POKEFLUTE": {
+    "description": "A flute that can play with such a beautiful tone that even sleeping Pokémon find themselves roused.",
+    "name": "Poké Flute"
+  },
+  "POKERADAR": {
+    "description": "A tool that can search out Pokémon that are hiding in grass. Its battery is recharged as you walk.",
+    "name": "Poké Radar"
+  },
+  "POKESNAX": {
+    "description": "A popular to-go snack for Pokémon of all species.",
+    "name": "PokéSnax"
+  },
+  "POKETOY": {
+    "description": "A toy that attracts the attention of a Pokémon. It guarantees escape from any battle with wild Pokémon.",
+    "name": "Poké Toy"
+  },
+  "POMEGBERRY": {
+    "description": "A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its base HP.",
+    "name": "Pomeg Berry"
+  },
+  "POPROCKS": {
+    "description": "A sweet, carbonated candy. It jolts a Pokémon awake.",
+    "name": "Pop Rocks"
+  },
+  "POTION": {
+    "description": "A spray-type medicine for treating wounds. It can be used to restore 20 HP to an injured Pokémon.",
+    "name": "Potion"
+  },
+  "POWDERVIAL": {
+    "description": "A vial and collection unit for gathering and distributing spores.",
+    "name": "Powder Vial"
+  },
+  "POWERANKLET": {
+    "description": "Boosted! It reduces Speed, but the holder's Speed stat grows more after battling.",
+    "name": "Power Anklet"
+  },
+  "POWERBAND": {
+    "description": "Boosted! It reduces Speed, but the holder's Sp. Def stat grows more after battling.",
+    "name": "Power Band"
+  },
+  "POWERBELT": {
+    "description": "Boosted! It reduces Speed, but the holder's Defense stat grows more after battling.",
+    "name": "Power Belt"
+  },
+  "POWERBRACER": {
+    "description": "Boosted! It reduces Speed, but the holder's Attack stat grows more after battling.",
+    "name": "Power Bracer"
+  },
+  "POWERHERB": {
+    "description": "Held by a Pokémon. The holder can immediately use a move that normally requires a turn to charge only once.",
+    "name": "Power Herb"
+  },
+  "POWERLENS": {
+    "description": "Boosted! It reduces Speed, but the holder's Sp. Atk stat grows more after battling.",
+    "name": "Power Lens"
+  },
+  "POWERWEIGHT": {
+    "description": "Boosted! It reduces Speed, but the holder's maximum HP grows more after battling.",
+    "name": "Power Weight"
+  },
+  "PPALL": {
+    "description": "A medicine that can optimally raise the maximum PP of all moves known by the target Pokémon.",
+    "name": "PP All"
+  },
+  "PPMAX": {
+    "description": "A medicine that can optimally raise the maximum PP of a single move that has been learned by the target Pokémon.",
+    "name": "PP Max"
+  },
+  "PPUP": {
+    "description": "A medicine that can slightly raise the maximum PP of a single move that has been learned by the target Pokémon.",
+    "name": "PP Up"
+  },
+  "PREMIERBALL": {
+    "description": "A somewhat rare Poké Ball that was made as a commemorative item used to celebrate an event of some sort.",
+    "name": "Premier Ball"
+  },
+  "PRETTYWING": {
+    "description": "Though this feather is beautiful, it's just a regular feather and has no effect on Pokémon.",
+    "name": "Pretty Wing"
+  },
+  "PRIMARIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Primarina's Sparkling Aria to an exclusive Z-Move.",
+    "name": "Primarium-Z"
+  },
+  "PRISMSCALE": {
+    "description": "A mysterious scale that causes a certain Pokémon to evolve. It shines in rainbow colors.",
+    "name": "Prism Scale"
+  },
+  "PRISONBOTTLE": {
+    "description": "A bottle believed to have been used to seal away the power of a certain Pokémon long, long ago.",
+    "name": "Prison Bottle"
+  },
+  "PROTECTIVEPADS": {
+    "description": "They protect the holder from effects caused by making direct contact with the target.",
+    "name": "Protective Pads"
+  },
+  "PROTECTOR": {
+    "description": "A protective item of some sort. It is extremely stiff and heavy. It's loved by a certain Pokémon.",
+    "name": "Protector"
+  },
+  "PROTEIN": {
+    "description": "A nutritious drink for Pokémon. When consumed, it raises the base Attack stat of a single Pokémon.",
+    "name": "Protein"
+  },
+  "PSYCHICGEM": {
+    "description": "A gem with an essence of the mind. When held, it strengthens the power of a Psychic-type move one time.",
+    "name": "Psychic Gem"
+  },
+  "PSYCHICMEMORY": {
+    "description": "A memory disc that contains Psychic-type data. It changes the type of the holder if held by a certain Pokémon.",
+    "name": "Psychic Memory"
+  },
+  "PSYCHIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Psychic-type moves to Psychic-type Z-Moves.",
+    "name": "Psychium-Z"
+  },
+  "PUREINCENSE": {
+    "description": "It helps keeping wild Pokémon away if the holder is the head of the party.",
+    "name": "Pure Incense"
+  },
+  "PURPLENECTAR": {
+    "description": "A flower nectar imported from Poni Meadow. It changes the form of certain species of Pokémon.",
+    "name": "Purple Nectar"
+  },
+  "PURPLESHARD": {
+    "description": "A small purple shard. It appears to be a fragment of some sort of implement made long ago.",
+    "name": "Purple Shard"
+  },
+  "QUALOTBERRY": {
+    "description": "A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its base Defense.",
+    "name": "Qualot Berry"
+  },
+  "QUICKBALL": {
+    "description": "A somewhat different Poké Ball that has a more successful catch rate if used at the start of a wild encounter.",
+    "name": "Quick Ball"
+  },
+  "QUICKCLAW": {
+    "description": "This light, sharp claw lets the bearer move first occasionally.",
+    "name": "Quick Claw"
+  },
+  "QUICKPOWDER": {
+    "description": "An item to be held by Ditto. Extremely fine yet hard, this odd powder boosts the Speed stat.",
+    "name": "Quick Powder"
+  },
+  "QUIETMINT": {
+    "description": "When a Pokémon smells this mint, its Sp. Attack will grow more easily, but its Speed will grow more slowly.",
+    "name": "Quiet Mint"
+  },
+  "RABUTABERRY": {
+    "description": "Used to make Pokéblocks that will enhance your Cleverness, this Berry is rare in most regions.",
+    "name": "Rabuta Berry"
+  },
+  "RADIOCOMM": {
+    "description": "A radio originally belonging to Arclight. It can send signals and messages to its partner device.",
+    "name": "Radio Transceiver"
+  },
+  "RAGECANDYBAR": {
+    "description": "Mahogany Town's famous candy. It can be used once to heal all the status conditions of a Pokémon.",
+    "name": "Rage Candy Bar"
+  },
+  "RAILNETKEY": {
+    "description": "A key to open the depths of the Underground Railnet.",
+    "name": "Railnet Key"
+  },
+  "RAINBOWSCENT": {
+    "description": "A perfume which can attract or repel wild Pokémon.",
+    "name": "Rainbow Scent"
+  },
+  "RAREBONE": {
+    "description": "A rare bone that is very valuable for the study of Pokémon archeology. It can be sold to shops for a high price.",
+    "name": "Rare Bone"
+  },
+  "RARECANDY": {
+    "description": "A candy that is packed with energy. When consumed, it will instantly raise the level of a single Pokémon by one.",
+    "name": "Rare Candy"
+  },
+  "RASHMINT": {
+    "description": "When a Pokémon smells this mint, its Sp. Attack will grow more easily, but its Sp. Def will grow more slowly.",
+    "name": "Rash Mint"
+  },
+  "RAWSTBERRY": {
+    "description": "A Berry to be consumed by Pokémon. A Pokémon holding it can recover from a burn on its own in battle.",
+    "name": "Rawst Berry"
+  },
+  "RAZORCLAW": {
+    "description": "This sharply hooked claw increases the holder's critical-hit ratio.",
+    "name": "Razor Claw"
+  },
+  "RAZORFANG": {
+    "description": "When the holder successfully inflicts damage, the target may also flinch.",
+    "name": "Razor Fang"
+  },
+  "RAZZBERRY": {
+    "description": "Used to make Pokéblocks that will enhance your Coolness. Its red flesh is spicy when eaten.",
+    "name": "Razz Berry"
+  },
+  "REAPERCLOTH": {
+    "description": "A cloth imbued with horrifyingly strong spiritual energy. It's loved by a certain Pokémon.",
+    "name": "Reaper Cloth"
+  },
+  "REDCARD": {
+    "description": "When the holder is hit by an attack, the attacker is removed from battle.",
+    "name": "Red Card"
+  },
+  "REDFLUTE": {
+    "description": "A flute made from red glass that snaps Pokémon out of infatuation.",
+    "name": "Red Flute"
+  },
+  "REDHOTS": {
+    "description": "A sweet, spicy candy. It thaws a Pokémon from freeze.",
+    "name": "Red-Hots"
+  },
+  "REDNECTAR": {
+    "description": "A flower nectar imported from Ula'ula Meadow. It changes the form of certain species of Pokémon.",
+    "name": "Red Nectar"
+  },
+  "REDORB": {
+    "description": "A shiny red orb that is said to have a legend tied to it. It's known to have a deep connection with the Hoenn Region.",
+    "name": "Red Orb"
+  },
+  "REDSCARF": {
+    "description": "Gives its holder a cooler aura.",
+    "name": "Red Scarf"
+  },
+  "REDSHARD": {
+    "description": "A small red shard. It appears to be a fragment of some sort of implement made long ago.",
+    "name": "Red Shard"
+  },
+  "RELAXEDMINT": {
+    "description": "When a Pokémon smells this mint, its Defense will grow more easily, but its Speed will grow more slowly.",
+    "name": "Relaxed Mint"
+  },
+  "RELICBAND": {
+    "description": "A heavy bracelet made by an ancient civilization about 3,000 years ago. It can be sold to shops at a high price.",
+    "name": "Relic Band"
+  },
+  "RELICCOPPER": {
+    "description": "A copper coin used by an ancient civilization about 3,000 years ago. It can be sold to shops at a high price.",
+    "name": "Relic Copper"
+  },
+  "RELICCROWN": {
+    "description": "A heavy crown made by an ancient civilization about 3,000 years ago. It can be sold to shops at a high price.",
+    "name": "Relic Crown"
+  },
+  "RELICGOLD": {
+    "description": "A gold coin used by an ancient civilization about 3,000 years ago. It can be sold to shops at a high price.",
+    "name": "Relic Gold"
+  },
+  "RELICSILVER": {
+    "description": "A silver coin used by an ancient civilization about 3,000 years ago. It can be sold to shops at a high price.",
+    "name": "Relic Silver"
+  },
+  "RELICSTATUE": {
+    "description": "A stone figurine made by an ancient civilization about 3,000 years ago. It can be sold to shops at a high price.",
+    "name": "Relic Statue"
+  },
+  "RELICVASE": {
+    "description": "A fragile vase made by an ancient civilization about 3,000 years ago. It can be sold to shops at a high price.",
+    "name": "Relic Vase"
+  },
+  "REMOTEPC": {
+    "description": "Allows remote connection to the storage system. Requires and consumes one Cell Battery per use.",
+    "name": "Remote PC"
+  },
+  "REPEATBALL": {
+    "description": "A somewhat different Poké Ball that works especially well on a Pokémon species that has been caught before.",
+    "name": "Repeat Ball"
+  },
+  "REPEL": {
+    "description": "An item that prevents any low-level wild Pokémon from jumping out at you for 200 steps.",
+    "name": "Repel"
+  },
+  "RESISTWING": {
+    "description": "An item for use on a Pokémon. It slightly increases the base Defense stat of a single Pokémon.",
+    "name": "Resist Wing"
+  },
+  "REVEALGLASS": {
+    "description": "A looking glass that reveals the truth. It's a mysterious glass that returns a Pokémon to its original shape.",
+    "name": "Reveal Glass"
+  },
+  "REVIVALHERB": {
+    "description": "A terribly bitter medicinal herb. It revives a fainted Pokémon and fully restores its maximum HP.",
+    "name": "Revival Herb"
+  },
+  "REVIVE": {
+    "description": "A medicine that can revive fainted Pokémon. It also restores half of a fainted Pokémon's maximum HP.",
+    "name": "Revive"
+  },
+  "RIBBONCOLLAR": {
+    "description": "A collar found on a Sylveon. The inside reads 'Willowreed & Crystal, 2'",
+    "name": "Ribbon Collar"
+  },
+  "RINDOBERRY": {
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Grass-type attack.",
+    "name": "Rindo Berry"
+  },
+  "RINGTARGET": {
+    "description": "Moves that normally have no effect will land on a Pokémon holding it.",
+    "name": "Ring Target"
+  },
+  "RKEY": {
+    "description": "A normal apartment key that someone dropped. It's marked with the letter 'R'.",
+    "name": "'R' Key"
+  },
+  "ROCKGEM": {
+    "description": "A gem with an essence of rock. When held, it strengthens the power of a Rock-type move one time.",
+    "name": "Rock Gem"
+  },
+  "ROCKINCENSE": {
+    "description": "This exotic-smelling incense boosts the power of Rock-type moves.",
+    "name": "Rock Incense"
+  },
+  "ROCKIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Rock-type moves to Rock-type Z-Moves.",
+    "name": "Rockium-Z"
+  },
+  "ROCKMEMORY": {
+    "description": "A memory disc that contains Rock-type data. It changes the type of the holder if held by a certain Pokémon.",
+    "name": "Rock Memory"
+  },
+  "ROCKYHELMET": {
+    "description": "If the holder is hit, the attacker will also be damaged upon contact.",
+    "name": "Rocky Helmet"
+  },
+  "ROOMSERVICE": {
+    "description": "Lowers Speed when Trick Room takes effect.",
+    "name": "Room Service"
+  },
+  "ROOTFOSSIL": {
+    "description": "A fossil from a prehistoric Pokémon that once lived in the sea. It looks as if it could be part of a plant's root.",
+    "name": "Root Fossil"
+  },
+  "ROSEINCENSE": {
+    "description": "This exotic-smelling incense boosts the power of Grass-type moves.",
+    "name": "Rose Incense"
+  },
+  "ROSELIBERRY": {
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Fairy-type attack.",
+    "name": "Roseli Berry"
+  },
+  "ROWAPBERRY": {
+    "description": "A Berry to be consumed by Pokémon. If a special attack hits the holder, the attacker will also be hurt.",
+    "name": "Rowap Berry"
+  },
+  "RUBYRING": {
+    "description": "Heather's Ruby Ring. Team Meteor covets it as a special key.",
+    "name": "Ruby Ring"
+  },
+  "RUBYSTAR": {
+    "description": "A crimson crystal star found deep inside Victory Road. It glitters with passion.",
+    "name": "Ruby Star"
+  },
+  "RUSTEDSHIELD": {
+    "description": "It is said that a hero used this shield to halt a terrible disaster in ancient times. It's grown rusty and worn.",
+    "name": "Rusted Shield"
+  },
+  "RUSTEDSWORD": {
+    "description": "It is said that a hero used this sword to halt a terrible disaster in ancient times. It's grown rusty and worn.",
+    "name": "Rusted Sword"
+  },
+  "S12KEY": {
+    "description": "An old, rusted key. The base reads 'S12'.",
+    "name": "S12 Key"
+  },
+  "S4KEY": {
+    "description": "An old, rusted key. The base reads 'S4'.",
+    "name": "S4 Key"
+  },
+  "S9KEY": {
+    "description": "An old, rusted key. The base reads 'S9'.",
+    "name": "S9 Key"
+  },
+  "SABLENITE": {
+    "description": "Have Sableye hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Sablenite"
+  },
+  "SACHET": {
+    "description": "A sachet filled with fragrant perfumes that are just slightly overwhelming. Yet it's loved by a certain Pokémon.",
+    "name": "Sachet"
+  },
+  "SACREDASH": {
+    "description": "This rare ash can revive all fainted Pokémon in a party. In doing so, it also fully restores their maximum HP.",
+    "name": "Sacred Ash"
+  },
+  "SAFARIBALL": {
+    "description": "A special Poké Ball that is used only in Safari locations around the world. It is decorated in a camouflage pattern.",
+    "name": "Safari Ball"
+  },
+  "SAFETYGOGGLES": {
+    "description": "These goggles protect the holder from both weather-related damage and powder.",
+    "name": "Safety Goggles"
+  },
+  "SAILFOSSIL": {
+    "description": "A fossil from a prehistoric Pokémon that once lived on land. It looks like the impression from a skin sail.",
+    "name": "Sail Fossil"
+  },
+  "SALACBERRY": {
+    "description": "A Berry to be consumed by Pokémon. If a Pokémon holds one, its Speed stat will increase when in a pinch.",
+    "name": "Salac Berry"
+  },
+  "SALAMENCITE": {
+    "description": "Have Salamence hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Salamencite"
+  },
+  "SALONAPP": {
+    "description": "Application for the Central Salon. Requirements: 3+ years cosmetology experience or relevant degree.",
+    "name": "Salon Application"
+  },
+  "SALTWATERTAFFY": {
+    "description": "A sweet, chewy candy. It relieves a Pokémon's burn.",
+    "name": "Salt-Water Taffy"
+  },
+  "SANCTUMKEY": {
+    "description": "The master key of a hidden temple.",
+    "name": "Sanctum Key"
+  },
+  "SAPPHIREBRACELETS": {
+    "description": "Amaria's Sapphire Bracelets. Team Meteor covets the pair as a special key.",
+    "name": "Sapphire Bracelets"
+  },
+  "SAPPHIRESTAR": {
+    "description": "A cerulean crystal star found deep inside Victory Road. It shimmers with love.",
+    "name": "Sapphire Star"
+  },
+  "SASSYMINT": {
+    "description": "When a Pokémon smells this mint, its Sp. Def will grow more easily, but its Speed will grow more slowly.",
+    "name": "Sassy Mint"
+  },
+  "SCEPTILITE": {
+    "description": "Have Sceptile hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Sceptilite"
+  },
+  "SCIZORITE": {
+    "description": "Have  Have Scizor hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Scizorite"
+  },
+  "SCOPELENS": {
+    "description": "It's a lens for scoping out weak points. It boosts the holder's critical-hit ratio.",
+    "name": "Scope Lens"
+  },
+  "SEAINCENSE": {
+    "description": "This incense has a curious aroma that boosts the power of Water-type moves.",
+    "name": "Sea Incense"
+  },
+  "SERIOUSMINT": {
+    "description": "When a Pokémon smells this mint, all of its stats will grow at an equal rate.",
+    "name": "Serious Mint"
+  },
+  "SHARPBEAK": {
+    "description": "It's a long, sharp beak that boosts the power of Flying-type moves.",
+    "name": "Sharp Beak"
+  },
+  "SHARPEDONITE": {
+    "description": "Have Sharpedo hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Sharpedonite"
+  },
+  "SHEDSHELL": {
+    "description": "This discarded carapace enables the holder to switch out of battle without fail.",
+    "name": "Shed Shell"
+  },
+  "SHELLBELL": {
+    "description": "The holder regains a little HP every time they inflict damage on others.",
+    "name": "Shell Bell"
+  },
+  "SHINYCHARM": {
+    "description": "A shiny charm said to increase the chance of finding a Shiny Pokémon in the wild.",
+    "name": "Shiny Charm"
+  },
+  "SHINYSTONE": {
+    "description": "A peculiar stone that can make certain species of Pokémon evolve. It shines with a dazzling light.",
+    "name": "Shiny Stone"
+  },
+  "SHOALSALT": {
+    "description": "Pure salt that can be discovered deep inside a cave.",
+    "name": "Shoal Salt"
+  },
+  "SHOALSHELL": {
+    "description": "A pretty seashell that can be found deep inside a cave.",
+    "name": "Shoal Shell"
+  },
+  "SHOCKDRIVE": {
+    "description": "A cassette to be held by Genesect. It changes Genesect's Techno Blast move so it becomes Electric-type.",
+    "name": "Shock Drive"
+  },
+  "SHUCABERRY": {
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Ground-type attack.",
+    "name": "Shuca Berry"
+  },
+  "SILKSCARF": {
+    "description": "It's a sumptuous scarf that boosts the power of Normal-type moves.",
+    "name": "Silk Scarf"
+  },
+  "SILPHAPP": {
+    "description": "Application for Silph Co. Requirements: 2+ years business management experience or relevant degree.",
+    "name": "Silph Application"
+  },
+  "SILVERCARD": {
+    "description": "A silver-trim key-card with a purple mark on it.",
+    "name": "Silver Card"
+  },
+  "SILVERPOWDER": {
+    "description": "It's a shiny silver powder that will boost the power of Bug-type moves.",
+    "name": "Silver Powder"
+  },
+  "SILVERRING": {
+    "description": "A plain silver band. It probably belonged to Corey.",
+    "name": "Silver Ring"
+  },
+  "SITRUSBERRY": {
+    "description": "A Berry to be consumed by Pokémon. A Pokémon holding it can restore its own HP by a small amount during battle.",
+    "name": "Sitrus Berry"
+  },
+  "SKULLFOSSIL": {
+    "description": "A fossil from a prehistoric Pokémon that once lived on the land. It appears as though it's part of a head.",
+    "name": "Skull Fossil"
+  },
+  "SKYPLATE": {
+    "description": "It's a stone tablet that boosts the power of Flying-type moves.",
+    "name": "Sky Plate"
+  },
+  "SLOWBRONITE": {
+    "description": "Have Slowbro hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Slowbronite"
+  },
+  "SLOWPOKETAIL": {
+    "description": "A very tasty tail of something. It can be sold at a high price to shops.",
+    "name": "Slowpoke Tail"
+  },
+  "SMOKEBALL": {
+    "description": "It enables the holder to flee from any wild Pokémon without fail.",
+    "name": "Smoke Ball"
+  },
+  "SMOOTHROCK": {
+    "description": "It extends the duration of the move Sandstorm when used by the holder.",
+    "name": "Smooth Rock"
+  },
+  "SNORLIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Snorlax's Giga Impact to an exclusive Z-Move.",
+    "name": "Snorlium-Z"
+  },
+  "SNOWBALL": {
+    "description": "It boosts Attack if hit with an Ice-type attack. It can only be used once.",
+    "name": "Snowball"
+  },
+  "SODAPOP": {
+    "description": "A highly carbonated soda drink. When consumed, it restores up to 50 HP to an injured Pokémon.",
+    "name": "Soda Pop"
+  },
+  "SOFTSAND": {
+    "description": "It's a loose, silky sand that boosts the power of Ground-type moves.",
+    "name": "Soft Sand"
+  },
+  "SOLGANIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Solgaleo's Sunsteel Strike to an exclusive Z-Move.",
+    "name": "Solganium-Z"
+  },
+  "SOLICEAPP": {
+    "description": "Application for SOLICE. Requirements: 2+ years experience in social work and a passion to help others.",
+    "name": "SOLICE Application"
+  },
+  "SOOTHEBELL": {
+    "description": "The comforting chime of this bell calms the holder, making it friendly.",
+    "name": "Soothe Bell"
+  },
+  "SOULCANDLE": {
+    "description": "A spiritual candle. When its flame goes out, somewhere a distant soul will be forever erased.",
+    "name": "Soul Candle"
+  },
+  "SOULDEW": {
+    "description": "A wondrous orb to be held by either Latios or Latias. It raises the power of Psychic- and Dragon-type moves.",
+    "name": "Soul Dew"
+  },
+  "SPARESETBAG": {
+    "description": "A reusable special program that causes the Pokémon to forget its training in the Sp. Atk stat.",
+    "name": "Reset Disc- SPATK"
+  },
+  "SPDRESETBAG": {
+    "description": "A reusable special program that causes the Pokémon to forget its training in the Sp. Def stat.",
+    "name": "Reset Disc- SPDEF"
+  },
+  "SPELLTAG": {
+    "description": "It's a sinister, eerie tag that boosts the power of Ghost-type moves.",
+    "name": "Spell Tag"
+  },
+  "SPELONBERRY": {
+    "description": "Used to make Pokéblocks that will enhance your Cuteness, this Berry is rare in most regions.",
+    "name": "Spelon Berry"
+  },
+  "SPERESETBAG": {
+    "description": "A reusable special program that causes the Pokémon to forget its training in the Speed stat.",
+    "name": "Reset Disc- SPEED"
+  },
+  "SPIRITTRACKER": {
+    "description": "A device that monitors paranormal energy. It can detect released spirits.",
+    "name": "Spirit Tracker"
+  },
+  "SPLASHPLATE": {
+    "description": "It's a stone tablet that boosts the power of Water-type moves.",
+    "name": "Splash Plate"
+  },
+  "SPOOKYPLATE": {
+    "description": "It's a stone tablet that boosts the power of Ghost-type moves.",
+    "name": "Spooky Plate"
+  },
+  "SPORTBALL": {
+    "description": "A special Poké Ball for the Bug-Catching Contest often held in Johto.",
+    "name": "Sport Ball"
+  },
+  "SPYCEAPP": {
+    "description": "Application for The Spyce. Requirements: Passion for all foods and a zeal for learning.",
+    "name": "Spyce Application"
+  },
+  "STABLEMULCH": {
+    "description": "",
+    "name": "Stable Mulch"
+  },
+  "STARDUST": {
+    "description": "Lovely red sand that flows between the fingers with a loose, silky feel. It can be sold to shops at a low price.",
+    "name": "Stardust"
+  },
+  "STARFBERRY": {
+    "description": "A Berry to be consumed by Pokémon. If a Pokémon holds one, one of its stats will sharply increase when in a pinch.",
+    "name": "Starf Berry"
+  },
+  "STARPIECE": {
+    "description": "A small shard of a beautiful gem that demonstrates a distinctly red sparkle. It can be sold to shops at a high price.",
+    "name": "Star Piece"
+  },
+  "STEELGEM": {
+    "description": "A gem with an essence of steel. When held, it strengthens the power of a Steel-type move one time.",
+    "name": "Steel Gem"
+  },
+  "STEELIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Steel-type moves to Steel-type Z-Moves.",
+    "name": "Steelium-Z"
+  },
+  "STEELIXITE": {
+    "description": "Have Steelix hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Steelixite"
+  },
+  "STEELMEMORY": {
+    "description": "A memory disc that contains Steel-type data. It changes the type of the holder if held by a certain Pokémon.",
+    "name": "Steel Memory"
+  },
+  "STICK": {
+    "description": "An item to be held by Farfetch'd. This very long and stiff stalk of leek boosts its critical-hit ratio.",
+    "name": "Stick"
+  },
+  "STICKYBARB": {
+    "description": "It damages the holder every turn and may latch on to Pokémon that touch the holder.",
+    "name": "Sticky Barb"
+  },
+  "STONEPLATE": {
+    "description": "It's a stone tablet that boosts the power of Rock-type moves.",
+    "name": "Stone Plate"
+  },
+  "STRAWBIC": {
+    "description": "A strawberry flavored treat! Eat it before it melts to restore 90 HP!",
+    "name": "Berry Ice Cream"
+  },
+  "SUNSTONE": {
+    "description": "A peculiar stone that can make certain species of Pokémon evolve. It burns as red as the evening sun.",
+    "name": "Sun Stone"
+  },
+  "SUPERPOTION": {
+    "description": "A spray-type medicine for treating wounds. It can be used to restore 60 HP to an injured Pokémon.",
+    "name": "Super Potion"
+  },
+  "SUPERREPEL": {
+    "description": "An item that prevents any low-level wild Pokémon from jumping out at you for 400 steps.",
+    "name": "Super Repel"
+  },
+  "SUPERROD": {
+    "description": "An awesome, high-tech fishing rod. Use it at any body of water to fish for wild aquatic Pokémon.",
+    "name": "Super Rod"
+  },
+  "SWAMPERTITE": {
+    "description": "Have Swampert hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Swampertite"
+  },
+  "SWEETAPP": {
+    "description": "Application for Sweet Co. Requirements: Outgoing and energetic, experience in retail preferred!",
+    "name": "Sweet Application"
+  },
+  "SWEETAPPLE": {
+    "description": "A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally Sweet.",
+    "name": "Sweet Apple"
+  },
+  "SWEETHEART": {
+    "description": "A piece of cloyingly sweet chocolate.",
+    "name": "Sweet Heart"
+  },
+  "SWIFTWING": {
+    "description": "An item for use on a Pokémon. It slightly increases the base Speed stat of a single Pokémon.",
+    "name": "Swift Wing"
+  },
+  "SYNTHETICSEED": {
+    "description": "A single-use seed that boosts its holder in Synthetic Fields.",
+    "name": "Synthetic Seed"
+  },
+  "TAMATOBERRY": {
+    "description": "A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its base Speed.",
+    "name": "Tamato Berry"
+  },
+  "TANGABERRY": {
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Bug-type attack.",
+    "name": "Tanga Berry"
+  },
+  "TAPUNIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade the tapus' Nature's Madness to an exclusive Z-Move.",
+    "name": "Tapunium-Z"
+  },
+  "TARTAPPLE": {
+    "description": "A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally tart.",
+    "name": "Tart Apple"
+  },
+  "TECHGLASSES": {
+    "description": "A pair of high-durability glasses for scientific research.",
+    "name": "Tech Glasses"
+  },
+  "TELLURICSEED": {
+    "description": "A single-use seed that boosts its holder in Telluric Fields.",
+    "name": "Telluric Seed"
+  },
+  "THICKCLUB": {
+    "description": "An item to be held by Cubone or Marowak. It's a hard bone of some sort that boosts the Attack stat.",
+    "name": "Thick Club"
+  },
+  "THROATSPRAY": {
+    "description": "This item, when held, causes a Pokémon's Special Attack stat to be raised by one stage when it uses a Sound based move",
+    "name": "Throat Spray"
+  },
+  "THUNDERSTONE": {
+    "description": "A peculiar stone that can make certain species of Pokémon evolve. It has a distinct thunderbolt pattern.",
+    "name": "Thunder Stone"
+  },
+  "TIMERBALL": {
+    "description": "A somewhat different Poké Ball that becomes progressively more effective the more turns are taken in battle.",
+    "name": "Timer Ball"
+  },
+  "TIMIDMINT": {
+    "description": "When a Pokémon smells this mint, its Speed will grow more easily, but its Attack will grow more slowly.",
+    "name": "Timid Mint"
+  },
+  "TINYMUSHROOM": {
+    "description": "A very small, rare mushroom. It's popular with a certain class of collectors and sought out by them.",
+    "name": "Tiny Mushroom"
+  },
+  "TM01": {
+    "description": "The user is roused, and their Attack and Sp. Atk stats increase. ",
+    "name": "TM01"
+  },
+  "TM02": {
+    "description": "The user slashes the target with huge, sharp claws.",
+    "name": "TM02"
+  },
+  "TM03": {
+    "description": "The user materializes an odd psychic wave to attack the target. This attack does physical damage.",
+    "name": "TM03"
+  },
+  "TM04": {
+    "description": "The user quietly focuses their mind and calms their spirit to raise their Sp. Atk and Sp. Def stats.",
+    "name": "TM04"
+  },
+  "TM05": {
+    "description": "The target is scared off, and a different Pokémon is dragged out. Ends the battle in the wild.",
+    "name": "TM05"
+  },
+  "TM06": {
+    "description": "A move that leaves the target badly poisoned. Its poison damage worsens every turn.",
+    "name": "TM06"
+  },
+  "TM07": {
+    "description": "The user summons a hailstorm lasting five turns. It damages all Pokémon except the Ice-type.",
+    "name": "TM07"
+  },
+  "TM08": {
+    "description": "The user tenses their muscles to bulk up their body, raising both their Attack and Defense stats.",
+    "name": "TM08"
+  },
+  "TM09": {
+    "description": "The user drenches the target in a special poisonous liquid. The power is doubled if the target is poisoned.",
+    "name": "TM09"
+  },
+  "TM10": {
+    "description": "A unique attack that varies in type depending on the Pokémon using it.",
+    "name": "TM10"
+  },
+  "TM100": {
+    "description": "The user discloses a secret to the target, and it cannot concentrate anymore. Lowers the target's Sp. Atk.",
+    "name": "TM100"
+  },
+  "TM11": {
+    "description": "The user intensifies the sun for five turns, powering up Fire-type moves. It lowers the power of Water-type moves.",
+    "name": "TM11"
+  },
+  "TM12": {
+    "description": "The target is taunted into a rage that allows it to use only attack moves for three turns.",
+    "name": "TM12"
+  },
+  "TM13": {
+    "description": "The target is struck with an icy-cold beam of energy. This may also leave the target frozen.",
+    "name": "TM13"
+  },
+  "TM14": {
+    "description": "A howling blizzard is summoned to strike opposing Pokémon. This may also leave the opposing Pokémon frozen.",
+    "name": "TM14"
+  },
+  "TM15": {
+    "description": "The target is attacked with a powerful beam. The user can't move on the next turn.",
+    "name": "TM15"
+  },
+  "TM16": {
+    "description": "A wondrous wall of light is put up to reduce damage from special attacks for five turns.",
+    "name": "TM16"
+  },
+  "TM17": {
+    "description": "Enables the user to evade all attacks. Its chance of failing rises if it is used in succession.",
+    "name": "TM17"
+  },
+  "TM18": {
+    "description": "Summons a heavy rain for five turns, powering up Water-type moves while lowering the power of Fire-type moves.",
+    "name": "TM18"
+  },
+  "TM19": {
+    "description": "The user lands and rests their body. It restores the user's HP by up to half of their max HP.",
+    "name": "TM19"
+  },
+  "TM20": {
+    "description": "The user creates a protective field that prevents status conditions for five turns.",
+    "name": "TM20"
+  },
+  "TM21": {
+    "description": "This full-power attack grows more powerful the less the user likes their Trainer.",
+    "name": "TM21"
+  },
+  "TM22": {
+    "description": "In this two-turn attack, the user gathers light, then blasts a bundled beam on the next turn.",
+    "name": "TM22"
+  },
+  "TM23": {
+    "description": "The user throws a stone or a similar projectile to attack. Flying Pokémon will fall to the ground when hit.",
+    "name": "TM23"
+  },
+  "TM24": {
+    "description": "A strong electric blast crashes down on the target. This may also leave the target with paralysis.",
+    "name": "TM24"
+  },
+  "TM25": {
+    "description": "A wicked thunderbolt is dropped on the target to inflict damage. This may also leave the target with paralysis.",
+    "name": "TM25"
+  },
+  "TM26": {
+    "description": "The user sets off an earthquake that strikes every Pokémon around them.",
+    "name": "TM26"
+  },
+  "TM27": {
+    "description": "This full-power attack grows more powerful the more the user likes their Trainer.",
+    "name": "TM27"
+  },
+  "TM28": {
+    "description": "The user drains the target's blood. The user's HP is restored by half the damage taken by the target.",
+    "name": "TM28"
+  },
+  "TM29": {
+    "description": "The target is hit by a strong telekinetic force. This may also lower the target's Sp. Def stat.",
+    "name": "TM29"
+  },
+  "TM30": {
+    "description": "The user hurls a shadowy blob at the target. This may also lower the target's Sp. Def stat.",
+    "name": "TM30"
+  },
+  "TM31": {
+    "description": "The user attacks with a swift chop. It can also break barriers, such as Light Screen and Reflect.",
+    "name": "TM31"
+  },
+  "TM32": {
+    "description": "By moving rapidly, the user makes illusory copies of itself to raise their Evasiveness.",
+    "name": "TM32"
+  },
+  "TM33": {
+    "description": "A wondrous wall of light is put up to reduce damage from physical attacks for five turns.",
+    "name": "TM33"
+  },
+  "TM34": {
+    "description": "The user strikes everything around them by swamping the area. This may also poison those hit.",
+    "name": "TM34"
+  },
+  "TM35": {
+    "description": "The target is scorched with an intense blast of fire. This may also leave the target with a burn.",
+    "name": "TM35"
+  },
+  "TM36": {
+    "description": "Unsanitary sludge is hurled at the target. This may also poison the target.",
+    "name": "TM36"
+  },
+  "TM37": {
+    "description": "A five-turn sandstorm is summoned to hurt all combatants except the Rock-, Ground-, and Steel-types.",
+    "name": "TM37"
+  },
+  "TM38": {
+    "description": "The target is attacked with an intense blast of all-consuming fire. This may leave the target with a burn.",
+    "name": "TM38"
+  },
+  "TM39": {
+    "description": "Boulders are hurled at the target. This also lowers the target's Speed stat by preventing its movement.",
+    "name": "TM39"
+  },
+  "TM40": {
+    "description": "The user confounds the target with speed, then slashes. This attack never misses.",
+    "name": "TM40"
+  },
+  "TM41": {
+    "description": "The user torments and enrages the target, making it incapable of using the same move twice in a row.",
+    "name": "TM41"
+  },
+  "TM42": {
+    "description": "This attack move doubles its power if the user is poisoned, burned, or paralyzed.",
+    "name": "TM42"
+  },
+  "TM43": {
+    "description": "Cloaking themselves in flame, the user attacks. Then, building up more power, the user raises their Speed stat.",
+    "name": "TM43"
+  },
+  "TM44": {
+    "description": "The user goes to sleep for two turns. This fully restores the user's HP and heals any status conditions.",
+    "name": "TM44"
+  },
+  "TM45": {
+    "description": "If it is the opposite gender of the user, the target becomes infatuated and less likely to attack.",
+    "name": "TM45"
+  },
+  "TM46": {
+    "description": "The user attacks and steals the target's held item. The user can't steal it if already holding an item.",
+    "name": "TM46"
+  },
+  "TM47": {
+    "description": "The user makes a swift attack on the target's legs, which lowers the target's Speed stat.",
+    "name": "TM47"
+  },
+  "TM48": {
+    "description": "The user attacks the target with a song. Others can join in the Round to increase the power of the attack.",
+    "name": "TM48"
+  },
+  "TM49": {
+    "description": "The user attacks the target with an echoing voice. If this move is used every turn, its power is increased.",
+    "name": "TM49"
+  },
+  "TM50": {
+    "description": "The user attacks the target at full power. The attack's recoil harshly lowers the user's Sp. Atk stat.",
+    "name": "TM50"
+  },
+  "TM51": {
+    "description": "The target is hit with wings of steel. This may also raise the user's Defense stat.",
+    "name": "TM51"
+  },
+  "TM52": {
+    "description": "The user heightens their mental focus and unleashes their power. This may also lower the target's Sp. Def stat.",
+    "name": "TM52"
+  },
+  "TM53": {
+    "description": "The user draws power from nature and fires it at the target. This may also lower the target's Sp. Def stat.",
+    "name": "TM53"
+  },
+  "TM54": {
+    "description": "A restrained attack that prevents the target from fainting. The target is left with at least 1 HP.",
+    "name": "TM54"
+  },
+  "TM55": {
+    "description": "The user shoots boiling hot water at their target. This may also leave the target with a burn.",
+    "name": "TM55"
+  },
+  "TM56": {
+    "description": "The user flings their held item at the target to attack. This move's power and effects depend on the item.",
+    "name": "TM56"
+  },
+  "TM57": {
+    "description": "The user attacks with an electric charge. The user may use remaining electricity to raise their Sp. Atk stat.",
+    "name": "TM57"
+  },
+  "TM58": {
+    "description": "The target is taken into the sky, then dropped on the next turn. The target cannot attack while in the sky.",
+    "name": "TM58"
+  },
+  "TM59": {
+    "description": "The user swings their body around violently to inflict damage on everything in their vicinity.",
+    "name": "TM59"
+  },
+  "TM60": {
+    "description": "The user suppresses the target and makes its move go last.",
+    "name": "TM60"
+  },
+  "TM61": {
+    "description": "The user shoots a sinister, bluish-white flame at the target to inflict a burn.",
+    "name": "TM61"
+  },
+  "TM62": {
+    "description": "The user nimbly strikes the target. If the user is not holding an item, this attack inflicts massive damage.",
+    "name": "TM62"
+  },
+  "TM63": {
+    "description": "This move prevents both the target from using a held item and its Trainer from using items on it for five turns.",
+    "name": "TM63"
+  },
+  "TM64": {
+    "description": "The user attacks everything around themselves by causing a tremendous explosion. The user then faints.",
+    "name": "TM64"
+  },
+  "TM65": {
+    "description": "The user slashes with a sharp claw made from shadows. Critical hits land more easily.",
+    "name": "TM65"
+  },
+  "TM66": {
+    "description": "The user stores power, then attacks. If the user moves after the target, this attack's power will be doubled.",
+    "name": "TM66"
+  },
+  "TM67": {
+    "description": "The user stabs the target with a sharp horn. This attack never misses.",
+    "name": "TM67"
+  },
+  "TM68": {
+    "description": "The user charges at the target using every bit of their power. The user can't move on the next turn.",
+    "name": "TM68"
+  },
+  "TM69": {
+    "description": "The user polishes their body to reduce drag. This can sharply raise the Speed stat.",
+    "name": "TM69"
+  },
+  "TM70": {
+    "description": "The user flashes a bright light that cuts the target's Accuracy. It can also be used to illuminate dark caves.",
+    "name": "TMX8"
+  },
+  "TM702": {
+    "description": "This move reduces damage from physical and special moves for five turns. Can be used only in a hailstorm.",
+    "name": "TM70"
+  },
+  "TM71": {
+    "description": "The user stabs the target from below with sharpened stones. Critical hits land more easily.",
+    "name": "TM71"
+  },
+  "TM72": {
+    "description": "After making their attack, the user rushes back to switch places with a party Pokémon in waiting.",
+    "name": "TM72"
+  },
+  "TM73": {
+    "description": "The user launches a weak jolt of electricity that paralyzes the target.",
+    "name": "TM73"
+  },
+  "TM74": {
+    "description": "The user attacks with a high-speed spin. The slower the user compared to the target, the greater the power.",
+    "name": "TM74"
+  },
+  "TM75": {
+    "description": "A frenetic dance to uplift the fighting spirit. This sharply raises the user's Attack stat.",
+    "name": "TM75"
+  },
+  "TM76": {
+    "description": "While resisting, the user attacks the opposing Pokémon. This lowers the Sp. Atk stat of those hit.",
+    "name": "TM76"
+  },
+  "TM77": {
+    "description": "The user hypnotizes themselves into copying any stat change made by the target.",
+    "name": "TM77"
+  },
+  "TM78": {
+    "description": "The user strikes everything around themselves by stomping on the ground. It lowers the Speed stat of those hit.",
+    "name": "TM78"
+  },
+  "TM79": {
+    "description": "The user blows their cold breath on the target. This attack always results in a critical hit.",
+    "name": "TM79"
+  },
+  "TM80": {
+    "description": "Large boulders are hurled at the targets to inflict damage. This may also make the opposing Pokémon flinch.",
+    "name": "TM80"
+  },
+  "TM81": {
+    "description": "The user slashes at the target by crossing their scythes or claws as if they were a pair of scissors.",
+    "name": "TM81"
+  },
+  "TM82": {
+    "description": "The target is knocked away, and a different Pokémon is dragged out. Ends the battle in the wild.",
+    "name": "TM82"
+  },
+  "TM83": {
+    "description": "The target is infested and attacked for four to five turns. The target can't flee during this time.",
+    "name": "TM83"
+  },
+  "TM84": {
+    "description": "The target is stabbed with a tentacle or arm steeped in poison. This may also poison the target.",
+    "name": "TM84"
+  },
+  "TM85": {
+    "description": "The user eats the dreams of a sleeping target. They absorb half the damage caused to heal their own HP.",
+    "name": "TM85"
+  },
+  "TM86": {
+    "description": "The user snares the target with grass and trips it. The heavier the target, the greater the move's power.",
+    "name": "TM86"
+  },
+  "TM87": {
+    "description": "The user enrages and confuses the target. However, this also sharply raises the target's Attack stat.",
+    "name": "TM87"
+  },
+  "TM88": {
+    "description": "While they are asleep, the user randomly uses one of the moves they know.",
+    "name": "TM88"
+  },
+  "TM89": {
+    "description": "After making their attack, the user rushes back to switch places with a party Pokémon in waiting.",
+    "name": "TM89"
+  },
+  "TM90": {
+    "description": "The user makes a copy of themselves using some of their HP. The copy serves as the user's decoy.",
+    "name": "TM90"
+  },
+  "TM91": {
+    "description": "The user gathers all their light energy and releases it all at once. This may also lower the target's Sp. Def stat.",
+    "name": "TM91"
+  },
+  "TM92": {
+    "description": "The user creates a bizarre area in which slower Pokémon get to move first for five turns.",
+    "name": "TM92"
+  },
+  "TM93": {
+    "description": "The user is shrouded in electricity and smashes into the target. It also damages the user a little.",
+    "name": "TM93"
+  },
+  "TM94": {
+    "description": "The user attacks with a punch which may lower the target's Defense stat. It can also shatter rocks in the field.",
+    "name": "TMX7"
+  },
+  "TM942": {
+    "description": "The additional effects of this attack depend upon where it was used.",
+    "name": "TM94"
+  },
+  "TM95": {
+    "description": "The user yells as if they are ranting about something, which lowers the Sp. Atk stat of opposing Pokémon.",
+    "name": "TM95"
+  },
+  "TM96": {
+    "description": "This attack makes use of nature's power. Its effects vary depending on the user's environment.",
+    "name": "TM96"
+  },
+  "TM97": {
+    "description": "The user releases a horrible aura imbued with dark thoughts. This may also make the target flinch.",
+    "name": "TM97"
+  },
+  "TM98": {
+    "description": "Striking opponents over and over makes the user's fists harder. Hitting a target raises the Attack stat.",
+    "name": "TM98"
+  },
+  "TM99": {
+    "description": "The user damages opposing Pokémon by emitting a powerful flash.",
+    "name": "TM99"
+  },
+  "TOWNMAP": {
+    "description": "A very convenient map that can be viewed anytime. It even shows you your present location in the region.",
+    "name": "Town Map"
+  },
+  "TOXICORB": {
+    "description": "It's a bizarre orb that will badly poison the holder during battle.",
+    "name": "Toxic Orb"
+  },
+  "TOXICPLATE": {
+    "description": "It's a stone tablet that boosts the power of Poison-type moves.",
+    "name": "Toxic Plate"
+  },
+  "TWISTEDSPOON": {
+    "description": "This spoon is imbued with telekinetic power and boosts Psychic-type moves.",
+    "name": "Twisted Spoon"
+  },
+  "TYRANITARITE": {
+    "description": "Have Tyranitar hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Tyranitarite"
+  },
+  "ULTRABALL": {
+    "description": "An ultra-high-performance Poké Ball that provides a higher success rate for catching Pokémon than a Great Ball.",
+    "name": "Ultra Ball"
+  },
+  "ULTRANECROZIUMZ": {
+    "description": "It's a crystal that allows Necrozma fused with another Pokémon to change forme.",
+    "name": "Ultranecrozium-Z"
+  },
+  "ULTRAPOTION": {
+    "description": "A spray-type medicine for treating wounds. It can be used to restore 200 HP to an injured Pokémon.",
+    "name": "Ultra Potion"
+  },
+  "UPGRADE": {
+    "description": "A transparent device somehow filled with all sorts of data. It was produced by Silph Co.",
+    "name": "Up-Grade"
+  },
+  "UTILITYUMBRELLA": {
+    "description": "This sturdy umbrella protects the holder from the effects of weather.",
+    "name": "Utility Umbrella"
+  },
+  "VANILLAIC": {
+    "description": "A vanilla flavored treat! Eat it before it melts to restore 30 HP!",
+    "name": "Vanilla Ice Cream"
+  },
+  "VENUSAURITE": {
+    "description": "Have Venusaur hold it, and this stone will enable it to Mega Evolve during battle.",
+    "name": "Venusaurite"
+  },
+  "WACANBERRY": {
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Electric-type attack.",
+    "name": "Wacan Berry"
+  },
+  "WAILMERPAIL": {
+    "description": "This is a tool for watering Berries you planted to make them grow more quickly.",
+    "name": "Wailmer Pail"
+  },
+  "WAREHOUSEKEY": {
+    "description": "An old key marked for an unknown warehouse.",
+    "name": "Warehouse Key"
+  },
+  "WATERGEM": {
+    "description": "A gem with an essence of water. When held, it strengthens the power of a Water-type move one time.",
+    "name": "Water Gem"
+  },
+  "WATERIUMZ": {
+    "description": "It converts Z-Power into crystals that upgrade Water-type moves to Water-type Z-Moves.",
+    "name": "Waterium-Z"
+  },
+  "WATERMEMORY": {
+    "description": "A memory disc that contains Water-type data. It changes the type of the holder if held by a certain Pokémon.",
+    "name": "Water Memory"
+  },
+  "WATERSTONE": {
+    "description": "A peculiar stone that can make certain species of Pokémon evolve. It is the blue of a pool of clear water.",
+    "name": "Water Stone"
+  },
+  "WATMELBERRY": {
+    "description": "Used to make Pokéblocks that will enhance your Cleverness, this Berry is rare in most regions.",
+    "name": "Watmel Berry"
+  },
+  "WAVEINCENSE": {
+    "description": "This incense has a curious aroma that boosts the power of Water-type moves.",
+    "name": "Wave Incense"
+  },
+  "WEAKNESSPOLICY": {
+    "description": "Attack and Sp. Atk sharply increase if the holder is hit with a move they're weak to.",
+    "name": "Weakness Policy"
+  },
+  "WEPEARBERRY": {
+    "description": "Used to make Pokéblocks that will enhance your Cleverness. Its green flesh is bitter when eaten.",
+    "name": "Wepear Berry"
+  },
+  "WHIPPEDDREAM": {
+    "description": "A soft and sweet treat made of fluffy, puffy, whipped and whirled cream. It's loved by a certain Pokémon.",
+    "name": "Whipped Dream"
+  },
+  "WHITEFLUTE": {
+    "description": "A white flute made from blown glass. Its melody makes wild Pokémon more likely to appear.",
+    "name": "White Flute"
+  },
+  "WHITEHERB": {
+    "description": "It will restore any lowered stat in battle. It can be used only once.",
+    "name": "White Herb"
+  },
+  "WIDELENS": {
+    "description": "It's a magnifying lens that slightly boosts the Accuracy of moves.",
+    "name": "Wide Lens"
+  },
+  "WIKIBERRY": {
+    "description": "If held by a Pokémon, it restores the user's HP in a pinch, but it will cause confusion if the user hates the taste.",
+    "name": "Wiki Berry"
+  },
+  "WISEGLASSES": {
+    "description": "This thick pair of glasses slightly boosts the power of special moves.",
+    "name": "Wise Glasses"
+  },
+  "WISHINGPIECE": {
+    "description": "Throw one into a Pokémon Den to attract a wild Rift Pokémon.",
+    "name": "Wishing Piece"
+  },
+  "XACCURACY": {
+    "description": "Sharply boosts the Accuracy of a Pokémon during battle. It wears off once the Pokémon is withdrawn.",
+    "name": "X Accuracy"
+  },
+  "XATTACK": {
+    "description": "Sharply boosts the Attack stat of a Pokémon during battle. It wears off once the Pokémon is withdrawn.",
+    "name": "X Attack"
+  },
+  "XDEFEND": {
+    "description": "Sharply boosts the Defense stat of a Pokémon during battle. It wears off once the Pokémon is withdrawn.",
+    "name": "X Defend"
+  },
+  "XSPDEF": {
+    "description": "Sharply boosts the Sp. Def stat of a Pokémon during battle. It wears off once the Pokémon is withdrawn.",
+    "name": "X Sp. Def"
+  },
+  "XSPECIAL": {
+    "description": "Sharply boosts the Sp. Atk stat of a Pokémon during battle. It wears off once the Pokémon is withdrawn.",
+    "name": "X Sp. Atk"
+  },
+  "XSPEED": {
+    "description": "Sharply boosts the Speed stat of a Pokémon during battle. It wears off once the Pokémon is withdrawn.",
+    "name": "X Speed"
+  },
+  "YACHEBERRY": {
+    "description": "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Ice-type attack.",
+    "name": "Yache Berry"
+  },
+  "YELLOWFLUTE": {
+    "description": "A flute made from yellow glass that snaps Pokémon out of confusion.",
+    "name": "Yellow Flute"
+  },
+  "YELLOWNECTAR": {
+    "description": "A flower nectar imported from Melemele Meadow. It changes the form of certain species of Pokémon.",
+    "name": "Yellow Nectar"
+  },
+  "YELLOWSCARF": {
+    "description": "Gives its holder a tougher demeanor.",
+    "name": "Yellow Scarf"
+  },
+  "YUREYUKEY": {
+    "description": "A key marked with Yureyu's logo. What could it go to?",
+    "name": "Yureyu Key"
+  },
+  "ZAPPLATE": {
+    "description": "It's a stone tablet that boosts the power of Electric-type moves.",
+    "name": "Zap Plate"
+  },
+  "ZINC": {
+    "description": "A nutritious drink for Pokémon. When consumed, it raises the base Sp. Def stat of a single Pokémon.",
+    "name": "Zinc"
+  },
+  "ZOOMLENS": {
+    "description": "If the holder moves after their target moves, their Accuracy will be boosted.",
+    "name": "Zoom Lens"
+  }
+}

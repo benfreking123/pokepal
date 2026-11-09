@@ -1,0 +1,1 @@
+{ "types": [{ "id": "FIRE", "name": "Fire" }, { "id": "GRASS", "name": "Grass" }, { "id": "WATER", "name": "Water" }, { "id": "SHADOW", "name": "Shadow" }], "chart": { "FIRE": { "GRASS": 2, "WATER": 0.5, "SHADOW": 2 }, "SHADOW": { "FIRE": 2 } } }
