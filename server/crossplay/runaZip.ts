@@ -5,10 +5,20 @@ import AdmZip from "adm-zip";
 export const RUNA_ZIP_PATTERN = /^reborn_saves.*\.zip$/i;
 export const SAVE_ENTRY_PATTERN = /^game(_\d+)?\.rxdata$/i;
 
-export async function findNewestRunaZip(syncDir: string) {
-  const names = (await readdir(syncDir).catch(() => [] as string[])).filter((n) => RUNA_ZIP_PATTERN.test(n));
-  const withTimes = await Promise.all(names.map(async (n) => ({ path: path.join(syncDir, n), mtimeMs: (await stat(path.join(syncDir, n))).mtimeMs })));
-  return withTimes.sort((a, b) => b.mtimeMs - a.mtimeMs)[0] ?? null;
+export const PHONE_ZIP_PATTERN = /^reborn_from_phone_.*\.zip$/i;
+export const POKEPAL_ZIP_NAME = "pokepal_to_runa.zip";
+
+export async function findRunaExports(syncDir: string): Promise<{ path: string; mtimeMs: number }[]> {
+  const names = (await readdir(syncDir).catch(() => [] as string[])).filter((n) => !n.startsWith("."));
+  const timed = async (n: string) => ({ path: path.join(syncDir, n), mtimeMs: (await stat(path.join(syncDir, n)).catch(() => ({ mtimeMs: 0 }))).mtimeMs });
+  const newest = async (list: string[], accept: (file: string) => boolean = () => true) =>
+    (await Promise.all(list.map(timed))).sort((a, b) => b.mtimeMs - a.mtimeMs).find((x) => accept(x.path));
+  const zips = names.filter((n) => /\.zip$/i.test(n) && n.toLowerCase() !== POKEPAL_ZIP_NAME);
+  const hasSave = (file: string) => { try { return listSaveEntries(file).length > 0; } catch { return false; } };
+  const phone = await newest(zips.filter((n) => PHONE_ZIP_PATTERN.test(n)));
+  const other = await newest(zips.filter((n) => !PHONE_ZIP_PATTERN.test(n)), (f) => RUNA_ZIP_PATTERN.test(path.basename(f)) || hasSave(f));
+  const raw = await newest(names.filter((n) => /\.rxdata$/i.test(n)));
+  return [phone, other, raw].filter((x): x is { path: string; mtimeMs: number } => !!x);
 }
 
 export function listSaveEntries(zipPath: string): string[] {

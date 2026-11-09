@@ -1,11 +1,12 @@
 import { existsSync } from "node:fs";
-import { mkdir, readdir, rm, stat, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, rename, rm, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { SaveMeta } from "../../shared/types";
 import { backupFile, copyVerified, CopyVerifyError, listBackups, withTimeout, type BackupEntry } from "./files";
+import { compareSaves } from "./compare";
 import { readLedger, writeLedger, type Ledger } from "./ledger";
 import { handOffWarnings, incomingWarnings, restoreWarnings, type SwapWarning } from "./lineage";
-import { buildRunaZip, extractEntry, findNewestRunaZip, listSaveEntries } from "./runaZip";
+import { buildRunaZip, extractEntry, findRunaExports, listSaveEntries } from "./runaZip";
 
 export type RunaFormat = { kind: "rxdata" } | { kind: "zip"; entryPath: string };
 
@@ -30,6 +31,7 @@ export interface IncomingSave {
 export interface CrossplayStatus {
   pc: SaveMeta | null; ledger: Ledger; gameRunning: boolean;
   outbox: { downloadName: string; meta: SaveMeta } | null;
+  sync: { dir: string; sent: SyncHandoffRecord | null } | null;
   handOffWarnings: SwapWarning[];
   incoming: IncomingSave[];
   errors: string[];
@@ -37,6 +39,12 @@ export interface CrossplayStatus {
 
 export const OUTBOX_RXDATA = "Game.rxdata";
 export const OUTBOX_ZIP = "pokepal_to_runa.zip";
+export const HANDOFF_JSON = "pokepal-handoff.json";
+const DEFAULT_ZIP_ENTRY = "data/Game.rxdata";
+
+export interface SyncHandoffRecord {
+  writtenBy: "PokePal"; at: string; trainer: string; playtimeSeconds: number; badges: number; sha256: string; files: string[];
+}
 const UPLOAD_PATTERN = /\.(zip|rxdata)$/i;
 const ICLOUD_TIMEOUT_MS = 10_000;
 const ICLOUD_HINT = "iCloud hasn't downloaded this file yet. In File Explorer right-click the sync folder → Always keep on this device.";
@@ -102,7 +110,8 @@ async function describeIncoming(deps: CrossplayDeps, id: string, pc: SaveMeta | 
   if (entries && entries.length === 0) return { ...item, error: `No Game.rxdata found in ${item.fileName}.` };
   if (entries && !chosen) return { ...item, error: "This export has several saves; pick one." };
   try {
-    item.meta = await withSaveFile(deps, file, chosen, (f) => deps.readMeta(f));
+    const read = (f: string) => (source === "icloud" ? withTimeout(deps.readMeta(f), ICLOUD_TIMEOUT_MS, ICLOUD_HINT) : deps.readMeta(f));
+    item.meta = await withSaveFile(deps, file, chosen, read);
     item.warnings = incomingWarnings(item.meta, pc, ledger);
   } catch (e) {
     item.error = (e as Error).message;
@@ -116,20 +125,52 @@ export async function getStatus(deps: CrossplayDeps, entries: Record<string, str
   const pc = await metaOrNull(deps, deps.saveFile, errors);
   const ledger = await readLedger(d.ledger);
   const gameRunning = await deps.isGameRunning();
-  const syncCopy = await metaOrNull(deps, deps.syncDir ? path.join(deps.syncDir, OUTBOX_RXDATA) : null, errors, true);
+  const syncCopy = pc ? await newestFolderSave(deps, pc) : null;
   const outMeta = await metaOrNull(deps, path.join(d.outbox, OUTBOX_RXDATA), errors);
 
   const ids = (await readdir(d.inbox).catch(() => [] as string[])).filter((n) => UPLOAD_PATTERN.test(n)).sort().reverse().map((n) => `upload:${n}`);
-  const zip = deps.syncDir ? await findNewestRunaZip(deps.syncDir) : null;
-  if (zip) ids.push(`icloud:${path.basename(zip.path)}`);
-  const incoming = await Promise.all(ids.map((id) => describeIncoming(deps, id, pc, ledger, entries[id])));
+  const sent = deps.syncDir ? await readSyncRecord(deps.syncDir) : null;
+  if (deps.syncDir) for (const x of await findRunaExports(deps.syncDir)) ids.push(`icloud:${path.basename(x.path)}`);
+  const described = await Promise.all(ids.map((id) => describeIncoming(deps, id, pc, ledger, entries[id])));
+  const incoming = described.filter((i) => !(i.source === "icloud" && !isZip(i.fileName) && sent && i.meta?.sha256 === sent.sha256));
 
   return {
     pc, ledger, gameRunning,
     outbox: outMeta ? { downloadName: deps.runaFormat.kind === "zip" ? OUTBOX_ZIP : OUTBOX_RXDATA, meta: outMeta } : null,
     handOffWarnings: pc ? handOffWarnings(pc, ledger, gameRunning, syncCopy) : [],
+    sync: deps.syncDir ? { dir: deps.syncDir, sent } : null,
     incoming, errors,
   };
+}
+
+async function readSyncRecord(syncDir: string): Promise<SyncHandoffRecord | null> {
+  try {
+    const rec = JSON.parse(await readFile(path.join(syncDir, HANDOFF_JSON), "utf8")) as SyncHandoffRecord;
+    return rec?.writtenBy === "PokePal" && typeof rec.sha256 === "string" ? rec : null;
+  } catch {
+    return null;
+  }
+}
+
+async function newestFolderSave(deps: CrossplayDeps, pc: SaveMeta): Promise<SaveMeta | null> {
+  if (!deps.syncDir) return null;
+  const sent = await readSyncRecord(deps.syncDir);
+  let best: SaveMeta | null = null;
+  const consider = (m: SaveMeta) => { if (!best || compareSaves(m, best).newer === "a") best = m; };
+  const own = path.join(deps.syncDir, OUTBOX_RXDATA);
+  const names = [...(existsSync(own) ? [own] : []), ...(await findRunaExports(deps.syncDir)).map((x) => x.path)];
+  for (const file of new Set(names)) {
+    try {
+      const meta = isZip(file)
+        ? await withSaveFile(deps, file, listSaveEntries(file)[0] ?? null, (f) => withTimeout(deps.readMeta(f), ICLOUD_TIMEOUT_MS, ICLOUD_HINT))
+        : await withTimeout(deps.readMeta(file), ICLOUD_TIMEOUT_MS, ICLOUD_HINT);
+      if (sent && meta.sha256 === sent.sha256) continue;
+      if (compareSaves(pc, meta).newer !== "a" && compareSaves(pc, meta).newer !== "same") consider(meta);
+    } catch {
+      // unreadable files are reported by getStatus; they can't be proven older, so they don't block here
+    }
+  }
+  return best;
 }
 
 export async function handOffToRuna(deps: CrossplayDeps, req: { expectedSha256: string; acceptWarnings?: boolean }) {
@@ -139,7 +180,7 @@ export async function handOffToRuna(deps: CrossplayDeps, req: { expectedSha256: 
   if (pc.sha256 !== req.expectedSha256) throw new ActionError("FILE_CHANGED", "The PC save changed since you opened this dialog. Check the status again.");
   const ledger = await readLedger(d.ledger);
   const syncFile = deps.syncDir ? path.join(deps.syncDir, OUTBOX_RXDATA) : null;
-  const syncCopy = syncFile && existsSync(syncFile) ? await withTimeout(deps.readMeta(syncFile), ICLOUD_TIMEOUT_MS, ICLOUD_HINT) : null;
+  const syncCopy = await newestFolderSave(deps, pc);
   requireAccepted(handOffWarnings(pc, ledger, await deps.isGameRunning(), syncCopy), req.acceptWarnings);
 
   const now = nowOf(deps);
@@ -148,13 +189,24 @@ export async function handOffToRuna(deps: CrossplayDeps, req: { expectedSha256: 
   const outFile = path.join(d.outbox, OUTBOX_RXDATA);
   const { sha256 } = await install(deps.saveFile, outFile);
   const outZip = path.join(d.outbox, OUTBOX_ZIP);
-  if (deps.runaFormat.kind === "zip") buildRunaZip(outFile, outZip, deps.runaFormat.entryPath);
+  buildRunaZip(outFile, outZip, deps.runaFormat.kind === "zip" ? deps.runaFormat.entryPath : DEFAULT_ZIP_ENTRY);
 
   let syncCopied = false;
   if (deps.syncDir && syncFile) {
-    if (syncCopy) await backupFile(syncFile, deps.backupDir, "sync-before-send", syncCopy, now);
+    await mkdir(deps.syncDir, { recursive: true });
+    if (existsSync(syncFile)) {
+      const prior = await withTimeout(deps.readMeta(syncFile), ICLOUD_TIMEOUT_MS, ICLOUD_HINT);
+      if (prior.sha256 !== sha256) await backupFile(syncFile, deps.backupDir, "sync-before-send", prior, now);
+    }
+    await install(outZip, path.join(deps.syncDir, OUTBOX_ZIP));
     await install(outFile, syncFile);
-    if (deps.runaFormat.kind === "zip") await install(outZip, path.join(deps.syncDir, OUTBOX_ZIP));
+    const record: SyncHandoffRecord = {
+      writtenBy: "PokePal", at: now.toISOString(), trainer: pc.trainerName, playtimeSeconds: pc.playtimeSeconds, badges: pc.badgeCount,
+      sha256, files: [OUTBOX_ZIP, OUTBOX_RXDATA],
+    };
+    const recordFile = path.join(deps.syncDir, HANDOFF_JSON);
+    await writeFile(`${recordFile}.pokepal-tmp`, JSON.stringify(record, null, 2));
+    await rename(`${recordFile}.pokepal-tmp`, recordFile);
     syncCopied = true;
   }
 

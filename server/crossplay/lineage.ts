@@ -15,7 +15,7 @@ export function handOffWarnings(pc: SaveMeta, ledger: Ledger, gameRunning: boole
   if (ledger.holder === "runa") w.push({ code: "ALREADY_HANDED_OFF", message: `The save was already handed to Runa at ${ledger.handoff?.at}. Handing off again replaces that copy; Runa progress since then would be lost.` });
   if (syncCopy) {
     const c = compareSaves(pc, syncCopy);
-    if (c.newer === "b" || c.newer === "unknown") w.push({ code: "DESTINATION_NEWER", message: `The copy already in the iCloud folder may be newer (${c.reason}).` });
+    if (c.newer === "b" || c.newer === "unknown") w.push({ code: "DESTINATION_NEWER", message: `A save already in the iCloud folder may be newer (${c.reason}).` });
   }
   return w;
 }
