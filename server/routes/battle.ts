@@ -6,6 +6,7 @@ import { historyView, type BattleHistory } from "../battle/history";
 import { watchBattleState } from "../battle/watch";
 import { liveBattleView } from "../spoilers/filter";
 import { writeSpoilerState } from "../spoilers/state";
+import type { SaveNotifier } from "./save";
 import type { SpoilerStore } from "./spoilers";
 
 export interface BattleFeed {
@@ -60,7 +61,7 @@ export function createBattleFeed(opts: {
   };
 }
 
-export function registerBattleRoutes(app: FastifyInstance, feed: BattleFeed, history?: BattleHistory, store?: SpoilerStore) {
+export function registerBattleRoutes(app: FastifyInstance, feed: BattleFeed, history?: BattleHistory, store?: SpoilerStore, saves?: SaveNotifier) {
   app.get("/api/battle/history", async (_req, reply) => {
     reply.header("cache-control", "no-store");
     return historyView(history?.entries() ?? [], store?.state.settings.opponentLevels ?? true);
@@ -80,10 +81,13 @@ export function registerBattleRoutes(app: FastifyInstance, feed: BattleFeed, his
     const current = feed.latest();
     if (current) send(current);
     const unsubscribe = feed.subscribe(send);
+    // Save changes ride this stream too, so a dashboard needs one connection, not several.
+    const unsubscribeSave = saves?.subscribe(() => reply.raw.write("event: save-changed\ndata: {}\n\n"));
     const ping = setInterval(() => reply.raw.write(": ping\n\n"), 25_000);
     req.raw.on("close", () => {
       clearInterval(ping);
       unsubscribe();
+      unsubscribeSave?.();
     });
   });
 }

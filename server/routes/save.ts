@@ -35,7 +35,28 @@ export async function loadSummary(config: Config, data: LoadedData | Error): Pro
   }
 }
 
-export function registerSaveRoutes(app: FastifyInstance, config: Config, data: LoadedData | Error) {
+export interface SaveNotifier { subscribe(fn: () => void): () => void }
+
+/** One shared watcher on the save file for every stream, started with the first subscriber and closed after the last. */
+export function createSaveNotifier(saveFile: string | null): SaveNotifier {
+  const subs = new Set<() => void>();
+  let watcher: ReturnType<typeof chokidar.watch> | null = null;
+  return {
+    subscribe(fn) {
+      subs.add(fn);
+      if (!watcher && saveFile) {
+        const notify = () => subs.forEach((s) => s());
+        watcher = chokidar.watch(saveFile, { ignoreInitial: true, awaitWriteFinish: { stabilityThreshold: 1000 } }).on("add", notify).on("change", notify);
+      }
+      return () => {
+        subs.delete(fn);
+        if (subs.size === 0 && watcher) { void watcher.close(); watcher = null; }
+      };
+    },
+  };
+}
+
+export function registerSaveRoutes(app: FastifyInstance, config: Config, data: LoadedData | Error, notifier: SaveNotifier = createSaveNotifier(config.saveFile)) {
   app.get("/api/save/summary", async (_req, reply) => {
     reply.header("cache-control", "no-store");
     try {
@@ -50,15 +71,11 @@ export function registerSaveRoutes(app: FastifyInstance, config: Config, data: L
     reply.hijack();
     reply.raw.writeHead(200, { "content-type": "text/event-stream", "cache-control": "no-store", connection: "keep-alive", "access-control-allow-origin": "*" });
     reply.raw.write(": connected\n\n");
-    const watcher = config.saveFile
-      ? chokidar.watch(config.saveFile, { ignoreInitial: true, awaitWriteFinish: { stabilityThreshold: 1000 } })
-      : null;
-    const notify = () => reply.raw.write("event: save-changed\ndata: {}\n\n");
-    watcher?.on("add", notify).on("change", notify);
+    const unsubscribe = notifier.subscribe(() => reply.raw.write("event: save-changed\ndata: {}\n\n"));
     const ping = setInterval(() => reply.raw.write(": ping\n\n"), 25_000);
     req.raw.on("close", () => {
       clearInterval(ping);
-      void watcher?.close();
+      unsubscribe();
     });
   });
 }

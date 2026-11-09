@@ -1,3 +1,4 @@
+import { onSaveChanged } from "../events";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { teamToShowdown } from "../../shared/showdown";
 import type { ClientBundle, OwnedMon, SaveSummary } from "../../shared/types";
@@ -26,9 +27,7 @@ export function TeamTab({ bundle }: { bundle: ClientBundle }) {
 
   useEffect(() => {
     load();
-    const es = new EventSource("/api/save/stream");
-    es.addEventListener("save-changed", load);
-    return () => es.close();
+    return onSaveChanged(load);
   }, [load]);
 
   const unknown = useMemo(() => new Set(save?.unknownIds ?? []), [save]);

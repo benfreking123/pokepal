@@ -113,3 +113,30 @@ it("streams battle-state events to new and connected clients", async () => {
     await app.close();
   }
 });
+
+it("sends save-changed on the battle stream so a dashboard needs only one connection", async () => {
+  const { feed } = await setup();
+  let notify = () => {};
+  let unsubscribed = 0;
+  const saves = { subscribe: (fn: () => void) => { notify = fn; return () => { unsubscribed++; }; } };
+  const app = Fastify();
+  registerBattleRoutes(app, feed, undefined, undefined, saves);
+  await app.listen({ port: 0, host: "127.0.0.1" });
+  try {
+    const url = `http://127.0.0.1:${(app.server.address() as { port: number }).port}/api/battle/stream`;
+    const ctrl = new AbortController();
+    const res = await fetch(url, { signal: ctrl.signal });
+    const reader = res.body!.getReader();
+    let text = "";
+    const until = async (re: RegExp) => { while (!re.test(text)) { const { value, done } = await reader.read(); if (done) break; text += new TextDecoder().decode(value); } };
+    await until(/: connected/);
+    notify();
+    await until(/event: save-changed\ndata: \{\}\n\n/);
+    expect(text).toContain("event: save-changed");
+    ctrl.abort();
+    for (let i = 0; i < 50 && unsubscribed === 0; i++) await new Promise((r) => setTimeout(r, 20));
+    expect(unsubscribed).toBe(1);
+  } finally {
+    await app.close();
+  }
+});
