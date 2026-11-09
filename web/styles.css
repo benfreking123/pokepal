@@ -80,3 +80,7 @@ button { cursor: pointer; background: var(--accent); border: 0; color: #fff; }
 .live.ended .foe-panel, .live.ended .live-party { opacity: 0.55; filter: grayscale(0.8); }
 .live-foes .fainted { opacity: 0.5; }
 .live-party-mon { margin: 6px 0; }
+
+.swap-steps { padding-left: 20px; display: grid; gap: 12px; }
+.swap-compare { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.swap-way h3 { margin-top: 0; }

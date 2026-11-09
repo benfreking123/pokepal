@@ -14,8 +14,6 @@ const time = (iso: string) => new Date(iso).toLocaleTimeString([], { hour: "2-di
 const kb = (n: number) => `${Math.max(1, Math.round(n / 1024))} KB`;
 
 export function SaveSwapTab() {
-  const [syncEnabled, setSyncEnabled] = useState(false);
-  useEffect(() => { getJson<{ config: { syncDir: string | null } }>("/api/config").then((r) => setSyncEnabled(!!r.config.syncDir), () => undefined); }, []);
   const [status, setStatus] = useState<CrossplayStatus | null>(null);
   const [backups, setBackups] = useState<BackupEntry[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -37,7 +35,7 @@ export function SaveSwapTab() {
 
   useEffect(() => {
     void refresh();
-    const t = setInterval(() => { if (document.visibilityState === "visible") void refresh(); }, 10_000);
+    const t = setInterval(() => { if (document.visibilityState === "visible") void refresh(); }, 5_000);
     return () => clearInterval(t);
   }, [refresh]);
 
@@ -46,7 +44,7 @@ export function SaveSwapTab() {
       const result = await sendJson<{ status: CrossplayStatus }>(action.method, action.path, accept ? { ...action.body, acceptWarnings: true } : action.body);
       setStatus(result.status);
       setPending(null);
-      setMessage(action.path.endsWith("handoff") ? "On the iPhone, tap Download for Runa and import it in Runa (Save Management → Import)." : "Done.");
+      setMessage(action.path.endsWith("handoff") ? (status?.sync ? "Sent. Wait for iCloud to sync, then follow the iPhone steps below." : "Handed off. Use Other ways below to get it to the phone.") : "Done.");
       void refresh();
     } catch (e) {
       const err = e as Error & { status?: number; body?: { code?: string; warnings?: SwapWarning[] } };
@@ -83,38 +81,47 @@ export function SaveSwapTab() {
   });
   const totalBytes = backups.reduce((n, b) => n + b.sizeBytes, 0);
 
+  const sync = status.sync;
+  const handOff = (): Action => ({ path: "/api/crossplay/handoff", method: "POST", title: "Send to iPhone", body: { expectedSha256: status.pc!.sha256 }, dest: null, source: status.pc });
+  const discard = async (i: IncomingSave) => {
+    try { setStatus((await sendJson<{ status: CrossplayStatus }>("DELETE", `/api/crossplay/incoming/${encodeURIComponent(i.id)}`)).status); } catch (e) { setMessage((e as Error).message); }
+  };
+
   return (
-    <div>
+    <div className="swap">
       <section className="card">
-        <h2>{handedOff ? `With Runa since ${time(status.ledger.handoff!.at)}, ${hms(status.ledger.handoff!.meta.playtimeSeconds)} played` : "On the PC"}</h2>
-        {status.gameRunning ? <span className="pill bad" role="status">Game is running</span> : null}
-        {pcChanged ? <p className="notice warn">The PC save changed after the hand-off to Runa. Installing a Runa save will replace that PC progress (it stays in a backup).</p> : null}
+        <h2>{handedOff ? `With Runa since ${time(status.ledger.handoff!.at)}, ${hms(status.ledger.handoff!.meta.playtimeSeconds)} played` : "Your save is on the PC"}</h2>
+        {status.gameRunning ? <span className="pill bad" role="status">Game is running. Close it before bringing a save back.</span> : null}
+        {pcChanged ? <p className="notice warn">The PC save changed after you sent it to the iPhone. Installing the phone save will replace that PC progress (it stays in a backup).</p> : null}
         {message ? <p className="notice" role="status">{message}</p> : null}
         {error ? <p className="notice warn">{error}</p> : null}
         {status.errors.map((e) => <p key={e} className="notice warn">{e}</p>)}
         <SaveMetaCard meta={status.pc} title="PC save" />
-        <div className="toolbar">
-          {!handedOff && status.pc ? (
-            <button onClick={() => run({ path: "/api/crossplay/handoff", method: "POST", title: "Hand off to Runa", body: { expectedSha256: status.pc!.sha256 }, dest: null, source: status.pc }, false)}>Hand off to Runa</button>
-          ) : null}
-          {handedOff ? <button onClick={() => run({ path: "/api/crossplay/reclaim", method: "POST", title: "Take back on PC", body: {}, dest: null, source: null }, false)}>Take back on PC</button> : null}
-          <button onClick={() => fileInput.current?.click()}>Upload Runa save</button>
-          <input ref={fileInput} type="file" accept=".zip,.rxdata" hidden onChange={(e) => { const f = e.target.files?.[0]; if (f) void upload(f); e.target.value = ""; }} />
-        </div>
-        {!handedOff && status.handOffWarnings.length > 0 ? <ul className="warnings">{status.handOffWarnings.map((w) => <li key={w.code} className="bad">{w.message}</li>)}</ul> : null}
+        {!sync ? <p className="notice warn">No iCloud folder found. Set the sync folder in Settings (usually iCloudDrive\Pokemon Reborn Sync), or use Other ways below.</p> : <p className="muted">iCloud folder: {sync.dir}</p>}
       </section>
 
-      {status.outbox ? (
-        <section className="card">
-          <h3>Outbox</h3>
-          <SaveMetaCard meta={status.outbox.meta} />
-          <a href="/api/crossplay/outbox" download={status.outbox.downloadName}>Download for Runa</a>
-        </section>
-      ) : null}
+      <section className="card swap-way">
+        <h3>Send to iPhone</h3>
+        <ol className="swap-steps">
+          <li><b>On the PC:</b> save in the game and close it, then press the button.
+            <div className="toolbar">
+              {status.pc ? <button disabled={!sync} onClick={() => run(handOff(), false)}>Send to iPhone</button> : null}
+              {handedOff ? <button onClick={() => run({ path: "/api/crossplay/reclaim", method: "POST", title: "Take back on PC", body: {}, dest: null, source: null }, false)}>Cancel and keep it on the PC</button> : null}
+            </div>
+            {!handedOff && status.handOffWarnings.length > 0 ? <ul className="warnings">{status.handOffWarnings.map((w) => <li key={w.code} className="bad">{w.message}</li>)}</ul> : null}
+            {sync?.sent ? <p className="muted">Last sent {time(sync.sent.at)}: {sync.sent.trainer}, {hms(sync.sent.playtimeSeconds)} played. Files: {sync.sent.files.join(", ")}.</p> : null}
+          </li>
+          <li><b>On the iPhone:</b> wait a minute for iCloud, open the <b>Files</b> app, then iCloud Drive, then <b>Pokemon Reborn Sync</b>. Open <b>pokepal_to_runa.zip</b> in <b>Runa</b> (touch and hold, Share, Runa) and choose Import Save.</li>
+        </ol>
+      </section>
 
-      <section className="card">
-        <h3>Incoming</h3>
-        {status.incoming.length === 0 ? <p>Nothing uploaded yet. Export from Runa, then tap Upload Runa save.</p> : null}
+      <section className="card swap-way">
+        <h3>Bring back from iPhone</h3>
+        <ol className="swap-steps">
+          <li><b>On the iPhone:</b> when you are done playing, in Runa choose <b>Export Save</b> and save it to Files, in <b>iCloud Drive, Pokemon Reborn Sync</b>. (The "Reborn to PC" Shortcut does this and names the file <code>reborn_from_phone_…</code>.)</li>
+          <li><b>On the PC:</b> it shows up here by itself. Check it, close the game, and press Install on PC.</li>
+        </ol>
+        {status.incoming.length === 0 ? <p className="muted">Waiting for a save from the iPhone…</p> : null}
         {status.incoming.map((i) => (
           <div key={i.id} className="card">
             <b>{i.fileName}</b> <span className="muted">({i.source === "icloud" ? "iCloud folder" : "upload"})</span>
@@ -125,20 +132,36 @@ export function SaveSwapTab() {
               </select>
             ) : null}
             {i.error ? <p className="notice warn">{i.error}</p> : null}
-            {i.meta ? <SaveMetaCard meta={i.meta} /> : null}
+            {i.meta ? (
+              <div className="swap-compare">
+                <SaveMetaCard meta={i.meta} title="From iPhone" />
+                <SaveMetaCard meta={status.pc} title="On this PC" />
+              </div>
+            ) : null}
             <ul className="warnings">{i.warnings.map((w) => <li key={w.code} className="bad">{w.message}</li>)}</ul>
             <div className="toolbar">
               <button disabled={!i.meta || status.gameRunning} onClick={() => run(install(i), false)}>Install on PC</button>
               {status.gameRunning ? <small>Close Pokémon Reborn first</small> : null}
-              {i.source === "upload" ? (
-                <button onClick={async () => {
-                  try { setStatus((await sendJson<{ status: CrossplayStatus }>("DELETE", `/api/crossplay/incoming/${encodeURIComponent(i.id)}`)).status); } catch (e) { setMessage((e as Error).message); }
-                }}>Discard</button>
-              ) : null}
+              {i.source === "upload" ? <button onClick={() => discard(i)}>Discard</button> : null}
             </div>
           </div>
         ))}
       </section>
+
+      <details className="card swap-other">
+        <summary>Other ways (home Wi-Fi)</summary>
+        <p className="muted">Only if iCloud is not working. Open PokePal in Safari on the phone while on the same Wi-Fi.</p>
+        {status.outbox ? (
+          <div>
+            <SaveMetaCard meta={status.outbox.meta} title="Ready to download" />
+            <a href="/api/crossplay/outbox" download={status.outbox.downloadName}>Download for Runa</a>
+          </div>
+        ) : <p className="muted">Press Send to iPhone first; then a download link appears here.</p>}
+        <div className="toolbar">
+          <button onClick={() => fileInput.current?.click()}>Upload Runa save</button>
+          <input ref={fileInput} type="file" accept=".zip,.rxdata" hidden onChange={(e) => { const f = e.target.files?.[0]; if (f) void upload(f); e.target.value = ""; }} />
+        </div>
+      </details>
 
       <details className="card">
         <summary>Backups ({backups.length}, {kb(totalBytes)})</summary>
@@ -153,22 +176,12 @@ export function SaveSwapTab() {
       </details>
 
       <details className="card">
-        <summary>How it works</summary>
-        <ol>
-          <li>On the PC, save in game and close it. Tap Hand off to Runa (a backup is made first).</li>
-          <li>On the iPhone, tap Download for Runa, then import it in Runa (Save Management → Import).</li>
-          <li>Play in Runa, then export the save from Runa and tap Upload Runa save here.</li>
-          <li>On the PC, review the warnings and tap Install on PC. The old PC save is backed up first.</li>
-        </ol>
-        {syncEnabled ? (
-          <>
-            <h4>iCloud tips</h4>
-            <ul>
-              <li>Right-click the sync folder in File Explorer and choose Always keep on this device.</li>
-              <li>Wait for the cloud icon to turn into a green tick before importing on the iPhone.</li>
-            </ul>
-          </>
-        ) : null}
+        <summary>iCloud tips</summary>
+        <ul>
+          <li>On the PC, right-click the sync folder in File Explorer and choose Always keep on this device.</li>
+          <li>Wait for the cloud icon to turn into a green tick before importing on the iPhone, and for the new file to appear on the PC before checking here.</li>
+          <li>PokePal only writes pokepal_to_runa.zip, Game.rxdata and pokepal-handoff.json in that folder. Your exports are never changed or deleted.</li>
+        </ul>
       </details>
 
       {pending ? (
